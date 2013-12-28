@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+<head>
+<link type="text/css" href="/rss_reader.css" rel="stylesheet"/>
+<title>RSS reader</title>
+<meta content="dupre, ENSAE, RSS, reader, pyrsslocal" name="keywords"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link rel="shortcut icon" href="/pyrsslocal.ico" />
+<meta content="" name="description" />
+<script src="/js/run_prettify.js" type="text/javascript"></script>
+<script type="text/javascript" src="/rsslocal.js"></script>
+
+</head>
+<body onload="setPositions(['divblogs', 'divpostsshort', 'divpostsext'])" class="mymainbody">
+
+<div class="divtop">
+<h1>RSS reader</h1>
+</div>
+
+<div class="divblogstitle">
+<p class="sechead">Blog list
+<a href="/rss_status.html" onmousedown="sendlog('url/rss_reader.html')"><img src="/all.png" width="18px" /></a>
+<a href="/rss_status.html?search=frequent" onmousedown="sendlog('url/rss_reader.html?search=frequent')"><img src="/frequent.png" width="18px" /></a>
+<a href="/rss_status.html?search=notfrequent" onmousedown="sendlog('url/rss_reader.html?search=notfrequent')"><img src="/notfrequent.png" width="18px" /></a>
+<a href="/rss_status.html?search=week" onmousedown="sendlog('url/rss_reader.html?search=week')"><img src="/week.png" width="18px" /></a>
+<a href="/rss_status.html?search=twoday" onmousedown="sendlog('url/rss_reader.html?search=twoday')"><img src="/twoday.png" width="18px" /></a>
+<a href="/rss_status.html?search=today" onmousedown="sendlog('url/rss_reader.html?search=today')"><img src="/today.png" width="18px" /></a>
+</p>
+</div>
+
+<div class="divblogs" id="divblogs" onscroll="savePosition('divblogs')">
+<script type="text/python">
+for blog in dbrss.enumerate_blogs(specific=search) :
+    action = "%s?blog_selected=%d" % (main_page, blog.id)
+    if search != None : action += "&search=%s" % search
+    if blog.id in blog_selected :
+        print (blog.html(action = action, style = "blogtitlehigh"))
+    else :
+        print (blog.html(action = action))
+</script>
+</div>
+
+<div class="divpostsexttitle">
+<p class="sechead">
+<form>
+Search results for: 
+<script type="text/python">
+if "searchterm" in __dict__ :
+    print ('<input type="text" name="searchterm" value="{0}" size="40" />'.format(searchterm[0]))
+else :
+    print ('<input type="text" name="searchterm" size="40" />')
+print ('<input type="submit" value="Search" /> Use tags: ')
+if "usetag" in __dict__ :
+    print ('<input type="checkbox" name="usetag" value="usetage" checked />')
+else :
+    print ('<input type="checkbox" name="usetag" value="usetag" />')
+</script>
+</form> 
+</p>
+</div>
+
+
+<div class="divpostsext2" id="divpostsext" onscroll="savePosition('divpostsext2')">
+<script type="text/python">
+useTag = "usetag" in __dict__
+if "searchterm" in __dict__ :
+    searchterm = searchterm[0]
+else :
+    searchterm = None
+
+addcontent = post_selected != None and len(post_selected) == 1
+thispage = "%s?blog_selected=%s&post_selected={0.id}" % (main_page, 
+                ",".join( ["%d" % _ for _ in blog_selected ] ) )
+if search != None : thispage += "&search=%s" % search
+
+if useTag :
+    nb = 0
+    print ('<table border="0">')
+    for post in dbrss.enumerate_posts_status(blog_selection = blog_selected, 
+                                      post_selection = post_selected,
+                                      specific = search,
+                                      searchterm = searchterm) :
+        action = "{0.link}"
+        print (post.html(template = "status", action = action, extended = True, thispage = thispage))
+        nb += 1
+    if nb == 0 :
+        print("<tr><td>no result found</td></tr>")
+    print ("</table>")
+else :
+    nb = 0
+    print ('<table border="0">')
+    for post in dbrss.enumerate_posts(blog_selection = blog_selected, 
+                                      post_selection = post_selected,
+                                      specific       = search,
+                                      first          = 20,
+                                      addstatus      = addcontent,
+                                      searchterm     = searchterm) :
+        action = "{0.link}"
+        print (post.html(template = "table", action = action, extended = True, addcontent = addcontent, thispage = thispage, addstatus = addcontent))
+        nb += 1
+    if nb == 0 :
+        print("<tr><td>no result found</td></tr>")
+    print ("</table>")
+</script>
+</div>
+
+<div class="divtopstat0">
+<p>
+<a href="/rss_reader.html" onmousedown="sendlog('url/rss_reader.html')">Blog Posts</a>
+</p>
+<p>
+<a href="/rss_status.html" onmousedown="sendlog('url/rss_status.html')">Marked Posts</a>
+</p>
+</div>
+
+
+
+</body>
+</html>

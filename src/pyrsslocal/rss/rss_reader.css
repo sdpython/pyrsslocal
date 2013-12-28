@@ -1,0 +1,225 @@
+html, body {
+	margin-top:0px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:0px;
+	padding: 0;
+	background-color: white; 
+	font-family: Calibri; 	
+}      
+
+div.divtop {
+	position:absolute; 
+	margin-left:0%; 
+	margin-right:0%;
+	text-align: justify;
+	width:50%;
+	height:7%;
+} 
+
+div.divtopstat0 {
+	position:absolute; 
+	margin-left:90%; 
+	margin-right:0%;
+	text-align: justify;
+	width:10%;
+	height:14%;
+} 
+
+div.divtopstat1 {
+	position:absolute; 
+	margin-left:50%; 
+	margin-right:0%;
+	text-align: justify;
+	width:25%;
+	height:14%;
+	overflow:scroll;
+} 
+
+div.divtopstat2 {
+	position:absolute; 
+	margin-left:75%; 
+	margin-right:0%;
+	text-align: justify;
+	width:25%;
+	height:14%;
+	overflow:scroll;
+} 
+
+div.divblogstitle {
+	position:absolute; 
+	margin-top:7%; 
+	margin-left:0%; 
+	margin-right:0%;
+	text-align: left;
+	width:20%;
+	height:3%;
+} 
+
+div.divblogs{
+	position:absolute; 
+	margin-top:10%; 
+	margin-left:0%; 
+	margin-right:0%;
+	text-align: left;
+	width:20%;
+	height:80%;
+	overflow:scroll;
+} 
+
+div.divpostsexttitle {
+	position:absolute; 
+	margin-top:7%; 
+	margin-left:20%; 
+	margin-right:0%;
+	text-align: left;
+	width:50%;
+	height:3%;
+} 
+
+div.divpostsext{
+	position:absolute; 
+	margin-top:10%; 
+	margin-left:20%; 
+	margin-right:0%;
+	text-align: left;
+	width:50%;
+	height:80%;
+	overflow:scroll;
+} 
+
+div.divpostsext2{
+	position:absolute; 
+	margin-top:10%; 
+	margin-left:20%; 
+	margin-right:0%;
+	text-align: left;
+	width:80%;
+	height:80%;
+	overflow:scroll;
+} 
+
+div.divpostsshorttitle {
+	position:absolute; 
+	margin-top:7%; 
+	margin-left:70%; 
+	margin-right:0%;
+	text-align: left;
+	width:30%;
+	height:3%;
+} 
+
+div.divpostsshort{
+	position:absolute; 
+	margin-top:10%; 
+	margin-left:70%; 
+	margin-right:0%;
+	text-align: left;
+	width:30%;
+	height:80%;
+	overflow:scroll;
+} 
+
+p.blogtitle {
+	padding: 0;
+	text-align: left;
+	font-size: 80%;
+	margin: 0;
+}
+
+p.blogtitlehigh {
+	padding: 0;
+	text-align: left;
+	font-size: 120%;
+	margin: 0;
+	background-color:#AAAAFF;
+}
+
+p.posttitleext {
+	padding: 0;
+	text-align: left;
+	font-size: 110%;
+	margin: 10;
+	background-color:#EEEEEE;
+}
+
+td.posttitleext {
+	padding: 0;
+	text-align: left;
+	font-size: 80%;
+	margin: 10;
+	background-color:#EEEEEE;
+}
+
+p.posttitleextb {
+	padding: 0;
+	text-align: left;
+	font-size: 80%;
+	margin: 10;
+	background-color:#FFCC77;
+}
+
+td.posttitleextb {
+	padding: 0;
+	text-align: left;
+	font-size: 80%;
+	margin: 10;
+}
+
+p.poststatusextb {
+	padding: 0;
+	text-align: right;
+	font-size: 80%;
+	margin: 0;
+	background-color:#EEEEEE;
+}
+
+a.poststatusextbno {
+	background-color:#DDDDDD;
+}
+
+a.poststatusextbyes {
+	background-color:#EEEE00;
+}
+
+p.posttitlehigh {
+	padding: 0;
+	text-align: left;
+	font-size: 120%;
+	margin: 0;
+	background-color:#AAAAFF;
+}
+
+p.description{
+	padding: 0;
+	text-align: left;
+	font-size: 100%;
+	margin: 0;
+}
+
+p.posttitle {
+	padding: 0;
+	text-align: left;
+	font-size: 80%;
+	margin: 0;
+}
+
+p.sechead {
+	padding: 0;
+	text-align: left;
+	font-size: 120%;
+	margin: 0;
+	font-weight:bold;
+}
+
+table.tableblog {
+	padding: 0;
+	text-align: left;
+	font-size: 80%;
+	margin: 0;
+} ;
+
+pre {
+	font-size: 80%;
+	background-color: WhiteSmoke ; 
+}

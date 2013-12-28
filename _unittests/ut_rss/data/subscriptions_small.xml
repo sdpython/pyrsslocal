@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+    <head>
+        <title>Xavier subscriptions in Google Reader</title>
+    </head>
+    <body>
+        <outline text="XD blog" title="XD blog" type="rss"
+            xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml" htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html"/>
+    </body>
+</opml>

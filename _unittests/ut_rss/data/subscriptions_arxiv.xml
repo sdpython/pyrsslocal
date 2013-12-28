@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+    <head>
+        <title>Xavier subscriptions in Google Reader</title>
+    </head>
+    <body>
+        <outline title="papers_computers_science" text="papers_computers_science">
+            <outline text="cs updates on arXiv.org"
+                title="cs updates on arXiv.org" type="rss"
+                xmlUrl="http://arxiv.org/rss/cs" htmlUrl="http://arxiv.org/"/>
+        </outline>
+    </body>
+</opml>

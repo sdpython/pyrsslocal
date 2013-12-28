@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+<head>
+<link type="text/css" href="/rss_reader.css" rel="stylesheet"/>
+<title>RSS reader</title>
+<meta content="dupre, ENSAE, RSS, reader, pyrsslocal" name="keywords"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link rel="shortcut icon" href="/pyrsslocal.ico" />
+<meta content="" name="description" />
+<script src="/js/run_prettify.js" type="text/javascript"></script>
+<script type="text/javascript" src="/rsslocal.js"></script>
+
+</head>
+<body>
+
+<table class="tableblog">
+<script type="text/python">
+page = main_page.replace("_stat_blogs","")
+for blog in dbrss.enumerate_blogs(specific=search, addstat = True) :
+    action = "%s?blog_selected=%d" % (page, blog.id)
+    if search != None : action += "&search=%s" % search
+    print (blog.html(action = action, template = "default_stat"))
+</script>
+</table>
+
+</body>
+</html>

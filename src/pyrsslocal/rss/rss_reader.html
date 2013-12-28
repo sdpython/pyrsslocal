@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+<head>
+<link type="text/css" href="/rss_reader.css" rel="stylesheet"/>
+<title>RSS reader</title>
+<meta content="dupre, ENSAE, RSS, reader, pyrsslocal" name="keywords"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link rel="shortcut icon" href="pyrsslocal.ico" />
+<meta content="" name="description" />
+<script src="/js/run_prettify.js" type="text/javascript"></script>
+<script type="text/javascript" src="/rsslocal.js"></script>
+
+</head>
+<body onload="setPositions(['divblogs', 'divpostsshort', 'divpostsext'])" class="mymainbody">
+
+<div class="divtop">
+<h1>RSS reader</h1>
+</div>
+
+<div class="divblogstitle">
+<p class="sechead">Blog list
+<a href="/rss_reader.html" onmousedown="sendlog('url/rss_reader.html')"><img src="/all.png" width="18px" /></a>
+<a href="/rss_reader.html?search=frequent" onmousedown="sendlog('url/rss_reader.html?search=frequent')"><img src="/frequent.png" width="18px" /></a>
+<a href="/rss_reader.html?search=notfrequent" onmousedown="sendlog('url/rss_reader.html?search=notfrequent')"><img src="/notfrequent.png" width="18px" /></a>
+<a href="/rss_reader.html?search=week" onmousedown="sendlog('url/rss_reader.html?search=week')"><img src="/week.png" width="18px" /></a>
+<a href="/rss_reader.html?search=twoday" onmousedown="sendlog('url/rss_reader.html?search=twoday')"><img src="/twoday.png" width="18px" /></a>
+<a href="/rss_reader.html?search=today" onmousedown="sendlog('url/rss_reader.html?search=today')"><img src="/today.png" width="18px" /></a>
+</p>
+</div>
+
+<div class="divblogs" id="divblogs" onscroll="savePosition('divblogs')">
+<script type="text/python">
+for blog in dbrss.enumerate_blogs(specific=search) :
+    action = "%s?blog_selected=%d" % (main_page, blog.id)
+    if search != None : action += "&search=%s" % search
+    if blog.id in blog_selected :
+        print (blog.html(action = action, style = "blogtitlehigh"))
+    else :
+        print (blog.html(action = action))
+</script>
+</div>
+
+<div class="divpostsshorttitle">
+<p class="sechead">Post list</p>
+</div>
+
+<div class="divpostsshort" id="divpostsshort" onscroll="savePosition('divpostsshort')">
+<script type="text/python">
+for post in dbrss.enumerate_posts(blog_selection = blog_selected, specific = search) :
+    action = "%s?blog_selected=%s&post_selected=%d" % (main_page, 
+                ",".join( ["%d" % _ for _ in blog_selected ] ),
+                post.id, )
+    if search != None : action += "&search=%s" % search
+    
+    if post.id in post_selected :
+        print (post.html(action = action, style = "posttitlehigh"))
+    else :
+        print (post.html(action = action))
+</script>
+</div>
+
+<div class="divpostsexttitle">
+<p class="sechead">Posts</p>
+</div>
+
+
+<div class="divpostsext" id="divpostsext" onscroll="savePosition('divpostsext')">
+<script type="text/python">
+addcontent = post_selected != None and len(post_selected) == 1
+thispage = "%s?blog_selected=%s&post_selected={0.id}" % (main_page, 
+                ",".join( ["%d" % _ for _ in blog_selected ] ) )
+if search != None : thispage += "&search=%s" % search
+for post in dbrss.enumerate_posts(blog_selection = blog_selected, 
+                                  post_selection = post_selected,
+                                  specific       = search,
+                                  first          = 20,
+                                  addstatus      = addcontent) :
+    action = "{0.link}"
+    print (post.html(action = action, extended = True, addcontent = addcontent, thispage = thispage, addstatus = addcontent))
+</script>
+</div>
+
+<div class="divtopstat0">
+<p>
+<a href="/rss_status.html" onmousedown="sendlog('url/rss_status.html')">Marked Posts</a>
+</p>
+<p>
+<a href="/rss_search.html" onmousedown="sendlog('url/rss_search.html')">Search</a>
+</p>
+</div>
+
+<div class="divtopstat1" id="idstatblog">
+wait...
+</div>
+<script type="text/javascript">
+try 
+{
+    loadExe('rss_reader_stat_blogs.html' + getUrlVarsString(), 'idstatblog');
+}
+catch (err) 
+{
+    var pageElement = document.getElementById("idstatblog");
+    pageElement.innerHTML = '<p>no available statistics for posts</p>' ;
+}
+</script>
+
+<!--
+<div class="divtopstat2" id="idstatpost">
+wait...
+</div>
+<script type="text/javascript">
+try 
+{
+    loadExe('rss_reader_stat_posts.html', 'idstatblog');
+}
+catch (err) 
+{
+    var pageElement = document.getElementById("idstatpost");
+    pageElement.innerHTML = '<p>no available statistics for posts</p>' ;
+}
+</script>
+-->
+
+
+
+</body>
+</html>

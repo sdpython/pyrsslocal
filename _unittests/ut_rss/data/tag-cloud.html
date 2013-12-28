@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Tag Cloud</title>
+    <script src="http://www.xavierdupre.fr/blog/javascript/d3.v3.min.js"></script>
+    <script src="http://www.xavierdupre.fr/blog/javascript/jquery-1.9.1.min.js"></script>
+    <style>
+
+@font-face {
+    font-family: 'ChunkFiveRegular';
+    src: url('font/Chunkfive-webfont.eot');
+    src: url('font/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/Chunkfive-webfont.woff') format('woff'),
+         url('font/Chunkfive-webfont.ttf') format('truetype'),
+         url('font/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('font/OpenSans-Regular-webfont.eot');
+    src: url('font/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/OpenSans-Regular-webfont.woff') format('woff'),
+         url('font/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('font/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BitterBold';
+    src: url('font/Bitter-Bold-webfont.eot');
+    src: url('font/Bitter-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/Bitter-Bold-webfont.woff') format('woff'),
+         url('font/Bitter-Bold-webfont.ttf') format('truetype'),
+         url('font/Bitter-Bold-webfont.svg#BitterBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+.node {
+    font-family: 'ChunkFiveRegular';
+    cursor: pointer;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+#info {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    overflow: scroll;
+    font-family: 'OpenSansRegular';
+    border-left: solid 1px #CCC;
+}
+
+#intro {
+    position: absolute;
+    top: 40%;
+    right: 20;
+    width: 360;
+    text-align: center;
+    color: #CCC;
+    font-size: 14px;
+}
+
+a#article {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+a#article #title {
+    font-family: 'BitterBold';
+    font-size: 24px;
+    color: #FFF;
+}
+
+a#article #description {
+    color: #FFF;
+    font-size: 13px;
+}
+
+    </style>
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+var width  = window.innerWidth - 400,
+    height = window.innerHeight,
+    fill = d3.scale.category20();
+
+var force = d3.layout.force()
+    .size([width, height]);
+
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.json("data.json", function(error, graph) {
+    force
+        .nodes(graph.nodes)
+        .links(graph.links)
+        .linkDistance(function(l) { return 700*Math.sqrt(l.distance); })
+        .charge(function(d) { return -1000; })
+        .linkStrength(function(l) { return 0.2; })
+        .start();
+
+    var link = svg.selectAll(".link")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("class", "link")
+        .style("stroke-width", 2);
+
+    var node = svg.selectAll(".node")
+        .data(graph.nodes)
+        .enter().append("g")
+        .attr("class", "node")
+        .call(force.drag);
+
+    node.append("text")
+        .style("fill", function(d, i) { return fill((i/100)*20); })
+        .style("font-size", function(d, i) { return Math.max(10, 40*d.contribution); })
+        .text(function(d) { return d.token; })
+        .on("click", function(d, i) {
+            $("#info > *").remove();
+            $("#intro").remove();
+            var html = [];
+            for (var article in d.articles) {
+                html.push('<a id="article" target="_blank" href="');
+                html.push(d.articles[article]["url"]);
+                html.push('" style="background-color: ');
+                html.push(fill((i/100)*20));
+                html.push(';">');
+                html.push('<span id="title">');
+                html.push(d.articles[article]["title"]);
+                html.push('</span>');
+                html.push('<p id="description">');
+                html.push(d.articles[article]["description"]);
+                html.push('</p>');
+                html.push('</a>');
+            }
+            html.push('</ul>');
+            $("#info").append(html.join(''));
+        });
+
+    force.on("tick", function() {
+        node.attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; });
+
+        node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+    });
+});
+
+$(window).resize(function() {
+    force.size([window.innerWidth - 400, window.innerHeight]);
+    force.start();
+});
+
+</script>
+
+<div id="info">
+<p id="intro">Cliquez sur un mot pour afficher les articles correspondants.</p>
+</div>
+
+</body>
+
+</html>
+
