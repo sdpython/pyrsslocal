@@ -8,6 +8,7 @@
 import xml.sax.handler, xml.sax, sys, os
 
 from pyquickhelper  import fLOG
+from pyquickhelper.loghelper.flog import GetSepLine
 from .xml_tree      import XMLHandlerDict, XMLIterParser
 
 def _iteration_values (values) :

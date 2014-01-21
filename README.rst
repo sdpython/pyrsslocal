@@ -11,7 +11,8 @@ Description
 -----------
 
 The project is hosted `here <http://www.xavierdupre.fr/site2013/index_code.html>`_ 
-and on github: `pyrsslocal <https://github.com/sdpython/pyrsslocal/>`_.
+on github: `github/pyrsslocal <https://github.com/sdpython/pyrsslocal/>`_,
+on pypi: `pypi/pyrsslocal <https://pypi.python.org/pypi/pyrsslocal/>`_.
 
 ::
 

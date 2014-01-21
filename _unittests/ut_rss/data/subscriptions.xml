@@ -409,7 +409,8 @@
                 text="Olivier Bouba-Olga : Blog d'un économiste qui suit et commente l'actualité"
                 title="Olivier Bouba-Olga : Blog d'un économiste qui suit et commente l'actualité"
                 type="rss"
-                xmlUrl="http://obouba.over-blog.com/rss-articles.xml" htmlUrl="http://obouba.over-blog.com/"/>
+                xmlUrl="http://blogs.univ-poitiers.fr/o-bouba-olga/feed/" 
+                htmlUrl="http://blogs.univ-poitiers.fr/o-bouba-olga/"/>
             <outline text="Optimum, le seul blog véritablement optimal"
                 title="Optimum, le seul blog véritablement optimal"
                 type="rss"

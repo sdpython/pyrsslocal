@@ -56,10 +56,10 @@ readme              = 'README.rst'
 
 
 KEYWORDS = \
-project_var_name + ', first name, last name'
+project_var_name + ', RSS, viewer, blog, post'
 
 DESCRIPTION = \
-"""Helpers for teaching purposes."""
+"""Local RSS reader/viewer"""
 
 CLASSIFIERS = \
 [
