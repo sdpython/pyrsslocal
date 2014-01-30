@@ -62,7 +62,7 @@ class BlogPost :
         self.keywords       = keywords
         self.id             = id
         self.status         = None
-        self.statusList     = ["reject", "read", "keep", "interesting", "teachings"]
+        self.statusList     = ["jokes", "programming", "data", "reject", "read", "keep", "interesting", "teachings"]
         
         if self.id_rss == None :
             raise Exception("no source (SteamRSS) for this post")
