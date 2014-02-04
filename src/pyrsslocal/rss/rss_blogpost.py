@@ -20,7 +20,7 @@ class BlogPost :
         </item>    
     @endcode
     
-    @var    rss_stream      source of the blog
+    @var    id_rss          id of the blog source
     @var    title           title of the stream
     @var    guid            guid
     @var    isPermaLink     isPermaLink
@@ -65,7 +65,7 @@ class BlogPost :
         self.statusList     = ["jokes", "programming", "data", "reject", "read", "keep", "interesting", "teachings"]
         
         if self.id_rss == None :
-            raise Exception("no source (SteamRSS) for this post")
+            raise Exception("no source (StreamRSS) for this post")
         if isinstance (self.id_rss, int) :
             if self.id_rss == -1 :
                 raise ValueError("the source id (self.id_rss) is equal to -1, not allowed")
@@ -87,7 +87,7 @@ class BlogPost :
         """
         usual
         """
-        return "%s: %s (from %s)" % (str(self.pubDate), self.title, self.rss_stream.title)
+        return "%s: %s (from %s)" % (str(self.pubDate), self.title, self.id_rss)
         
     @property
     def index(self):

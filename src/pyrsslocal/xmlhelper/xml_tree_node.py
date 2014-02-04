@@ -5,7 +5,7 @@
 """
 
 import math, xml.sax.handler, xml.sax.expatreader, copy, sys, os
-from xml.parsers                    import expat
+from xml.parsers import expat
 
 from pyquickhelper import fLOG
 from pyquickhelper.loghelper.flog import guess_type_list, guess_type_value_type

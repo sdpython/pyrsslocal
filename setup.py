@@ -51,7 +51,7 @@ else :
     subversion = 1   
 
 project_var_name    = "pyrsslocal"
-sversion            = "0.5"
+sversion            = "0.6"
 versionPython       = "%s.%s" % (sys.version_info.major, sys.version_info.minor)
 path                = "Lib/site-packages/" + project_var_name
 readme              = 'README.rst'
@@ -131,7 +131,7 @@ setup(
     package_dir             = package_dir,
     package_data            = package_data,
     #data_files              = data_files,
-    requires                = [  "pyquickhelper", "pyensae" ],
+    install_requires        = [  "pyquickhelper", "pyensae", "feedparser" ],
     ext_modules             = EXT_MODULES,
     #include_package_data    = True,
     )

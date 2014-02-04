@@ -25,7 +25,7 @@ managed by a local python server using a SQLite database:
     from pyquickhelper  import fLOG
     from pyrsslocal     import rss_update_run_server
     fLOG (OutputPrint = True)
-    xml_blogs = "_unittests/ut_rss/data/subscriptions.xml"
+    xml_blogs = "subscriptions.xml"
     dbfile    = "rss_posts.db3"
     rss_update_run_server(dbfile, xml_blogs)
 
@@ -60,6 +60,13 @@ The XML file which describes the blogs looks like this::
             
         </body>
     </opml>
+    
+You can enumerate the blog posts in the database::
+
+    from pyrsslocal import pyrsslocal
+    db = DatabaseRSS(dbfile, LOG = fLOG)
+    for blog in db.enumerate_posts() :
+        print (blog)
 
 Functionalities
 ---------------
