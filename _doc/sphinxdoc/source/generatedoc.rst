@@ -15,4 +15,4 @@ Extensions to install
 +++++++++++++++++++++
 
 * `pyquickhelper <https://pypi.python.org/pypi/pyquickhelper/>`_
-* `Sphinx-hachibee-theme <https://github.com/hachibeeDI/Sphinx-hachibee-theme/>`_
+* `Sphinx-hachibee-theme <https://github.com/sdpython/Sphinx-hachibee-theme/>`_
