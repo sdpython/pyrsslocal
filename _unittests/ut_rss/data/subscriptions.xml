@@ -13,7 +13,13 @@
                 htmlUrl=""/>
                 -->
 
-            <outline text="Damian OQuanta"
+            <outline text="ScottGu's Blog"
+                title="ScottGu's Blog" 
+                type="rss"
+                xmlUrl="http://weblogs.asp.net/scottgu/rss.aspx" 
+                htmlUrl="http://weblogs.asp.net/scottgu/default.aspx"/>
+                
+             <outline text="Damian OQuanta"
                 title="Damian OQuanta" 
                 type="rss"
                 xmlUrl="http://www.damian.oquanta.info/rss.xml" 
