@@ -5,8 +5,6 @@
 @brief      functions related to XML files representing objects
 """
 
-import xml.sax.handler, xml.sax, sys, os
-
 from pyquickhelper  import fLOG
 from pyquickhelper.loghelper.flog import GetSepLine
 from .xml_tree      import XMLHandlerDict, XMLIterParser
@@ -176,7 +174,7 @@ def xml_filter (file, output, filter, log = False, xmlformat = True) :
     @param      xmlformat   if True, return the xml, otherwise return the node
     @param      log         do logs if True
     """
-    outputh = open (outputh, "r", encoding="utf8") if isinstance (output, str) else output
+    outputh = open (output, "r", encoding="utf8") if isinstance (output, str) else output
     for line in xml_filter_iterator (file, filter, log, xmlformat) :
         outputh.write (line)
         outputh.write (GetSepLine ())

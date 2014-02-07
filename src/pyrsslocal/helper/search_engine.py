@@ -5,10 +5,9 @@
 @brief various function to get the content of a page, of a search page...
 """
 
-import sys, urllib, urllib.request, time, random, re, os
+import urllib, urllib.request, time, random, re, os
 
 from pyquickhelper import fLOG
-from .download_helper import get_url_content
 
 def extract_bing_result (searchPage, filter = lambda u : True) :
     """

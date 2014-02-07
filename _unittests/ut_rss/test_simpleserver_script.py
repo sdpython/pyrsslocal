@@ -5,15 +5,13 @@
 """
 
 
-import sys, os, unittest, re, datetime, time
+import sys, os, unittest, time
 from io import StringIO
-from http.server import BaseHTTPRequestHandler, HTTPServer
 
 try :
     import src
     import pyquickhelper
 except ImportError :
-    import os, sys
     path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..")))
     if path not in sys.path : sys.path.append (path)
     path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyquickhelper", "src")))
@@ -24,8 +22,6 @@ except ImportError :
 from pandas import DataFrame
 
 from pyquickhelper                                      import fLOG
-from src.pyrsslocal.simple_server.simple_server_custom  import SimpleHandler, run_server
-from src.pyrsslocal.helper.search_engine                import get_url_content
 from src.pyrsslocal.simple_server.html_script_parser    import HTMLScriptParser
 from src.pyrsslocal.simple_server.html_string           import html_debug_string
 from src.pyrsslocal.helper.externs                      import df_to_html

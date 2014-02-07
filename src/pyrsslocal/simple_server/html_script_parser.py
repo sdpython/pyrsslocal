@@ -97,7 +97,7 @@ class HTMLScriptParser(HTMLParser):
             if self.catch_exception :
                 try :
                     run_python_script(script, pars)
-                except Exception as e :
+                except Exception :
                     import traceback
                     ht = '<pre class="prettyprint linenums:4">\n%s\n</pre>\nException:<pre class="prettyprint">\n' % script
                     self.outStream.write(ht)
@@ -222,7 +222,7 @@ class HTMLScriptParserRemove(HTMLScriptParser):
             
 
 if __name__ == "__main__" :
-    from html_string import *
+    from html_string import HTMLScriptParser, html_debug_string
     st = StringIO()
     parser = HTMLScriptParser( outStream = st)
     parser.feed(html_debug_string)

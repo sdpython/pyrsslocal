@@ -2,12 +2,11 @@
 @file
 @brief description of a RSS stream
 """
-import collections, datetime, os, sys
+import datetime, os
 
 from pyensae.sql.database_main  import Database
 from .rss_blogpost              import BlogPost
 from .rss_stream                import StreamRSS
-from .rss_blogpost              import BlogPost
 
 class DatabaseRSS (Database) :
     """

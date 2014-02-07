@@ -2,13 +2,13 @@
 @file
 @brief Various function to automate the collection of blog posts.
 """
-import os,sys, webbrowser
+import os,webbrowser
 
 from .rss_stream                    import StreamRSS
 from .rss_blogpost                  import BlogPost
-from pyquickhelper.loghelper.flog   import run_cmd, fLOG
+from pyquickhelper.loghelper.flog   import fLOG
 from pyensae.sql.database_main      import Database
-from .rss_simple_server             import RSSSimpleHandler, RSSServer
+from .rss_simple_server             import RSSServer
 
 def rss_from_xml_to_database (file,
                           database  = "database_rss.db3",

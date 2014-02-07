@@ -5,15 +5,14 @@
 """
 
 
-import sys, os, unittest, re, datetime, time
-from http.server import BaseHTTPRequestHandler, HTTPServer
+import sys, os, unittest
+from http.server import HTTPServer
 
 try :
     import src
     import pyquickhelper
     import pyensae
 except ImportError :
-    import os, sys
     path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..")))
     if path not in sys.path : sys.path.append (path)
     path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyquickhelper", "src")))
@@ -25,10 +24,9 @@ except ImportError :
     import pyensae
 
 from pyquickhelper                      import fLOG
-from src.pyrsslocal.rss.rss_stream      import StreamRSS, BlogPost
 from src.pyrsslocal.rss.rss_database    import DatabaseRSS
 from src.pyrsslocal.simple_server.simple_server_custom import SimpleHandler, run_server
-from src.pyrsslocal.helper.search_engine import get_url_content
+from src.pyrsslocal.helper.download_helper import get_url_content
 
 
 class TestSimpleServer (unittest.TestCase):

@@ -5,7 +5,7 @@
 """
 
 try :
-    import src
+    import os, src
     import pyquickhelper, pyensae
 except ImportError :
     import os, sys
@@ -18,7 +18,7 @@ except ImportError :
     import src
     import pyquickhelper, pyensae
 
-import unittest, os, sys, io
+import unittest, io
 from pyquickhelper import fLOG
 from pyquickhelper.unittests.utils_tests import main 
 

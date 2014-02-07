@@ -5,7 +5,7 @@
 @brief  parsing XML
 """
 
-import math, xml.sax.handler, io, xml.sax.expatreader, sys, os
+import xml.sax.handler, io, xml.sax.expatreader, sys, os
 import xml.sax.saxutils as saxutils
 from xml.parsers import expat
 
@@ -64,7 +64,7 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler) :
             self._pointer           = self._being
         else :
             node                    = XMLHandlerDictNode (self._pointer, name, self._level, root = False)
-            u                       = self._pointer.set (name, node)
+            self._pointer.set (name, node)
             self._pointer           = node
             
         for k in attributes.getNames () :

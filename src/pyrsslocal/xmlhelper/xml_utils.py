@@ -46,7 +46,7 @@ def html_unescape(text):
                 elif text[1:-1] == "lt":
                    text = "&amp;lt;"
                 else:
-                   text = unichr(htmlentitydefs.name2codepoint[text[1:-1]])
+                   text = chr(htmlentitydefs.name2codepoint[text[1:-1]])
             except KeyError:
                 pass
         return text # leave as is

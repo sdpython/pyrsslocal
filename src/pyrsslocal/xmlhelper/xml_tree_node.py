@@ -4,8 +4,7 @@
 @brief  parsing XML
 """
 
-import math, xml.sax.handler, xml.sax.expatreader, copy, sys, os
-from xml.parsers import expat
+import copy
 
 from pyquickhelper import fLOG
 from pyquickhelper.loghelper.flog import guess_type_list, guess_type_value_type

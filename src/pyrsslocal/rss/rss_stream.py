@@ -5,7 +5,7 @@
 .. requires feedparser
 
 """
-import collections, datetime, urllib
+import datetime
 
 from pyquickhelper              import fLOG
 from ..xmlhelper.xmlfilewalk    import xml_filter_iterator
