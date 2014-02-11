@@ -9,7 +9,7 @@ import sys, os, datetime
 
 project_var_name = "pyrsslocal"
 author           = "Xavier Dupré"
-version          = '0.6'
+version          = '0.7'
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
