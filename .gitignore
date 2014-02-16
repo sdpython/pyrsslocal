@@ -224,3 +224,4 @@ out_*
 */sphinxdoc/source/filechanges.*
 version.txt
 */sphinxdoc/source/pyrsslocal/*
+*/sphinxdoc/source/all*.rst
