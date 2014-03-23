@@ -12,7 +12,13 @@
                 xmlUrl="" 
                 htmlUrl=""/>
                 -->
-
+                
+            <outline text="House of Debt"
+                title="House of Debt" 
+                type="rss"
+                xmlUrl="http://houseofdebt.org/feed" 
+                htmlUrl="http://houseofdebt.org/"/>
+                
             <outline text="ScottGu's Blog"
                 title="ScottGu's Blog" 
                 type="rss"

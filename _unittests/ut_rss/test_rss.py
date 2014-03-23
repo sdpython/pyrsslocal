@@ -1,7 +1,5 @@
-# coding: latin-1
 """
 @brief      test log(time=2s)
-
 """
 
 
@@ -30,7 +28,7 @@ from pyensae.sql.database_main          import Database
 
 class TestRSS (unittest.TestCase):
     
-    nb_rss_blog = 211
+    nb_rss_blog = 212
     
     def test_rss_from_google (self) :
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
