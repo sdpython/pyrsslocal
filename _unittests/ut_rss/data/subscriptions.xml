@@ -13,6 +13,19 @@
                 htmlUrl=""/>
                 -->
                 
+                
+            <outline text="Thomas Cokelaer's blog"
+                title="Thomas Cokelaer's blog" 
+                type="rss"
+                xmlUrl="http://thomas-cokelaer.info/blog/" 
+                htmlUrl="http://thomas-cokelaer.info/blog/feed/"/>
+                
+            <outline text="Glowing Python"
+                title="Glowing Python" 
+                type="rss"
+                xmlUrl="http://feeds.feedburner.com/TheGlowingPython" 
+                htmlUrl="http://glowingpython.blogspot.fr/"/>
+                
             <outline text="House of Debt"
                 title="House of Debt" 
                 type="rss"
