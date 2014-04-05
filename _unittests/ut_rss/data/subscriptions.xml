@@ -17,8 +17,8 @@
             <outline text="Thomas Cokelaer's blog"
                 title="Thomas Cokelaer's blog" 
                 type="rss"
-                xmlUrl="http://thomas-cokelaer.info/blog/" 
-                htmlUrl="http://thomas-cokelaer.info/blog/feed/"/>
+                xmlUrl="http://thomas-cokelaer.info/blog/feed/" 
+                htmlUrl="http://thomas-cokelaer.info/blog/"/>
                 
             <outline text="Glowing Python"
                 title="Glowing Python" 
