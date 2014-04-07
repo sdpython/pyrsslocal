@@ -62,7 +62,7 @@ class BlogPost :
         self.keywords       = keywords
         self.id             = id
         self.status         = None
-        self.statusList     = ["jokes", "programming", "data", "reject", "read", "keep", "interesting", "teachings"]
+        self.statusList     = ["jokes", "programming", "data", "reject", "read", "keep", "interesting", "teachings", "work"]
         
         if self.id_rss == None :
             raise Exception("no source (StreamRSS) for this post")
