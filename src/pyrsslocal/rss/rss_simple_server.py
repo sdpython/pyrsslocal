@@ -42,7 +42,7 @@ class RSSSimpleHandler(SimpleHandler):
     
     The final page will look like this:
     
-    @image rss_reader.png
+    @image images/page1.png
     
     """
     def __init__(self, request, client_address, server):
