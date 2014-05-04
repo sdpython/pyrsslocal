@@ -1,3 +1,4 @@
+# -*- coding; utf-8 -*-
 #  Copyright (C) 2013 ---------------
 #  All rights reserved.
 # 
@@ -16,14 +17,14 @@
 #  3. All advertising materials mentioning features or use of this
 #     software must display the following acknowledgment:
 #     "This product includes software developed by
-#      Xavier DuprÃ© <xavier.dupre AT gmail.com>"
+#      Xavier Dupré <xavier.dupre AT gmail.com>"
 # 
 #  4. Redistributions of any form whatsoever must retain the following
 #     acknowledgment:
 #     "This product includes software developed by
-#      Xavier DuprÃ© <xavier.dupre AT gmail.com>."
+#      Xavier Dupré <xavier.dupre AT gmail.com>."
 # 
-#  THIS SOFTWARE IS PROVIDED BY Xavier DuprÃ© ``AS IS'' AND ANY
+#  THIS SOFTWARE IS PROVIDED BY Xavier Dupré ``AS IS'' AND ANY
 #  EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 #  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
 #  PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL Roman V. Kiseliov OR
@@ -48,7 +49,7 @@ else :
     subversion = 1   
 
 project_var_name    = "pyrsslocal"
-sversion            = "0.7"
+sversion            = "0.8"
 versionPython       = "%s.%s" % (sys.version_info.major, sys.version_info.minor)
 path                = "Lib/site-packages/" + project_var_name
 readme              = 'README.rst'
@@ -97,7 +98,7 @@ if "--verbose" in sys.argv :
 setup(
     name                    = project_var_name,
     version                 = '%s.%s' %(sversion, subversion) if "register" in sys.argv else 'py%s-v%s.%s' % (versionPython, sversion, subversion),
-    author                  = 'Xavier DuprÃ©',
+    author                  = 'Xavier Dupré',
     author_email            = 'xavier.dupre AT gmail.com',
     url                     = "http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html",
     download_url            = "https://github.com/sdpython/pyrsslocal/",

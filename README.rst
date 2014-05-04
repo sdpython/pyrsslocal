@@ -77,3 +77,8 @@ Functionalities
 * download webpage and handle encoding
 * javascript files to emphasize python syntax in a HTML page
 
+Versions
+--------
+
+* **v0.8 - 2014/??/??**
+    * **new:** add class :class:`CustomDBServer <custom_server.aserver.CustomDBServer>` to be able to use HTML as an interface for a local program

@@ -93,23 +93,8 @@ Functionalities
 * run Python script after adding variables to the script context
 * download webpage and handle encoding
 * javascript files to emphasize python syntax in a HTML page
+* a custom server to HTML as an interface for a local program
 
-
-About this documentation
-------------------------
-
-.. toctree::
-    :maxdepth: 1
-
-    doctestunit
-    generatedoc
-    generatesetup
-    installation
-    all_example
-    all_FAQ
-    all_notebooks
-    glossary
-    index_module
 
     
 Indices and tables
@@ -123,6 +108,26 @@ Indices and tables
 | :ref:`l-example` |  :ref:`l-FAQ`       |                  |                  |                        |                     |
 +------------------+---------------------+------------------+------------------+------------------------+---------------------+
    
+  
+Navigation
+==========
 
+.. toctree::
+    :maxdepth: 1
+
+    doctestunit
+    generatedoc
+    generatesetup
+    installation
+    all_example
+    all_FAQ
+    all_notebooks
+    glossary
+    index_module
+    license
+    filechanges
+    README
+    all_indexes
+    
    
 
