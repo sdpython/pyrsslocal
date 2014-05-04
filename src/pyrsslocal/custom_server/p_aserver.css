@@ -1,0 +1,30 @@
+﻿html, body {
+	margin-top:0px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:0px;
+	padding: 0;
+	background-color: white; 
+	font-family: Calibri; 	
+} 
+
+div.divtop {
+	position:absolute; 
+	margin-left:10%; 
+	margin-right:0%;
+	margin-top:2%; 
+	text-align: justify;
+	width:80%;
+	height:7%;
+} 
+
+div.divtable{
+	position:absolute; 
+	margin-top:10%; 
+	margin-left:10%; 
+	margin-right:10%;
+	text-align: left;
+	width:80%;
+	height:80%;
+	overflow:scroll;
+} 

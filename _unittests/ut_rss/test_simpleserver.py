@@ -65,30 +65,6 @@ class TestSimpleServer (unittest.TestCase):
         
         
 if __name__ == "__main__"  :
-    
-    if False :
-        from srcpyhome.internet.rss.rss_helper import rss_run_server
-        path = os.path.abspath(os.path.split(__file__)[0])
-        dbfile = os.path.join( path, "data", "database_rss.db3")
-        
-        
-        sql = """SELECT id_rss, SUM(nb)*1.0/ (MAX(day) - MIN(day)+1) AS avg_nb FROM (
-                    SELECT id_rss, day, COUNT(*) AS nb FROM (
-                        SELECT id_rss, getdayn(pubDate) AS day FROM posts
-                    ) GROUP BY id_rss, day
-                ) GROUP BY id_rss
-                """
-        db = DatabaseRSS(dbfile)
-        db.connect()
-        db.add_function ("getdayn", 1, DatabaseRSS.getdayn)        
-        for row in db.execute(sql) :
-            print ("ut",row)
-            break
-        db.close()
-
-        
-        rss_run_server (dbfile, port = 8093)
-    
     unittest.main ()    
 
     

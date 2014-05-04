@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+<head>
+<link type="text/css" href="/p_aserver.css" rel="stylesheet"/>
+<title>Custom DB Server</title>
+<meta content="dupre, pyrsslocal, custom server" name="keywords"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link rel="shortcut icon" href="p_aserver.ico" />
+<meta content="CustomServer from pyrsslocal" name="description" />
+<script type="text/javascript" src="/p_aserver.js"></script>
+<script src="/js/run_prettify.js" type="text/javascript"></script>
+
+</head>
+
+<body onload="setPositions(['divtable', ])" class="mymainbody">
+
+<div class="divtop">
+<h1>Custom DB Server unittest</h1>
+</div>
+
+
+<div class="divtable" id="divfiles" onscroll="savePosition('divtable')">
+
+
+
+<h2>Content of table example</h2>
+
+<script type="text/python">
+print("<table>")
+db.connect()
+for row in db.execute_view("SELECT * FROM example") :
+    srow = [ str(_) for _ in row ]
+    print( "<tr><td>{0}</td></tr>".format("</td><td>".join(srow) ) )
+db.close()
+print("</table>")
+</script>
+
+<p>end.</p>
+
+</div>
+
+
+
+
+</body>
+</html>
