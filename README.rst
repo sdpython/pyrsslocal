@@ -84,3 +84,4 @@ Versions
     * **new:** add class :class:`CustomDBServer <custom_server.aserver.CustomDBServer>` to be able to use HTML as an interface for a local program
     * **change:** add ``__version__`` member to ``__init__.py``
     
+    
