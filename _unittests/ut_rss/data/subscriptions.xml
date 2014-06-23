@@ -12,7 +12,36 @@
                 xmlUrl="" 
                 htmlUrl=""/>
                 -->
+
+            <outline text="Machine Learning Blog &amp; Software Development News"
+                title="Machine Learning Blog &amp; Software Development News" 
+                type="rss"
+                xmlUrl="http://feeds.feedburner.com/Datumbox?format=xml" 
+                htmlUrl="http://blog.datumbox.com/"/>
+
+            <outline text="Machine Learning Blog"
+                title="Machine Learning Blog" 
+                type="rss"
+                xmlUrl="http://blogs.technet.com/b/machinelearning/rss.aspx" 
+                htmlUrl="http://blogs.technet.com/b/machinelearning/"/>
                 
+            <outline text="CodeCondo"
+                title="CodeCondo" 
+                type="rss"
+                xmlUrl="http://feeds.feedburner.com/codecondo?format=xml" 
+                htmlUrl="http://codecondo.com/"/>
+
+            <outline text="Wes McKinney's Blog"
+                title="Wes McKinney's Blog  " 
+                type="rss"
+                xmlUrl="http://wesmckinney.com/blog/?feed=rss2" 
+                htmlUrl="http://wesmckinney.com/blog/"/>
+                
+            <outline text="Julia"
+                title="Julia" 
+                type="rss"
+                xmlUrl="http://feeds.feedburner.com/JuliaLang" 
+                htmlUrl="http://julialang.org/blog/"/>
                 
             <outline text="Doug Hellmann"
                 title="Doug Hellmann" 
