@@ -12,6 +12,19 @@
                 xmlUrl="" 
                 htmlUrl=""/>
                 -->
+                
+            <outline text="Sebastian Raschka"
+                title="Sebastian Raschka" 
+                type="rss"
+                xmlUrl="http://sebastianraschka.com/rss_feed.xml" 
+                htmlUrl="http://sebastianraschka.com/articles.html"/>
+                
+            <outline text="ŷhat"
+                title="ŷhat" 
+                type="rss"
+                xmlUrl="http://blog.yhathq.com/rss.xml" 
+                htmlUrl="http://blog.yhathq.com/"/>                
+                
 
             <outline text="Machine Learning Blog &amp; Software Development News"
                 title="Machine Learning Blog &amp; Software Development News" 

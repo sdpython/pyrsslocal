@@ -225,8 +225,13 @@ class StreamRSS :
         
         if cont != None :
             
-            d = feedparser.parse(cont)
+            if "<title>" not in cont :
+                fLOG("unable to parse content from " + self.xmlUrl)
             
+            d = feedparser.parse(cont)
+            if len(d["entries"]) == 0 :
+                fLOG("*** no post for ", path)
+                
             for post in d["entries"] :
                 titleb = post.get("title","-")
                 url    = post.get("link","")

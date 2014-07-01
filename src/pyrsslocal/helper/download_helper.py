@@ -66,7 +66,7 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
     except Exception as e:
         fLOG("unable to retrieve content from ", url, " because of unknown exception: ", e)
         raise e
-    
+
     if encoding != None :
         try :
             content = res.decode(encoding)
@@ -74,6 +74,7 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
             # we try different encoding
             laste  = [ e ]
             othenc = ["iso-8859-1", "latin-1"]
+            
             for encode in othenc :
                 try :
                     content = res.decode(encode)
@@ -81,6 +82,7 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
                 except UnicodeDecodeError as e :
                     laste.append(e)
                     content = None
+                    
             if content == None :
                 mes = [ "unable to parse blog post: " +  url ]
                 mes.append ( "tried:" + str([ encoding] + othenc) )
