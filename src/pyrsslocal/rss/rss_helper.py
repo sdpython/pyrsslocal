@@ -2,7 +2,7 @@
 @file
 @brief Various function to automate the collection of blog posts.
 """
-import os,webbrowser
+import os,webbrowser,sys
 
 from .rss_stream                    import StreamRSS
 from .rss_blogpost                  import BlogPost
@@ -63,7 +63,7 @@ def rss_download_post_to_database ( database = "database_rss.db3",
     
     return len(list_post)
     
-def rss_update_run_server (dbfile, xml_blogs, port = 8093):
+def rss_update_run_server (dbfile, xml_blogs, port = 8093, browser = None):
     """
     create a database if it does not exists, add a table for blogs and posts,
     update the database, starts a server and open a browser
@@ -71,6 +71,7 @@ def rss_update_run_server (dbfile, xml_blogs, port = 8093):
     @param      dbfile      (str) sqllite database to create
     @param      xml_blogs   (str) xml description of blogs (google format)
     @param      port        the main page will be ``http://localhost:port/``
+    @param      browser     (str) to choose a different browser than the default one
     
     You can read the blog post `pyhome3 RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
     
@@ -80,14 +81,15 @@ def rss_update_run_server (dbfile, xml_blogs, port = 8093):
         
     rss_from_xml_to_database(xml_blogs, database = dbfile)
     rss_download_post_to_database(database = dbfile)
-    rss_run_server (dbfile, port)
+    rss_run_server (dbfile, port, browser = browser)
 
-def rss_run_server (dbfile, port = 8093):
+def rss_run_server (dbfile, port = 8093, browser = None):
     """
     starts a server and open a browser on a page reading blog posts
     
     @param      dbfile      (str) sqllite database to create
     @param      port        the main page will be ``http://localhost:port/``
+    @param      browser     (str) to choose a different browser than the default one
     
     You can read the blog post `RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
     
@@ -97,7 +99,18 @@ def rss_run_server (dbfile, port = 8093):
         
     url = "http://localhost:%d/rss_reader.html?search=today" % port
     fLOG("opening ", url)
-    webbrowser.open(url)
+    if browser != None :
+        try:
+            b = webbrowser.get(browser)
+        except webbrowser.Error as e:
+            if browser == "firefox" and sys.platform.startswith("win") :
+                webbrowser.register('firefox', None, webbrowser.GenericBrowser(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
+                b = webbrowser.get(browser)
+            else :
+                raise e
+        b.open(url)
+    else:
+        webbrowser.open(url)
     RSSServer.run_server(None, dbfile, port = port)
 
 
