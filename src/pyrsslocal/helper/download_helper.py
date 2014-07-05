@@ -6,7 +6,7 @@
 
 from urllib.error import HTTPError, URLError
 import urllib, urllib.request
-import socket, http
+import socket, http, gzip
 
 from pyquickhelper import fLOG
 
@@ -36,10 +36,13 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
     download a file from internet (we assume it is text information, otherwise, encoding should be None)
     
     @param      url         (str) url
-    @param      timeout    (in seconds), after this time, the function drops an returns None, -1 for forever
+    @param      timeout     (in seconds), after this time, the function drops an returns None, -1 for forever
     @param      output      (str) if None, the content is stored in that file
-    @param      encoding    utf8 by default, but if it is None, the returned information is binary
+    @param      encoding    (str) utf8 by default, but if it is None, the returned information is binary
     @return                 content of the url
+    
+    If the function automatically detects that the downloaded data is in gzip
+    format, it will decompress it.
     """
     try:
         if timeout != -1 :
@@ -67,11 +70,16 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
         fLOG("unable to retrieve content from ", url, " because of unknown exception: ", e)
         raise e
 
+    if len(res) >= 2 and res[:2] == b"\x1f\x8B" :
+        # gzip format
+        res = gzip.decompress(res)
+
     if encoding != None :
         try :
             content = res.decode(encoding)
         except UnicodeDecodeError as e :
             # we try different encoding
+            
             laste  = [ e ]
             othenc = ["iso-8859-1", "latin-1"]
             

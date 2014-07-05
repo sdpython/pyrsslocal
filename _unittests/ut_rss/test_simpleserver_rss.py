@@ -1,4 +1,3 @@
-# coding: latin-1
 """
 @brief      test log(time=6s)
 
@@ -22,15 +21,18 @@ except ImportError :
     import pyquickhelper
     import pyensae
 
-from pyquickhelper                      import fLOG
-from src.pyrsslocal.helper.download_helper import get_url_content
-from src.pyrsslocal.rss.rss_simple_server import RSSServer
+from pyquickhelper                          import fLOG
+from src.pyrsslocal.helper.download_helper  import get_url_content
+from src.pyrsslocal.rss.rss_simple_server   import RSSServer
 
 
 
 class TestSimpleServerRSS (unittest.TestCase):
     
     def test_server_start_run (self) :
+        """
+        if this test fails, the unit test is stuck, you need to stop the program yourself
+        """
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
         dbfile = os.path.join( path, "data", "database_rss.db3")
@@ -55,14 +57,16 @@ class TestSimpleServerRSS (unittest.TestCase):
         assert "RSS" in cont
         assert "interesting" in cont
 
-        url = "http://localhost:8093/rss_search.html?searchterm=military&usetag=usetag"
+        url = "http://localhost:8093/rss_search.html?searchterm=pypi&usetag=usetag"
         cont = get_url_content(url)
         if "Traceback" in cont :fLOG(cont)
         assert "Traceback" not in cont
         assert len(cont)> 0
         assert "RSS" in cont
-        assert "interesting" in cont
-        assert "Military" in cont
+        if "PyPI" not in cont:
+            fLOG(cont)
+            assert False
+        assert "added" in cont
         assert "Mozilla Continues" not in cont
         
         fLOG("fetching first url")
