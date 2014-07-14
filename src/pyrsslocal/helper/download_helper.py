@@ -8,28 +8,7 @@ from urllib.error import HTTPError, URLError
 import urllib, urllib.request
 import socket, http, gzip
 
-from pyquickhelper import fLOG
-
-def get_url_content(url, useMozilla = False):
-    """
-    retrieve the content of an url
-    @param      url             (str) url
-    @param      useMozilla      (bool) to use an header fill with Mozilla
-    @return                     page
-    """
-    if useMozilla :
-        req = urllib.request.Request(url, headers= { 'User-agent': 'Mozilla/5.0' })
-        u = urllib.request.urlopen(req)
-        text = u.read()
-        u.close()
-        text = text.decode("utf8")
-        return text
-    else :
-        u = urllib.request.urlopen(url)
-        text = u.read()
-        u.close()
-        text = text.decode("utf8")
-        return text
+from pyquickhelper import fLOG, get_url_content
 
 def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8"):
     """
