@@ -13,6 +13,13 @@
                 htmlUrl=""/>
                 -->
                 
+            <outline text="Benoît Patra"
+                title="Benoît Patra" 
+                type="rss"
+                xmlUrl="http://benoitpatra.com/feed/" 
+                htmlUrl="http://benoitpatra.com/"/>
+                
+                
             <outline text="PyVideo.org"
                 title="PyVideo.org" 
                 type="rss"
