@@ -28,7 +28,7 @@ from pyensae.sql.database_main          import Database
 
 class TestRSS (unittest.TestCase):
     
-    nb_rss_blog = 225
+    nb_rss_blog = 226
     
     def test_rss_from_google (self) :
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")

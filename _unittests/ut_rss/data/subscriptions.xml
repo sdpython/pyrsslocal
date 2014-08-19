@@ -13,6 +13,12 @@
                 htmlUrl=""/>
                 -->
                 
+            <outline text="Bing Dev Center Team Blog"
+                title="Bing Dev Center Team Blog" 
+                type="rss"
+                xmlUrl="http://blogs.msdn.com/b/bingdevcenter/rss.aspx" 
+                htmlUrl="http://blogs.msdn.com/b/bingdevcenter/"/>
+                
             <outline text="Microsoft Azure Blog"
                 title="Microsoft Azure Blog" 
                 type="rss"
