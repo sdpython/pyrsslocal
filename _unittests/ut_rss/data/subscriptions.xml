@@ -13,6 +13,12 @@
                 htmlUrl=""/>
                 -->
                 
+            <outline text="Microsoft Azure Blog"
+                title="Microsoft Azure Blog" 
+                type="rss"
+                xmlUrl="http://azure.microsoft.com/blog/feed/" 
+                htmlUrl="http://azure.microsoft.com/blog"/>
+                
             <outline text="Benoît Patra"
                 title="Benoît Patra" 
                 type="rss"
