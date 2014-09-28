@@ -13,6 +13,12 @@
                 htmlUrl=""/>
                 -->
                 
+            <outline text="Piotr Mirowski"
+                title="Piotr Mirowski" 
+                type="rss"
+                xmlUrl="http://piotrmirowski.wordpress.com/feed/" 
+                htmlUrl="http://piotrmirowski.wordpress.com/"/>
+                
             <outline text="Bing Dev Center Team Blog"
                 title="Bing Dev Center Team Blog" 
                 type="rss"

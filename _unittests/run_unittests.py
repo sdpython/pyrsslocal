@@ -9,8 +9,14 @@ def main():
     try:
         import pyquickhelper
     except ImportError:
-        sys.path.append ( os.path.normpath (os.path.abspath(os.path.join( os.path.split(__file__)[0],"..","src"))))
+        sys.path.append ( os.path.normpath (os.path.abspath(os.path.join( os.path.split(__file__)[0],"..","..","pyquickhelper","src"))))
         import pyquickhelper
+        
+    try:
+        import pyensae
+    except ImportError:
+        sys.path.append ( os.path.normpath (os.path.abspath(os.path.join( os.path.split(__file__)[0],"..","..","pyensae","src"))))
+        import pyensae
         
     from pyquickhelper import fLOG, run_cmd
     from pyquickhelper.unittests.utils_tests import main 

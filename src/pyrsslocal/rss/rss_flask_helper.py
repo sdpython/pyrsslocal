@@ -45,4 +45,7 @@ def get_binary_file(filename):
     with open(src, "rb") as f :
         return f.read()
     
+# -- HELP BEGIN EXCLUDE --
 main_page_content = load_page("rss_reader.html")
+# -- HELP END EXCLUDE --
+
