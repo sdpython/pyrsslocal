@@ -13,6 +13,18 @@
                 htmlUrl=""/>
                 -->
                 
+            <outline text="Julia Evans"
+                title="Julia Evans" 
+                type="rss"
+                xmlUrl="http://jvns.ca/atom.xml" 
+                htmlUrl="http://jvns.ca/"/>
+                
+            <outline text="Chocolatey"
+                title="Chocolatey" 
+                type="rss"
+                xmlUrl="http://feeds.feedburner.com/chocolatey" 
+                htmlUrl="http://chocolatey.org/"/>
+                
             <outline text="Piotr Mirowski"
                 title="Piotr Mirowski" 
                 type="rss"
