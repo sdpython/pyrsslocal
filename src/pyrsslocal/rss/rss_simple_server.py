@@ -167,7 +167,7 @@ class RSSServer (ThreadingMixIn, HTTPServer) :
         """
         constructor
         
-        @param  server_address          addess of the server
+        @param  server_address          address of the server
         @param  RequestHandlerClass     it should be @see cl RSSSimpleHandler
         @param  dbfile                  database filename (SQLlite format)
         @param  main_page               main page for the service (when requested with no specific file)
@@ -266,7 +266,7 @@ class RSSServer (ThreadingMixIn, HTTPServer) :
         """
         start the server
         
-        @param      server      if None, it becomes ``RSSServer(dbfile, ('localhost', 8080), RSSSimpleHandler)``
+        @param      server      None or string, see below
         @param      dbfile      file to the RSS database (SQLite)
         @param      thread      if True, the server is run in a thread
                                 and the function returns right away,
@@ -275,11 +275,18 @@ class RSSServer (ThreadingMixIn, HTTPServer) :
         @param      logfile     file for the log or "stdout" for the standard output        
         @return                 server if thread is False, the thread otherwise (the thread is started)
         
+        About the parameter ``server``:
+        
+            * ``None``, it becomes ``RSSServer(('localhost', 8080), dbfile, RSSSimpleHandler)``        
+            * ``<server>``, it becomes ``RSSServer((server, 8080), dbfile, RSSSimpleHandler)``        
+            
         @warning If you kill the python program while the thread is still running, python interpreter might be closed completely.
         
         """
-        if server == None : 
+        if server is None : 
             server = RSSServer( ('localhost', port), dbfile, RSSSimpleHandler, logfile = logfile)
+        elif isinstance(server, str):
+            server = RSSServer( (server, port), dbfile, RSSSimpleHandler, logfile = logfile)
         if thread :
             th = ThreadServer(server)
             th.start()
