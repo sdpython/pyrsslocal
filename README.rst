@@ -22,12 +22,16 @@ managed by a local python server using a SQLite database:
 
 ::
 
+    import os
     from pyquickhelper  import fLOG
-    from pyrsslocal     import rss_update_run_server
+    from pyrsslocal     import rss_update_run_server, get_subscriptions_example
     fLOG (OutputPrint = True)
     xml_blogs = "subscriptions.xml"
+    if not os.path.exists(xml_blogs):
+        get_subscriptions_example(xml_blogs)
     dbfile    = "rss_posts.db3"
     rss_update_run_server(dbfile, xml_blogs)
+
 
 The previous example takes a dump of blogs url coming from the former Google Reader (see below), 
 downloads RSS streams, loads everything into a database (SQLlite format),
@@ -36,27 +40,21 @@ The XML file which describes the blogs looks like this::
 
     <?xml version="1.0" encoding="UTF-8"?>
     <opml version="1.0">
-        <head>
-            <title>Xavier subscriptions in Google Reader</title>
-        </head>
         <body>
         
-            <outline title="new" text="new_">
-            
-                <!--
-                <outline text=""
-                    title="" 
-                    type="rss"
-                    xmlUrl="" 
-                    htmlUrl=""/>
-                    -->
+            <!--
+            <outline text=""
+                title="" 
+                type="rss"
+                xmlUrl="" 
+                htmlUrl=""/>
+                -->
 
-                <outline text="XD blog" 
-                         title="XD blog" 
-                         type="rss"
-                         xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml" 
-                         htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html" />
-            </outline>
+            <outline text="XD blog" 
+                     title="XD blog" 
+                     type="rss"
+                     xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml" 
+                     htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html" />
             
         </body>
     </opml>
@@ -81,6 +79,7 @@ Versions
 --------
 
 * **0.8 - 2014/??/??**
+    * **new:** function :func:`get_subscriptions_example <pyrsslocal.helper.subscription_helper.get_subscriptions_example>` returns a short sample of a subscription xml file
     * **new:** add class :class:`CustomDBServer <pyrsslocal.custom_server.aserver.CustomDBServer>` to be able to use HTML as an interface for a local program
     
     

@@ -14,3 +14,4 @@ __license__ = "BSD License"
 from .rss.rss_helper import rss_update_run_server, rss_run_server
 from .rss.rss_database import DatabaseRSS
 from .custom_server.aserver import CustomDBServerHandler, CustomDBServer
+from .helper.subscription_helper import get_subscriptions_example

@@ -19,10 +19,13 @@ managed by a local python server using a SQLite database:
 
 ::
 
+    import os
     from pyquickhelper  import fLOG
-    from pyrsslocal     import rss_update_run_server
+    from pyrsslocal     import rss_update_run_server, get_subscriptions_example
     fLOG (OutputPrint = True)
     xml_blogs = "subscriptions.xml"
+    if not os.path.exists(xml_blogs):
+        get_subscriptions_example(xml_blogs)
     dbfile    = "rss_posts.db3"
     rss_update_run_server(dbfile, xml_blogs)
 
@@ -33,27 +36,21 @@ The XML file which describes the blogs looks like this::
 
     <?xml version="1.0" encoding="UTF-8"?>
     <opml version="1.0">
-        <head>
-            <title>Xavier subscriptions in Google Reader</title>
-        </head>
         <body>
         
-            <outline title="new" text="new_">
-            
-                <!--
-                <outline text=""
-                    title="" 
-                    type="rss"
-                    xmlUrl="" 
-                    htmlUrl=""/>
-                    -->
+            <!--
+            <outline text=""
+                title="" 
+                type="rss"
+                xmlUrl="" 
+                htmlUrl=""/>
+                -->
 
-                <outline text="XD blog" 
-                         title="XD blog" 
-                         type="rss"
-                         xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml" 
-                         htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html" />
-            </outline>
+            <outline text="XD blog" 
+                     title="XD blog" 
+                     type="rss"
+                     xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml" 
+                     htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html" />
             
         </body>
     </opml>

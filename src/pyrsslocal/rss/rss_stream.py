@@ -22,7 +22,8 @@ class StreamRSS :
     @code
        <outline text="Freakonometrics" title="Freakonometrics"
             type="rss"
-            xmlUrl="http://freakonometrics.hypotheses.org/feed" htmlUrl="http://freakonometrics.hypotheses.org"/>
+            xmlUrl="http://freakonometrics.hypotheses.org/feed" 
+            htmlUrl="http://freakonometrics.hypotheses.org"/>
     @endcode
     
     @var    titleb      title of the stream
@@ -136,6 +137,7 @@ class StreamRSS :
         @return                 list of StreamRSS
 
         The format is the following:
+        
         @example(An entry in the XML config file)
         @code
            <outline text="Freakonometrics" 
@@ -145,6 +147,7 @@ class StreamRSS :
                 htmlUrl="http://freakonometrics.hypotheses.org" />
         @endcode
         @endexample
+        
         """
         with open(file, "r", encoding="utf8") as ff :
         
