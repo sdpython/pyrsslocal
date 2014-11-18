@@ -13,6 +13,12 @@
                 htmlUrl=""/>
                 -->
                 
+            <outline text="FastML"
+                title="FastML" 
+                type="rss"
+                xmlUrl="http://fastml.com/atom.xml" 
+                htmlUrl="http://fastml.com/"/>
+                
             <outline text="Machine Learning Mastery"
                 title="Machine Learning Mastery" 
                 type="rss"
