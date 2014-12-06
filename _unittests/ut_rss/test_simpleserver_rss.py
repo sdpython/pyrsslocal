@@ -4,7 +4,7 @@
 """
 
 
-import sys, os, unittest
+import sys, os, unittest, warnings
 
 try :
     import src
@@ -84,6 +84,7 @@ class TestSimpleServerRSS (unittest.TestCase):
 
         thread.shutdown()
         assert not thread.is_alive()
+
         
 if __name__ == "__main__"  :
     unittest.main ()  

@@ -69,7 +69,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         
         @param      raise_exception     if True, raises an exception if the HTML is malformed, otherwise does what it can
         """
-        html.parser.HTMLParser.__init__(self)
+        html.parser.HTMLParser.__init__(self, convert_charrefs=True)
         self.doc  = { }
         self.path = []
         self.cur  = self.doc

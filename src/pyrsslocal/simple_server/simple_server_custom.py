@@ -529,6 +529,7 @@ class ThreadServer (Thread) :
         @endcode
         """
         self.server.shutdown()
+        self.server.server_close()
         
         
 def run_server (server, thread = False, port = 8080) :

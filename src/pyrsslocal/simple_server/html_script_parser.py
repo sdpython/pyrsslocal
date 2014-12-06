@@ -25,21 +25,19 @@ class HTMLScriptParser(HTMLParser):
     @endcode
     """
     
-    def __init__(self,  strict          = False, 
-                        outStream       = sys.stdout, 
+    def __init__(self,  outStream       = sys.stdout, 
                         context         = { },
                         catch_exception = False) :
         """
         constructor
         
-        @param      strict              @see cl HTMLParser
         @param      outStream           instance of a class which should have a method ``write``        
         @param      context             context for the script execution (dictionary with local variables)
         @param      catch_exception     if True, the parser prints out the exception instead of raising when it happens.
         
         The context is not modified unless it contains container. In that case, it could be.
         """
-        HTMLParser.__init__(self, strict = strict)
+        HTMLParser.__init__(self, convert_charrefs=True)
         self.outStream          = outStream
         self.script_stack       = None
         self.context            = context

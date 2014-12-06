@@ -290,11 +290,18 @@ texinfo_documents = [
 # for the autogeneration
 ##################
 autoclass_content = 'both'
+autosummary_generate = True
+graphviz_output_format = "svg"
+if sys.platform.startswith("win"):
+    import pyquickhelper
+    graphviz_dot = pyquickhelper.helpgen.utils_sphinx_doc_helpers.find_graphviz_dot()
+else:
+    graphviz_dot = "dot"
 
 def skip(app, what, name, obj, skip, options):
     if name.startswith("_") and name not in \
-            [   "__qualname__", 
-                "__module__", 
+            [   "__qualname__",
+                "__module__",
                 "__dict__",
                 "__doc__",
                 "__weakref__",
@@ -304,4 +311,3 @@ def skip(app, what, name, obj, skip, options):
 
 def setup(app):
     app.connect("autodoc-skip-member", skip)
-    
