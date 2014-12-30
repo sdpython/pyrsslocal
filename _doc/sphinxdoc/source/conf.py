@@ -56,6 +56,12 @@ extensions = [  'sphinx.ext.autodoc',
                 'sphinx.ext.pngmath',
                 'sphinx.ext.viewcode',
                 'hachibee_sphinx_theme',
+                'sphinxcontrib.fancybox',
+                'sphinxjp.themes.basicstrap',
+                'sphinx.ext.autosummary',
+                'sphinx.ext.graphviz',
+                'sphinx.ext.inheritance_diagram',
+                'matplotlib.sphinxext.plot_directive',
         ]
 
 # Add any paths that contain templates here, relative to this directory.
