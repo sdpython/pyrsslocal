@@ -225,3 +225,4 @@ out_*
 version.txt
 */sphinxdoc/source/pyrsslocal/*
 */sphinxdoc/source/all*.rst
+*/sphinxdoc/source/coverage/*

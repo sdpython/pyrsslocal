@@ -250,13 +250,13 @@ class SimpleHandler(BaseHTTPRequestHandler):
         out, error = exe.communicate()
         return out, error
 
-    def feed(self, any, script_python = False, params = { }):
+    def feed(self, any, script_python = False, params = None):
         """
         displays something
 
         @param      any                 string
         @param      script_python       if True, the function processes script sections
-        @param      params
+        @param      params              extra parameters, see @me process_scripts
 
         A script section looks like:
         @code
@@ -268,6 +268,9 @@ class SimpleHandler(BaseHTTPRequestHandler):
         </script>
         @endcode
         """
+        if params is None:
+            params = { }
+
         if isinstance (any, bytes) :
             if script_python :
                 raise SystemError("unable to execute script from bytes")
