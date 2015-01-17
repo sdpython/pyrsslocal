@@ -19,7 +19,7 @@ def extract_bing_result (searchPage, filter = lambda u : True) :
     reg = re.compile("""<h3><a href="(.*?)" h="ID=SERP,""")
     all = reg.findall (searchPage)
     if all == None or len(all) == 0 :
-        return None 
+        return None
     else :
         if len(all) > 10 : all = all[:10]
         alltemp = sorted ([ (len(_), _) for _ in all ])    # here I sort by length, maybe not the best idea
@@ -35,9 +35,9 @@ def extract_bing_result (searchPage, filter = lambda u : True) :
                 print (_)
             raise ValueError("bad result " + res)
         return all[0][1]
-    
-def query_bing (    query, 
-                    folderCache = "cacheSearchPage", 
+
+def query_bing (    query,
+                    folderCache = "cacheSearchPage",
                     filter = lambda u : True,
                     flog = fLOG) :
     """
@@ -68,7 +68,6 @@ def query_bing (    query,
         f = open(cache, "w", encoding="utf8")
         f.write (text)
         f.close ()
-    
+
     url = extract_bing_result(text, filter)
     return url
-

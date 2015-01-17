@@ -27,9 +27,9 @@ from src.pyrsslocal.rss.rss_database    import DatabaseRSS
 from pyensae.sql.database_main          import Database
 
 class TestRSS (unittest.TestCase):
-    
+
     nb_rss_blog = 231
-    
+
     def test_rss_from_google (self) :
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
@@ -41,7 +41,7 @@ class TestRSS (unittest.TestCase):
             for i,r in enumerate(sorted(res)) :
                 dic [str(r)] = dic.get(str(r), 0) + 1
                 fLOG (i,r)
-            for k in dic : 
+            for k in dic :
                 if dic[k] > 1 :
                     fLOG("--double",k)
             raise Exception("number of expected feed %d != %d" % (len(res) , TestRSS.nb_rss_blog))
@@ -50,15 +50,15 @@ class TestRSS (unittest.TestCase):
             if i > 0 and li[i] < li[i-1] :
                 raise Exception("bad order {0} < {1}".format(li[i-1],li[i]))
         fLOG("nb:",len(res))
-        
+
         dbfile = os.path.join(path, "temp_rss.db3")
         if os.path.exists (dbfile) : os.remove(dbfile)
-        
+
         db = Database (dbfile, LOG = fLOG)
         db.connect()
         StreamRSS.fill_table(db, "blogs", res)
         db.close()
-        
+
         db = Database (dbfile, LOG = fLOG)
         db.connect()
         assert db.has_table("blogs")
@@ -70,13 +70,13 @@ class TestRSS (unittest.TestCase):
         assert len(val) == TestRSS.nb_rss_blog
         key, value = val.popitem()
         assert key != None
-        
+
         # iterator on StreamRSS
         obj = list ( db.enumerate_objects ("blogs", StreamRSS) )
         assert len(obj) == TestRSS.nb_rss_blog
-        
+
         db.close()
-        
+
     def test_rss_from_google_shortcut (self) :
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
@@ -91,27 +91,27 @@ class TestRSS (unittest.TestCase):
         db = DatabaseRSS(dbfile, LOG = fLOG)
         blogs = list( db.enumerate_blogs())
         assert len(blogs) > 0
-        
+
     def test_rss_parse(self):
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
         file = os.path.join(path, "data", "xdbrss.xml")
         assert os.path.exists(file)
 
-        rss = StreamRSS(    titleb = "XD", 
-                            type="rss", 
-                            xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml", 
-                            htmlUrl="http://www.xavierdupre.fr/blog/xd_blog_nojs.html", 
+        rss = StreamRSS(    titleb = "XD",
+                            type="rss",
+                            xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml",
+                            htmlUrl="http://www.xavierdupre.fr/blog/xd_blog_nojs.html",
                             keywordsb=["python"],
                             id = 5)
-                            
+
         res = rss.enumerate_post()
         nb = 0
         for _ in res :
             nb += 1
             assert len(_.title)>0
         assert nb > 0
-        
+
         res = rss.enumerate_post(file)
         nb = 0
         lres = list(res)
@@ -122,20 +122,20 @@ class TestRSS (unittest.TestCase):
             assert len(_.title)>0
         assert nb > 0
         fLOG("nb post=",nb)
-        
+
         dbfile = os.path.join(path, "temp_rssp.db3")
         if os.path.exists (dbfile) : os.remove(dbfile)
-        
+
         db = Database (dbfile, LOG = fLOG)
         db.connect()
         BlogPost.fill_table(db, "posts", lres)
         db.close()
-        
+
         db = Database (dbfile, LOG = fLOG)
         db.connect()
         assert db.has_table("posts")
         assert db.get_table_nb_lines("posts") == nb
-        
+
         sql = "SELECT * FROM posts"
         cur = db.execute(sql)
         val = { }
@@ -143,7 +143,7 @@ class TestRSS (unittest.TestCase):
         assert len(val) == 6
         key, value = val.popitem()
         assert key != None
-        
+
         # we insert the blog a second time
         BlogPost.fill_table(db, "posts", lres)
         sql = "SELECT * FROM posts"
@@ -151,7 +151,7 @@ class TestRSS (unittest.TestCase):
         val = { }
         for row in cur : val [row[-1]] = 0
         assert len(val) == 6
-        
+
         # we insert the blog a third time
         BlogPost.fill_table(db, "posts", lres)
         sql = "SELECT * FROM posts"
@@ -159,9 +159,9 @@ class TestRSS (unittest.TestCase):
         val = { }
         for row in cur : val [row[-1]] = 0
         assert len(val) == 6
-        
+
         db.close()
-        
-        
+
+
 if __name__ == "__main__"  :
-    unittest.main ()    
+    unittest.main ()

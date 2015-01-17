@@ -1,7 +1,8 @@
-﻿.. _l-README:
 
-README
-======
+.. _l-README:
+
+README / Changes
+================
 
 **Links:**
     * `pypi/pyrsslocal <https://pypi.python.org/pypi/pyrsslocal/>`_

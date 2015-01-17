@@ -25,7 +25,7 @@ def main_page():
     serves the main page
     """
     return get_resource ("rss_reader.html")
-    
+
 # -- HELP BEGIN EXCLUDE --
 @app.errorhandler(500)
 # -- HELP END EXCLUDE --
@@ -33,8 +33,8 @@ def internal_error(error):
     """
     intercept an error
     """
-    return  render_template("errors.html", 
-                error=str(error), 
+    return  render_template("errors.html",
+                error=str(error),
                 message="Internal Error"), 500
 
 # -- HELP BEGIN EXCLUDE --
@@ -44,10 +44,10 @@ def not_found(error):
     """
     intercept an error
     """
-    return  render_template("errors.html", 
+    return  render_template("errors.html",
                 error=str(error),
-                message="Not Found"), 404   
-    
+                message="Not Found"), 404
+
 # -- HELP BEGIN EXCLUDE --
 @app.route('/js/', defaults={'path': ''})
 @app.route('/js/<path:path>')
@@ -55,7 +55,7 @@ def not_found(error):
 def get_js(path):  # pragma: no cover
     """
     serves static files
-    
+
     @param      path        relative path
     @return                 content
     """
@@ -67,7 +67,7 @@ def get_js(path):  # pragma: no cover
         cp       = mimetypes[ext]
         mimetype = cp[0]
         content  = cp[1](os.path.join("..","javascript",path))
-        r        = Response(content, mimetype=mimetype)    
+        r        = Response(content, mimetype=mimetype)
         return r
     except Exception as e :
         print(e)
@@ -80,12 +80,12 @@ def get_js(path):  # pragma: no cover
 def url_logging(path):  # pragma: no cover
     """
     serves static files
-    
+
     @param      path        relative path
     @return                 content
     """
     print("logging",path)
-    
+
 # -- HELP BEGIN EXCLUDE --
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -93,7 +93,7 @@ def url_logging(path):  # pragma: no cover
 def get_resource(path):  # pragma: no cover
     """
     serves static files
-    
+
     @param      path        relative path
     @return                 content
     """
@@ -108,7 +108,7 @@ def get_resource(path):  # pragma: no cover
         cp       = mimetypes.get(ext, ("text/plain",get_binary_file))
         mimetype = cp[0]
         content  = cp[1](path)
-        r        = Response(content, mimetype=mimetype)    
+        r        = Response(content, mimetype=mimetype)
         return r
     except Exception as e :
         print(e)
@@ -119,5 +119,3 @@ def get_resource(path):  # pragma: no cover
 if __name__ == "__main__":
     app.run()
 # -- HELP END EXCLUDE --
-
-    

@@ -12,7 +12,7 @@ except ImportError:
     import pyquickhelper
     import pyensae
     import pyrsslocal
-    
+
 from pyquickhelper  import fLOG
 from pyrsslocal     import rss_update_run_server
 
@@ -21,5 +21,3 @@ if __name__ == "__main__" :
     xml_blogs = "_unittests/ut_rss/data/subscriptions_small.xml"
     dbfile    = "rss_posts.db3"
     rss_update_run_server(dbfile, xml_blogs)
-    
-    

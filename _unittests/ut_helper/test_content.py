@@ -25,7 +25,7 @@ from src.pyrsslocal import get_subscriptions_example
 
 
 class TestContent (unittest.TestCase):
-    
+
     def test_sample(self) :
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         cont = get_subscriptions_example()
@@ -33,4 +33,4 @@ class TestContent (unittest.TestCase):
 
 
 if __name__ == "__main__"  :
-    unittest.main ()    
+    unittest.main ()

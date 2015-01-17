@@ -8,10 +8,10 @@ import os, sys
 def run_python_script(script, params = { }) :
     """
     execute a script python as a string
-    
+
     @param  script      python script
     @param  params      params to add before the execution
-    
+
     @example(compile and run a custom script)
     @code
     fpr = lambda v : self.outStream.write(str(v) + "\n")
@@ -21,7 +21,7 @@ def run_python_script(script, params = { }) :
     @endexample
     """
     obj = compile(script, "", "exec")
-    
+
     loc = locals()
     for k,v in params.items() :
         loc [k] = v
@@ -34,22 +34,18 @@ def run_python_script(script, params = { }) :
         sys.path.insert(0,path)
         import pyrsslocal
         rem = True
-    else : 
+    else :
         rem = False
-    
+
     try :
         exec(obj, globals(), loc)
-        
+
         if rem :
             del sys.path[0]
             del sys.modules["pyrsslocal"]
-        
+
     except Exception as e :
         if rem :
             del sys.path[0]
             del sys.modules["pyrsslocal"]
         raise e
-        
-    
-    
-

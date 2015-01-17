@@ -1,29 +1,29 @@
 # -*- coding: utf-8 -*-
 #  Copyright (C) 2013 ---------------
 #  All rights reserved.
-# 
+#
 #  Redistribution and use in source and binary forms, with or without
 #  modification, are permitted provided that the following conditions
 #  are met:
-# 
+#
 #  1. Redistributions of source code must retain the above copyright
 #     notice, this list of conditions and the following disclaimer.
-# 
+#
 #  2. Redistributions in binary form must reproduce the above copyright
 #     notice, this list of conditions and the following disclaimer in
 #     the documentation and/or other materials provided with the
 #     distribution.
-# 
+#
 #  3. All advertising materials mentioning features or use of this
 #     software must display the following acknowledgment:
 #     "This product includes software developed by
 #      Xavier Dupré <xavier.dupre AT gmail.com>"
-# 
+#
 #  4. Redistributions of any form whatsoever must retain the following
 #     acknowledgment:
 #     "This product includes software developed by
 #      Xavier Dupré <xavier.dupre AT gmail.com>."
-# 
+#
 #  THIS SOFTWARE IS PROVIDED BY Xavier Dupré ``AS IS'' AND ANY
 #  EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 #  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
@@ -46,7 +46,7 @@ if os.path.exists("version.txt") :
     with open("version.txt", "r") as f : lines = f.readlines()
     subversion = lines[0].strip("\r\n ")
 else :
-    subversion = 1   
+    subversion = 1
 
 project_var_name    = "pyrsslocal"
 sversion            = "0.8"
@@ -72,9 +72,9 @@ CLASSIFIERS = \
 ]
 
 if "bdist_wininst" not in sys.argv :
-    EXT_MODULES = [ 
-                    #Extension(project_var_name + '.subproject.sample_module', 
-                    #    ['src/' + project_var_name + '/subproject/sample_module.cpp'], 
+    EXT_MODULES = [
+                    #Extension(project_var_name + '.subproject.sample_module',
+                    #    ['src/' + project_var_name + '/subproject/sample_module.cpp'],
                     #    include_dirs = ['src/' + project_var_name + '/subproject']),
                 ]
 else :
@@ -82,9 +82,9 @@ else :
 
 packages     = find_packages('src', exclude='src')
 package_dir  = { k: "src/" + k.replace(".","/") for k in packages }
-package_data = { project_var_name + ".rss": ["*.html", "*.css", "*.js", "*.png"], 
+package_data = { project_var_name + ".rss": ["*.html", "*.css", "*.js", "*.png"],
                  project_var_name + ".javascript": ["*.html", "*.css", "*.js"], }
-    
+
 if os.path.exists(readme):
     try:
         with open(readme, "r", encoding='utf-8') as f : long_description = f.read()
@@ -105,9 +105,7 @@ if "--verbose" in sys.argv :
     print ("current     =", os.path.abspath(os.getcwd()))
     print ("---------------------------------")
 
-if "build_sphinx" in sys.argv:
-    # we take a shortcut 
-    
+def import_pyquickhelper():
     try:
         import pyquickhelper
     except ImportError:
@@ -115,32 +113,56 @@ if "build_sphinx" in sys.argv:
         try:
             import pyquickhelper
         except ImportError as e :
-            raise ImportError("module pyquickhelper is needed to build the documentation") from e 
-    
+            raise ImportError("module pyquickhelper is needed to build the documentation ({0})".format(sys.executable)) from e
+    return pyquickhelper
+
+if "clean_space" in sys.argv:
+    pyquickhelper = import_pyquickhelper()
+
+    fold = os.path.dirname(__file__)
+    fold = os.path.abspath(fold)
+    rem  = pyquickhelper.remove_extra_spaces_folder(fold, extensions=[".py","rst",".bat",".sh"])
+    print("number of impacted files", len(rem))
+
+elif "clean_pyd" in sys.argv:
+    pyquickhelper = import_pyquickhelper()
+    pyquickhelper.clean_exts()
+
+elif "build_sphinx" in sys.argv:
+    pyquickhelper = import_pyquickhelper()
+
     if "--help" in sys.argv:
         print(pyquickhelper.get_help_usage())
     else :
-        
+
         if not os.path.exists("_doc/sphinxdoc/source"):
             raise FileNotFoundError("you must get the source from GitHub to build the documentation")
-        
+
         from pyquickhelper import fLOG, generate_help_sphinx
 
         fLOG (OutputPrint = True)
         project_name = os.path.split(os.path.split(os.path.abspath(__file__))[0])[-1]
-        generate_help_sphinx(project_name)
-        
-elif "unittests" in sys.argv:        
-    
+
+        if sys.platform.startswith("win"):
+            generate_help_sphinx(project_name)
+        else:
+            # unable to test latex conversion due to adjustbox.sty missing package
+            generate_help_sphinx(project_name, nbformats = ["ipynb", "html", "python", "rst"])
+
+elif "unittests" in sys.argv:
+
     if not os.path.exists("_unittests"):
         raise FileNotFoundError("you must get the source from GitHub to run the unittests")
-        
-    sys.path.append("_unittests")
-    from run_unittests import main
-    main()
-    
+
+    run_unit = os.path.join("_unittests", "run_unittests.py")
+    if not os.path.exists(run_unit):
+        raise FileNotFoundError("the folder should contain run_unittests.py")
+
+    pyquickhelper = import_pyquickhelper()
+    pyquickhelper.main_wrapper_tests(run_unit, add_coverage=True)
+
 else :
-    
+
     setup(
         name                    = project_var_name,
         version                 = '%s.%s' %(sversion, subversion) if "register" in sys.argv or "bdist_msi" in sys.argv or "install" in sys.argv  else 'py%s-%s.%s' % (versionPython, sversion, subversion),

@@ -28,7 +28,7 @@ from src.pyrsslocal.helper.externs                      import df_to_html
 
 
 class TestSimpleServerScript (unittest.TestCase):
-    
+
     def test_html_string(self):
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         params = { "url":"http://..." }
@@ -37,7 +37,7 @@ class TestSimpleServerScript (unittest.TestCase):
         html = df_to_html(tbl, class_table="myclasstable")
         assert "<table class" in html
         assert params["url"] in html
-    
+
     def test_python_processing(self):
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         st = StringIO()
@@ -48,7 +48,7 @@ class TestSimpleServerScript (unittest.TestCase):
         assert """<script type="text/python">""" in html_debug_string
         assert """<script type="text/python">""" not in res
         assert '<table class="myclasstable">' in res
-        
-        
+
+
 if __name__ == "__main__"  :
-    unittest.main ()    
+    unittest.main ()

@@ -13,21 +13,20 @@ _example_subscriptions = """
      type="rss"
      xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml"
      htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html" />
-     
-</body>    
-</opml>     
+
+</body>
+</opml>
 """
 
 def get_subscriptions_example(filename = None):
     """
     returns an example of a subscriptions file
-    
+
     @param      filename        if not None, saves the string in that file
     @return                     example
     """
     if filename is not None:
         with open(filename, "w", encoding="utf8") as f :
             f.write(_example_subscriptions)
-            
-    return _example_subscriptions
 
+    return _example_subscriptions

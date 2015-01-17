@@ -13,13 +13,13 @@ from pyquickhelper import fLOG, get_url_content
 def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8"):
     """
     download a file from internet (we assume it is text information, otherwise, encoding should be None)
-    
+
     @param      url         (str) url
     @param      timeout     (in seconds), after this time, the function drops an returns None, -1 for forever
     @param      output      (str) if None, the content is stored in that file
     @param      encoding    (str) utf8 by default, but if it is None, the returned information is binary
     @return                 content of the url
-    
+
     If the function automatically detects that the downloaded data is in gzip
     format, it will decompress it.
     """
@@ -58,10 +58,10 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
             content = res.decode(encoding)
         except UnicodeDecodeError as e :
             # we try different encoding
-            
+
             laste  = [ e ]
             othenc = ["iso-8859-1", "latin-1"]
-            
+
             for encode in othenc :
                 try :
                     content = res.decode(encode)
@@ -69,7 +69,7 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
                 except UnicodeDecodeError as e :
                     laste.append(e)
                     content = None
-                    
+
             if content == None :
                 mes = [ "unable to parse blog post: " +  url ]
                 mes.append ( "tried:" + str([ encoding] + othenc) )
@@ -79,7 +79,7 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
                 raise ValueError ( "\n".join(mes))
     else :
         content = res
-    
+
     if output != None :
         if encoding != None :
             with open(output,"w",encoding = encoding) as f :
@@ -87,6 +87,5 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
         else :
             with open(output,"wb") as f :
                 f.write (content)
-    
+
     return content
-    

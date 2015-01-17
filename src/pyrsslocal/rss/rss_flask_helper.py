@@ -6,7 +6,7 @@
 import os
 
 
-def root_dir(): 
+def root_dir():
     """
     returns this directory
     @return     this path
@@ -23,29 +23,28 @@ def load_page(filename):
         content = f.read()
         return content
 
-def get_text_file(filename): 
+def get_text_file(filename):
     """
     return the content of a text filename
-    
+
     @param      filename        relative filename
     @return                     content
     """
     src = os.path.join(root_dir(), filename)
     with open(src, "r", encoding="utf8") as f :
         return f.read()
-    
-def get_binary_file(filename): 
+
+def get_binary_file(filename):
     """
     return the content of a binary filename
-    
+
     @param      filename        relative filename
     @return                     content
     """
     src = os.path.join(root_dir(), filename)
     with open(src, "rb") as f :
         return f.read()
-    
+
 # -- HELP BEGIN EXCLUDE --
 main_page_content = load_page("rss_reader.html")
 # -- HELP END EXCLUDE --
-

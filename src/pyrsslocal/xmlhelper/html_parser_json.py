@@ -8,7 +8,7 @@ import html.parser
 def iterate_on_json(json_structure, prefix = "", keep_dictionaries = False, skip = ["__parent__"]) :
     """
     iterates on every field contains in the JSON structure
-    
+
     @param      json_structure      json structure
     @param      prefix              prefix to add
     @param      keep_dictionaries   if True, add yield k,v where v is a JSON dictionary
@@ -22,7 +22,7 @@ def iterate_on_json(json_structure, prefix = "", keep_dictionaries = False, skip
         if isinstance(v,str) :
             yield (p, v)
         elif isinstance(v, dict) :
-            if keep_dictionaries : 
+            if keep_dictionaries :
                 yield (p,v)
             for r in iterate_on_json(v, p, keep_dictionaries, skip) :
                 yield r
@@ -34,15 +34,15 @@ def iterate_on_json(json_structure, prefix = "", keep_dictionaries = False, skip
                     yield r
         else :
             raise Exception("unexpected type, the json was altered at path {0}".format(p))
-                
+
 
 
 class HTMLtoJSONParser(html.parser.HTMLParser):
     """
     parse HTML and output a JSON structure
-    
+
     Example:
-    
+
     @code
     file = ...
     with open(file,"r",encoding="utf8") as f : content = f.read()
@@ -50,15 +50,15 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
     parser.feed(content)
     js = parser.json
     @endcode
-    
+
     Or:
-        
+
     @code
     js = HTMLtoJSONParser.to_json(content)
     @endcode
-    
+
     To iterator on path:
-    
+
     @code
     all = [ (k,v) for k,v in HTMLtoJSONParser.iterate(js) ]
     @endcode
@@ -66,7 +66,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
     def __init__(self, raise_exception = True) :
         """
         constructor
-        
+
         @param      raise_exception     if True, raises an exception if the HTML is malformed, otherwise does what it can
         """
         html.parser.HTMLParser.__init__(self, convert_charrefs=True)
@@ -75,7 +75,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         self.cur  = self.doc
         self.line = 0
         self.raise_exception = raise_exception
-        
+
     @property
     def json(self):
         """
@@ -83,7 +83,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         @return     json
         """
         return self.doc
-        
+
     @staticmethod
     def to_json(content, raise_exception = True):
         """
@@ -94,12 +94,12 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         parser = HTMLtoJSONParser(raise_exception = raise_exception)
         parser.feed(content)
         return parser.json
-        
+
     @staticmethod
     def iterate(json_structure, prefix = "", keep_dictionaries = False, skip = ["__parent__"]) :
         """
         iterates on every field contains in the JSON structure
-        
+
         @param      json_structure      json structure
         @param      prefix              prefix to add
         @param      keep_dictionaries   if True, add yield k,v where v is a JSON dictionary
@@ -108,7 +108,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         """
         for _ in iterate_on_json(json_structure, prefix, keep_dictionaries, skip) :
             yield _
-                    
+
     def handle_starttag(self, tag, attrs):
         """
         what to do for a new tag
@@ -126,11 +126,11 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         else :
             self.cur[tag] = { "__parent__": self.cur }
             self.cur = self.cur[tag]
-            
+
         for a,v in attrs.items():
             self.cur["#" + a] = v
         self.cur[""] = ""
-                
+
     def handle_endtag(self, tag):
         """
         what to do for the end of a tag
@@ -141,7 +141,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         memo = self.cur
         self.cur = self.cur["__parent__"]
         self.clean(memo)
-                
+
     def handle_data(self, data):
         """
         what to do with data
@@ -149,7 +149,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         self.line += data.count("\n")
         if "" in self.cur :
             self.cur[""] += data
-            
+
     def clean(self, values):
         """
         clean a dictionary of value
@@ -160,13 +160,11 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
             if isinstance(v, str) :
                 #print ("clean", k,[v])
                 c = v.strip(" \n\r\t")
-                if c != v : 
-                    if len(c) > 0 : 
+                if c != v :
+                    if len(c) > 0 :
                         values[k] = c
-                    else : 
+                    else :
                         del values[k]
                 elif len(v) == 0 :
                     del values[k]
         del values["__parent__"]
-        
-

@@ -7,7 +7,7 @@
 import re
 import xml.sax.saxutils as saxutils
 import xml.sax.saxutils as htmlentitydefs
-    
+
 
 
 def escape (s) :
@@ -20,7 +20,7 @@ def escape (s) :
     return s
 
 def html_unescape(text):
-    """Removes HTML or XML character references 
+    """Removes HTML or XML character references
       and entities from a text string.
       keep ``&amp;``, ``&gt;``, ``&lt;`` in the source code.
     from Fredrik Lundh
@@ -35,7 +35,7 @@ def html_unescape(text):
                 else:
                    return chr(int(text[2:-1]))
             except ValueError:
-                pass    
+                pass
         else:
             # named entity
             try:
@@ -51,21 +51,21 @@ def html_unescape(text):
                 pass
         return text # leave as is
     return re.sub("&#?\w+;", fixup, text)
-    
+
 character_to_escape = {
     "י":"&eacute;",
     " ":"&nbsp;",
     "ט":"&egrave;",
     "א":"&agrave;",
-    "ג":"&acirc;",    
-    "ך":"&ecirc;",    
-    "כ":"&euml;",     
-    "מ":"&icirc;",    
-    "ש":"&ugrave;",   
-    "ü":"&uuml;",     
-    "פ":"&ocirc;",    
-    "":"&oelig;",    
-    } 
+    "ג":"&acirc;",
+    "ך":"&ecirc;",
+    "כ":"&euml;",
+    "מ":"&icirc;",
+    "ש":"&ugrave;",
+    "ü":"&uuml;",
+    "פ":"&ocirc;",
+    "":"&oelig;",
+    }
 
 def html_escape(text):
     """escape any French character with an accent
@@ -74,4 +74,3 @@ def html_escape(text):
         text = m.group(0)
         return character_to_escape.get(text,text)
     return re.sub("[אגהיטךכמןפצשüü]", fixup, text)
-    

@@ -6,7 +6,7 @@ It contains the following variables:
 
 @var    html_header     a HTML header to use this way:
                                 html_header % (title, author, keywords)
-@var    html_footr      a HTML footer                                
+@var    html_footr      a HTML footer
 """
 
 html_header = """

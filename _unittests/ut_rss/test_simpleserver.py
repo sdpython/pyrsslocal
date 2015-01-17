@@ -30,41 +30,39 @@ from src.pyrsslocal.helper.download_helper import get_url_content
 
 
 class TestSimpleServer (unittest.TestCase):
-    
+
     def test_server_start_run (self) :
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
-        
+
         server = HTTPServer(('localhost', 8094), SimpleHandler)
         thread = run_server(server, True)
-        
+
         url = "http://localhost:8094/localfile/__file__"
         cont = get_url_content(url)
         assert len(cont)> 0
         assert "class SimpleHandler(BaseHTTPRequestHandler):" in cont
-        
+
         url = "http://localhost:8094/localfile/test_simpleserver.py?execute=False&path=%s" % path
         fLOG(url)
         cont = get_url_content(url)
         assert "class TestSimpleServer (unittest.TestCase):" in cont
-        
+
         cloud = os.path.join(path, "data")
         url = "http://localhost:8094/localfile/tag-cloud.html?path=%s" % cloud
         fLOG(url)
         cont = get_url_content(url)
         assert 'd3.json("data.json"' in cont
-        
+
         url = "http://localhost:8094/localfile/tag-cloud.html?path=%s&keep=True" % cloud
         fLOG(url)
         cont = get_url_content(url)
         assert 'd3.json("data.json"' in cont
         assert len(SimpleHandler.queue_pathes) > 0
-        
-        thread.shutdown()    
-        assert not thread.is_alive()
-        
-        
-if __name__ == "__main__"  :
-    unittest.main ()    
 
-    
+        thread.shutdown()
+        assert not thread.is_alive()
+
+
+if __name__ == "__main__"  :
+    unittest.main ()

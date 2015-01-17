@@ -27,7 +27,7 @@ from src.pyrsslocal.rss.rss_stream      import StreamRSS
 from pyensae.sql.database_main          import Database
 
 class TestRSSSpecial (unittest.TestCase):
-    
+
     def test_rss_from_google_arxiv (self) :
         fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
@@ -39,16 +39,16 @@ class TestRSSSpecial (unittest.TestCase):
                 print (r)
             raise Exception("number of expected feed %d != 1" % (len(res)))
         fLOG("nb:",len(res))
-        
+
         dbfile = os.path.join(path, "temp_rss_arxiv.db3")
         if os.path.exists (dbfile) : os.remove(dbfile)
-        
+
         db = Database (dbfile, LOG = fLOG)
         db.connect()
         StreamRSS.fill_table(db, "blogs", res)
         db.close()
-        
-        
-        
+
+
+
 if __name__ == "__main__"  :
-    unittest.main ()    
+    unittest.main ()
