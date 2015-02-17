@@ -189,6 +189,12 @@
                 xmlUrl="http://arxiv.org/rss/stat" 
                 htmlUrl="http://arxiv.org/"/>
                 
+            <outline text="ML updates on arXiv.org"
+                title="ML updates on arXiv.org" 
+                type="rss"
+                xmlUrl="http://arxiv.org/rss/ml" 
+                htmlUrl="http://arxiv.org/"/>
+                
             <outline text="Information is Beautiful"
                 title="Information is Beautiful" 
                 type="rss"
