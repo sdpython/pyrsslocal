@@ -52,10 +52,10 @@ SyntaxHighlighter.all();
 
 debug_string_script = """
 from pandas import DataFrame
-from pyrsslocal.helper.externs import df_to_html
+from pyrsslocal.helper.externs import df2html
 pars = [ { "key":k, "value":v } for k,v in params.items() ]
 tbl = DataFrame (pars)
-print ( df_to_html(tbl, class_table="myclasstable") )
+print ( df2html(tbl, class_table="myclasstable") )
 """
 
 html_debug_string_script = """

@@ -11,20 +11,24 @@ from io import StringIO
 try :
     import src
     import pyquickhelper
+    import pyensae
 except ImportError :
     path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..")))
     if path not in sys.path : sys.path.append (path)
     path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyquickhelper", "src")))
     if path not in sys.path : sys.path.append (path)
+    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyensae", "src")))
+    if path not in sys.path : sys.path.append (path)
     import src
     import pyquickhelper
+    import pyensae
 
 from pandas import DataFrame
 
 from pyquickhelper                                      import fLOG
 from src.pyrsslocal.simple_server.html_script_parser    import HTMLScriptParser
 from src.pyrsslocal.simple_server.html_string           import html_debug_string
-from src.pyrsslocal.helper.externs                      import df_to_html
+from src.pyrsslocal.helper.externs                      import df2html
 
 
 class TestSimpleServerScript (unittest.TestCase):
@@ -34,7 +38,7 @@ class TestSimpleServerScript (unittest.TestCase):
         params = { "url":"http://..." }
         pars = [ { "key":k, "value":v } for k,v in params.items() ]
         tbl = DataFrame (pars)
-        html = df_to_html(tbl, class_table="myclasstable")
+        html = df2html(tbl, class_table="myclasstable")
         assert "<table class" in html
         assert params["url"] in html
 
