@@ -13,15 +13,17 @@ def root_dir():
     """
     return os.path.abspath(os.path.dirname(__file__))
 
+
 def load_page(filename):
     """
     loads the content of a file
     """
     fold = root_dir()
     full = os.path.abspath(os.path.join(fold, filename))
-    with open(full,"r",encoding="utf8") as f :
+    with open(full, "r", encoding="utf8") as f:
         content = f.read()
         return content
+
 
 def get_text_file(filename):
     """
@@ -31,8 +33,9 @@ def get_text_file(filename):
     @return                     content
     """
     src = os.path.join(root_dir(), filename)
-    with open(src, "r", encoding="utf8") as f :
+    with open(src, "r", encoding="utf8") as f:
         return f.read()
+
 
 def get_binary_file(filename):
     """
@@ -42,7 +45,7 @@ def get_binary_file(filename):
     @return                     content
     """
     src = os.path.join(root_dir(), filename)
-    with open(src, "rb") as f :
+    with open(src, "rb") as f:
         return f.read()
 
 # -- HELP BEGIN EXCLUDE --

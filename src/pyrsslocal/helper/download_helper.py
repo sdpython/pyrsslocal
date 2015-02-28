@@ -5,12 +5,16 @@
 """
 
 from urllib.error import HTTPError, URLError
-import urllib, urllib.request
-import socket, http, gzip
+import urllib
+import urllib.request
+import socket
+import http
+import gzip
 
 from pyquickhelper import fLOG, get_url_content
 
-def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8"):
+
+def get_url_content_timeout(url, timeout=10, output=None, encoding="utf8"):
     """
     download a file from internet (we assume it is text information, otherwise, encoding should be None)
 
@@ -24,68 +28,88 @@ def get_url_content_timeout(url, timeout = 10, output = None, encoding = "utf8")
     format, it will decompress it.
     """
     try:
-        if timeout != -1 :
-            with urllib.request.urlopen(url, timeout=timeout) as ur :
+        if timeout != -1:
+            with urllib.request.urlopen(url, timeout=timeout) as ur:
                 res = ur.read()
-        else :
-            with urllib.request.urlopen(url) as ur :
+        else:
+            with urllib.request.urlopen(url) as ur:
                 res = ur.read()
     except (HTTPError, URLError) as error:
         fLOG("unable to retrieve content from ", url, "exc:", str(error))
         return None
     except socket.timeout as e:
-        fLOG("unable to retrieve content from ", url, " because of timeout: ", timeout)
+        fLOG(
+            "unable to retrieve content from ",
+            url,
+            " because of timeout: ",
+            timeout)
         return None
     except ConnectionResetError as e:
-        fLOG("unable to retrieve content from ", url, " because of ConnectionResetError: ", e)
+        fLOG(
+            "unable to retrieve content from ",
+            url,
+            " because of ConnectionResetError: ",
+            e)
         return None
     except http.client.BadStatusLine as e:
-        fLOG("unable to retrieve content from ", url, " because of http.client.BadStatusLine: ", e)
+        fLOG(
+            "unable to retrieve content from ",
+            url,
+            " because of http.client.BadStatusLine: ",
+            e)
         return None
     except http.client.IncompleteRead as e:
-        fLOG("unable to retrieve content from ", url, " because of http.client.IncompleteRead: ", e)
+        fLOG(
+            "unable to retrieve content from ",
+            url,
+            " because of http.client.IncompleteRead: ",
+            e)
         return None
     except Exception as e:
-        fLOG("unable to retrieve content from ", url, " because of unknown exception: ", e)
+        fLOG(
+            "unable to retrieve content from ",
+            url,
+            " because of unknown exception: ",
+            e)
         raise e
 
-    if len(res) >= 2 and res[:2] == b"\x1f\x8B" :
+    if len(res) >= 2 and res[:2] == b"\x1f\x8B":
         # gzip format
         res = gzip.decompress(res)
 
-    if encoding != None :
-        try :
+    if encoding is not None:
+        try:
             content = res.decode(encoding)
-        except UnicodeDecodeError as e :
+        except UnicodeDecodeError as e:
             # we try different encoding
 
-            laste  = [ e ]
+            laste = [e]
             othenc = ["iso-8859-1", "latin-1"]
 
-            for encode in othenc :
-                try :
+            for encode in othenc:
+                try:
                     content = res.decode(encode)
                     break
-                except UnicodeDecodeError as e :
+                except UnicodeDecodeError as e:
                     laste.append(e)
                     content = None
 
-            if content == None :
-                mes = [ "unable to parse blog post: " +  url ]
-                mes.append ( "tried:" + str([ encoding] + othenc) )
-                mes.append ( "beginning:\n" + str([res])[:50])
-                for e in laste :
+            if content is None:
+                mes = ["unable to parse blog post: " + url]
+                mes.append("tried:" + str([encoding] + othenc))
+                mes.append("beginning:\n" + str([res])[:50])
+                for e in laste:
                     mes.append("Exception: " + str(e))
-                raise ValueError ( "\n".join(mes))
-    else :
+                raise ValueError("\n".join(mes))
+    else:
         content = res
 
-    if output != None :
-        if encoding != None :
-            with open(output,"w",encoding = encoding) as f :
-                f.write (content)
-        else :
-            with open(output,"wb") as f :
-                f.write (content)
+    if output is not None:
+        if encoding is not None:
+            with open(output, "w", encoding=encoding) as f:
+                f.write(content)
+        else:
+            with open(output, "wb") as f:
+                f.write(content)
 
     return content

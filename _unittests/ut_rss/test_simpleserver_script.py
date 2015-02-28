@@ -5,47 +5,80 @@
 """
 
 
-import sys, os, unittest, time
+import sys
+import os
+import unittest
+import time
 from io import StringIO
 
-try :
+try:
     import src
     import pyquickhelper
     import pyensae
-except ImportError :
-    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..")))
-    if path not in sys.path : sys.path.append (path)
-    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyquickhelper", "src")))
-    if path not in sys.path : sys.path.append (path)
-    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyensae", "src")))
-    if path not in sys.path : sys.path.append (path)
+except ImportError:
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..")))
+    if path not in sys.path:
+        sys.path.append(path)
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..",
+                "..",
+                "pyquickhelper",
+                "src")))
+    if path not in sys.path:
+        sys.path.append(path)
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..",
+                "..",
+                "pyensae",
+                "src")))
+    if path not in sys.path:
+        sys.path.append(path)
     import src
     import pyquickhelper
     import pyensae
 
 from pandas import DataFrame
 
-from pyquickhelper                                      import fLOG
-from src.pyrsslocal.simple_server.html_script_parser    import HTMLScriptParser
-from src.pyrsslocal.simple_server.html_string           import html_debug_string
-from src.pyrsslocal.helper.externs                      import df2html
+from pyquickhelper import fLOG
+from src.pyrsslocal.simple_server.html_script_parser import HTMLScriptParser
+from src.pyrsslocal.simple_server.html_string import html_debug_string
+from src.pyrsslocal.helper.externs import df2html
 
 
 class TestSimpleServerScript (unittest.TestCase):
 
     def test_html_string(self):
-        fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
-        params = { "url":"http://..." }
-        pars = [ { "key":k, "value":v } for k,v in params.items() ]
-        tbl = DataFrame (pars)
+        fLOG(
+            __file__,
+            self._testMethodName,
+            OutputPrint=__name__ == "__main__")
+        params = {"url": "http://..."}
+        pars = [{"key": k, "value": v} for k, v in params.items()]
+        tbl = DataFrame(pars)
         html = df2html(tbl, class_table="myclasstable")
         assert "<table class" in html
         assert params["url"] in html
 
     def test_python_processing(self):
-        fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
+        fLOG(
+            __file__,
+            self._testMethodName,
+            OutputPrint=__name__ == "__main__")
         st = StringIO()
-        parser = HTMLScriptParser( outStream = st)
+        parser = HTMLScriptParser(outStream=st)
         parser.feed(html_debug_string)
         res = st.getvalue()
         assert len(res) > 0
@@ -54,5 +87,5 @@ class TestSimpleServerScript (unittest.TestCase):
         assert '<table class="myclasstable">' in res
 
 
-if __name__ == "__main__"  :
-    unittest.main ()
+if __name__ == "__main__":
+    unittest.main()

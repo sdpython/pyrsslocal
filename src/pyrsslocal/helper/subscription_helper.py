@@ -18,7 +18,8 @@ _example_subscriptions = """
 </opml>
 """
 
-def get_subscriptions_example(filename = None):
+
+def get_subscriptions_example(filename=None):
     """
     returns an example of a subscriptions file
 
@@ -26,7 +27,7 @@ def get_subscriptions_example(filename = None):
     @return                     example
     """
     if filename is not None:
-        with open(filename, "w", encoding="utf8") as f :
+        with open(filename, "w", encoding="utf8") as f:
             f.write(_example_subscriptions)
 
     return _example_subscriptions

@@ -3,28 +3,55 @@
 @brief  This modules contains a class which implements a simple server.
 """
 
-import sys, string, cgi, time, os, subprocess, socket, copy, re, io
+import sys
+import string
+import cgi
+import time
+import os
+import subprocess
+import socket
+import copy
+import re
+import io
 from urllib.parse import urlparse, parse_qs
 from io import StringIO
 from threading import Thread
 from http.server import BaseHTTPRequestHandler, HTTPServer, SimpleHTTPRequestHandler
 
-if __name__ == "__main__" :
-    path = os.path.normpath(os.path.abspath(os.path.join(os.path.split(__file__)[0],"..","..","..", "src")))
-    if path not in sys.path : sys.path.append(path)
-    path = os.path.normpath(os.path.abspath(os.path.join(os.path.split(__file__)[0],"..","..","..", "..","pyquickhelper","src")))
-    if path not in sys.path : sys.path.append(path)
+if __name__ == "__main__":
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..",
+                "..",
+                "src")))
+    if path not in sys.path:
+        sys.path.append(path)
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..",
+                "..",
+                "..",
+                "pyquickhelper",
+                "src")))
+    if path not in sys.path:
+        sys.path.append(path)
     from pyquickhelper import fLOG
     from pyrsslocal.simple_server.html_string import *
     from pyrsslocal.simple_server.html_script_parser import HTMLScriptParser
-else :
+else:
     from pyquickhelper import fLOG
     from .html_string import debug_string_script, html_debug_string_script, html_footer, html_debug_string, html_header
     from .html_script_parser import HTMLScriptParser, HTMLScriptParserRemove
     from ..helper.download_helper import get_url_content_timeout
 
 
-def get_path_javascript() :
+def get_path_javascript():
     """
     pyrsslocal contains some javascript script, it adds the paths
     to the paths where content will be looked for.
@@ -32,12 +59,19 @@ def get_path_javascript() :
     @return         a path
     """
     filepath = os.path.split(__file__)[0]
-    jspath = os.path.normpath(os.path.abspath(os.path.join(filepath,"..","javascript")))
-    if not os.path.exists(jspath) :
+    jspath = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                filepath,
+                "..",
+                "javascript")))
+    if not os.path.exists(jspath):
         raise FileNotFoundError(jspath)
     return jspath
 
+
 class SimpleHandler(BaseHTTPRequestHandler):
+
     """
     defines a simple handler used by HTTPServer
 
@@ -56,18 +90,19 @@ class SimpleHandler(BaseHTTPRequestHandler):
              you cannot add member to this class.
     """
 
-    # this queue will keep some pathes which should be stored in session information or in cookies
-    queue_pathes    = list( )
+    # this queue will keep some pathes which should be stored in session
+    # information or in cookies
+    queue_pathes = list()
     javascript_path = get_path_javascript()
 
-    def add_path(self, p) :
+    def add_path(self, p):
         """
         adds a local path to the list of path to watch
         @param  p       local path to data
 
         Python documentation says list are proctected against multithreads (concurrent accesses).
         """
-        if p not in SimpleHandler.queue_pathes :
+        if p not in SimpleHandler.queue_pathes:
             SimpleHandler.queue_pathes.append(p)
 
     def get_pathes(self):
@@ -101,19 +136,19 @@ class SimpleHandler(BaseHTTPRequestHandler):
         every message.
         """
         self.private_LOG("- %s - %s\n" %
-                        (self.address_string(),
-                        format%args))
+                         (self.address_string(),
+                          format % args))
 
-    def LOG (self, *args):
+    def LOG(self, *args):
         """
         to log, it appends various information about the id address...
         @param      args       string to LOG or list of strings to LOG
         """
         self.private_LOG("- %s -" %
-                        (self.address_string(),),
-                        *args)
+                         (self.address_string(),),
+                         *args)
 
-    def private_LOG(self, *s) :
+    def private_LOG(self, *s):
         """
         to log
         @param      s       string to LOG or list of strings to LOG
@@ -126,7 +161,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         """
         parsed_path = urlparse(self.path)
         self.serve_content(parsed_path, "GET")
-        #self.wfile.close()
+        # self.wfile.close()
 
     def do_POST(self):
         """
@@ -134,7 +169,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         """
         parsed_path = urlparse.urlparse(self.path)
         self.serve_content(parsed_path)
-        #self.wfile.close()
+        # self.wfile.close()
 
     def do_redirect(self, path="/index.html"):
         """
@@ -200,7 +235,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
             self.end_headers()
         return ftype
 
-    def get_file_content(self, localpath, ftype, path = None):
+    def get_file_content(self, localpath, ftype, path=None):
         """
         Returns the content of a local file. The function also looks into
         folders in ``self.__pathes`` to see if the file can be found in one of the
@@ -211,31 +246,32 @@ class SimpleHandler(BaseHTTPRequestHandler):
         @param      path            if != None, the filename will be path/localpath
         @return                     content
         """
-        if path != None :
+        if path is not None:
             tlocalpath = os.path.join(path, localpath)
-        else : tlocalpath = localpath
+        else:
+            tlocalpath = localpath
 
-        if not os.path.exists(tlocalpath) :
-            for p in self.get_pathes() :
-                self.LOG("trying ",p)
+        if not os.path.exists(tlocalpath):
+            for p in self.get_pathes():
+                self.LOG("trying ", p)
                 tloc = os.path.join(p, localpath)
-                if os.path.exists (tloc) :
+                if os.path.exists(tloc):
                     tlocalpath = tloc
                     break
 
-        if not os.path.exists(tlocalpath) :
+        if not os.path.exists(tlocalpath):
             self.send_error(404)
             content = "unable to find file " + localpath
             self.LOG(content)
             return content
 
-        if ftype == "r" or ftype == "execute" :
+        if ftype == "r" or ftype == "execute":
             self.LOG("reading file ", tlocalpath)
-            with open(tlocalpath, "r", encoding="utf8") as f :
+            with open(tlocalpath, "r", encoding="utf8") as f:
                 return f.read()
-        else :
+        else:
             self.LOG("reading file ", tlocalpath)
-            with open(tlocalpath, "rb") as f :
+            with open(tlocalpath, "rb") as f:
                 return f.read()
 
     def execute(self, localpath):
@@ -245,12 +281,12 @@ class SimpleHandler(BaseHTTPRequestHandler):
         @return                     output, error
         """
         exe = subprocess.Popen([sys.executable, localpath],
-                               stdout = subprocess.PIPE,
-                               stderr = subprocess.PIPE)
+                               stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE)
         out, error = exe.communicate()
         return out, error
 
-    def feed(self, any, script_python = False, params = None):
+    def feed(self, any, script_python=False, params=None):
         """
         displays something
 
@@ -269,14 +305,14 @@ class SimpleHandler(BaseHTTPRequestHandler):
         @endcode
         """
         if params is None:
-            params = { }
+            params = {}
 
-        if isinstance (any, bytes) :
-            if script_python :
+        if isinstance(any, bytes):
+            if script_python:
                 raise SystemError("unable to execute script from bytes")
             self.wfile.write(any)
-        else :
-            if script_python :
+        else:
+            if script_python:
                 any = self.process_scripts(any, params)
             text = any.encode("utf-8")
             self.wfile.write(text)
@@ -304,11 +340,11 @@ class SimpleHandler(BaseHTTPRequestHandler):
         @endcode
         freezes the server because this function should not be run in the same thread.
         """
-        #self.server.close()
-        #help(self.server.socket)
-        #self.server.socket.shutdown(socket.SHUT_RDWR)
+        # self.server.close()
+        # help(self.server.socket)
+        # self.server.socket.shutdown(socket.SHUT_RDWR)
         self.server.socket.close()
-        #self.server.shutdown()
+        # self.server.shutdown()
         fLOG("end of shut down")
 
     def main_page(self):
@@ -318,7 +354,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         """
         return "index.html"
 
-    def serve_content(self, path, method = "GET"):
+    def serve_content(self, path, method="GET"):
         """
         Tells what to do based on the path. The function intercepts the
         path /localfile/, otherwise it calls ``serve_content_web``.
@@ -336,120 +372,146 @@ class SimpleHandler(BaseHTTPRequestHandler):
         else:
             params = parse_qs(path.query)
             params["__path__"] = path
-            # here you might want to look into a local path... f2r = HOME + path
+            # here you might want to look into a local path... f2r = HOME +
+            # path
 
             url = path.geturl()
             params["__url__"] = path
 
-            if url.startswith("/localfile/") :
-                localpath = path.path [len("/localfile/"):]
+            if url.startswith("/localfile/"):
+                localpath = path.path[len("/localfile/"):]
                 self.LOG("localpath ", localpath, os.path.isfile(localpath))
 
-                if localpath == "shutdown" :
+                if localpath == "shutdown":
                     self.LOG("call shutdown")
                     self.shutdown()
 
-                elif localpath == "__file__" :
+                elif localpath == "__file__":
                     self.LOG("display file __file__", localpath)
                     self.send_response(200)
                     self.send_headers("__file__.txt")
                     content = self.get_file_content(__file__, "r")
                     self.feed(content)
 
-                else :
+                else:
                     self.send_response(200)
-                    _,ftype   = self.get_ftype(localpath)
-                    execute = eval(params.get("execute",["True"])[0])
-                    path    = params.get("path",[None])[0]
-                    keep    = eval(params.get("keep",["False"])[0])
+                    _, ftype = self.get_ftype(localpath)
+                    execute = eval(params.get("execute", ["True"])[0])
+                    path = params.get("path", [None])[0]
+                    keep = eval(params.get("keep", ["False"])[0])
                     if keep and path not in self.get_pathes():
-                        self.LOG("execute", execute , "- ftype", ftype, " - path", path, " keep ", keep)
+                        self.LOG(
+                            "execute",
+                            execute,
+                            "- ftype",
+                            ftype,
+                            " - path",
+                            path,
+                            " keep ",
+                            keep)
                         self.add_path(path)
-                    else :
-                        self.LOG("execute", execute , "- ftype", ftype, " - path", path)
+                    else:
+                        self.LOG(
+                            "execute",
+                            execute,
+                            "- ftype",
+                            ftype,
+                            " - path",
+                            path)
 
-                    if ftype != 'execute' or not execute :
+                    if ftype != 'execute' or not execute:
                         content = self.get_file_content(localpath, ftype, path)
                         ext = os.path.splitext(localpath)[-1].lower()
-                        if ext in [".py", ".c", ".cpp", ".hpp", ".h", ".r", ".sql", ".js", ".java", ".css" ] :
-                            self.send_headers (".html")
-                            self.feed ( self.html_code_renderer (localpath, content) )
-                        else :
-                            self.send_headers (localpath)
+                        if ext in [
+                                ".py", ".c", ".cpp", ".hpp", ".h", ".r", ".sql", ".js", ".java", ".css"]:
+                            self.send_headers(".html")
+                            self.feed(
+                                self.html_code_renderer(
+                                    localpath,
+                                    content))
+                        else:
+                            self.send_headers(localpath)
                             self.feed(content)
                     else:
                         self.LOG("execute file ", localpath)
-                        out,err = self.execute (localpath)
-                        if len(err) > 0 :
+                        out, err = self.execute(localpath)
+                        if len(err) > 0:
                             self.send_error(404)
-                            self.feed("Requested resource %s unavailable" % localpath )
-                        else :
-                            self.send_headers (localpath)
+                            self.feed(
+                                "Requested resource %s unavailable" %
+                                localpath)
+                        else:
+                            self.send_headers(localpath)
                             self.feed(out)
 
-            elif url.startswith("/js/") :
+            elif url.startswith("/js/"):
                 found = None
-                for jspa in self.get_javascript_paths() :
+                for jspa in self.get_javascript_paths():
                     file = os.path.join(jspa, url[4:])
-                    if os.path.exists(file) :
+                    if os.path.exists(file):
                         found = file
 
-                if found == None :
+                if found is None:
                     self.send_response(200)
                     self.send_headers("")
-                    self.feed("unable to serve content for url: " + path.geturl())
+                    self.feed(
+                        "unable to serve content for url: " +
+                        path.geturl())
                     self.send_error(404)
-                else :
-                    r,ft = self.get_ftype(found)
-                    if ft == "r" :
-                        try :
-                            with open(found, ft, encoding="utf8") as f : content = f.read()
-                        except UnicodeDecodeError as e :
+                else:
+                    r, ft = self.get_ftype(found)
+                    if ft == "r":
+                        try:
+                            with open(found, ft, encoding="utf8") as f:
+                                content = f.read()
+                        except UnicodeDecodeError as e:
                             self.LOG("file is not utf8", found)
-                            with open(found, ft) as f : content = f.read()
-                    else :
+                            with open(found, ft) as f:
+                                content = f.read()
+                    else:
                         self.LOG("reading binary")
-                        with open(found, ft) as f : content = f.read()
+                        with open(found, ft) as f:
+                            content = f.read()
 
                     self.send_response(200)
                     self.send_headers(found)
-                    self.feed (content)
+                    self.feed(content)
 
-            elif url.startswith("/debug_string/") :
+            elif url.startswith("/debug_string/"):
                 # debugging purposes
                 self.send_response(200)
                 self.send_headers("debug.html")
                 self.feed(html_debug_string, False, params)
 
-            elif url.startswith("/fetchurlclean/") :
+            elif url.startswith("/fetchurlclean/"):
                 self.send_response(200)
                 self.send_headers("debug.html")
-                url = path.path.replace ("/fetchurlclean/", "")
-                try :
+                url = path.path.replace("/fetchurlclean/", "")
+                try:
                     content = get_url_content_timeout(url)
-                except Exception as e :
+                except Exception as e:
                     content = "<html><body>ERROR (1): %s</body></html>" % e
-                if content == None or len(content) == 0 :
+                if content is None or len(content) == 0:
                     content = "<html><body>ERROR (1): content is empty</body></html>"
 
                 stre = io.StringIO()
-                pars = HTMLScriptParserRemove(outStream = stre)
+                pars = HTMLScriptParserRemove(outStream=stre)
                 pars.feed(content)
                 content = stre.getvalue()
 
-                self.feed(content, False, params = { })
+                self.feed(content, False, params={})
 
-            elif url.startswith("/fetchurl/") :
+            elif url.startswith("/fetchurl/"):
                 self.send_response(200)
                 self.send_headers("debug.html")
-                url = path.path.replace ("/fetchurl/", "")
-                try :
+                url = path.path.replace("/fetchurl/", "")
+                try:
                     content = get_url_content_timeout(url)
-                except Exception as e :
+                except Exception as e:
                     content = "<html><body>ERROR (2): %s</body></html>" % e
-                self.feed(content, False, params = { })
+                self.feed(content, False, params={})
 
-            else :
+            else:
                 self.serve_content_web(path, method, params)
 
     def get_javascript_paths(self):
@@ -457,7 +519,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         returns all the location where the server should look for a java script
         @return         list of paths
         """
-        return [ SimpleHandler.javascript_path ]
+        return [SimpleHandler.javascript_path]
 
     def html_code_renderer(self, localpath, content):
         """
@@ -467,9 +529,9 @@ class SimpleHandler(BaseHTTPRequestHandler):
         @param      content     content of the file
         @return                 html string
         """
-        res = [ html_header % (localpath, os.environ["USERNAME"], "code") ]
-        res.append ("<pre class=\"prettyprint\">")
-        res.append(content.replace("<","&lt;").replace(">","&gt;"))
+        res = [html_header % (localpath, os.environ["USERNAME"], "code")]
+        res.append("<pre class=\"prettyprint\">")
+        res.append(content.replace("<", "&lt;").replace(">", "&gt;"))
         res.append(html_footer)
         return "\n".join(res)
 
@@ -483,7 +545,12 @@ class SimpleHandler(BaseHTTPRequestHandler):
         """
         self.send_response(200)
         self.send_headers("")
-        self.feed("unable to serve content for url: " + path.geturl() + "\n" + str(params) + "\n")
+        self.feed(
+            "unable to serve content for url: " +
+            path.geturl() +
+            "\n" +
+            str(params) +
+            "\n")
         self.send_error(404)
 
     def process_scripts(self, content, params):
@@ -496,20 +563,24 @@ class SimpleHandler(BaseHTTPRequestHandler):
         @return                 html content
         """
         st = StringIO()
-        parser = HTMLScriptParser( outStream = st, catch_exception = True, context = params)
+        parser = HTMLScriptParser(
+            outStream=st,
+            catch_exception=True,
+            context=params)
         parser.feed(content)
         res = st.getvalue()
         return res
 
 
-class ThreadServer (Thread) :
+class ThreadServer (Thread):
+
     """
     defines a thread which holds a web server
 
     @var    server      the server of run
     """
 
-    def __init__ (self, server) :
+    def __init__(self, server):
         """
         constructor
         @param      server to run
@@ -535,7 +606,7 @@ class ThreadServer (Thread) :
         self.server.server_close()
 
 
-def run_server (server, thread = False, port = 8080) :
+def run_server(server, thread=False, port=8080):
     """
     run the server
     @param      server      if None, it becomes ``HTTPServer(('localhost', 8080), SimpleHandler)``
@@ -547,13 +618,13 @@ def run_server (server, thread = False, port = 8080) :
 
     @warning If you kill the python program while the thread is still running, python interpreter might be closed completely.
     """
-    if server == None :
+    if server is None:
         server = HTTPServer(('localhost', port), SimpleHandler)
-    if thread :
+    if thread:
         th = ThreadServer(server)
         th.start()
         return th
-    else :
+    else:
         server.serve_forever()
         return server
 

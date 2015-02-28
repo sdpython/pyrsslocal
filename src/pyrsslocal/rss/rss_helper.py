@@ -2,17 +2,20 @@
 @file
 @brief Various function to automate the collection of blog posts.
 """
-import os,webbrowser,sys
+import os
+import webbrowser
+import sys
 
-from .rss_stream                    import StreamRSS
-from .rss_blogpost                  import BlogPost
-from pyquickhelper.loghelper.flog   import fLOG
-from pyensae.sql.database_main      import Database
-from .rss_simple_server             import RSSServer
+from .rss_stream import StreamRSS
+from .rss_blogpost import BlogPost
+from pyquickhelper.loghelper.flog import fLOG
+from pyensae.sql.database_main import Database
+from .rss_simple_server import RSSServer
 
-def rss_from_xml_to_database (file,
-                          database  = "database_rss.db3",
-                          table     = "blogs") :
+
+def rss_from_xml_to_database(file,
+                             database="database_rss.db3",
+                             table="blogs"):
     """
     parses a list of blogs stored in a XML file using Google Reader format,
     stores the results in a SQLite database
@@ -35,17 +38,18 @@ def rss_from_xml_to_database (file,
 
     """
 
-    res = list (StreamRSS.enumerate_stream_from_google_list(file))
+    res = list(StreamRSS.enumerate_stream_from_google_list(file))
 
-    db = Database (database, LOG = fLOG)
+    db = Database(database, LOG=fLOG)
     db.connect()
     StreamRSS.fill_table(db, table, res)
     db.close()
     return len(res)
 
-def rss_download_post_to_database ( database = "database_rss.db3",
-                                    table_blog = "blogs",
-                                    table_post = "posts") :
+
+def rss_download_post_to_database(database="database_rss.db3",
+                                  table_blog="blogs",
+                                  table_post="posts"):
     """
     download all post from a list of blogs stored in a database by function @see fn rss_from_xml_to_database
 
@@ -54,16 +58,17 @@ def rss_download_post_to_database ( database = "database_rss.db3",
     @param      table_post      table name of the post
     @return                     number of posts downloaded
     """
-    db = Database (database, LOG = fLOG)
+    db = Database(database, LOG=fLOG)
     db.connect()
-    rss_list = list(db.enumerate_objects (table_blog, StreamRSS))
-    list_post = list ( StreamRSS.enumerate_post_from_rsslist( rss_list ) )
-    BlogPost.fill_table(db, table_post, list_post, skip_exception = True)
+    rss_list = list(db.enumerate_objects(table_blog, StreamRSS))
+    list_post = list(StreamRSS.enumerate_post_from_rsslist(rss_list))
+    BlogPost.fill_table(db, table_post, list_post, skip_exception=True)
     db.close()
 
     return len(list_post)
 
-def rss_update_run_server (dbfile, xml_blogs, port = 8093, browser = None):
+
+def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None):
     """
     create a database if it does not exists, add a table for blogs and posts,
     update the database, starts a server and open a browser
@@ -76,14 +81,15 @@ def rss_update_run_server (dbfile, xml_blogs, port = 8093, browser = None):
     You can read the blog post `pyhome3 RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
 
     """
-    if not os.path.exists (xml_blogs) :
+    if not os.path.exists(xml_blogs):
         raise FileNotFoundError(xml_blogs)
 
-    rss_from_xml_to_database(xml_blogs, database = dbfile)
-    rss_download_post_to_database(database = dbfile)
-    rss_run_server (dbfile, port, browser = browser)
+    rss_from_xml_to_database(xml_blogs, database=dbfile)
+    rss_download_post_to_database(database=dbfile)
+    rss_run_server(dbfile, port, browser=browser)
 
-def rss_run_server (dbfile, port = 8093, browser = None):
+
+def rss_run_server(dbfile, port=8093, browser=None):
     """
     starts a server and open a browser on a page reading blog posts
 
@@ -94,21 +100,24 @@ def rss_run_server (dbfile, port = 8093, browser = None):
     You can read the blog post `RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
 
     """
-    if not os.path.exists (dbfile) :
+    if not os.path.exists(dbfile):
         raise FileNotFoundError(dbfile)
 
     url = "http://localhost:%d/rss_reader.html?search=today" % port
     fLOG("opening ", url)
-    if browser != None :
+    if browser is not None:
         try:
             b = webbrowser.get(browser)
         except webbrowser.Error as e:
-            if browser == "firefox" and sys.platform.startswith("win") :
-                webbrowser.register('firefox', None, webbrowser.GenericBrowser(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
+            if browser == "firefox" and sys.platform.startswith("win"):
+                webbrowser.register(
+                    'firefox',
+                    None,
+                    webbrowser.GenericBrowser(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
                 b = webbrowser.get(browser)
-            else :
+            else:
                 raise e
         b.open(url)
     else:
         webbrowser.open(url)
-    RSSServer.run_server(None, dbfile, port = port)
+    RSSServer.run_server(None, dbfile, port=port)

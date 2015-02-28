@@ -7,12 +7,14 @@
 """
 import datetime
 
-from pyquickhelper              import fLOG
-from ..xmlhelper.xmlfilewalk    import xml_filter_iterator
-from .rss_blogpost              import BlogPost
-from ..helper.download_helper   import get_url_content_timeout
+from pyquickhelper import fLOG
+from ..xmlhelper.xmlfilewalk import xml_filter_iterator
+from .rss_blogpost import BlogPost
+from ..helper.download_helper import get_url_content_timeout
 
-class StreamRSS :
+
+class StreamRSS:
+
     """
 
     .. requires feedparser
@@ -33,7 +35,8 @@ class StreamRSS :
     @var    keywordsb   list of keywords
     """
 
-    def __init__ (self, titleb, type, xmlUrl, htmlUrl, keywordsb, id = -1, nb = None):
+    def __init__(
+            self, titleb, type, xmlUrl, htmlUrl, keywordsb, id=-1, nb=None):
         """
         constructor
 
@@ -45,16 +48,17 @@ class StreamRSS :
         @param    id          an id
         @param    nb          not included in the database, part of the statistics with can be added if they not None
         """
-        self.titleb     = titleb
-        self.type       = type
-        self.xmlUrl     = xmlUrl
-        self.htmlUrl    = htmlUrl
-        self.keywordsb  = keywordsb
-        self.id         = id
-        self.stat       = { }
-        if nb != None : self.stat["nb"] = nb
+        self.titleb = titleb
+        self.type = type
+        self.xmlUrl = xmlUrl
+        self.htmlUrl = htmlUrl
+        self.keywordsb = keywordsb
+        self.id = id
+        self.stat = {}
+        if nb is not None:
+            self.stat["nb"] = nb
 
-    def __str__ (self):
+    def __str__(self):
         """
         usual
         """
@@ -82,11 +86,11 @@ class StreamRSS :
 
         @return     dictionary
         """
-        return {    "titleb":self.titleb,
-                    "type":self.type,
-                    "xmlUrl":self.xmlUrl,
-                    "htmlUrl":self.htmlUrl,
-                    "keywordsb":self.keywordsb }
+        return {"titleb": self.titleb,
+                "type": self.type,
+                "xmlUrl": self.xmlUrl,
+                "htmlUrl": self.htmlUrl,
+                "keywordsb": self.keywordsb}
 
     @staticmethod
     def schema_database_read():
@@ -95,12 +99,12 @@ class StreamRSS :
 
         @return     dictionary
         """
-        return {    0:("titleb",str),
-                    1:("type",str),
-                    2:("xmlUrl", str),
-                    3:("htmlUrl", str),
-                    4:("keywordsb", str),
-                    5: ("id", int, "PRIMARYKEY", "AUTOINCREMENT") }
+        return {0: ("titleb", str),
+                1: ("type", str),
+                2: ("xmlUrl", str),
+                3: ("htmlUrl", str),
+                4: ("keywordsb", str),
+                5: ("id", int, "PRIMARYKEY", "AUTOINCREMENT")}
 
     @property
     def schema_database(self):
@@ -109,28 +113,28 @@ class StreamRSS :
 
         @return     dictionary
         """
-        return {    0:("titleb",str),
-                    1:("type",str),
-                    2:("xmlUrl", str),
-                    3:("htmlUrl", str),
-                    4:("keywordsb", str),
-                    -1: ("id", int, "PRIMARYKEY", "AUTOINCREMENT") }
+        return {0: ("titleb", str),
+                1: ("type", str),
+                2: ("xmlUrl", str),
+                3: ("htmlUrl", str),
+                4: ("keywordsb", str),
+                -1: ("id", int, "PRIMARYKEY", "AUTOINCREMENT")}
 
     @property
-    def asrow (self):
+    def asrow(self):
         """
         returns all the values as a row (following the schema given by @see me schema_database)
 
         @return     list of values
         """
-        return [    self.titleb,
-                    self.type,
-                    self.xmlUrl,
-                    self.htmlUrl,
-                    ",".join(self.keywordsb) ]
+        return [self.titleb,
+                self.type,
+                self.xmlUrl,
+                self.htmlUrl,
+                ",".join(self.keywordsb)]
 
     @staticmethod
-    def enumerate_stream_from_google_list (file) :
+    def enumerate_stream_from_google_list(file):
         """
         retrieve the list of RSS streams from a dump made with Google Reader
         @param      file        filename
@@ -149,25 +153,26 @@ class StreamRSS :
         @endexample
 
         """
-        with open(file, "r", encoding="utf8") as ff :
+        with open(file, "r", encoding="utf8") as ff:
 
-            for nb_,o in enumerate ( xml_filter_iterator (ff, lambda f : True, log = True, xmlformat = False) ) :
-                for oo in o.enumerate_on_tag("outline", recursive = True) :
-                    if isinstance(oo, tuple) :
+            for nb_, o in enumerate(
+                    xml_filter_iterator(ff, lambda f: True, log=True, xmlformat=False)):
+                for oo in o.enumerate_on_tag("outline", recursive=True):
+                    if isinstance(oo, tuple):
                         raise ValueError("wrong format file: " + file)
-                    else :
-                        if len(oo.other) == 0 and "xmlUrl" in oo :
-                            if len(oo["xmlUrl"]) > 0 :
-                                obj = StreamRSS (
-                                        titleb      = oo["title"],
-                                        type        = oo["type"],
-                                        xmlUrl      = oo["xmlUrl"],
-                                        htmlUrl     = oo["htmlUrl"],
-                                        keywordsb   = [])
+                    else:
+                        if len(oo.other) == 0 and "xmlUrl" in oo:
+                            if len(oo["xmlUrl"]) > 0:
+                                obj = StreamRSS(
+                                    titleb=oo["title"],
+                                    type=oo["type"],
+                                    xmlUrl=oo["xmlUrl"],
+                                    htmlUrl=oo["htmlUrl"],
+                                    keywordsb=[])
                                 yield obj
 
     @staticmethod
-    def fill_table(db, tablename, iterator_on) :
+    def fill_table(db, tablename, iterator_on):
         """
         fill a table of a database, if the table does not exists, it creates it
 
@@ -181,9 +186,12 @@ class StreamRSS :
         StreamRSS.fill_table(db, "blogs", res)
         @endcode
         """
-        db.fill_table_with_objects(tablename, iterator_on, check_existence = True)
+        db.fill_table_with_objects(
+            tablename,
+            iterator_on,
+            check_existence=True)
 
-    def enumerate_post(self, path = None):
+    def enumerate_post(self, path=None):
         """
         parses a rss stream.
 
@@ -217,39 +225,43 @@ class StreamRSS :
         If the id is not present, the guid will be the url, otherwise, it will be the id.
         """
         import feedparser
-        if path == None : path = self.xmlUrl
+        if path is None:
+            path = self.xmlUrl
 
-        if path.startswith("http://") :
+        if path.startswith("http://"):
             cont = get_url_content_timeout(path)
-            if cont == None :
+            if cont is None:
                 fLOG("unable to retrieve content for url: ", path)
-        else :
+        else:
             cont = path
 
-        if cont != None :
+        if cont is not None:
 
-            if "<title>" not in cont :
+            if "<title>" not in cont:
                 fLOG("unable to parse content from " + self.xmlUrl)
 
             d = feedparser.parse(cont)
-            if len(d["entries"]) == 0 :
+            if len(d["entries"]) == 0:
                 fLOG("*** no post for ", path)
 
-            for post in d["entries"] :
-                titleb = post.get("title","-")
-                url    = post.get("link","")
+            for post in d["entries"]:
+                titleb = post.get("title", "-")
+                url = post.get("link", "")
 
                 try:
-                    id   = post["id"]
+                    id = post["id"]
                     guid = url if post["guidislink"] else id
                 except KeyError:
-                    id   = url
+                    id = url
                     guid = url
 
-                try : desc = post["summary_detail"]["value"]
+                try:
+                    desc = post["summary_detail"]["value"]
                 except KeyError:
-                    try: desc = post["summary"]
-                    except KeyError: desc = ""
+                    try:
+                        desc = post["summary"]
+                    except KeyError:
+                        desc = ""
 
                 isPermaLink = True
 
@@ -257,13 +269,13 @@ class StreamRSS :
                     structTime = post["published_parsed"]
                     date = datetime.datetime(*structTime[:6])
                 except KeyError:
-                    try :
+                    try:
                         structTime = post["updated_parsed"]
                         date = datetime.datetime(*structTime[:6])
                     except KeyError:
                         date = datetime.datetime.now()
 
-                if date > datetime.datetime.now() :
+                if date > datetime.datetime.now():
                     date = datetime.datetime.now()
 
                 bl = BlogPost(self, titleb, guid, isPermaLink, url, desc, date)
@@ -277,9 +289,9 @@ class StreamRSS :
         @param      list_rss_stream     list of rss streams
         @return                         enumeration of blog post
         """
-        for rss in list_rss_stream :
+        for rss in list_rss_stream:
             fLOG("reading post from", rss)
-            for post in rss.enumerate_post() :
+            for post in rss.enumerate_post():
                 yield post
 
     @property
@@ -288,26 +300,26 @@ class StreamRSS :
         return the statistics nb:  ``self.stat.get("nb", 0)``
         @return         number
         """
-        return self.stat.get ("nb", 0)
+        return self.stat.get("nb", 0)
 
-    templates = {   "default":"""
+    templates = {   "default": """
                         <p class="%s"><a href="%s" onmousedown="sendlog('blog/{0.id}/in')">{0.titleb}</a>
                         <a href="{0.htmlUrl}" target="_blank" onmousedown="sendlog('blog/{0.id}/outimg')">
                         <img src="/arrowi.png" width="12px" /></a></p>
-                        """.replace("                        ",""),
-                    "default_stat":"""
+                        """.replace("                        ", ""),
+                    "default_stat": """
                         <tr class="%s"><td>
                         <a href="%s" onmousedown="sendlog('blog/{0.id}/in')">{0.titleb}</a>
                         <a href="{0.htmlUrl}" target="_blank" onmousedown="sendlog('blog/{0.id}/outimg')">
                         <img src="/arrowi.png" width="12px" /></a>
                         </td><td>{0.stat_nb}</td></tr>
-                        """.replace("                        ",""),
-                }
+                        """.replace("                        ", ""),
+                    }
 
-    def html(self,  template = None,
-                    action     = "{0.htmlUrl}",
-                    style      = "blogtitle",
-                    addlog     = True):
+    def html(self, template=None,
+             action="{0.htmlUrl}",
+             style="blogtitle",
+             addlog=True):
         """
         display the blogs in HTML format, the template contains two kinds of informations:
         - {0.member}: this string will be replaced by the member
@@ -323,11 +335,14 @@ class StreamRSS :
         If the template is None, it will be replaced a default value (see the code and the variable ``template``).
 
         """
-        if template == None :
+        if template is None:
             template = StreamRSS.templates["default"] % (style, action)
-        else :
-            template = StreamRSS.templates.get(template, template) % (style, action)
+        else:
+            template = StreamRSS.templates.get(
+                template,
+                template) % (style,
+                             action)
 
         template = template.replace("__id__", str(self.id))
-        res      = template.format (self)
+        res = template.format(self)
         return res

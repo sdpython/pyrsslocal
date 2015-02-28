@@ -3,7 +3,16 @@
 @brief  This modules contains a class which implements a simple server.
 """
 
-import sys, string, cgi, time, os, subprocess, socket, copy, urllib, datetime
+import sys
+import string
+import cgi
+import time
+import os
+import subprocess
+import socket
+import copy
+import urllib
+import datetime
 from urllib.parse import urlparse, parse_qs
 from threading import Thread
 from http.server import BaseHTTPRequestHandler, HTTPServer, SimpleHTTPRequestHandler
@@ -15,12 +24,13 @@ from ..simple_server.simple_server_custom import SimpleHandler, ThreadServer
 from ..helper.download_helper import get_url_content_timeout
 
 
-
 class CustomDBServerHandler(SimpleHandler):
+
     """
     The server proposes a simple way to create one server on your own.
     It includes an access to a SQLlite3 database.
     """
+
     def __init__(self, request, client_address, server):
         """
         Regular constructor, an instance is created for each request,
@@ -43,7 +53,7 @@ class CustomDBServerHandler(SimpleHandler):
         returns all the location where the server should look for a java script
         @return         list of paths
         """
-        return [ self.server._my_root, SimpleHandler.javascript_path ]
+        return [self.server._my_root, SimpleHandler.javascript_path]
 
     def interpret_parameter_as_list_int(self, ps):
         """
@@ -53,10 +63,10 @@ class CustomDBServerHandler(SimpleHandler):
         @param      ps      something like ``params.get("blog_selected")``
         @return             list of int
         """
-        res = [ ]
-        for ins in ps :
+        res = []
+        for ins in ps:
             spl = ins.split(",")
-            ii  = [ int(_) for _  in spl ]
+            ii = [int(_) for _ in spl]
             res.extend(ii)
         return res
 
@@ -76,54 +86,65 @@ class CustomDBServerHandler(SimpleHandler):
         @param      method      GET or POST
         @param      params      params parsed from the url + others
         """
-        if path.path.startswith("/logs/") :
-            url  = path.path[6:]
+        if path.path.startswith("/logs/"):
+            url = path.path[6:]
             targ = urllib.parse.unquote(url)
             self.process_event(targ)
             self.send_response(200)
             self.send_headers("")
 
-        else :
+        else:
             url = path.path
 
             htype, ftype = self.get_ftype(url)
             for p in self.server._my_root:
-                local = os.path.join( p, url.lstrip("/"))
+                local = os.path.join(p, url.lstrip("/"))
                 if os.path.exists(local):
                     break
 
-            if htype == "text/html" :
-                if os.path.exists(local) :
+            if htype == "text/html":
+                if os.path.exists(local):
                     content = self.get_file_content(local, ftype)
                     self.send_response(200)
                     self.send_headers(path.path)
 
                     # context
-                    params["db"]                = self.server._my_database
-                    params["page"]              = url
-                    params["website"]           = "http://%s:%d/" % self.server.server_address
-                    self.feed(content, True, params)  ####
-                else :
+                    params["db"] = self.server._my_database
+                    params["page"] = url
+                    params[
+                        "website"] = "http://%s:%d/" % self.server.server_address
+                    self.feed(content, True, params)
+                else:
                     self.send_response(200)
                     self.send_headers("")
-                    self.feed("unable to find (CustomServerHanlder): " + path.geturl() + "\nlocal file:" + local + "\n")
+                    self.feed(
+                        "unable to find (CustomServerHanlder): " +
+                        path.geturl() +
+                        "\nlocal file:" +
+                        local +
+                        "\n")
                     self.send_error(404)
 
-            elif os.path.exists(local) :
+            elif os.path.exists(local):
                 content = self.get_file_content(local, ftype)
                 self.send_response(200)
                 self.send_headers(url)
                 self.feed(content, False, params)
 
-            else :
+            else:
                 self.send_response(200)
                 self.send_headers("")
-                self.feed("unable to find (CustomServerHanlder): " + path.geturl() + "\nlocal file:" + local + "\n")
+                self.feed(
+                    "unable to find (CustomServerHanlder): " +
+                    path.geturl() +
+                    "\nlocal file:" +
+                    local +
+                    "\n")
                 self.send_error(404)
 
 
+class CustomDBServer (ThreadingMixIn, HTTPServer):
 
-class CustomDBServer (ThreadingMixIn, HTTPServer) :
     """
     defines a custom server which includes an access to a database,
     this database will contain de table to store the clicks
@@ -198,39 +219,39 @@ class CustomDBServer (ThreadingMixIn, HTTPServer) :
     """
 
     @staticmethod
-    def schema_table(table) :
+    def schema_table(table):
         """
         returns the schema for a specific table
 
         @param      table name (in ["stats", "event"])
         @return     dictionary
         """
-        if table=="stats":
-            return {    0: ("id_post", int),
-                        1: ("dtime", datetime.datetime),
-                        2: ("status", str),
-                        3: ("rate", int),
-                        4: ("comment", str),
+        if table == "stats":
+            return {0: ("id_post", int),
+                    1: ("dtime", datetime.datetime),
+                    2: ("status", str),
+                    3: ("rate", int),
+                    4: ("comment", str),
                     }
-        elif table=="event" :
-            return {  -1: ("id_event", int, "PRIMARYKEY", "AUTOINCREMENT"),
-                         0: ("dtime", datetime.datetime),
-                         1: ("uuid", str),
-                         2: ("type1", str),
-                         3: ("type2", str),
-                         4: ("args", str),
+        elif table == "event":
+            return {-1: ("id_event", int, "PRIMARYKEY", "AUTOINCREMENT"),
+                    0: ("dtime", datetime.datetime),
+                    1: ("uuid", str),
+                    2: ("type1", str),
+                    3: ("type2", str),
+                    4: ("args", str),
                     }
-        else :
+        else:
             raise Exception("unexpected table name")
 
-    def __init__(   self,
-                    server_address,
-                    dbfile,
-                    RequestHandlerClass = CustomDBServerHandler,
-                    main_page           = "index.html",
-                    root                = None,
-                    logfile             = None
-                    ) :
+    def __init__(self,
+                 server_address,
+                 dbfile,
+                 RequestHandlerClass=CustomDBServerHandler,
+                 main_page="index.html",
+                 root=None,
+                 logfile=None
+                 ):
         """
         constructor
 
@@ -241,44 +262,53 @@ class CustomDBServer (ThreadingMixIn, HTTPServer) :
         @param  root                    folder or list of folders where the server will look into for files such as the main page
         """
         HTTPServer.__init__(self, server_address, RequestHandlerClass)
-        self._my_database     = Database(dbfile, LOG = fLOG)
-        self._my_database_ev  = Database(dbfile, LOG = fLOG)
+        self._my_database = Database(dbfile, LOG=fLOG)
+        self._my_database_ev = Database(dbfile, LOG=fLOG)
 
         this = os.path.abspath(os.path.split(__file__)[0])
-        if root == None: root = [ this ]
-        elif isinstance(root, str) : root = [ root, this ]
-        elif isinstance(root, list): root = root + [ this ]
-        else : raise TypeError("unable to interpret root: " +str(root))
+        if root is None:
+            root = [this]
+        elif isinstance(root, str):
+            root = [root, this]
+        elif isinstance(root, list):
+            root = root + [this]
+        else:
+            raise TypeError("unable to interpret root: " + str(root))
 
-        self._my_root         = root
-        self._my_main_page    = main_page
-        self._my_address      = server_address
+        self._my_root = root
+        self._my_main_page = main_page
+        self._my_address = server_address
         fLOG("CustomServer.init: root=", root)
         fLOG("CustomServer.init: db=", dbfile)
 
-        self.table_event      = "cs_events"
-        self.table_stats      = "cs_stats"
+        self.table_event = "cs_events"
+        self.table_stats = "cs_stats"
 
         self.logfile = logfile
-        if self.logfile != None :
-            if self.logfile == "stdout" :
+        if self.logfile is not None:
+            if self.logfile == "stdout":
                 self.flog = sys.stdout
-            elif isinstance(self.logfile, str) :
+            elif isinstance(self.logfile, str):
                 self.flog = open(self.logfile, "a", encoding="utf8")
-            else :
+            else:
                 self.flog = self.logfile
-        else :
+        else:
             self.flog = None
 
         self._my_database_ev.connect()
-        if not self._my_database_ev.has_table(self.table_stats) :
+        if not self._my_database_ev.has_table(self.table_stats):
             schema = CustomDBServer.schema_table("stats")
             self._my_database_ev.create_table(self.table_stats, schema)
             self._my_database_ev.commit()
-            self._my_database_ev.create_index("id_post_" + self.table_stats, self.table_stats, "id_post", False)
+            self._my_database_ev.create_index(
+                "id_post_" +
+                self.table_stats,
+                self.table_stats,
+                "id_post",
+                False)
             self._my_database_ev.commit()
 
-        if not self._my_database_ev.has_table(self.table_event) :
+        if not self._my_database_ev.has_table(self.table_event):
             schema = CustomDBServer.schema_table("event")
             self._my_database_ev.create_table(self.table_event, schema)
             self._my_database_ev.commit()
@@ -294,7 +324,7 @@ class CustomDBServer (ThreadingMixIn, HTTPServer) :
         """
         what to do when removing the instance (close the log file)
         """
-        if self.flog != None and self.logfile != "stdout":
+        if self.flog is not None and self.logfile != "stdout":
             self.flog.close()
 
     def process_event(self, event):
@@ -308,51 +338,51 @@ class CustomDBServer (ThreadingMixIn, HTTPServer) :
         @param      event   string to log
         """
         now = datetime.datetime.now()
-        if self.flog != None :
-            self.flog.write ( str(now) + " " + event)
+        if self.flog is not None:
+            self.flog.write(str(now) + " " + event)
             self.flog.write("\n")
             self.flog.flush()
 
         info = event.split("/")
 
         status = None
-        if len(info) >= 4 and info[2] == "status" :
-            status = { "status":info[4],
-                       "id_post":int(info[3]),
-                       "dtime": now,
-                       "rate":-1,
-                       "comment":"" }
+        if len(info) >= 4 and info[2] == "status":
+            status = {"status": info[4],
+                      "id_post": int(info[3]),
+                      "dtime": now,
+                      "rate": -1,
+                      "comment": ""}
 
-        if len(info) > 4 :
-            info [3:] = [ "/".join(info[3:]) ]
-        if len(info) < 4 :
+        if len(info) > 4:
+            info[3:] = ["/".join(info[3:])]
+        if len(info) < 4:
             raise OSError("unable to log event: " + event)
 
-        values = { "type1":info[0],
-                   "uuid": info[1],
-                   "type2":info[2],
-                   "dtime": now,
-                   "args": info[3] }
+        values = {"type1": info[0],
+                  "uuid": info[1],
+                  "type2": info[2],
+                  "dtime": now,
+                  "args": info[3]}
 
         # to avoid database to collide
         iscon = self._my_database_ev.is_connected()
-        if iscon :
-            if self.flog != None :
+        if iscon:
+            if self.flog is not None:
                 self.flog.write("unable to connect the database")
-                if status != None :
-                    self.flog.write("unable to update status: " + str (status))
+                if status is not None:
+                    self.flog.write("unable to update status: " + str(status))
             return
 
         self._my_database_ev.connect()
         self._my_database_ev.insert(self.table_event, values)
-        if status != None :
+        if status is not None:
             self._my_database_ev.insert(self.table_stats, status)
         self._my_database_ev.commit()
         self._my_database_ev.close()
 
     @staticmethod
-    def run_server (server, dbfile, thread = False, port = 8080, logfile = None,
-                    extra_path = None) :
+    def run_server(server, dbfile, thread=False, port=8080, logfile=None,
+                   extra_path=None):
         """
         start the server
 
@@ -369,12 +399,18 @@ class CustomDBServer (ThreadingMixIn, HTTPServer) :
         @warning If you kill the python program while the thread is still running, python interpreter might be closed completely.
 
         """
-        if server == None :
-            server = CustomDBServer( ('localhost', port), dbfile, CustomDBServerHandler, logfile = logfile, root = extra_path)
-        if thread :
+        if server is None:
+            server = CustomDBServer(
+                ('localhost',
+                 port),
+                dbfile,
+                CustomDBServerHandler,
+                logfile=logfile,
+                root=extra_path)
+        if thread:
             th = ThreadServer(server)
             th.start()
             return th
-        else :
+        else:
             server.serve_forever()
             return server

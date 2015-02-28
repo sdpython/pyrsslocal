@@ -5,34 +5,63 @@
 """
 
 
-import sys, os, unittest
+import sys
+import os
+import unittest
 from http.server import HTTPServer
 
-try :
+try:
     import src
     import pyquickhelper
     import pyensae
-except ImportError :
-    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..")))
-    if path not in sys.path : sys.path.append (path)
-    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyquickhelper", "src")))
-    if path not in sys.path : sys.path.append (path)
-    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyensae", "src")))
-    if path not in sys.path : sys.path.append (path)
+except ImportError:
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..")))
+    if path not in sys.path:
+        sys.path.append(path)
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..",
+                "..",
+                "pyquickhelper",
+                "src")))
+    if path not in sys.path:
+        sys.path.append(path)
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..",
+                "..",
+                "pyensae",
+                "src")))
+    if path not in sys.path:
+        sys.path.append(path)
     import src
     import pyquickhelper
     import pyensae
 
-from pyquickhelper                      import fLOG
-from src.pyrsslocal.rss.rss_database    import DatabaseRSS
+from pyquickhelper import fLOG
+from src.pyrsslocal.rss.rss_database import DatabaseRSS
 from src.pyrsslocal.simple_server.simple_server_custom import SimpleHandler, run_server
 from src.pyrsslocal.helper.download_helper import get_url_content
 
 
 class TestSimpleServer (unittest.TestCase):
 
-    def test_server_start_run (self) :
-        fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
+    def test_server_start_run(self):
+        fLOG(
+            __file__,
+            self._testMethodName,
+            OutputPrint=__name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
 
         server = HTTPServer(('localhost', 8094), SimpleHandler)
@@ -40,7 +69,7 @@ class TestSimpleServer (unittest.TestCase):
 
         url = "http://localhost:8094/localfile/__file__"
         cont = get_url_content(url)
-        assert len(cont)> 0
+        assert len(cont) > 0
         assert "class SimpleHandler(BaseHTTPRequestHandler):" in cont
 
         url = "http://localhost:8094/localfile/test_simpleserver.py?execute=False&path=%s" % path
@@ -64,5 +93,5 @@ class TestSimpleServer (unittest.TestCase):
         assert not thread.is_alive()
 
 
-if __name__ == "__main__"  :
-    unittest.main ()
+if __name__ == "__main__":
+    unittest.main()

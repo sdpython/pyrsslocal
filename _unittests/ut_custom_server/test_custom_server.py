@@ -3,50 +3,87 @@
 """
 
 
-import sys, os, unittest, time, pandas
+import sys
+import os
+import unittest
+import time
+import pandas
 from http.server import HTTPServer
 
-try :
+try:
     import src
     import pyquickhelper
     import pyensae
-except ImportError :
-    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..")))
-    if path not in sys.path : sys.path.append (path)
-    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyquickhelper", "src")))
-    if path not in sys.path : sys.path.append (path)
-    path = os.path.normpath(os.path.abspath( os.path.join( os.path.split(__file__)[0], "..", "..", "..", "pyensae", "src")))
-    if path not in sys.path : sys.path.append (path)
+except ImportError:
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..")))
+    if path not in sys.path:
+        sys.path.append(path)
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..",
+                "..",
+                "pyquickhelper",
+                "src")))
+    if path not in sys.path:
+        sys.path.append(path)
+    path = os.path.normpath(
+        os.path.abspath(
+            os.path.join(
+                os.path.split(__file__)[0],
+                "..",
+                "..",
+                "..",
+                "pyensae",
+                "src")))
+    if path not in sys.path:
+        sys.path.append(path)
     import src
     import pyquickhelper
     import pyensae
 
-from pyquickhelper                          import fLOG
-from pyensae.sql.database_main              import Database
-from src.pyrsslocal.custom_server.aserver   import CustomDBServer, CustomDBServerHandler
-from src.pyrsslocal.helper.download_helper  import get_url_content
+from pyquickhelper import fLOG
+from pyensae.sql.database_main import Database
+from src.pyrsslocal.custom_server.aserver import CustomDBServer, CustomDBServerHandler
+from src.pyrsslocal.helper.download_helper import get_url_content
+
 
 class TestCustomServer(unittest.TestCase):
 
-    def test_custom_server(self) :
-        fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
+    def test_custom_server(self):
+        fLOG(
+            __file__,
+            self._testMethodName,
+            OutputPrint=__name__ == "__main__")
 
         fold = os.path.abspath(os.path.split(__file__)[0])
-        dbfile = os.path.join( fold, "out_custom_server.db3")
-        if os.path.exists(dbfile) : os.remove(dbfile)
+        dbfile = os.path.join(fold, "out_custom_server.db3")
+        if os.path.exists(dbfile):
+            os.remove(dbfile)
 
-        db = Database(dbfile, LOG = fLOG)
-        df = pandas.DataFrame ( [ {"name":"xavier", "module":"pyrsslocal"} ] )
+        db = Database(dbfile, LOG=fLOG)
+        df = pandas.DataFrame([{"name": "xavier", "module": "pyrsslocal"}])
         db.connect()
         db.import_dataframe(df, "example")
         db.close()
 
-        server = CustomDBServer(('localhost', 8097), dbfile, CustomDBServerHandler)
-        thread = CustomDBServer.run_server(server, dbfile = dbfile, thread = True)
+        server = CustomDBServer(
+            ('localhost',
+             8097),
+            dbfile,
+            CustomDBServerHandler)
+        thread = CustomDBServer.run_server(server, dbfile=dbfile, thread=True)
 
         url = "http://localhost:8097/p_aserver.html"
         cont = get_url_content(url)
-        assert len(cont)> 0
+        assert len(cont) > 0
         assert "xavier" in cont
 
         thread.shutdown()
@@ -54,45 +91,48 @@ class TestCustomServer(unittest.TestCase):
 
         assert os.path.exists(dbfile)
 
-    def test_custom_server_location(self) :
-        fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
+    def test_custom_server_location(self):
+        fLOG(
+            __file__,
+            self._testMethodName,
+            OutputPrint=__name__ == "__main__")
 
         fold = os.path.abspath(os.path.split(__file__)[0])
-        dbfile = os.path.join( fold, "out_custom_server2.db3")
-        if os.path.exists(dbfile) : os.remove(dbfile)
+        dbfile = os.path.join(fold, "out_custom_server2.db3")
+        if os.path.exists(dbfile):
+            os.remove(dbfile)
 
-        db = Database(dbfile, LOG = fLOG)
-        df = pandas.DataFrame ( [ {"name":"xavier", "module":"pyrsslocal"} ] )
+        db = Database(dbfile, LOG=fLOG)
+        df = pandas.DataFrame([{"name": "xavier", "module": "pyrsslocal"}])
         db.connect()
         db.import_dataframe(df, "example")
         db.close()
 
         server = CustomDBServer(('localhost', 8099), dbfile, CustomDBServerHandler,
-                    root = os.path.join(fold, "data"))
-        thread = CustomDBServer.run_server(server, dbfile = dbfile, thread = True,
-                extra_path = os.path.join(fold, "data"))
+                                root=os.path.join(fold, "data"))
+        thread = CustomDBServer.run_server(server, dbfile=dbfile, thread=True,
+                                           extra_path=os.path.join(fold, "data"))
 
         url = "http://localhost:8099/index.html"
         cont = get_url_content(url)
-        assert len(cont)> 0
+        assert len(cont) > 0
         assert "unittest" in cont
-
 
         thread.shutdown()
         assert not thread.is_alive()
         assert os.path.exists(dbfile)
 
 
-if __name__ == "__main__"  :
+if __name__ == "__main__":
 
-    if False :
+    if False:
         import webbrowser
         port = 8098
         fold = os.path.abspath(os.path.split(__file__)[0])
-        dbfile = os.path.join( fold, "out_custom_server.db3")
+        dbfile = os.path.join(fold, "out_custom_server.db3")
 
         db = Database(dbfile)
-        df = pandas.DataFrame ( [ {"name":"xavier", "module":"pyrsslocal"} ] )
+        df = pandas.DataFrame([{"name": "xavier", "module": "pyrsslocal"}])
         db.connect()
         db.import_dataframe(df, "example")
         db.close()
@@ -100,7 +140,12 @@ if __name__ == "__main__"  :
         url = "http://localhost:%d/p_aserver.html" % port
         fLOG("opening ", url)
         webbrowser.open(url)
-        CustomDBServer.run_server(None, dbfile, port = port, extra_path = os.path.join(fold,"data"))
+        CustomDBServer.run_server(
+            None,
+            dbfile,
+            port=port,
+            extra_path=os.path.join(
+                fold,
+                "data"))
 
-
-    unittest.main ()
+    unittest.main()

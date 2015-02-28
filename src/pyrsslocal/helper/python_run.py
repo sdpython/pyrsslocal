@@ -2,10 +2,11 @@
 @file
 @brief contains functionalities to run a python script
 """
-import os, sys
+import os
+import sys
 
 
-def run_python_script(script, params = { }) :
+def run_python_script(script, params={}):
     """
     execute a script python as a string
 
@@ -23,29 +24,29 @@ def run_python_script(script, params = { }) :
     obj = compile(script, "", "exec")
 
     loc = locals()
-    for k,v in params.items() :
-        loc [k] = v
+    for k, v in params.items():
+        loc[k] = v
     loc["__dict__"] = params
 
-    if "pyrsslocal" not in sys.modules and "pyrsslocal" in script :
+    if "pyrsslocal" not in sys.modules and "pyrsslocal" in script:
         path = os.path.split(__file__)[0]
-        path = os.path.join(path, "..","..")
+        path = os.path.join(path, "..", "..")
         path = os.path.normpath(os.path.abspath(path))
-        sys.path.insert(0,path)
+        sys.path.insert(0, path)
         import pyrsslocal
         rem = True
-    else :
+    else:
         rem = False
 
-    try :
+    try:
         exec(obj, globals(), loc)
 
-        if rem :
+        if rem:
             del sys.path[0]
             del sys.modules["pyrsslocal"]
 
-    except Exception as e :
-        if rem :
+    except Exception as e:
+        if rem:
             del sys.path[0]
             del sys.modules["pyrsslocal"]
         raise e

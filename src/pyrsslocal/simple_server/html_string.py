@@ -69,4 +69,5 @@ html_debug_string_script = """
 </script>
 """ % (debug_string_script, debug_string_script)
 
-html_debug_string = "\n".join ([ html_header % ("debug", "xd", ""), html_debug_string_script, html_footer ])
+html_debug_string = "\n".join(
+    [html_header % ("debug", "xd", ""), html_debug_string_script, html_footer])

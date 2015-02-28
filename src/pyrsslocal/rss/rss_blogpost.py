@@ -2,11 +2,14 @@
 @file
 @brief description of a blog post
 """
-import datetime, urllib
+import datetime
+import urllib
 
 from pyquickhelper.loghelper.convert_helper import str_to_datetime
 
-class BlogPost :
+
+class BlogPost:
+
     """
     a blog post
 
@@ -31,15 +34,15 @@ class BlogPost :
     @var    status          status (dictionary with variables)
     """
 
-    def __init__ (self, id_rss,
-                        title,
-                        guid,
-                        isPermaLink,
-                        link,
-                        description,
-                        pubDate,
-                        keywords = [],
-                        id = -1):
+    def __init__(self, id_rss,
+                 title,
+                 guid,
+                 isPermaLink,
+                 link,
+                 description,
+                 pubDate,
+                 keywords=[],
+                 id=-1):
         """
         constructor
 
@@ -52,27 +55,38 @@ class BlogPost :
         @param    pubDate         pubDate
         @param    keywords        keywords
         """
-        self.id_rss         = id_rss
-        self.title          = title
-        self.guid           = guid
-        self.isPermaLink    = isPermaLink
-        self.link           = link
-        self.description    = description
-        self.pubDate        = pubDate
-        self.keywords       = keywords
-        self.id             = id
-        self.status         = None
-        self.statusList     = ["jokes", "programming", "data", "reject", "read", "keep", "interesting", "teachings", "work"]
+        self.id_rss = id_rss
+        self.title = title
+        self.guid = guid
+        self.isPermaLink = isPermaLink
+        self.link = link
+        self.description = description
+        self.pubDate = pubDate
+        self.keywords = keywords
+        self.id = id
+        self.status = None
+        self.statusList = [
+            "jokes",
+            "programming",
+            "data",
+            "reject",
+            "read",
+            "keep",
+            "interesting",
+            "teachings",
+            "work"]
 
-        if self.id_rss == None :
+        if self.id_rss is None:
             raise Exception("no source (StreamRSS) for this post")
-        if isinstance (self.id_rss, int) :
-            if self.id_rss == -1 :
-                raise ValueError("the source id (self.id_rss) is equal to -1, not allowed")
-        elif self.id_rss.id == -1 :
-            raise ValueError("the source id (self.id_rss.id) is equal to -1, not allowed")
+        if isinstance(self.id_rss, int):
+            if self.id_rss == -1:
+                raise ValueError(
+                    "the source id (self.id_rss) is equal to -1, not allowed")
+        elif self.id_rss.id == -1:
+            raise ValueError(
+                "the source id (self.id_rss.id) is equal to -1, not allowed")
 
-        if isinstance(self.pubDate, str) :
+        if isinstance(self.pubDate, str):
             self.pubDate = str_to_datetime(self.pubDate)
 
     def add_status(self, status):
@@ -83,11 +97,12 @@ class BlogPost :
         """
         self.status = status
 
-    def __str__ (self):
+    def __str__(self):
         """
         usual
         """
-        return "%s: %s (from %s)" % (str(self.pubDate), self.title, self.id_rss)
+        return "%s: %s (from %s)" % (
+            str(self.pubDate), self.title, self.id_rss)
 
     @property
     def index(self):
@@ -110,15 +125,15 @@ class BlogPost :
 
         @return     dictionary
         """
-        return {    "id_rss":self.id_rss,
-                    "title":self.title,
-                    "guid":self.guid,
-                    "isPermaLink":self.isPermaLink,
-                    "link":self.link,
-                    "description":self.description,
-                    "pubDate":self.pubDate,
-                    "keywords":self.keywords,
-                    }
+        return {"id_rss": self.id_rss,
+                "title": self.title,
+                "guid": self.guid,
+                "isPermaLink": self.isPermaLink,
+                "link": self.link,
+                "description": self.description,
+                "pubDate": self.pubDate,
+                "keywords": self.keywords,
+                }
 
     @staticmethod
     def schema_database_read():
@@ -127,15 +142,15 @@ class BlogPost :
 
         @return     dictionary
         """
-        return {    0: ("id_rss",       int),
-                    1: ("pubDate",      datetime.datetime),
-                    2: ("title",        str),
-                    3: ("guid",         str),
-                    4: ("isPermaLink",  int),
-                    5: ("link",         str),
-                    6: ("description",  str),
-                    7: ("keywords",     str),
-                    8: ("id", int, "PRIMARYKEY", "AUTOINCREMENT") }
+        return {0: ("id_rss", int),
+                1: ("pubDate", datetime.datetime),
+                2: ("title", str),
+                3: ("guid", str),
+                4: ("isPermaLink", int),
+                5: ("link", str),
+                6: ("description", str),
+                7: ("keywords", str),
+                8: ("id", int, "PRIMARYKEY", "AUTOINCREMENT")}
 
     @property
     def schema_database(self):
@@ -144,34 +159,34 @@ class BlogPost :
 
         @return     dictionary
         """
-        return {    0: ("id_rss",       int),
-                    1: ("pubDate",      datetime.datetime),
-                    2: ("title",        str),
-                    3: ("guid",         str),
-                    4: ("isPermaLink",  int),
-                    5: ("link",         str),
-                    6: ("description",  str),
-                    7: ("keywords",     str),
-                    -1:("id", int, "PRIMARYKEY", "AUTOINCREMENT") }
+        return {0: ("id_rss", int),
+                1: ("pubDate", datetime.datetime),
+                2: ("title", str),
+                3: ("guid", str),
+                4: ("isPermaLink", int),
+                5: ("link", str),
+                6: ("description", str),
+                7: ("keywords", str),
+                -1: ("id", int, "PRIMARYKEY", "AUTOINCREMENT")}
 
     @property
-    def asrow (self):
+    def asrow(self):
         """
         returns all the values as a row (following the schema given by @see me schema_database)
 
         @return     list of values
         """
-        return [ self.id_rss if isinstance(self.id_rss, int) else self.id_rss.id,
-                 self.pubDate,
-                 self.title,
-                 self.guid,
-                 1 if self.isPermaLink else 0,
-                 self.link,
-                 self.description.replace("\r","").replace("\n"," "),
-                 ",".join(self.keywords) ]
+        return [self.id_rss if isinstance(self.id_rss, int) else self.id_rss.id,
+                self.pubDate,
+                self.title,
+                self.guid,
+                1 if self.isPermaLink else 0,
+                self.link,
+                self.description.replace("\r", "").replace("\n", " "),
+                ",".join(self.keywords)]
 
     @staticmethod
-    def fill_table(db, tablename, iterator_on, skip_exception = False) :
+    def fill_table(db, tablename, iterator_on, skip_exception=False):
         """
         fill a table of a database, if the table does not exists, it creates it
 
@@ -180,13 +195,13 @@ class BlogPost :
         @param      iterator_on     iterator_on on StreamRSS object
         @param      skip_exception  skip exception while inserting an element
         """
-        db.fill_table_with_objects( tablename,
-                                    iterator_on,
-                                    check_existence = True,
-                                    skip_exception = skip_exception)
+        db.fill_table_with_objects(tablename,
+                                   iterator_on,
+                                   check_existence=True,
+                                   skip_exception=skip_exception)
 
     @property
-    def pubDateformat(self) :
+    def pubDateformat(self):
         """
         returns the date to a given format
         """
@@ -197,14 +212,14 @@ class BlogPost :
         """
         return the status
         """
-        return self.status.get("status","") if self.status != None else ""
+        return self.status.get("status", "") if self.status is not None else ""
 
     @property
     def StatusTime(self):
         """
         return the status
         """
-        return self.status.get("dtime","") if self.status != None else ""
+        return self.status.get("dtime", "") if self.status is not None else ""
 
     @property
     def StatusTimeStr(self):
@@ -222,9 +237,13 @@ class BlogPost :
         """
         all = []
         for k in self.statusList:
-            if self.status != None and "status" in self.status and self.status["status"] == k : style = "poststatusextbyes"
-            else : style = "poststatusextbno"
-            code = """<a class="%s" href="%s" onmousedown="sendlog('status/{0.id}/%s')">%s</a>""" % (style, thispage,k,k)
+            if self.status is not None and "status" in self.status and self.status[
+                    "status"] == k:
+                style = "poststatusextbyes"
+            else:
+                style = "poststatusextbno"
+            code = """<a class="%s" href="%s" onmousedown="sendlog('status/{0.id}/%s')">%s</a>""" % (
+                style, thispage, k, k)
             all.append(code)
         return "\n".join(all)
 
@@ -232,7 +251,7 @@ class BlogPost :
                             <p class="%s">{0.pubDateformat}<a href="%s" onmousedown="sendlog('post/{0.id}/in')">{0.title}</a>
                             <a href="{0.link}" target="_blank" onmousedown="sendlog('post/{0.id}/outimg')">
                             <img src="/arrowi.png" width="12px" /></a></p>
-                            """.replace("                            ","")
+                            """.replace("                            ", "")
 
     templateext = """
                             <p class="%s"><a href="{0.id_rss.htmlUrl}" target="_blank" onmousedown="sendlog('blog/{0.id_rss.id}/out')">{0.id_rss.titleb}</a></p>
@@ -240,7 +259,7 @@ class BlogPost :
                             <a href="%s" target="_blank" onmousedown="sendlog('post/{0.id}/out')">{0.title}</a></p>
                             <p class="%s">{0.description}</p>
                             <hr />
-                            """.replace("                            ","")
+                            """.replace("                            ", "")
 
     templateextst = """
                             <p class="%s"><a href="{0.id_rss.htmlUrl}" target="_blank" onmousedown="sendlog('blog/{0.id_rss.id}/out')">{0.id_rss.titleb}</a></p>
@@ -249,32 +268,32 @@ class BlogPost :
                             <p class="%s">{0.description}</p>
                             <p class="%s">%s</p>
                             <hr />
-                            """.replace("                            ","")
+                            """.replace("                            ", "")
 
     templateShort = """
                             <tr><td class="%s">{0.StatusTimeStr}</td><td class="%s">{0.Status}</td><td class="%s">{0.pubDateformat}<a href="%s" onmousedown="sendlog('post/{0.id}/in')">{0.title}</a>
                             <a href="{0.link}" target="_blank" onmousedown="sendlog('post/{0.id}/outimg')">
                             <img src="/arrowi.png" width="12px" /></a></td></tr>
-                            """.replace("                            ","")
+                            """.replace("                            ", "")
 
     templateTable = """
                             <tr><td class="%s">{0.pubDateformat}<a href="%s" onmousedown="sendlog('post/{0.id}/in')">{0.title}</a>
                             <a href="{0.link}" target="_blank" onmousedown="sendlog('post/{0.id}/outimg')">
                             <img src="/arrowi.png" width="12px" /></a></td></tr>
-                            """.replace("                            ","")
+                            """.replace("                            ", "")
 
-    def html(self,  template    = None,
-                    action      = "{0.link}",
-                    style       = None,
-                    styleblog   = None,
-                    stylestatus = None,
-                    ftime       = "%Y-%m-%d",
-                    extended    = False,
-                    style_desc  = "description",
-                    addlog      = True,
-                    addcontent  = False,
-                    addstatus   = False,
-                    thispage    = None):
+    def html(self, template=None,
+             action="{0.link}",
+             style=None,
+             styleblog=None,
+             stylestatus=None,
+             ftime="%Y-%m-%d",
+             extended=False,
+             style_desc="description",
+             addlog=True,
+             addcontent=False,
+             addstatus=False,
+             thispage=None):
         """
         display the blogs in HTML format, the template contains two kinds of informations:
         - {0.member} : this string will be replaced by the member
@@ -297,29 +316,36 @@ class BlogPost :
         If the template is None, it will be replaced a default value (see the code and the variable ``template``).
 
         """
-        if template == None :
-            if not extended :
-                if style == None : style = "posttitle"
+        if template is None:
+            if not extended:
+                if style is None:
+                    style = "posttitle"
                 template = BlogPost.template % (style, action)
-            else :
-                if style == None : style = "posttitleext"
-                if styleblog == None : styleblog = "posttitleextb"
-                if stylestatus == None : stylestatus = "poststatusextb"
-                if addstatus :
-                    template = BlogPost.templateextst  % (styleblog, style, action, style_desc, stylestatus, self.get_html_status(thispage))
-                else :
-                    template = BlogPost.templateext  % (styleblog, style, action, style_desc)
-        elif template == "status" :
-            template = BlogPost.templateShort  % ("posttitleext", "posttitleext", "posttitleextb", action)
-        elif template == "table" :
-            template = BlogPost.templateTable  % ("posttitleextb", action)
-        elif not isinstance(template,str) :
+            else:
+                if style is None:
+                    style = "posttitleext"
+                if styleblog is None:
+                    styleblog = "posttitleextb"
+                if stylestatus is None:
+                    stylestatus = "poststatusextb"
+                if addstatus:
+                    template = BlogPost.templateextst % (
+                        styleblog, style, action, style_desc, stylestatus, self.get_html_status(thispage))
+                else:
+                    template = BlogPost.templateext % (
+                        styleblog, style, action, style_desc)
+        elif template == "status":
+            template = BlogPost.templateShort % (
+                "posttitleext", "posttitleext", "posttitleextb", action)
+        elif template == "table":
+            template = BlogPost.templateTable % ("posttitleextb", action)
+        elif not isinstance(template, str):
             raise Exception("expecting a format as a string")
 
         self._ftime = ftime  # for a property
-        res = template.format (self)
+        res = template.format(self)
 
-        if addcontent :
+        if addcontent:
             res += """
                 <div id="cont%d">
                 <p>waiting...</p>

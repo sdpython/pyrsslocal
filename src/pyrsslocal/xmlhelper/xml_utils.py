@@ -9,15 +9,15 @@ import xml.sax.saxutils as saxutils
 import xml.sax.saxutils as htmlentitydefs
 
 
-
-def escape (s) :
+def escape(s):
     """
     @param      s       string to escape
     @return             escaped string
     """
-    s = saxutils.escape (s)
-    s = s.replace ("&", "&amp;")
+    s = saxutils.escape(s)
+    s = s.replace("&", "&amp;")
     return s
+
 
 def html_unescape(text):
     """Removes HTML or XML character references
@@ -31,46 +31,47 @@ def html_unescape(text):
         if text[:2] == "&#":
             try:
                 if text[:3] == "&#x":
-                   return chr(int(text[3:-1], 16))
+                    return chr(int(text[3:-1], 16))
                 else:
-                   return chr(int(text[2:-1]))
+                    return chr(int(text[2:-1]))
             except ValueError:
                 pass
         else:
             # named entity
             try:
                 if text[1:-1] == "amp":
-                   text = "&amp;amp;"
+                    text = "&amp;amp;"
                 elif text[1:-1] == "gt":
-                   text = "&amp;gt;"
+                    text = "&amp;gt;"
                 elif text[1:-1] == "lt":
-                   text = "&amp;lt;"
+                    text = "&amp;lt;"
                 else:
-                   text = chr(htmlentitydefs.name2codepoint[text[1:-1]])
+                    text = chr(htmlentitydefs.name2codepoint[text[1:-1]])
             except KeyError:
                 pass
-        return text # leave as is
+        return text  # leave as is
     return re.sub("&#?\w+;", fixup, text)
 
 character_to_escape = {
-    "י":"&eacute;",
-    " ":"&nbsp;",
-    "ט":"&egrave;",
-    "א":"&agrave;",
-    "ג":"&acirc;",
-    "ך":"&ecirc;",
-    "כ":"&euml;",
-    "מ":"&icirc;",
-    "ש":"&ugrave;",
-    "ü":"&uuml;",
-    "פ":"&ocirc;",
-    "":"&oelig;",
-    }
+    "י": "&eacute;",
+    " ": "&nbsp;",
+    "ט": "&egrave;",
+    "א": "&agrave;",
+    "ג": "&acirc;",
+    "ך": "&ecirc;",
+    "כ": "&euml;",
+    "מ": "&icirc;",
+    "ש": "&ugrave;",
+    "ü": "&uuml;",
+    "פ": "&ocirc;",
+    "": "&oelig;",
+}
+
 
 def html_escape(text):
     """escape any French character with an accent
     """
     def fixup(m):
         text = m.group(0)
-        return character_to_escape.get(text,text)
+        return character_to_escape.get(text, text)
     return re.sub("[אגהיטךכמןפצשüü]", fixup, text)
