@@ -1,11 +1,14 @@
 pyrsslocal documentation
 ========================
 
-**Links:**
-    * `pypi/pyrsslocal <https://pypi.python.org/pypi/pyrsslocal/>`_
-    * `GitHub/pyrsslocal <https://github.com/sdpython/pyrsslocal/>`_
-    * `documentation <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html>`_
-    * `Windows Setup <http://www.xavierdupre.fr/site2013/index_code.html#pyrsslocal>`_
+.. image:: https://badge.fury.io/py/pyrsslocal.svg
+    :target: http://badge.fury.io/py/pyrsslocal
+   
+
+**Links:** `pypi <https://pypi.python.org/pypi/pyrsslocal/>`_,
+`github <https://github.com/sdpython/pyrsslocal/>`_,
+`documentation <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html>`_,
+`wheel <http://www.xavierdupre.fr/site2013/index_code.html#pyrsslocal>`_
 
 
 
