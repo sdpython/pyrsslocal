@@ -3,7 +3,12 @@ pyrsslocal documentation
 
 .. image:: https://badge.fury.io/py/pyrsslocal.svg
     :target: http://badge.fury.io/py/pyrsslocal
-   
+
+.. image:: http://img.shields.io/pypi/dm/pyrsslocal.png
+    :alt: PYPI Package
+    :target: https://pypi.python.org/pypi/pyrsslocal
+
+           
 
 **Links:** `pypi <https://pypi.python.org/pypi/pyrsslocal/>`_,
 `github <https://github.com/sdpython/pyrsslocal/>`_,

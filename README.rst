@@ -4,8 +4,15 @@
 README / Changes
 ================
 
+    
 .. image:: https://badge.fury.io/py/pyrsslocal.svg
-    :target: http://badge.fury.io/py/pyrsslocal
+    :target: http://badge.fury.io/py/pyrsslocal    
+
+.. image:: http://img.shields.io/pypi/dm/pyrsslocal.png
+    :alt: PYPI Package
+    :target: https://pypi.python.org/pypi/pyrsslocal
+
+        
     
 
 **Links:**
