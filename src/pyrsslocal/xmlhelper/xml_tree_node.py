@@ -52,7 +52,8 @@ class XMLHandlerDictNode (dict):
         else:
             return 1
 
-    def __lt__(self, other): return self.__cmp__(other) == -1
+    def __lt__(self, other):
+        return self.__cmp__(other) == -1
 
     def enumerate_on_tag(self, tag, recursive=False):
         """
@@ -919,6 +920,6 @@ class XMLHandlerDictNode (dict):
         """
         res = []
         for node, value in self.iterfields():
-            if regex.search(node) != None:
+            if regex.search(node) is not None:
                 res.append((node, value))
         return res

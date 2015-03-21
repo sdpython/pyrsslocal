@@ -1,6 +1,10 @@
 pyrsslocal documentation
 ========================
 
+.. image:: https://travis-ci.org/sdpython/pyrsslocal.svg?branch=master
+    :target: https://travis-ci.org/sdpython/pyrsslocal
+    :alt: Build status
+    
 .. image:: https://badge.fury.io/py/pyrsslocal.svg
     :target: http://badge.fury.io/py/pyrsslocal
 

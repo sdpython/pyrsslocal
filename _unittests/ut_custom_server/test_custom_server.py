@@ -52,7 +52,7 @@ except ImportError:
 from pyquickhelper import fLOG
 from pyensae.sql.database_main import Database
 from src.pyrsslocal.custom_server.aserver import CustomDBServer, CustomDBServerHandler
-from src.pyrsslocal.helper.download_helper import get_url_content
+from src.pyrsslocal.helper.download_helper import get_url_content_timeout
 
 
 class TestCustomServer(unittest.TestCase):
@@ -82,7 +82,7 @@ class TestCustomServer(unittest.TestCase):
         thread = CustomDBServer.run_server(server, dbfile=dbfile, thread=True)
 
         url = "http://localhost:8097/p_aserver.html"
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         assert len(cont) > 0
         assert "xavier" in cont
 
@@ -114,7 +114,7 @@ class TestCustomServer(unittest.TestCase):
                                            extra_path=os.path.join(fold, "data"))
 
         url = "http://localhost:8099/index.html"
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         assert len(cont) > 0
         assert "unittest" in cont
 

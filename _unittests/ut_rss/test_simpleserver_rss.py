@@ -49,7 +49,7 @@ except ImportError:
     import pyensae
 
 from pyquickhelper import fLOG
-from src.pyrsslocal.helper.download_helper import get_url_content
+from src.pyrsslocal.helper.download_helper import get_url_content_timeout
 from src.pyrsslocal.rss.rss_simple_server import RSSServer
 
 
@@ -71,7 +71,7 @@ class TestSimpleServerRSS (unittest.TestCase):
 
         fLOG("fetching first url")
         url = "http://localhost:8093/"
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         if "Traceback" in cont:
             fLOG(cont)
         assert "Traceback" not in cont
@@ -80,7 +80,7 @@ class TestSimpleServerRSS (unittest.TestCase):
         assert "XD blog" in cont
 
         url = "http://localhost:8093/rss_status.html"
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         if "Traceback" in cont:
             fLOG(cont)
         assert "Traceback" not in cont
@@ -89,7 +89,7 @@ class TestSimpleServerRSS (unittest.TestCase):
         assert "interesting" in cont
 
         url = "http://localhost:8093/rss_search.html?searchterm=pypi&usetag=usetag"
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         if "Traceback" in cont:
             fLOG(cont)
         assert "Traceback" not in cont
@@ -105,7 +105,7 @@ class TestSimpleServerRSS (unittest.TestCase):
 
         fLOG("fetching first url")
         url = "http://localhost:8093/rss_search.html?searchterm=military"
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         if "Traceback" in cont:
             fLOG(cont)
         assert "Traceback" not in cont

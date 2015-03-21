@@ -4,25 +4,15 @@
 """
 
 import sys
-import string
-import cgi
-import time
 import os
-import subprocess
-import socket
-import copy
 import urllib
 import datetime
-from urllib.parse import urlparse, parse_qs
-from threading import Thread
-from http.server import BaseHTTPRequestHandler, HTTPServer, SimpleHTTPRequestHandler
+from http.server import HTTPServer
 from socketserver import ThreadingMixIn
 
 from pyquickhelper import fLOG
-from pyensae.sql.database_main import Database
 from .rss_database import DatabaseRSS
 from ..simple_server.simple_server_custom import SimpleHandler, ThreadServer
-from ..helper.download_helper import get_url_content_timeout
 
 
 class RSSSimpleHandler(SimpleHandler):

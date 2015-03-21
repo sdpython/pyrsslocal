@@ -3,8 +3,6 @@
 @brief description of a blog post
 """
 import datetime
-import urllib
-
 from pyquickhelper.loghelper.convert_helper import str_to_datetime
 
 

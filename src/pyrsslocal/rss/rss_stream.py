@@ -302,19 +302,19 @@ class StreamRSS:
         """
         return self.stat.get("nb", 0)
 
-    templates = {   "default": """
+    templates = {"default": """
                         <p class="%s"><a href="%s" onmousedown="sendlog('blog/{0.id}/in')">{0.titleb}</a>
                         <a href="{0.htmlUrl}" target="_blank" onmousedown="sendlog('blog/{0.id}/outimg')">
                         <img src="/arrowi.png" width="12px" /></a></p>
                         """.replace("                        ", ""),
-                    "default_stat": """
+                 "default_stat": """
                         <tr class="%s"><td>
                         <a href="%s" onmousedown="sendlog('blog/{0.id}/in')">{0.titleb}</a>
                         <a href="{0.htmlUrl}" target="_blank" onmousedown="sendlog('blog/{0.id}/outimg')">
                         <img src="/arrowi.png" width="12px" /></a>
                         </td><td>{0.stat_nb}</td></tr>
                         """.replace("                        ", ""),
-                    }
+                 }
 
     def html(self, template=None,
              action="{0.htmlUrl}",

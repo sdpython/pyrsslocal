@@ -8,8 +8,6 @@
 import xml.sax.handler
 import io
 import xml.sax.expatreader
-import sys
-import os
 import xml.sax.saxutils as saxutils
 from xml.parsers import expat
 
@@ -168,9 +166,9 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
     @endcode
     """
 
-    def __init__(self, namespaceHandling=0, bufsize=2**17):
+    def __init__(self, namespaceHandling=0, bufsize=2 ** 17):
         if bufsize is None:
-            bufsize = 2**17
+            bufsize = 2 ** 17
         xml.sax.expatreader.ExpatParser.__init__(
             self,
             namespaceHandling=namespaceHandling,

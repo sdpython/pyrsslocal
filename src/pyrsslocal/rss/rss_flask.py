@@ -3,7 +3,7 @@
 @brief Uses `Flask <http://flask.pocoo.org/>`_ to build pages.
 """
 
-from flask import Flask, Response, redirect, url_for, render_template
+from flask import Flask, Response, render_template
 import os
 
 try:

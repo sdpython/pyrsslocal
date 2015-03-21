@@ -4,19 +4,14 @@
 """
 
 import sys
-import string
-import cgi
-import time
 import os
 import subprocess
-import socket
 import copy
-import re
 import io
 from urllib.parse import urlparse, parse_qs
 from io import StringIO
 from threading import Thread
-from http.server import BaseHTTPRequestHandler, HTTPServer, SimpleHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 if __name__ == "__main__":
     path = os.path.normpath(
@@ -42,11 +37,11 @@ if __name__ == "__main__":
     if path not in sys.path:
         sys.path.append(path)
     from pyquickhelper import fLOG
-    from pyrsslocal.simple_server.html_string import *
+    from pyrsslocal.simple_server.html_string import html_footer, html_debug_string, html_header
     from pyrsslocal.simple_server.html_script_parser import HTMLScriptParser
 else:
     from pyquickhelper import fLOG
-    from .html_string import debug_string_script, html_debug_string_script, html_footer, html_debug_string, html_header
+    from .html_string import html_footer, html_debug_string, html_header
     from .html_script_parser import HTMLScriptParser, HTMLScriptParserRemove
     from ..helper.download_helper import get_url_content_timeout
 

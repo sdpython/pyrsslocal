@@ -52,7 +52,7 @@ except ImportError:
 from pyquickhelper import fLOG
 from src.pyrsslocal.rss.rss_database import DatabaseRSS
 from src.pyrsslocal.simple_server.simple_server_custom import SimpleHandler, run_server
-from src.pyrsslocal.helper.download_helper import get_url_content
+from src.pyrsslocal.helper.download_helper import get_url_content_timeout
 
 
 class TestSimpleServer (unittest.TestCase):
@@ -68,24 +68,24 @@ class TestSimpleServer (unittest.TestCase):
         thread = run_server(server, True)
 
         url = "http://localhost:8094/localfile/__file__"
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         assert len(cont) > 0
         assert "class SimpleHandler(BaseHTTPRequestHandler):" in cont
 
         url = "http://localhost:8094/localfile/test_simpleserver.py?execute=False&path=%s" % path
         fLOG(url)
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         assert "class TestSimpleServer (unittest.TestCase):" in cont
 
         cloud = os.path.join(path, "data")
         url = "http://localhost:8094/localfile/tag-cloud.html?path=%s" % cloud
         fLOG(url)
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         assert 'd3.json("data.json"' in cont
 
         url = "http://localhost:8094/localfile/tag-cloud.html?path=%s&keep=True" % cloud
         fLOG(url)
-        cont = get_url_content(url)
+        cont = get_url_content_timeout(url)
         assert 'd3.json("data.json"' in cont
         assert len(SimpleHandler.queue_pathes) > 0
 
