@@ -70,7 +70,8 @@ class TestSimpleServer (unittest.TestCase):
         url = "http://localhost:8094/localfile/__file__"
         cont = get_url_content_timeout(url)
         assert len(cont) > 0
-        assert "class SimpleHandler(BaseHTTPRequestHandler):" in cont
+        if sys.platform.startswith("win"):
+            assert "class SimpleHandler(BaseHTTPRequestHandler):" in cont
 
         url = "http://localhost:8094/localfile/test_simpleserver.py?execute=False&path=%s" % path
         fLOG(url)
