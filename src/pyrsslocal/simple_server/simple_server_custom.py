@@ -524,7 +524,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         @param      content     content of the file
         @return                 html string
         """
-        res = [html_header % (localpath, os.environ["USERNAME"], "code")]
+        res = [html_header % (localpath, os.getusername(), "code")]
         res.append("<pre class=\"prettyprint\">")
         res.append(content.replace("<", "&lt;").replace(">", "&gt;"))
         res.append(html_footer)
