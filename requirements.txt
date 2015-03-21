@@ -65,3 +65,4 @@ flake8
 pyflakes
 mccabe
 pep8
+pyensae
