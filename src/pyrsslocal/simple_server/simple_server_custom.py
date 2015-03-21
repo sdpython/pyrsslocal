@@ -8,6 +8,7 @@ import os
 import subprocess
 import copy
 import io
+import getpass
 from urllib.parse import urlparse, parse_qs
 from io import StringIO
 from threading import Thread
@@ -524,7 +525,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         @param      content     content of the file
         @return                 html string
         """
-        res = [html_header % (localpath, os.getusername(), "code")]
+        res = [html_header % (localpath, getpass.getuser(), "code")]
         res.append("<pre class=\"prettyprint\">")
         res.append(content.replace("<", "&lt;").replace(">", "&gt;"))
         res.append(html_footer)

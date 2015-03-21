@@ -77,7 +77,8 @@ class TestSimpleServer (unittest.TestCase):
         fLOG(url)
         cont = get_url_content_timeout(url)
         if "class TestSimpleServer (unittest.TestCase):" not in cont:
-            raise Exception("expects to find 'class TestSimpleServer (unittest.TestCase):' in \n{0}".format(cont))
+            raise Exception(
+                "expects to find 'class TestSimpleServer (unittest.TestCase):' in \n{0}".format(cont))
 
         cloud = os.path.join(path, "data")
         url = "http://localhost:8094/localfile/tag-cloud.html?path=%s" % cloud
