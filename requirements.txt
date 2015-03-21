@@ -66,3 +66,4 @@ pyflakes
 mccabe
 pep8
 pyensae
+feedparser
