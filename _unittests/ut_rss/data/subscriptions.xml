@@ -13,6 +13,12 @@
                 htmlUrl=""/>
                 -->
                 
+            <outline text="PROLONGA+ION"
+                title="PROLONGA+ION" 
+                type="rss"
+                xmlUrl="http://prolongation-sport.fr/feed/" 
+                htmlUrl="http://prolongation-sport.fr/"/>
+                
             <outline text="FastML"
                 title="FastML" 
                 type="rss"

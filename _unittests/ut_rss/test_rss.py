@@ -56,7 +56,7 @@ from pyensae.sql.database_main import Database
 
 class TestRSS (unittest.TestCase):
 
-    nb_rss_blog = 231
+    nb_rss_blog = 232
 
     def test_rss_from_google(self):
         fLOG(
