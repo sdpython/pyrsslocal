@@ -13,6 +13,12 @@
                 htmlUrl=""/>
                 -->
                 
+            <outline text="Planet Python"
+                title="Planet Python" 
+                type="rss"
+                xmlUrl="http://planetpython.org/rss20.xml" 
+                htmlUrl="http://planetpython.org/"/>
+                
             <outline text="PROLONGA+ION"
                 title="PROLONGA+ION" 
                 type="rss"
