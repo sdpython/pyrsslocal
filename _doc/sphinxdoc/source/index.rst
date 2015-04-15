@@ -17,7 +17,8 @@ pyrsslocal documentation
 **Links:** `pypi <https://pypi.python.org/pypi/pyrsslocal/>`_,
 `github <https://github.com/sdpython/pyrsslocal/>`_,
 `documentation <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html>`_,
-`wheel <http://www.xavierdupre.fr/site2013/index_code.html#pyrsslocal>`_
+`wheel <http://www.xavierdupre.fr/site2013/index_code.html#pyrsslocal>`_,
+:ref:`l-README`
 
 
 
@@ -73,6 +74,11 @@ You can enumerate the blog posts in the database::
     db = DatabaseRSS(dbfile, LOG = fLOG)
     for blog in db.enumerate_posts() :
         print (blog)
+        
+Installation
+------------
+
+``pip install pyrsslocal``
         
 
 Snapshots    
