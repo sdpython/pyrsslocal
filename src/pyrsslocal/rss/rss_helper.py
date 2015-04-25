@@ -30,7 +30,7 @@ def rss_from_xml_to_database(file,
         <outline text="XD blog"
                 title="XD blog" type="rss"
                 xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml"
-                htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html"/>
+                htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html" />
     @endcode
 
     The function does not check whether or not the blogs were already added to the database,
@@ -68,7 +68,7 @@ def rss_download_post_to_database(database="database_rss.db3",
     return len(list_post)
 
 
-def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None):
+def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="today"):
     """
     create a database if it does not exists, add a table for blogs and posts,
     update the database, starts a server and open a browser
@@ -77,6 +77,7 @@ def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None):
     @param      xml_blogs   (str) xml description of blogs (google format)
     @param      port        the main page will be ``http://localhost:port/``
     @param      browser     (str) to choose a different browser than the default one
+    @param      period      (str) when opening the browser, it can show the results for last day or last week
 
     You can read the blog post `pyhome3 RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
 
@@ -86,16 +87,17 @@ def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None):
 
     rss_from_xml_to_database(xml_blogs, database=dbfile)
     rss_download_post_to_database(database=dbfile)
-    rss_run_server(dbfile, port, browser=browser)
+    rss_run_server(dbfile, port, browser=browser, period=period)
 
 
-def rss_run_server(dbfile, port=8093, browser=None):
+def rss_run_server(dbfile, port=8093, browser=None, period="today"):
     """
     starts a server and open a browser on a page reading blog posts
 
     @param      dbfile      (str) sqllite database to create
     @param      port        the main page will be ``http://localhost:port/``
     @param      browser     (str) to choose a different browser than the default one
+    @param      period      (str) when opening the browser, it can show the results for last day or last week
 
     You can read the blog post `RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
 
@@ -103,7 +105,7 @@ def rss_run_server(dbfile, port=8093, browser=None):
     if not os.path.exists(dbfile):
         raise FileNotFoundError(dbfile)
 
-    url = "http://localhost:%d/rss_reader.html?search=today" % port
+    url = "http://localhost:%d/rss_reader.html?search=%s" % (port, period)
     fLOG("opening ", url)
     if browser is not None:
         try:
