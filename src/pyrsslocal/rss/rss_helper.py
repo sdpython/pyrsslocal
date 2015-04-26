@@ -68,7 +68,8 @@ def rss_download_post_to_database(database="database_rss.db3",
     return len(list_post)
 
 
-def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="today"):
+def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="today",
+                          server=None, thread=False):
     """
     create a database if it does not exists, add a table for blogs and posts,
     update the database, starts a server and open a browser
@@ -78,6 +79,9 @@ def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="to
     @param      port        the main page will be ``http://localhost:port/``
     @param      browser     (str) to choose a different browser than the default one
     @param      period      (str) when opening the browser, it can show the results for last day or last week
+    @param      server      to set up your own server
+    @param      thread      to start the server in a separate thread
+    @return                 see @see fn rss_run_server
 
     You can read the blog post `pyhome3 RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
 
@@ -87,10 +91,11 @@ def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="to
 
     rss_from_xml_to_database(xml_blogs, database=dbfile)
     rss_download_post_to_database(database=dbfile)
-    rss_run_server(dbfile, port, browser=browser, period=period)
+    return rss_run_server(dbfile, port, browser=browser, period=period, server=server, thread=thread)
 
 
-def rss_run_server(dbfile, port=8093, browser=None, period="today"):
+def rss_run_server(dbfile, port=8093, browser=None, period="today",
+                   server=None, thread=False):
     """
     starts a server and open a browser on a page reading blog posts
 
@@ -98,8 +103,12 @@ def rss_run_server(dbfile, port=8093, browser=None, period="today"):
     @param      port        the main page will be ``http://localhost:port/``
     @param      browser     (str) to choose a different browser than the default one
     @param      period      (str) when opening the browser, it can show the results for last day or last week
+    @param      server      to set up your own server
+    @param      thread      to start the server in a separate thread
 
     You can read the blog post `RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
+
+    If *browser* is "none", the browser is not started.
 
     """
     if not os.path.exists(dbfile):
@@ -108,18 +117,21 @@ def rss_run_server(dbfile, port=8093, browser=None, period="today"):
     url = "http://localhost:%d/rss_reader.html?search=%s" % (port, period)
     fLOG("opening ", url)
     if browser is not None:
-        try:
-            b = webbrowser.get(browser)
-        except webbrowser.Error as e:
-            if browser == "firefox" and sys.platform.startswith("win"):
-                webbrowser.register(
-                    'firefox',
-                    None,
-                    webbrowser.GenericBrowser(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
+        if browser in ["none", "None"]:
+            pass
+        else:
+            try:
                 b = webbrowser.get(browser)
-            else:
-                raise e
-        b.open(url)
+            except webbrowser.Error as e:
+                if browser == "firefox" and sys.platform.startswith("win"):
+                    webbrowser.register(
+                        'firefox',
+                        None,
+                        webbrowser.GenericBrowser(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
+                    b = webbrowser.get(browser)
+                else:
+                    raise e
+            b.open(url)
     else:
         webbrowser.open(url)
-    RSSServer.run_server(None, dbfile, port=port)
+    return RSSServer.run_server(server, dbfile, port=port, thread=thread)

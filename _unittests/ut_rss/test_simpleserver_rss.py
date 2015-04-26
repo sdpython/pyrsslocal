@@ -86,7 +86,8 @@ class TestSimpleServerRSS (unittest.TestCase):
         assert "Traceback" not in cont
         assert len(cont) > 0
         assert "RSS" in cont
-        assert "interesting" in cont
+        if "interesting" not in cont:
+            raise Exception(cont)
 
         url = "http://localhost:8093/rss_search.html?searchterm=pypi&usetag=usetag"
         cont = get_url_content_timeout(url)
