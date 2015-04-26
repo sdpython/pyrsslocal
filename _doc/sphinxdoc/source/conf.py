@@ -39,3 +39,5 @@ set_sphinx_variables(__file__,
                      hachibee_sphinx_theme.get_html_themes_path(),
                      locals(),
                      add_extensions=['hachibee_sphinx_theme'])
+
+blog_root = "http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/"
