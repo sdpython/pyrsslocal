@@ -24,6 +24,8 @@ README / Changes
     * `GitHub/pyrsslocal <https://github.com/sdpython/pyrsslocal/>`_
     * `documentation <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html>`_
     * `Windows Setup <http://www.xavierdupre.fr/site2013/index_code.html#pyrsslocal>`_
+    * `Travis/pymyinstall <https://travis-ci.org/sdpython/pyrsslocal>`_
+    * `Blog <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/blog/main_0000.html#ap-main-0>`_
 
 
 
