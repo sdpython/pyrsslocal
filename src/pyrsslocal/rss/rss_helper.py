@@ -35,11 +35,8 @@ def rss_from_xml_to_database(file,
 
     The function does not check whether or not the blogs were already added to the database,
     they will be added a second time. If the table does not exist, it will be created.
-
     """
-
     res = list(StreamRSS.enumerate_stream_from_google_list(file))
-
     db = Database(database, LOG=fLOG)
     db.connect()
     StreamRSS.fill_table(db, table, res)
@@ -75,7 +72,7 @@ def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="to
     update the database, starts a server and open a browser
 
     @param      dbfile      (str) sqllite database to create
-    @param      xml_blogs   (str) xml description of blogs (google format)
+    @param      xml_blogs   (str) xml description of blogs (google format) (file or string)
     @param      port        the main page will be ``http://localhost:port/``
     @param      browser     (str) to choose a different browser than the default one
     @param      period      (str) when opening the browser, it can show the results for last day or last week
@@ -86,9 +83,6 @@ def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="to
     You can read the blog post `pyhome3 RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
 
     """
-    if not os.path.exists(xml_blogs):
-        raise FileNotFoundError(xml_blogs)
-
     rss_from_xml_to_database(xml_blogs, database=dbfile)
     rss_download_post_to_database(database=dbfile)
     return rss_run_server(dbfile, port, browser=browser, period=period, server=server, thread=thread)
