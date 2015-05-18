@@ -12,6 +12,13 @@ pyrsslocal documentation
     :alt: PYPI Package
     :target: https://pypi.python.org/pypi/pyrsslocal
 
+.. image:: http://img.shields.io/github/issues/sdpython/pyrsslocal.png
+    :alt: GitHub Issues
+    :target: https://github.com/sdpython/pyrsslocal/issues
+    
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg
+    :alt: MIT License
+    :target: http://opensource.org/licenses/MIT
            
 
 **Links:** `pypi <https://pypi.python.org/pypi/pyrsslocal/>`_,
