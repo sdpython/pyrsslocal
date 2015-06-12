@@ -34,7 +34,10 @@ def run_python_script(script, params={}):
         path = os.path.normpath(os.path.abspath(path))
         sys.path.insert(0, path)
         import pyrsslocal
-        rem = True
+        if pyrsslocal.__version__ >= "0.5":
+            rem = True
+        else:
+            rem = False
     else:
         rem = False
 

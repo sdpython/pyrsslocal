@@ -19,7 +19,7 @@ class HTMLScriptParser(HTMLParser):
     @code
     <script type="text/python">
     from pandas import DataFrame
-    from pyrsslocal.helper.externs import df2html
+    from pyquickhelper.pandashelper.tblformat import df2html
     pars = [ { "key":k, "value":v } for k,v in params ]
     tbl = DataFrame (pars)
     print ( df2html(tbl,class_table="myclasstable") )

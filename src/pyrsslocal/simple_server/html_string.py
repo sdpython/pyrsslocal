@@ -52,7 +52,7 @@ SyntaxHighlighter.all();
 
 debug_string_script = """
 from pandas import DataFrame
-from pyrsslocal.helper.externs import df2html
+from pyquickhelper.pandashelper.tblformat import df2html
 pars = [ { "key":k, "value":v } for k,v in params.items() ]
 tbl = DataFrame (pars)
 print ( df2html(tbl, class_table="myclasstable") )

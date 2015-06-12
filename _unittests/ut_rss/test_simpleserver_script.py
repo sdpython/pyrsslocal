@@ -53,9 +53,9 @@ except ImportError:
 from pandas import DataFrame
 
 from pyquickhelper import fLOG
+from pyquickhelper.pandashelper.tblformat import df2html
 from src.pyrsslocal.simple_server.html_script_parser import HTMLScriptParser
 from src.pyrsslocal.simple_server.html_string import html_debug_string
-from src.pyrsslocal.helper.externs import df2html
 
 
 class TestSimpleServerScript (unittest.TestCase):
