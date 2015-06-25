@@ -274,6 +274,12 @@ class StreamRSS:
                         date = datetime.datetime(*structTime[:6])
                     except KeyError:
                         date = datetime.datetime.now()
+                except TypeError as e:
+                    structTime = post["published_parsed"]
+                    if structTime is None:
+                        date = datetime.datetime.now()
+                    else:
+                        raise e
 
                 if date > datetime.datetime.now():
                     date = datetime.datetime.now()
