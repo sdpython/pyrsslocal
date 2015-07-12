@@ -66,8 +66,8 @@ class TestSimpleServerRSS (unittest.TestCase):
         path = os.path.abspath(os.path.split(__file__)[0])
         dbfile = os.path.join(path, "data", "database_rss.db3")
 
-        server = RSSServer(('localhost', 8093), dbfile)
-        thread = RSSServer.run_server(server, dbfile, thread=True)
+        server = RSSServer(('localhost', 8093), dbfile, fLOG=fLOG)
+        thread = RSSServer.run_server(server, dbfile, thread=True, fLOG=fLOG)
 
         fLOG("fetching first url")
         url = "http://localhost:8093/"

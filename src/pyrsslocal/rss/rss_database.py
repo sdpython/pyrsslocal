@@ -5,6 +5,7 @@
 import datetime
 import os
 
+from pyquickhelper import fLOG
 from pyensae.sql.database_main import Database
 from .rss_blogpost import BlogPost
 from .rss_stream import StreamRSS
@@ -48,7 +49,7 @@ class DatabaseRSS (Database):
                  table_posts="posts",
                  table_stats="posts_stat",
                  table_event="events",
-                 LOG=print):
+                 LOG=fLOG):
         """
         constructor
 

@@ -178,7 +178,8 @@ class RSSServer (ThreadingMixIn, HTTPServer):
                  RequestHandlerClass=RSSSimpleHandler,
                  main_page="rss_reader.html",
                  root=os.path.abspath(os.path.split(__file__)[0]),
-                 logfile=None
+                 logfile=None,
+                 fLOG=fLOG
                  ):
         """
         constructor
@@ -188,6 +189,7 @@ class RSSServer (ThreadingMixIn, HTTPServer):
         @param  dbfile                  database filename (SQLlite format)
         @param  main_page               main page for the service (when requested with no specific file)
         @param  root                    folder when the server will look into for files such as the main page
+        @param  fLOG                    logging function
         """
         HTTPServer.__init__(self, server_address, RequestHandlerClass)
         self._my_database = DatabaseRSS(dbfile, LOG=fLOG)
@@ -278,7 +280,7 @@ class RSSServer (ThreadingMixIn, HTTPServer):
         self._my_database_ev.close()
 
     @staticmethod
-    def run_server(server, dbfile, thread=False, port=8080, logfile=None):
+    def run_server(server, dbfile, thread=False, port=8080, logfile=None, fLOG=fLOG):
         """
         start the server
 
@@ -289,6 +291,7 @@ class RSSServer (ThreadingMixIn, HTTPServer):
                                 otherwite, it runs the server.
         @param      port        port to use
         @param      logfile     file for the log or "stdout" for the standard output
+        @param      fLOG        logging function
         @return                 server if thread is False, the thread otherwise (the thread is started)
 
         About the parameter ``server``:
@@ -305,14 +308,16 @@ class RSSServer (ThreadingMixIn, HTTPServer):
                  port),
                 dbfile,
                 RSSSimpleHandler,
-                logfile=logfile)
+                logfile=logfile,
+                fLOG=fLOG)
         elif isinstance(server, str):
             server = RSSServer(
                 (server,
                  port),
                 dbfile,
                 RSSSimpleHandler,
-                logfile=logfile)
+                logfile=logfile,
+                fLOG=fLOG)
         if thread:
             th = ThreadServer(server)
             th.start()

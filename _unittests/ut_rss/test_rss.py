@@ -122,9 +122,9 @@ class TestRSS (unittest.TestCase):
         dbfile = os.path.join(path, "temp_rss22.db3")
         if os.path.exists(dbfile):
             os.remove(dbfile)
-        nb = rss_from_xml_to_database(file, dbfile)
+        nb = rss_from_xml_to_database(file, dbfile, fLOG=fLOG)
         assert nb == 1
-        nb = rss_download_post_to_database(dbfile)
+        nb = rss_download_post_to_database(dbfile, fLOG=fLOG)
         assert nb > 0
         fLOG("***")
         db = DatabaseRSS(dbfile, LOG=fLOG)
@@ -147,14 +147,14 @@ class TestRSS (unittest.TestCase):
                         keywordsb=["python"],
                         id=5)
 
-        res = rss.enumerate_post()
+        res = rss.enumerate_post(fLOG=fLOG)
         nb = 0
         for _ in res:
             nb += 1
             assert len(_.title) > 0
         assert nb > 0
 
-        res = rss.enumerate_post(file)
+        res = rss.enumerate_post(file, fLOG=fLOG)
         nb = 0
         lres = list(res)
 

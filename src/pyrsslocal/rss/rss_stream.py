@@ -25,7 +25,7 @@ class StreamRSS:
        <outline text="Freakonometrics" title="Freakonometrics"
             type="rss"
             xmlUrl="http://freakonometrics.hypotheses.org/feed"
-            htmlUrl="http://freakonometrics.hypotheses.org"/>
+            htmlUrl="http://freakonometrics.hypotheses.org" />
     @endcode
 
     @var    titleb      title of the stream
@@ -191,11 +191,12 @@ class StreamRSS:
             iterator_on,
             check_existence=True)
 
-    def enumerate_post(self, path=None):
+    def enumerate_post(self, path=None, fLOG=fLOG):
         """
         parses a rss stream.
 
         @param      path    if None, use self.xmlUrl, otherwise, uses this path (url or local file)
+        @param      fLOG    logging function
         @return             list of BlogPost
 
         We expect the format to be:
@@ -288,11 +289,12 @@ class StreamRSS:
                 yield bl
 
     @staticmethod
-    def enumerate_post_from_rsslist(list_rss_stream):
+    def enumerate_post_from_rsslist(list_rss_stream, fLOG=fLOG):
         """
         enumerate all posts found in all rss_streams given as a list
 
         @param      list_rss_stream     list of rss streams
+        @param      fLOG                logging function
         @return                         enumeration of blog post
         """
         for rss in list_rss_stream:

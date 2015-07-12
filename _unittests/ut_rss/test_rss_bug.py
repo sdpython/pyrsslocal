@@ -72,7 +72,7 @@ class TestRSSBug (unittest.TestCase):
                         keywordsb=["python"],
                         id=5)
 
-        res = rss.enumerate_post()
+        res = rss.enumerate_post(fLOG=fLOG)
         nb = 0
         for _ in res:
             nb += 1

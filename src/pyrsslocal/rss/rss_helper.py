@@ -15,7 +15,8 @@ from .rss_simple_server import RSSServer
 
 def rss_from_xml_to_database(file,
                              database="database_rss.db3",
-                             table="blogs"):
+                             table="blogs",
+                             fLOG=fLOG):
     """
     parses a list of blogs stored in a XML file using Google Reader format,
     stores the results in a SQLite database
@@ -23,6 +24,7 @@ def rss_from_xml_to_database(file,
     @param  file            (str) xml file containing the list of blogs, example:
     @param  database        database file (sqlite)
     @param  table           table name
+    @param  fLOG            logging function
     @return                 number of stored blogs
 
     The XML file should contain the following:
@@ -46,19 +48,22 @@ def rss_from_xml_to_database(file,
 
 def rss_download_post_to_database(database="database_rss.db3",
                                   table_blog="blogs",
-                                  table_post="posts"):
+                                  table_post="posts",
+                                  fLOG=fLOG):
     """
     download all post from a list of blogs stored in a database by function @see fn rss_from_xml_to_database
 
     @param      database        database file name (SQLite format)
     @param      table_blog      table name of the blogs
     @param      table_post      table name of the post
+    @param      fLOG            logging function
     @return                     number of posts downloaded
     """
     db = Database(database, LOG=fLOG)
     db.connect()
     rss_list = list(db.enumerate_objects(table_blog, StreamRSS))
-    list_post = list(StreamRSS.enumerate_post_from_rsslist(rss_list))
+    list_post = list(
+        StreamRSS.enumerate_post_from_rsslist(rss_list, fLOG=fLOG))
     BlogPost.fill_table(db, table_post, list_post, skip_exception=True)
     db.close()
 
@@ -66,7 +71,7 @@ def rss_download_post_to_database(database="database_rss.db3",
 
 
 def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="today",
-                          server=None, thread=False):
+                          server=None, thread=False, fLOG=fLOG):
     """
     create a database if it does not exists, add a table for blogs and posts,
     update the database, starts a server and open a browser
@@ -78,18 +83,19 @@ def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="to
     @param      period      (str) when opening the browser, it can show the results for last day or last week
     @param      server      to set up your own server
     @param      thread      to start the server in a separate thread
+    @param      fLOG        logging function
     @return                 see @see fn rss_run_server
 
     You can read the blog post `pyhome3 RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
 
     """
-    rss_from_xml_to_database(xml_blogs, database=dbfile)
-    rss_download_post_to_database(database=dbfile)
-    return rss_run_server(dbfile, port, browser=browser, period=period, server=server, thread=thread)
+    rss_from_xml_to_database(xml_blogs, database=dbfile, fLOG=fLOG)
+    rss_download_post_to_database(database=dbfile, fLOG=fLOG)
+    return rss_run_server(dbfile, port, browser=browser, period=period, server=server, thread=thread, fLOG=fLOG)
 
 
 def rss_run_server(dbfile, port=8093, browser=None, period="today",
-                   server=None, thread=False):
+                   server=None, thread=False, fLOG=fLOG):
     """
     starts a server and open a browser on a page reading blog posts
 
@@ -99,6 +105,7 @@ def rss_run_server(dbfile, port=8093, browser=None, period="today",
     @param      period      (str) when opening the browser, it can show the results for last day or last week
     @param      server      to set up your own server
     @param      thread      to start the server in a separate thread
+    @param      fLOG        logging function
 
     You can read the blog post `RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
 
@@ -128,4 +135,4 @@ def rss_run_server(dbfile, port=8093, browser=None, period="today",
             b.open(url)
     else:
         webbrowser.open(url)
-    return RSSServer.run_server(server, dbfile, port=port, thread=thread)
+    return RSSServer.run_server(server, dbfile, port=port, thread=thread, fLOG=fLOG)
