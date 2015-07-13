@@ -826,5 +826,13 @@
                 type="rss"
                 xmlUrl="http://epi.proteos.info/index.php?feed/rss2" htmlUrl="http://epi.proteos.info/index.php?"/>
         </outline>
-    </body>
+        <outline text="DataRobot" title="DataRobot"
+            type="rss"
+            xmlUrl="http://www.datarobot.com/blog/feed/" 
+            htmlUrl="http://www.datarobot.com/blog/"/>
+        <outline text="Kaggle Blog" title="Kaggle Blog"
+            type="rss"
+            xmlUrl="http://blog.kaggle.com/feed/" 
+            htmlUrl="http://blog.kaggle.com/"/>
+        </body>
 </opml>
