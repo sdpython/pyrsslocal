@@ -86,7 +86,8 @@ Installation
 ------------
 
 ``pip install pyrsslocal``
-        
+
+
 
 Snapshots    
 ---------
@@ -106,6 +107,16 @@ Search page:
 .. image:: page3.png
     :width: 600px
 
+
+Tutorial
+--------
+
+.. toctree::
+    :max_depth: 1
+    
+    all_example
+    all_notebooks
+        
 
 Functionalities
 ---------------
