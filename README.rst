@@ -1,4 +1,5 @@
 
+
 .. _l-README:
 
 README / Changes
@@ -104,8 +105,8 @@ Versions
 --------
 
 * **0.8 - 2014/??/??**
-    * **new:** function :func:`get_subscriptions_example <pyrsslocal.helper.subscription_helper.get_subscriptions_example>` returns a short sample of a subscription xml file
-    * **new:** add class :class:`CustomDBServer <pyrsslocal.custom_server.aserver.CustomDBServer>` to be able to use HTML as an interface for a local program
+    * **new:** function get_subscriptions_example returns a short sample of a subscription xml file
+    * **new:** add class CustomDBServer to be able to use HTML as an interface for a local program
     * **fix:** the setup does not need the file ``README.rst`` anymore
     
     

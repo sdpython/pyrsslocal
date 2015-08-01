@@ -29,7 +29,7 @@ pyrsslocal documentation
 :ref:`blog <ap-main-0>`
 
 
-Description
+What is it?
 -----------
 
 This extension proposes a way to download new posts from blogs 
@@ -108,8 +108,8 @@ Search page:
     :width: 600px
 
 
-Tutorial
---------
+Quick start
+-----------
 
 .. toctree::
     :maxdepth: 1
