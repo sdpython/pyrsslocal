@@ -35,7 +35,7 @@ import pyensae
 set_sphinx_variables(__file__,
                      "pyrsslocal",
                      "Xavier Dupré",
-                     2014,
+                     2015,
                      "hachibee",
                      hachibee_sphinx_theme.get_html_themes_path(),
                      locals(),
