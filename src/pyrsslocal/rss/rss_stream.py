@@ -298,7 +298,10 @@ class StreamRSS:
         @return                         enumeration of blog post
         """
         for rss in list_rss_stream:
-            fLOG("reading post from", rss)
+            try:
+                fLOG("reading post from", rss)
+            except UnicodeEncodeError:
+                fLOG("reading post from", [rss], "encoding issue")
             for post in rss.enumerate_post():
                 yield post
 

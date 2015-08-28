@@ -147,7 +147,6 @@ class HTMLScriptParserRemove(HTMLScriptParser):
         The context is not modified unless it contains container. In that case, it could be.
         """
         HTMLScriptParser.__init__(self,
-                                  strict=strict,
                                   outStream=outStream,
                                   catch_exception=catch_exception,
                                   context={})
