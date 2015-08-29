@@ -48,7 +48,7 @@ except ImportError:
     import pyensae
 
 from pyquickhelper import fLOG
-from src.pyrsslocal import get_subscriptions_example
+from src.pyrsslocal import write_subscriptions_example
 
 
 class TestContent (unittest.TestCase):
@@ -58,7 +58,7 @@ class TestContent (unittest.TestCase):
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
-        cont = get_subscriptions_example()
+        cont = write_subscriptions_example()
         assert len(cont) > 0
 
 

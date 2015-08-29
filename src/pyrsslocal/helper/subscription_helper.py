@@ -19,7 +19,7 @@ _example_subscriptions = """
 """
 
 
-def get_subscriptions_example(filename=None):
+def write_subscriptions_example(filename=None):
     """
     returns an example of a subscriptions file
 

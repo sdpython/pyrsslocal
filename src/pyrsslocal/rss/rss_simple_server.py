@@ -42,6 +42,16 @@ class RSSSimpleHandler(SimpleHandler):
 
     @image images/page1.png
 
+    @FAQ(The server is slow or does not respond to a click)
+
+    For some reason, it usually happens on Firefox.
+    Chrome works better. The script python embedded in the HTML page
+    and interpreted by the server make it slow to run.
+    It should be replaced by javascript. Maybe Firefox detects the answer is not
+    fast enough and it requires one or two more clicks to get the server to respond.
+
+    @endFAQ
+
     """
 
     def __init__(self, request, client_address, server):

@@ -39,14 +39,10 @@ managed by a local python server using a SQLite database:
 
 ::
 
-    import os
-    from pyquickhelper  import fLOG
-    from pyrsslocal     import rss_update_run_server, get_subscriptions_example
+    from pyrsslocal import rss_update_run_server
     fLOG (OutputPrint = True)
     xml_blogs = "subscriptions.xml"
-    if not os.path.exists(xml_blogs):
-        get_subscriptions_example(xml_blogs)
-    dbfile    = "rss_posts.db3"
+    dbfile = "rss_posts.db3"
     rss_update_run_server(dbfile, xml_blogs)
 
 The previous example takes a dump of blogs url coming from the former Google Reader (see below), 
@@ -74,6 +70,12 @@ The XML file which describes the blogs looks like this::
             
         </body>
     </opml>
+    
+Yu can create an empty with::
+
+    from pyrsslocal import write_subscriptions_example
+    xml_blogs = "subscriptions.xml"
+    write_subscriptions_example(xml_blogs)
 
 You can enumerate the blog posts in the database::
 
@@ -86,7 +88,6 @@ Installation
 ------------
 
 ``pip install pyrsslocal``
-
 
 
 Snapshots    
@@ -129,6 +130,15 @@ Functionalities
 * a custom server to HTML as an interface for a local program
 
 
+Navigation
+----------
+
+.. toctree::
+    :maxdepth: 1
+    
+    indexmenu
+
+
     
 Indices and tables
 ------------------
@@ -142,10 +152,3 @@ Indices and tables
 +----------------------+---------------------+---------------------+--------------------+------------------------+------------------------------------------------+
 
   
-Navigation
-----------
-
-.. toctree::
-    :maxdepth: 1
-    
-    indexmenu

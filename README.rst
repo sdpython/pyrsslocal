@@ -36,9 +36,7 @@ README / Changes
     * `Blog <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/blog/main_0000.html#ap-main-0>`_
 
 
-
-
-Description
+What is it?
 -----------
 
 This extension proposes a way to download new posts from blogs 
@@ -48,16 +46,11 @@ managed by a local python server using a SQLite database:
 
 ::
 
-    import os
-    from pyquickhelper  import fLOG
-    from pyrsslocal     import rss_update_run_server, get_subscriptions_example
+    from pyrsslocal import rss_update_run_server
     fLOG (OutputPrint = True)
     xml_blogs = "subscriptions.xml"
-    if not os.path.exists(xml_blogs):
-        get_subscriptions_example(xml_blogs)
-    dbfile    = "rss_posts.db3"
+    dbfile = "rss_posts.db3"
     rss_update_run_server(dbfile, xml_blogs)
-
 
 The previous example takes a dump of blogs url coming from the former Google Reader (see below), 
 downloads RSS streams, loads everything into a database (SQLlite format),
@@ -85,21 +78,9 @@ The XML file which describes the blogs looks like this::
         </body>
     </opml>
     
-You can enumerate the blog posts in the database::
+.. image:: https://github.com/sdpython/pyrsslocal/blob/master/_doc/sphinxdoc/source/page1.png
 
-    from pyrsslocal import pyrsslocal
-    db = DatabaseRSS(dbfile, LOG = fLOG)
-    for blog in db.enumerate_posts() :
-        print (blog)
-
-Functionalities
----------------
-
-* retrieve blog posts and store them into a SQLite database
-* Python server accepting python script inside HMTL pages
-* run Python script after adding variables to the script context
-* download webpage and handle encoding
-* javascript files to emphasize python syntax in a HTML page
+    
 
 Versions
 --------
