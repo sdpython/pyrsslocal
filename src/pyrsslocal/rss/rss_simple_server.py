@@ -201,9 +201,13 @@ class RSSServer (ThreadingMixIn, HTTPServer):
         @param  root                    folder when the server will look into for files such as the main page
         @param  fLOG                    logging function
         """
+        fLOG("RSSServer.init: begin server")
         HTTPServer.__init__(self, server_address, RequestHandlerClass)
+        fLOG("RSSServer.init: begin db rss")
         self._my_database = DatabaseRSS(dbfile, LOG=fLOG)
+        fLOG("RSSServer.init: begin db event")
         self._my_database_ev = DatabaseRSS(dbfile, LOG=fLOG)
+        fLOG("RSSServer.init: end db")
         self._my_root = root
         self._my_main_page = main_page
         self._my_address = server_address
