@@ -151,7 +151,8 @@ if is_local():
         sys.argv, __file__, project_var_name,
         unittest_modules=["pyquickhelper"],
         additional_notebook_path=["pyquickhelper", "pyensae"],
-        requirements=["pyquickhelper", "pyensae"])
+        requirements=["pyquickhelper", "pyensae"],
+        additional_local_path=["pyquickhelper", "pyensae"])
 else:
     r = False
 
