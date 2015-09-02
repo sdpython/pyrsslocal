@@ -149,7 +149,7 @@ if is_local():
     pyquickhelper = import_pyquickhelper()
     r = pyquickhelper.process_standard_options_for_setup(
         sys.argv, __file__, project_var_name,
-        unittest_modules=["pyquickhelper"],
+        unittest_modules=["pyquickhelper", "pyensae"],
         additional_notebook_path=["pyquickhelper", "pyensae"],
         requirements=["pyquickhelper", "pyensae"],
         additional_local_path=["pyquickhelper", "pyensae"])
