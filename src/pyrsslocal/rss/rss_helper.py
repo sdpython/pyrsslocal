@@ -5,6 +5,7 @@
 import os
 import webbrowser
 import sys
+import threading
 
 from .rss_stream import StreamRSS
 from .rss_blogpost import BlogPost
@@ -115,24 +116,33 @@ def rss_run_server(dbfile, port=8093, browser=None, period="today",
     if not os.path.exists(dbfile):
         raise FileNotFoundError(dbfile)
 
-    url = "http://localhost:%d/rss_reader.html?search=%s" % (port, period)
-    fLOG("opening ", url)
-    if browser is not None:
-        if browser in ["none", "None"]:
-            pass
-        else:
-            try:
-                b = webbrowser.get(browser)
-            except webbrowser.Error as e:
-                if browser == "firefox" and sys.platform.startswith("win"):
-                    webbrowser.register(
-                        'firefox',
-                        None,
-                        webbrowser.GenericBrowser(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
+    def open_browser():
+        url = "http://localhost:%d/rss_reader.html?search=%s" % (port, period)
+        fLOG("opening ", url)
+        if browser is not None:
+            if browser in ["none", "None"]:
+                pass
+            else:
+                try:
                     b = webbrowser.get(browser)
-                else:
-                    raise e
-            b.open(url)
-    else:
-        webbrowser.open(url)
-    return RSSServer.run_server(server, dbfile, port=port, thread=thread, fLOG=fLOG)
+                except webbrowser.Error as e:
+                    if browser == "firefox" and sys.platform.startswith("win"):
+                        webbrowser.register(
+                            'firefox',
+                            None,
+                            webbrowser.GenericBrowser(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
+                        b = webbrowser.get(browser)
+                    else:
+                        raise e
+                b.open(url)
+        else:
+            webbrowser.open(url)
+
+    # webbrowser.open does get back until the browser is closed if the browser was launched
+    # with this only tab. If a new tab was create this function quickly endss
+    th = threading.Thread(target=open_browser)
+    th.start()
+    ret = RSSServer.run_server(
+        server, dbfile, port=port, thread=thread, fLOG=fLOG)
+    # we should close the thread here if it is still alive
+    return ret
