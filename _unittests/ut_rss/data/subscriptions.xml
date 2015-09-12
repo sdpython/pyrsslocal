@@ -13,6 +13,18 @@
                 htmlUrl=""/>
                 -->
                 
+          <outline text="Eurostat Statistiques en bref"
+                title="Eurostat Statistiques en bref" 
+                type="rss"
+                xmlUrl="http://ec.europa.eu/eurostat/cache/RSS/rss_estat_sif_fr.xml" 
+                htmlUrl="http://ec.europa.eu/eurostat/fr/statistics-in-focus"/>                
+                
+          <outline text="Eurostat Communiqués de presse"
+                title="Eurostat Communiqués de presse" 
+                type="rss"
+                xmlUrl="http://ec.europa.eu/eurostat/cache/RSS/rss_estat_news_fr.xml" 
+                htmlUrl="http://ec.europa.eu/eurostat/fr/web/euro-indicators/news-releases"/>                
+                
             <outline text="Planet Python"
                 title="Planet Python" 
                 type="rss"
