@@ -13,6 +13,12 @@
                 htmlUrl=""/>
                 -->
                 
+            <outline text="Datasets for the domain parisdata"
+                title="Datasets for the domain parisdata" 
+                type="rss"
+                xmlUrl="http://opendata.paris.fr/api/datasets/1.0/search?format=rss" 
+                htmlUrl="http://opendata.paris.fr/" />
+                
           <outline text="Eurostat Statistiques en bref"
                 title="Eurostat Statistiques en bref" 
                 type="rss"
