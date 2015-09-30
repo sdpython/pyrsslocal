@@ -30,7 +30,6 @@ sys.path.insert(
             "src")))
 
 from pyquickhelper.helpgen.default_conf import set_sphinx_variables
-import pyensae
 
 set_sphinx_variables(__file__,
                      "pyrsslocal",
@@ -41,4 +40,7 @@ set_sphinx_variables(__file__,
                      locals(),
                      add_extensions=['hachibee_sphinx_theme'])
 
+# do not put it back otherwise sphinx import matplotlib before setting up its backend
+# for the sphinx command .. plot::
+# import pyensae
 blog_root = "http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/"
