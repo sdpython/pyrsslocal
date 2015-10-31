@@ -154,6 +154,9 @@ if is_local():
         additional_notebook_path=["pyquickhelper", "pyensae"],
         requirements=["pyquickhelper", "pyensae"],
         additional_local_path=["pyquickhelper", "pyensae"])
+
+    if not r:
+        raise Exception("unable to interpret command line: " + str(sys.argv))
 else:
     r = False
 
