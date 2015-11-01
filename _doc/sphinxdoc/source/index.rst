@@ -5,6 +5,10 @@ pyrsslocal documentation
     :target: https://travis-ci.org/sdpython/pyrsslocal
     :alt: Build status
     
+.. image:: https://ci.appveyor.com/api/projects/status/3v5swlh83cp2wdpt?svg=true
+    :target: https://ci.appveyor.com/project/sdpython/pyrsslocal
+    :alt: Build Status Windows
+    
 .. image:: https://badge.fury.io/py/pyrsslocal.svg
     :target: http://badge.fury.io/py/pyrsslocal
 
