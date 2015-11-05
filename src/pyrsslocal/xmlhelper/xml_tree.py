@@ -180,6 +180,7 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
         @param      source          a file or a stream
         @param      no_content      avoid keeping the content into memory
         """
+        source0 = source
         source = saxutils.prepare_input_source(source)
 
         self._source = source
@@ -192,6 +193,8 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
 
         self.prepareParser(source)
         file = source.getByteStream()
+        if file is None:
+            raise Exception("file is None, it should not, source={0}".format(source0))
         buffer = file.read(self._bufsize)
         isFinal = 0
         while buffer != "" or isFinal == 0:
