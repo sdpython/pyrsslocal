@@ -11,7 +11,6 @@ import xml.sax.expatreader
 import xml.sax.saxutils as saxutils
 from xml.parsers import expat
 
-from pyquickhelper import fLOG
 from .xml_tree_node import XMLHandlerDictNode
 
 
@@ -140,7 +139,7 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
 
     example:
     @code
-        fLOG (__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
+        print(__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         zxml = \"\"\"
                 <mixed engine___="conf1" fid="3" grade___="Fair" query___="queryA" rank="3">
                   <urls>
@@ -194,7 +193,8 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
         self.prepareParser(source)
         file = source.getByteStream()
         if file is None:
-            raise Exception("file is None, it should not, source={0}".format(source0))
+            raise FileNotFoundError(
+                "file is None, it should not, source={0}".format(source0))
         buffer = file.read(self._bufsize)
         isFinal = 0
         while buffer != "" or isFinal == 0:
@@ -225,8 +225,7 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
                     e,
                     self)
                 # FIXME: when to invoke error()?
-                fLOG(str(e))
-                fLOG(str(exc))
+                # mes = "\n".join([str(e), str(exc)])
                 self._err_handler.fatalError(exc)
 
             buffer = file.read(self._bufsize)

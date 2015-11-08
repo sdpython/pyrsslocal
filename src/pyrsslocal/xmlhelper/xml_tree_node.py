@@ -6,9 +6,9 @@
 
 import copy
 
-from pyquickhelper import fLOG
 from pyquickhelper.loghelper.flog import guess_type_list, guess_type_value_type
 from .xml_utils import escape
+from .xml_exceptions import XmlException
 
 
 class XMLHandlerDictNode (dict):
@@ -38,7 +38,7 @@ class XMLHandlerDictNode (dict):
         self.buffer = ""
         self.level = level
         if father is None and not root:
-            raise Exception(
+            raise XmlException(
                 "father is None and root is False, name = %s level = %d" %
                 (name, level))
         self.other = []
@@ -176,7 +176,7 @@ class XMLHandlerDictNode (dict):
                 self.other.append((i, v))
                 return v
             else:
-                raise Exception(
+                raise XmlException(
                     "unable to append a new string value for an existing field %s:%s" %
                     (i, v))
         else:
@@ -367,7 +367,7 @@ class XMLHandlerDictNode (dict):
             temp = {}
             for k, v in res:
                 if k in temp:
-                    raise Exception("field %s already present in '%s' (full name '%s')" % (
+                    raise XmlException("field %s already present in '%s' (full name '%s')" % (
                         k, ", ".join(temp.keys()), "/".join(self.get_full_name())))
                 temp[k] = v
             for f in fields:
@@ -416,7 +416,7 @@ class XMLHandlerDictNode (dict):
         @return                 self
         """
         if self.name != other.name:
-            raise Exception("the two names should be equal %s != %s full names (%s != %s)" % (
+            raise XmlException("the two names should be equal %s != %s full names (%s != %s)" % (
                 self.name, other.name, "/".join(self.get_full_name()), "/".join(other.get_full_name())))
 
         # _othercount
@@ -579,15 +579,13 @@ class XMLHandlerDictNode (dict):
         #    fLOG (self)
         #    raise Exception ("unable to find add_root_id in '%s'" % self.get_full_name ())
         if "_othercount" not in self.__dict__:
-            fLOG(self)
-            raise Exception("unable to find _othercount in '%s'" %
-                            "/".join(self.get_full_name()))
+            raise XmlException("unable to find _othercount in '%s'" %
+                               "/".join(self.get_full_name()))
         for k, v in self.other:
             count[k] = count.get(k, 0) + 1
         if len(count) > 0:
             if max(count.values()) > 1:
-                fLOG(self)
-                raise Exception("max (count.values ()) > 1 in '%s' \nexp: %s" % (
+                raise XmlException("max (count.values ()) > 1 in '%s' \nexp: %s" % (
                     "/".join(self.get_full_name()), str(count)))
         for k, v in self.other:
             if isinstance(v, list):
@@ -665,7 +663,6 @@ class XMLHandlerDictNode (dict):
         if "_logged" in root.__dict__:
             return
         root._logged = True
-        fLOG("\n" + root.get_xml_output())
 
     def _adopt_table(self, tbl, exception):
         """
@@ -693,27 +690,17 @@ class XMLHandlerDictNode (dict):
                     continue
                 if k not in memo:
                     if "table" not in self.__dict__:
-                        fLOG(
-                            "ERROR: a field '%s' is not provided by the reference (path: %s)\nmemo.keys(): %s" %
-                            (k, "/".join(
-                                self.get_full_name()), str(
-                                memo.keys())))
                         self._log_error()
                         if exception:
-                            raise Exception(
+                            raise XmlException(
                                 "a field '%s' is not provided by the reference (path: %s)\nmemo.keys(): %s" %
                                 (k, "/".join(
                                     self.get_full_name()), str(
                                     memo.keys())))
                     else:
-                        fLOG(
-                            "ERROR: a field '%s' is not provided by the reference (path: %s)\nmemo.keys(): %s" %
-                            (k, "/".join(
-                                self.get_full_name()), str(
-                                memo.keys())))
                         self._log_error()
                         if exception:
-                            raise Exception(
+                            raise XmlException(
                                 "a field '%s' is not provided by the reference (table '%s', path %s)\nmemo.keys(): %s" %
                                 (k, self.table.get_table_name(), "/".join(
                                     self.get_full_name()), str(
@@ -736,28 +723,24 @@ class XMLHandlerDictNode (dict):
 
         # checking if relation 11 are ok with this object
         if "_othercount" not in tbl.__dict__:
-            raise Exception("we expect _othercount to be here")
+            raise XmlException("we expect _othercount to be here")
         for k, v in count.items():
             if k not in tbl._othercount:
-                fLOG("ERROR: unable to find field '%s' (1:n) in path '%s'" %
-                     (k, "/".join(self.get_full_name())))
                 self._log_error()
                 if exception:
-                    raise Exception("unable to find field '%s' (1:n) in path '%s'" % (
+                    raise XmlException("unable to find field '%s' (1:n) in path '%s'" % (
                         k, "/".join(self.get_full_name())))
             elif v > 1 and tbl._othercount[k] <= 1:
-                fLOG("ERROR: we expect a relation 1:1 for field '%s' in path '%s'" % (
-                    k, "/".join(self.get_full_name())))
                 self._log_error()
                 if exception:
-                    raise Exception("we expect a relation 1:1 for field '%s' in path '%s'" % (
+                    raise XmlException("we expect a relation 1:1 for field '%s' in path '%s'" % (
                         k, "/".join(self.get_full_name())))
 
         # next
         for k, v in self.other:
             if k not in memo:
-                fLOG("ERROR: unable to find field '%s' (1:n) in path '%s'" %
-                     (k, "/".join(self.get_full_name())))
+                # fLOG("ERROR: unable to find field '%s' (1:n) in path '%s'" %
+                #    (k, "/".join(self.get_full_name())))
                 self._log_error()
             else:
                 v._adopt_table(memo[k], exception=exception)
@@ -776,30 +759,30 @@ class XMLHandlerDictNode (dict):
         attr = {}
         try:
             v = self.conversion_table[self.name](self.buffer)
-        except:
+        except Exception as ex:
             if "conversion_table" not in self.__dict__:
-                fLOG("ERROR: unable to find conversion_table for field ",
-                     self.name,
-                     " in node " + "/".join(self.get_full_name()))
+                # fLOG("ERROR: unable to find conversion_table for field ",
+                #     self.name,
+                #     " in node " + "/".join(self.get_full_name()))
                 self._log_error()
                 #if exception : raise Exception ("fail to convert value for field " + k)
             elif len(self.buffer) > 0:
-                fLOG("ERROR: fail to convert value '",
-                     self.buffer,
-                     "' into ",
-                     self.conversion_table.get(self.name,
-                                               "not found"),
-                     " for field ",
-                     self.name,
-                     " --- ",
-                     repr(self.buffer),
-                     " path: ",
-                     "/".join(self.get_full_name()))
+                # fLOG("ERROR: fail to convert value '",
+                #     self.buffer,
+                #     "' into ",
+                #     self.conversion_table.get(self.name,
+                #                               "not found"),
+                #     " for field ",
+                #     self.name,
+                #     " --- ",
+                #     repr(self.buffer),
+                #     " path: ",
+                #     "/".join(self.get_full_name()))
                 self._log_error()
                 if exception:
-                    raise Exception(
+                    raise XmlException(
                         "fail to convert value for field " +
-                        self.name)
+                        self.name) from ex
             v = ""
 
         if not isinstance(v, str) or len(v) > 0:
@@ -808,29 +791,29 @@ class XMLHandlerDictNode (dict):
         for k, v in self.items():
             try:
                 v = self.conversion_table[k](v)
-            except:
+            except Exception as ex:
                 if "conversion_table" not in self.__dict__:
-                    fLOG("ERROR: unable to find conversion_table field " +
-                         k +
-                         " in node " +
-                         "/".join(self.get_full_name()))
+                    # fLOG("ERROR: unable to find conversion_table field " +
+                    #     k +
+                    #" in node " +
+                    #     "/".join(self.get_full_name()))
                     self._log_error()
                     #if exception : raise Exception ("fail to convert value for field " + k)
                     continue
                 elif len(v) > 0:
-                    fLOG("ERROR: fail to convert value ",
-                         v,
-                         " field ",
-                         k,
-                         " into ",
-                         self.conversion_table.get(k,
-                                                   "not found"),
-                         " for field ",
-                         "/".join(self.get_full_name()))
+                    # fLOG("ERROR: fail to convert value ",
+                    #     v,
+                    #     " field ",
+                    #     k,
+                    #     " into ",
+                    #     self.conversion_table.get(k,
+                    #                               "not found"),
+                    #     " for field ",
+                    #     "/".join(self.get_full_name()))
                     self._log_error()
                     if exception:
-                        raise Exception("fail to convert value for field '%s' in node '%s'" % (
-                            k, "/".join(self.get_full_name())))
+                        raise XmlException("fail to convert value for field '%s' in node '%s'" % (
+                            k, "/".join(self.get_full_name()))) from ex
                     else:
                         continue
                 else:
@@ -840,7 +823,7 @@ class XMLHandlerDictNode (dict):
                 attr[k] = v
 
         if "add_root_id" not in self.__dict__:
-            raise Exception("unable to find add_root_id in '%s' (name '%s')" % (
+            raise XmlException("unable to find add_root_id in '%s' (name '%s')" % (
                 "/".join(self.get_full_name()), self.name))
         if self.add_root_id is not None:
             attr[self.add_root_id] = ("mapto", self.get_root().name, "fid")

@@ -55,7 +55,7 @@ def _iteration_values(values):
             i -= 1
 
 
-def table_extraction_from_xml_files_iterator(file, fields, log=False):
+def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None):
     """
     go through a XML file, extract values and put them into an iterator
 
@@ -68,6 +68,7 @@ def table_extraction_from_xml_files_iterator(file, fields, log=False):
                                     ]
                                 @endcode
     @param      log         do logs if True
+    @param      fLOG        logging function
     @return                 iterator on lines
     """
 
@@ -90,7 +91,8 @@ def table_extraction_from_xml_files_iterator(file, fields, log=False):
 
             if typ == "one":
                 if len(path) == 0:
-                    fLOG(o.get_xml_content())
+                    if log:
+                        fLOG(o.get_xml_content())
                     raise Exception(
                         "unable to find a value for path %s" %
                         "/".join(look))
@@ -156,16 +158,20 @@ def table_extraction_from_xml_files(file, output, fields, log=False):
         outputh.close()
 
 
-def xml_filter_iterator(file, filter, log=False, xmlformat=True):
+def xml_filter_iterator(file, filter=None, log=False, xmlformat=True, fLOG=None):
     """
     go through a XML file, return XML content if a condition is verified, the result is an iterator
 
     @param      file        a file
-    @param      filter      a function which takes a node and returns a boolean
+    @param      filter      a function which takes a node and returns a boolean, if None, accepts everything
     @param      log         do logs if True
     @param      xmlformat   if True, return the xml, otherwise return the node
+    @param      fLOG        logging function
     @return                 the xml format or a node depending on thevalue of xmlformat
     """
+    if filter is None:
+        def filter(node):
+            return True
 
     fileh = open(file, "r") if isinstance(file, str) else file
 
