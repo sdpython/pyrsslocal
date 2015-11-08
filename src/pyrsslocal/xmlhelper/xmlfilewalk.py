@@ -55,7 +55,7 @@ def _iteration_values(values):
             i -= 1
 
 
-def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None):
+def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None, encoding="utf-8"):
     """
     go through a XML file, extract values and put them into an iterator
 
@@ -69,10 +69,12 @@ def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None)
                                 @endcode
     @param      log         do logs if True
     @param      fLOG        logging function
+    @param      encoding    encoding
     @return                 iterator on lines
     """
 
-    fileh = open(file, "r") if isinstance(file, str) else file
+    fileh = open(file, "r", encoding=encoding) if isinstance(
+        file, str) else file
 
     parser = XMLIterParser()
     handler = XMLHandlerDict(no_content=True)
@@ -130,7 +132,7 @@ def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None)
         fLOG("table_extraction_from_xml_files: end")
 
 
-def table_extraction_from_xml_files(file, output, fields, log=False):
+def table_extraction_from_xml_files(file, output, fields, log=False, encoding="utf-8"):
     """
     go through a XML file, extract values and put them into a flat file.
 
@@ -144,11 +146,12 @@ def table_extraction_from_xml_files(file, output, fields, log=False):
                                     ]
                                 @endcode
     @param      log         do logs if True
+    @param      encoding    encoding
     """
     outputh = open(
         output,
         "w",
-        encoding="utf8") if isinstance(
+        encoding=encoding) if isinstance(
         output,
         str) else output
     for line in table_extraction_from_xml_files_iterator(file, fields, log):
@@ -158,7 +161,8 @@ def table_extraction_from_xml_files(file, output, fields, log=False):
         outputh.close()
 
 
-def xml_filter_iterator(file, filter=None, log=False, xmlformat=True, fLOG=None):
+def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
+                        fLOG=None, encoding="utf-8"):
     """
     go through a XML file, return XML content if a condition is verified, the result is an iterator
 
@@ -167,13 +171,15 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True, fLOG=None)
     @param      log         do logs if True
     @param      xmlformat   if True, return the xml, otherwise return the node
     @param      fLOG        logging function
+    @param      encoding    encoding
     @return                 the xml format or a node depending on thevalue of xmlformat
     """
     if filter is None:
         def filter(node):
             return True
 
-    fileh = open(file, "r") if isinstance(file, str) else file
+    fileh = open(file, "r", encoding=encoding) if isinstance(
+        file, str) else file
 
     parser = XMLIterParser()
     handler = XMLHandlerDict()
@@ -197,7 +203,7 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True, fLOG=None)
         fLOG("xml_filter_iterator: end")
 
 
-def xml_filter(file, output, filter, log=False, xmlformat=True):
+def xml_filter(file, output, filter, log=False, xmlformat=True, encoding="utf-8"):
     """
     go through a XML file, return XML content if a condition is verified, the result is put into a stream
 
@@ -205,12 +211,13 @@ def xml_filter(file, output, filter, log=False, xmlformat=True):
     @param      output      output file, string or file object
     @param      filter      a function which takes a node and returns a boolean
     @param      xmlformat   if True, return the xml, otherwise return the node
+    @param      encoding    encoding
     @param      log         do logs if True
     """
     outputh = open(
         output,
         "r",
-        encoding="utf8") if isinstance(
+        encoding=encoding) if isinstance(
         output,
         str) else output
     for line in xml_filter_iterator(file, filter, log, xmlformat):

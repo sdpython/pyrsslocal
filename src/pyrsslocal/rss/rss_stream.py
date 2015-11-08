@@ -156,7 +156,7 @@ class StreamRSS:
         with open(file, "r", encoding="utf8") as ff:
 
             for nb_, o in enumerate(
-                    xml_filter_iterator(ff, lambda f: True, log=True, xmlformat=False)):
+                    xml_filter_iterator(ff, lambda f: True, log=True, xmlformat=False, fLOG=fLOG)):
                 for oo in o.enumerate_on_tag("outline", recursive=True):
                     if isinstance(oo, tuple):
                         raise ValueError("wrong format file: " + file)
