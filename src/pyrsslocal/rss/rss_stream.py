@@ -134,10 +134,11 @@ class StreamRSS:
                 ",".join(self.keywordsb)]
 
     @staticmethod
-    def enumerate_stream_from_google_list(file):
+    def enumerate_stream_from_google_list(file, encoding="utf8"):
         """
         retrieve the list of RSS streams from a dump made with Google Reader
         @param      file        filename
+        @param      encoding    encoding
         @return                 list of StreamRSS
 
         The format is the following:
@@ -153,10 +154,13 @@ class StreamRSS:
         @endexample
 
         """
-        with open(file, "r", encoding="utf8") as ff:
-
+        with open(file, "r", encoding=encoding) as ff:
             for nb_, o in enumerate(
-                    xml_filter_iterator(ff, lambda f: True, log=True, xmlformat=False, fLOG=fLOG)):
+                    xml_filter_iterator(ff,
+                                        lambda f: True,
+                                        log=True,
+                                        xmlformat=False,
+                                        fLOG=fLOG)):
                 for oo in o.enumerate_on_tag("outline", recursive=True):
                     if isinstance(oo, tuple):
                         raise ValueError("wrong format file: " + file)

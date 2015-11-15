@@ -187,14 +187,21 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
         self._cont_handler.setDocumentLocator(
             xml.sax.expatreader.ExpatLocator(self))
 
-        #xmlreader.IncrementalParser.parse(self, source)
-        source = saxutils.prepare_input_source(source)
+        # xmlreader.IncrementalParser.parse(self, source)
+        # source = saxutils.prepare_input_source(source)
 
         self.prepareParser(source)
-        file = source.getByteStream()
+        file_char = source.getCharacterStream()
+        if file_char is None:
+            file_bytes = source.getByteStream()
+            file = file_bytes
+        else:
+            file = file_char
+
         if file is None:
             raise FileNotFoundError(
-                "file is None, it should not, source={0}".format(source0))
+                "file is None, it should not, source={0}\n{1}".format(source0, source0.name))
+
         buffer = file.read(self._bufsize)
         isFinal = 0
         while buffer != "" or isFinal == 0:
