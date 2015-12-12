@@ -29,6 +29,9 @@ README / Changes
     :alt: MIT License
     :target: http://opensource.org/licenses/MIT
         
+.. image:: https://landscape.io/github/sdpython/pyrsslocal/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/sdpython/pyrsslocal/master
+   :alt: Code Health
     
 
 **Links:**
