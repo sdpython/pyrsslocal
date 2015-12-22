@@ -5,7 +5,6 @@
 @brief      functions related to XML files representing objects
 """
 
-from pyquickhelper import fLOG
 from pyquickhelper.loghelper.flog import GetSepLine
 from .xml_tree import XMLHandlerDict, XMLIterParser
 
