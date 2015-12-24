@@ -32,7 +32,12 @@ README / Changes
 .. image:: https://landscape.io/github/sdpython/pyrsslocal/master/landscape.svg?style=flat
    :target: https://landscape.io/github/sdpython/pyrsslocal/master
    :alt: Code Health
+   
+.. image:: https://requires.io/github/sdpython/pyrsslocal/requirements.svg?branch=master
+     :target: https://requires.io/github/sdpython/pyrsslocal/requirements/?branch=master
+     :alt: Requirements Status   
     
+
 
 **Links:**
     * `pypi/pyrsslocal <https://pypi.python.org/pypi/pyrsslocal/>`_

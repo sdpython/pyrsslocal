@@ -27,6 +27,12 @@ pyrsslocal documentation
 .. image:: https://landscape.io/github/sdpython/pyrsslocal/master/landscape.svg?style=flat
    :target: https://landscape.io/github/sdpython/pyrsslocal/master
    :alt: Code Health
+   
+.. image:: https://requires.io/github/sdpython/pyrsslocal/requirements.svg?branch=master
+     :target: https://requires.io/github/sdpython/pyrsslocal/requirements/?branch=master
+     :alt: Requirements Status   
+    
+   
 
 **Links:** `pypi <https://pypi.python.org/pypi/pyrsslocal/>`_,
 `github <https://github.com/sdpython/pyrsslocal/>`_,
