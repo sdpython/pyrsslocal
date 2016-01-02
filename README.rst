@@ -37,7 +37,9 @@ README / Changes
      :target: https://requires.io/github/sdpython/pyrsslocal/requirements/?branch=master
      :alt: Requirements Status   
     
-
+.. image:: https://codecov.io/github/codecov/pyrsslocal/coverage.svg?branch=master
+    :target: https://codecov.io/github/codecov/pyrsslocal?branch=master
+    
 
 **Links:**
     * `pypi/pyrsslocal <https://pypi.python.org/pypi/pyrsslocal/>`_
@@ -97,7 +99,7 @@ The XML file which describes the blogs looks like this::
 Versions
 --------
 
-* **0.8 - 2014/??/??**
+* **0.8 - 2016/??/??**
     * **new:** function get_subscriptions_example returns a short sample of a subscription xml file
     * **new:** add class CustomDBServer to be able to use HTML as an interface for a local program
     * **fix:** the setup does not need the file ``README.rst`` anymore

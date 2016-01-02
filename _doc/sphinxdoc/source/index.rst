@@ -32,6 +32,8 @@ pyrsslocal documentation
      :target: https://requires.io/github/sdpython/pyrsslocal/requirements/?branch=master
      :alt: Requirements Status   
     
+.. image:: https://codecov.io/github/codecov/pyrsslocal/coverage.svg?branch=master
+    :target: https://codecov.io/github/codecov/pyrsslocal?branch=master
    
 
 **Links:** `pypi <https://pypi.python.org/pypi/pyrsslocal/>`_,
