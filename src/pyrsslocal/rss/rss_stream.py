@@ -7,7 +7,7 @@
 """
 import datetime
 
-from pyquickhelper import fLOG
+from pyquickhelper.loghelper import fLOG
 from ..xmlhelper.xmlfilewalk import xml_filter_iterator
 from .rss_blogpost import BlogPost
 from ..helper.download_helper import get_url_content_timeout

@@ -12,7 +12,7 @@ import random
 import re
 import os
 
-from pyquickhelper import fLOG
+from pyquickhelper.loghelper import fLOG
 
 
 def extract_bing_result(searchPage, filter=lambda u: True):

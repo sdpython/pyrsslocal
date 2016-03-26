@@ -88,9 +88,12 @@ class HTMLScriptParser(HTMLParser):
 
         @param      tag     tag
         """
+        def ffpr(v):
+            return self.outStream.write(str(v) + "\n")
+
         if tag.lower() == "script" and self.script_stack is not None:
             script = self.script_stack.getvalue()
-            fpr = lambda v: self.outStream.write(str(v) + "\n")
+            fpr = ffpr
             pars = {"print": fpr}
             pars.update(self.context)
 

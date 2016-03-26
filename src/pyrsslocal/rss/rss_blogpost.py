@@ -3,7 +3,7 @@
 @brief description of a blog post
 """
 import datetime
-from pyquickhelper.loghelper.convert_helper import str_to_datetime
+from pyquickhelper.loghelper.convert_helper import str2datetime
 
 
 class BlogPost:
@@ -85,7 +85,7 @@ class BlogPost:
                 "the source id (self.id_rss.id) is equal to -1, not allowed")
 
         if isinstance(self.pubDate, str):
-            self.pubDate = str_to_datetime(self.pubDate)
+            self.pubDate = str2datetime(self.pubDate)
 
     def add_status(self, status):
         """
@@ -269,7 +269,8 @@ class BlogPost:
                             """.replace("                            ", "")
 
     templateShort = """
-                            <tr><td class="%s">{0.StatusTimeStr}</td><td class="%s">{0.Status}</td><td class="%s">{0.pubDateformat}<a href="%s" onmousedown="sendlog('post/{0.id}/in')">{0.title}</a>
+                            <tr><td class="%s">{0.StatusTimeStr}</td><td class="%s">{0.Status}</td>
+                            <td class="%s">{0.pubDateformat}<a href="%s" onmousedown="sendlog('post/{0.id}/in')">{0.title}</a>
                             <a href="{0.link}" target="_blank" onmousedown="sendlog('post/{0.id}/outimg')">
                             <img src="/arrowi.png" width="12px" /></a></td></tr>
                             """.replace("                            ", "")

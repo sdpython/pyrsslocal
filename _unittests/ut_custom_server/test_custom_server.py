@@ -6,14 +6,13 @@
 import sys
 import os
 import unittest
-import time
 import pandas
-from http.server import HTTPServer
+
 
 try:
     import src
-    import pyquickhelper
-    import pyensae
+    import pyquickhelper as skip_
+    import pyensae as skip__
 except ImportError:
     path = os.path.normpath(
         os.path.abspath(
@@ -46,10 +45,10 @@ except ImportError:
     if path not in sys.path:
         sys.path.append(path)
     import src
-    import pyquickhelper
-    import pyensae
+    import pyquickhelper as skip_
+    import pyensae as skip__
 
-from pyquickhelper import fLOG
+from pyquickhelper.loghelper import fLOG
 from pyensae.sql.database_main import Database
 from src.pyrsslocal.custom_server.aserver import CustomDBServer, CustomDBServerHandler
 from src.pyrsslocal.helper.download_helper import get_url_content_timeout

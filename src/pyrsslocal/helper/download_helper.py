@@ -11,7 +11,7 @@ import socket
 import http
 import gzip
 
-from pyquickhelper import fLOG
+from pyquickhelper.loghelper import fLOG
 
 
 def get_url_content_timeout(url, timeout=10, output=None, encoding="utf8"):

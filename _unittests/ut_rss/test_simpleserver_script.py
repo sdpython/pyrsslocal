@@ -8,13 +8,12 @@
 import sys
 import os
 import unittest
-import time
 from io import StringIO
 
 try:
     import src
-    import pyquickhelper
-    import pyensae
+    import pyquickhelper as skip_
+    import pyensae as skip__
 except ImportError:
     path = os.path.normpath(
         os.path.abspath(
@@ -47,12 +46,12 @@ except ImportError:
     if path not in sys.path:
         sys.path.append(path)
     import src
-    import pyquickhelper
-    import pyensae
+    import pyquickhelper as skip_
+    import pyensae as skip__
 
 from pandas import DataFrame
 
-from pyquickhelper import fLOG
+from pyquickhelper.loghelper import fLOG
 from pyquickhelper.pandashelper.tblformat import df2html
 from src.pyrsslocal.simple_server.html_script_parser import HTMLScriptParser
 from src.pyrsslocal.simple_server.html_string import html_debug_string

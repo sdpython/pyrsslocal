@@ -37,11 +37,11 @@ if __name__ == "__main__":
                 "src")))
     if path not in sys.path:
         sys.path.append(path)
-    from pyquickhelper import fLOG
+    from pyquickhelper.loghelper import fLOG
     from pyrsslocal.simple_server.html_string import html_footer, html_debug_string, html_header
     from pyrsslocal.simple_server.html_script_parser import HTMLScriptParser
 else:
-    from pyquickhelper import fLOG
+    from pyquickhelper.loghelper import fLOG
     from .html_string import html_footer, html_debug_string, html_header
     from .html_script_parser import HTMLScriptParser, HTMLScriptParserRemove
     from ..helper.download_helper import get_url_content_timeout
@@ -635,7 +635,7 @@ if __name__ == '__main__':
     # http://localhost:8080/debug_string/
 
     """
-    from pyquickhelper import fLOG
+    from pyquickhelper.loghelper import fLOG
     from pyrsslocal.internet.simple_server.simple_server_custom import run_server
 
     fLOG(OutputPrint=True)

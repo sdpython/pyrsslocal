@@ -6,7 +6,7 @@
 import sys
 import os
 import unittest
-import re
+
 
 try:
     import src
@@ -22,7 +22,7 @@ except ImportError:
     import src
 
 try:
-    import pyquickhelper
+    import pyquickhelper as skip_
 except ImportError:
     path = os.path.normpath(
         os.path.abspath(
@@ -35,10 +35,10 @@ except ImportError:
                 "src")))
     if path not in sys.path:
         sys.path.append(path)
-    import pyquickhelper
+    import pyquickhelper as skip_
 
 try:
-    import pyensae
+    import pyensae as skip__
 except ImportError:
     path = os.path.normpath(
         os.path.abspath(
@@ -51,10 +51,10 @@ except ImportError:
                 "src")))
     if path not in sys.path:
         sys.path.append(path)
-    import pyensae
+    import pyensae as skip__
 
 try:
-    import pymyinstall
+    import pymyinstall as skip___
 except ImportError:
     path = os.path.normpath(
         os.path.abspath(
@@ -67,10 +67,11 @@ except ImportError:
                 "src")))
     if path not in sys.path:
         sys.path.append(path)
-    import pymyinstall
+    import pymyinstall as skip___
 
 
-from pyquickhelper import fLOG, get_temp_folder
+from pyquickhelper.loghelper import fLOG
+from pyquickhelper.pycode import get_temp_folder
 from src.pyrsslocal.xmlhelper import xml_filter_iterator
 
 

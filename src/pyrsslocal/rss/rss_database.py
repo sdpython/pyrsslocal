@@ -5,7 +5,7 @@
 import datetime
 import os
 
-from pyquickhelper import fLOG
+from pyquickhelper.loghelper import fLOG
 from pyensae.sql.database_main import Database
 from .rss_blogpost import BlogPost
 from .rss_stream import StreamRSS
@@ -113,14 +113,14 @@ class DatabaseRSS (Database):
         "today": "SELECT DISTINCT id_rss FROM {0} WHERE pubDate >= '{1}'",
         "twoday": "SELECT DISTINCT id_rss FROM {0} WHERE pubDate >= '{2}'",
         "week": "SELECT DISTINCT id_rss FROM {0} WHERE pubDate >= '{3}'",
-        "frequent":  """SELECT id_rss FROM (
+        "frequent": """SELECT id_rss FROM (
                                 SELECT id_rss, SUM(nb)*1.0/ (MAX(day) - MIN(day)+1) AS avg_nb FROM (
                                     SELECT id_rss, day, COUNT(*) AS nb FROM (
                                         SELECT id_rss, getdayn(pubDate) AS day FROM {0} WHERE pubDate >= '{4}'
                                     ) GROUP BY id_rss, day
                                 ) GROUP BY id_rss
                             ) WHERE avg_nb >= {5}""",
-        "notfrequent":  """SELECT id_rss FROM (
+        "notfrequent": """SELECT id_rss FROM (
                                 SELECT id_rss, SUM(nb)*1.0/ (MAX(day) - MIN(day)+1) AS avg_nb FROM (
                                     SELECT id_rss, day, COUNT(*) AS nb FROM (
                                         SELECT id_rss, getdayn(pubDate) AS day FROM {0} WHERE pubDate >= '{4}'

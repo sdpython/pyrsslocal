@@ -6,12 +6,12 @@
 import sys
 import os
 import unittest
-import time
+
 
 try:
     import src
-    import pyquickhelper
-    import pyensae
+    import pyquickhelper as skip_
+    import pyensae as skip__
 except ImportError:
     path = os.path.normpath(
         os.path.abspath(
@@ -44,10 +44,10 @@ except ImportError:
     if path not in sys.path:
         sys.path.append(path)
     import src
-    import pyquickhelper
-    import pyensae
+    import pyquickhelper as skip_
+    import pyensae as skip__
 
-from pyquickhelper import fLOG
+from pyquickhelper.loghelper import fLOG
 from src.pyrsslocal.rss.rss_stream import StreamRSS, BlogPost
 from src.pyrsslocal.rss.rss_helper import rss_from_xml_to_database, rss_download_post_to_database
 from src.pyrsslocal.rss.rss_database import DatabaseRSS

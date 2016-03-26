@@ -10,7 +10,7 @@ import datetime
 from http.server import HTTPServer
 from socketserver import ThreadingMixIn
 
-from pyquickhelper import fLOG
+from pyquickhelper.loghelper import fLOG
 from .rss_database import DatabaseRSS
 from ..simple_server.simple_server_custom import SimpleHandler, ThreadServer
 

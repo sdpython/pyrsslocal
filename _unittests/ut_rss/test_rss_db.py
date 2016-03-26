@@ -13,8 +13,8 @@ import shutil
 
 try:
     import src
-    import pyquickhelper
-    import pyensae
+    import pyquickhelper as skip_
+    import pyensae as skip__
 except ImportError:
     path = os.path.normpath(
         os.path.abspath(
@@ -47,10 +47,10 @@ except ImportError:
     if path not in sys.path:
         sys.path.append(path)
     import src
-    import pyquickhelper
-    import pyensae
+    import pyquickhelper as skip_
+    import pyensae as skip__
 
-from pyquickhelper import fLOG
+from pyquickhelper.loghelper import fLOG
 from src.pyrsslocal.rss.rss_database import DatabaseRSS
 
 
