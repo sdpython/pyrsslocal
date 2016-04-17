@@ -1,4 +1,3 @@
-# coding: latin-1
 """
 @file
 @brief  parsing HTML to convert it into JSON

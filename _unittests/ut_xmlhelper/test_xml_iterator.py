@@ -87,12 +87,25 @@ class TestXmlIterator(unittest.TestCase):
         data = os.path.join(temp, "..", "data", "sample.wolf.xml")
         rows = xml_filter_iterator(data, fLOG=fLOG, xmlformat=False, log=True)
         n = 0
-        for row in rows:
-            fLOG(row)
+        node = None
+        for i, row in enumerate(rows):
+            if node is None:
+                node = row
+            #fLOG(type(row), row)
+            s = str(row)
+            assert s
             for obj in row.iterfields():
-                fLOG("**", obj)
+                s = str(obj)
+                assert s
+            if i % 2 == 0:
+                row._convert_into_list()
+            xout = row.get_xml_output()
+            assert xout
+            row.find_node_value("SYNET")
             n += 1
         assert n > 0
+
+        # node += node
 
 
 if __name__ == "__main__":

@@ -1,4 +1,3 @@
-# coding: latin-1
 """
 @file
 @brief  parsing XML
@@ -14,9 +13,12 @@ def escape(s):
     @param      s       string to escape
     @return             escaped string
     """
-    s = saxutils.escape(s)
-    s = s.replace("&", "&amp;")
-    return s
+    if isinstance(s, list):
+        return [escape(_) for _ in s]
+    else:
+        s = saxutils.escape(s)
+        s = s.replace("&", "&amp;")
+        return s
 
 
 def html_unescape(text):
@@ -53,18 +55,18 @@ def html_unescape(text):
     return re.sub("&#?\w+;", fixup, text)
 
 character_to_escape = {
-    "é": "&eacute;",
+    "ï¿½": "&eacute;",
     " ": "&nbsp;",
-    "è": "&egrave;",
-    "à": "&agrave;",
-    "â": "&acirc;",
-    "ê": "&ecirc;",
-    "ë": "&euml;",
-    "î": "&icirc;",
-    "ù": "&ugrave;",
-    "ü": "&uuml;",
-    "ô": "&ocirc;",
-    "œ": "&oelig;",
+    "ï¿½": "&egrave;",
+    "ï¿½": "&agrave;",
+    "ï¿½": "&acirc;",
+    "ï¿½": "&ecirc;",
+    "ï¿½": "&euml;",
+    "ï¿½": "&icirc;",
+    "ï¿½": "&ugrave;",
+    "ï¿½": "&uuml;",
+    "ï¿½": "&ocirc;",
+    "ï¿½": "&oelig;",
 }
 
 
@@ -74,4 +76,4 @@ def html_escape(text):
     def fixup(m):
         text = m.group(0)
         return character_to_escape.get(text, text)
-    return re.sub("[àâäéèêëîïôöùüü]", fixup, text)
+    return re.sub("[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]", fixup, text)
