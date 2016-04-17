@@ -60,7 +60,7 @@ class TestSearch(unittest.TestCase):
         cont = query_bing("ensae")
         assert isinstance(cont, list)
         assert len(cont) > 0
-        self.assertEqual(cont[0], "http://www.ensae.fr/")
+        assert "ensae" in cont[0]
 
 
 if __name__ == "__main__":
