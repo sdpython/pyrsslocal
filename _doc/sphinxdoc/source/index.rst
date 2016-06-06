@@ -41,7 +41,8 @@ pyrsslocal documentation
 `documentation <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html>`_,
 `wheel <http://www.xavierdupre.fr/site2013/index_code.html#pyrsslocal>`_,
 :ref:`l-README`,
-:ref:`blog <ap-main-0>`
+:ref:`blog <ap-main-0>`,
+:ref:`l-issues-todolist`
 
 
 What is it?
