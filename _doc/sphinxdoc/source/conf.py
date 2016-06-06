@@ -34,7 +34,7 @@ from pyquickhelper.helpgen.default_conf import set_sphinx_variables
 set_sphinx_variables(__file__, "pyrsslocal", "Xavier Dupré", 2016,
                      "hachibee", hachibee_sphinx_theme.get_html_themes_path(),
                      locals(), add_extensions=['hachibee_sphinx_theme'], custom_style='custom_style.css',
-                     extlinks=dict(issue=('https://github.com/sdpython/pyrsslocal/issues/%d', 'issue')))
+                     extlinks=dict(issue=('https://github.com/sdpython/pyrsslocal/issues/%s', 'issue')))
 
 # do not put it back otherwise sphinx import matplotlib before setting up its backend
 # for the sphinx command .. plot::
