@@ -2,8 +2,8 @@
 
 .. _l-README:
 
-README / Changes
-================
+README
+======
 
 
 .. image:: https://travis-ci.org/sdpython/pyrsslocal.svg?branch=master
@@ -92,14 +92,4 @@ The XML file which describes the blogs looks like this::
     
 .. image:: https://github.com/sdpython/pyrsslocal/blob/master/_doc/sphinxdoc/source/page1.png
 
-    
-
-Versions
---------
-
-* **0.8 - 2016/??/??**
-    * **new:** function get_subscriptions_example returns a short sample of a subscription xml file
-    * **new:** add class CustomDBServer to be able to use HTML as an interface for a local program
-    * **fix:** the setup does not need the file ``README.rst`` anymore
-    
     
