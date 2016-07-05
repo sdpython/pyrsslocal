@@ -14,11 +14,13 @@ def run_python_script(script, params={}):
     @param  params      params to add before the execution
 
     @example(compile and run a custom script)
-    @code
-    fpr = lambda v : self.outStream.write(str(v) + "\n")
-    pars = {"print": fpr, "another_variable": 3 }
-    run_python_script(script, pars)
-    @endcode
+
+    ::
+
+        fpr = lambda v : self.outStream.write(str(v) + "\n")
+        pars = {"print": fpr, "another_variable": 3 }
+        run_python_script(script, pars)
+
     @endexample
     """
     obj = compile(script, "", "exec")
