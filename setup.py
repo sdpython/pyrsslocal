@@ -90,7 +90,8 @@ def import_pyquickhelper():
                     os.path.join(
                         os.path.dirname(__file__),
                         "..",
-                        "pyquickhelper",
+                        "pyquickhelper" if sys.version_info[
+                            0] >= 3 else "py27_pyquickhelper_27",
                         "src"))))
         try:
             import pyquickhelper
@@ -121,12 +122,15 @@ if is_local():
         from pyquickhelper.pycode import write_version_for_setup
         return write_version_for_setup(__file__)
 
-    write_version()
+    if sys.version_info[0] != 2:
+        write_version()
 
     if os.path.exists("version.txt"):
         with open("version.txt", "r") as f:
             lines = f.readlines()
         subversion = "." + lines[0].strip("\r\n ")
+        if subversion == ".0":
+            raise Exception("subversion is wrong: " + subversion)
     else:
         raise FileNotFoundError("version.txt")
 else:
@@ -138,6 +142,8 @@ else:
 ##############
 
 if os.path.exists(readme):
+    if sys.version_info[0] == 2:
+        from codecs import open
     with open(readme, "r", encoding='utf-8-sig') as f:
         long_description = f.read()
 else:
@@ -148,9 +154,9 @@ if "--verbose" in sys.argv:
 
 if is_local():
     pyquickhelper = import_pyquickhelper()
-    from pyquickhelper.loghelper import fLOG as logging_function
-    logging_function(OutputPrint=True)
+    logging_function = pyquickhelper.get_fLOG()
     from pyquickhelper.pycode import process_standard_options_for_setup
+    logging_function(OutputPrint=True)
     r = process_standard_options_for_setup(
         sys.argv, __file__, project_var_name,
         unittest_modules=["pyquickhelper", "pyensae", "pymyinstall"],
@@ -171,6 +177,11 @@ if len(sys.argv) == 1 and "--help" in sys.argv:
     process_standard_options_for_setup_help()
 
 if not r:
+    if len(sys.argv) in (1, 2) and sys.argv[-1] in ("--help-commands",):
+        pyquickhelper = import_pyquickhelper()
+        from pyquickhelper.pycode import process_standard_options_for_setup_help
+        process_standard_options_for_setup_help(sys.argv)
+
     setup(
         name=project_var_name,
         version='%s%s' % (sversion, subversion),
