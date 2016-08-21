@@ -241,3 +241,4 @@ auto_*.py
 auto_*.xml
 _unittests/ut_helper/cacheSearchPage/ensae.bing.html
 _unittests/ut_helper/cacheSearchPage/xavierdupre.bing.html
+_unittests/ut_helper/cacheSearchPage/microsoft.bing.html
