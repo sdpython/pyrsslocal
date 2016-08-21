@@ -57,10 +57,10 @@ class TestSearch(unittest.TestCase):
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
-        cont = query_bing("ensae")
+        cont = query_bing("xavierdupre")
         assert isinstance(cont, list)
         assert len(cont) > 0
-        if "ensae" not in cont[0] and "sae" not in cont[0]:
+        if "xavierdupre" not in cont[0]:
             raise Exception(str(cont[0]))
 
 
