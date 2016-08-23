@@ -125,7 +125,9 @@ class TestRSS (unittest.TestCase):
         nb = rss_from_xml_to_database(file, dbfile, fLOG=fLOG)
         assert nb == 1
         nb = rss_download_post_to_database(dbfile, fLOG=fLOG)
-        assert nb > 0
+        if nb == 0:
+            raise Exception(
+                "issue with database '{0}', function rss_download_post_to_database".format(dbfile))
         fLOG("***")
         db = DatabaseRSS(dbfile, LOG=fLOG)
         blogs = list(db.enumerate_blogs())

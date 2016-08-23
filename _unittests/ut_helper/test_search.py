@@ -59,13 +59,13 @@ class TestSearch(unittest.TestCase):
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
-        cont = query_bing("xavierdupre")
+        cont = query_bing("bing")
         assert isinstance(cont, list)
         assert len(cont) > 0
         if is_travis_or_appveyor():
             warnings.warn("unstable search result, skip on ci")
         else:
-            if "xavierdupre" not in cont[0]:
+            if "bing" not in cont[0]:
                 raise Exception(str(cont[0]))
 
 
