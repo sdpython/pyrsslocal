@@ -65,7 +65,7 @@ class TestSearch(unittest.TestCase):
         if is_travis_or_appveyor():
             warnings.warn("unstable search result, skip on ci")
         else:
-            if "bing" not in cont[0]:
+            if "bing" not in cont[0] and "msn" not in cont[0]:
                 raise Exception(str(cont[0]))
 
 
