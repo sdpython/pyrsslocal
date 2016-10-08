@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 @file
 @brief  parsing XML
@@ -55,18 +56,18 @@ def html_unescape(text):
     return re.sub("&#?\w+;", fixup, text)
 
 character_to_escape = {
-    "�": "&eacute;",
+    "é": "&eacute;",
     " ": "&nbsp;",
-    "�": "&egrave;",
-    "�": "&agrave;",
-    "�": "&acirc;",
-    "�": "&ecirc;",
-    "�": "&euml;",
-    "�": "&icirc;",
-    "�": "&ugrave;",
-    "�": "&uuml;",
-    "�": "&ocirc;",
-    "�": "&oelig;",
+    "è": "&egrave;",
+    "à": "&agrave;",
+    "â": "&acirc;",
+    "ê": "&ecirc;",
+    "ë": "&euml;",
+    "î": "&icirc;",
+    "ù": "&ugrave;",
+    "ü": "&uuml;",
+    "ô": "&ocirc;",
+    "œ": "&oelig;",
 }
 
 
@@ -76,4 +77,4 @@ def html_escape(text):
     def fixup(m):
         text = m.group(0)
         return character_to_escape.get(text, text)
-    return re.sub("[��������������]", fixup, text)
+    return re.sub("[àâäéèêëîïôöùüü]", fixup, text)
