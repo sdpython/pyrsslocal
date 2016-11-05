@@ -55,6 +55,7 @@ def html_unescape(text):
         return text  # leave as is
     return re.sub("&#?\w+;", fixup, text)
 
+
 character_to_escape = {
     "é": "&eacute;",
     " ": "&nbsp;",

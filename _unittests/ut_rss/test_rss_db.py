@@ -177,5 +177,6 @@ class TestRSSDatabase (unittest.TestCase):
                 nb += 1
         assert nb > 0
 
+
 if __name__ == "__main__":
     unittest.main()

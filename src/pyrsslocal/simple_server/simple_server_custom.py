@@ -624,6 +624,7 @@ def run_server(server, thread=False, port=8080):
         server.serve_forever()
         return server
 
+
 if __name__ == '__main__':
     fLOG(OutputPrint=True)
     fLOG("running server")
