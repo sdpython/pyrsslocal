@@ -12,10 +12,6 @@ pyrsslocal documentation
 .. image:: https://badge.fury.io/py/pyrsslocal.svg
     :target: http://badge.fury.io/py/pyrsslocal
 
-.. image:: http://img.shields.io/pypi/dm/pyrsslocal.png
-    :alt: PYPI Package
-    :target: https://pypi.python.org/pypi/pyrsslocal
-
 .. image:: http://img.shields.io/github/issues/sdpython/pyrsslocal.png
     :alt: GitHub Issues
     :target: https://github.com/sdpython/pyrsslocal/issues
