@@ -193,7 +193,7 @@ if not r:
         name=project_var_name,
         version='%s%s' % (sversion, subversion),
         author='Xavier Dupré',
-        author_email='xavier.dupre AT gmail.com',
+        author_email='xavier.dupre@gmail.com',
         url="http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html",
         download_url="https://github.com/sdpython/pyrsslocal/",
         description=DESCRIPTION,
