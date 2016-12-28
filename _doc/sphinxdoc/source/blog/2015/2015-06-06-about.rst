@@ -1,15 +1,14 @@
 
-
 .. blogpost::
     :title: About this module
     :keywords: about
     :date: 2015-06-06
     :categories: teachings
-    
+
     When googlereader disappear, I was not really happy with
     available replacements. So I started to implement
     this module. I now use it on a regular basis.
-    
+
     The module `pyquickhelper  <http://www.xavierdupre.fr/app/pyquickhelper/helpsphinx/index.html>`_
     now generates a simple script which runs this module and gather the latest
     blog posts from any module based on pyquickhelper design.
