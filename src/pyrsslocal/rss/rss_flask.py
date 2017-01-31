@@ -8,7 +8,7 @@ import os
 
 try:
     from .rss_flask_helper import get_text_file, get_binary_file
-except:
+except ImportError:
     from rss_flask_helper import get_text_file, get_binary_file
 
 # -- HELP BEGIN EXCLUDE --
