@@ -5,7 +5,7 @@ pyrsslocal documentation
     :target: https://travis-ci.org/sdpython/pyrsslocal
     :alt: Build status
 
-.. image:: https://ci.appveyor.com/api/projects/status/3v5swlh83cp2wdpt?svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/0cc1qtlccq8k7hdx?svg=true
     :target: https://ci.appveyor.com/project/sdpython/pyrsslocal
     :alt: Build Status Windows
 
