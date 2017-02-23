@@ -323,9 +323,9 @@ class SimpleHandler(BaseHTTPRequestHandler):
             run_server(None)
           File "simple_server_custom.py", line 219, in run_server
             server.serve_forever()
-          File "c:\python33\lib\socketserver.py", line 237, in serve_forever
+          File "c:\\python33\\lib\\socketserver.py", line 237, in serve_forever
             poll_interval)
-          File "c:\python33\lib\socketserver.py", line 155, in _eintr_retry
+          File "c:\\python33\\lib\\socketserver.py", line 155, in _eintr_retry
             return func(*args)
         ValueError: file descriptor cannot be a negative integer (-1)
         @endcode
