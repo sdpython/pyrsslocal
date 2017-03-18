@@ -29,7 +29,6 @@ jupyter_client
 jupyter_core
 lxml
 matplotlib
-mechanize
 nbformat
 notebook
 numpy
