@@ -60,13 +60,14 @@ class TestSearch(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
         cont = query_bing("bing")
-        assert isinstance(cont, list)
-        assert len(cont) > 0
+        self.assertTrue(isinstance(cont, list))
+        self.assertTrue(len(cont) > 0)
         if is_travis_or_appveyor():
             warnings.warn("unstable search result, skip on ci")
         else:
-            if "bing" not in cont[0].lower() and "msn" not in cont[0].lower():
-                raise Exception(str(cont[0]))
+            sel = [c for c in cont if "bing" in c]
+            if len(sel) == 0:
+                raise Exception("\n".join(cont))
 
 
 if __name__ == "__main__":
