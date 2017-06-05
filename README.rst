@@ -81,4 +81,10 @@ The XML file which describes the blogs looks like this::
         </body>
     </opml>
 
-.. image:: https://github.com/sdpython/pyrsslocal/blob/master/_doc/sphinxdoc/source/page1.png
+.. only:: html
+
+    .. image:: https://github.com/sdpython/pyrsslocal/blob/master/_doc/sphinxdoc/source/page1.png
+
+.. only:: latex
+
+    .. image:: page1.png

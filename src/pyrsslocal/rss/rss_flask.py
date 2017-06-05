@@ -12,12 +12,15 @@ except ImportError:
     from rss_flask_helper import get_text_file, get_binary_file
 
 # -- HELP BEGIN EXCLUDE --
+
 app = Flask(__name__)
 app.config.from_object(__name__)
+
 # -- HELP END EXCLUDE --
 
 
 # -- HELP BEGIN EXCLUDE --
+
 @app.route("/")
 # -- HELP END EXCLUDE --
 def main_page():
@@ -126,6 +129,8 @@ def get_resource(path):  # pragma: no cover
 
 
 # -- HELP BEGIN EXCLUDE --
+
 if __name__ == "__main__":
     app.run()
+
 # -- HELP END EXCLUDE --
