@@ -28,6 +28,7 @@ pycryptodomex
 pydocstyle
 pyensae
 pyflakes
+pymyinstall
 pylzma
 pyquickhelper>=1.5.2122
 python-jenkins
