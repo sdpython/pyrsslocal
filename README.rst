@@ -12,6 +12,9 @@ README
     :target: https://ci.appveyor.com/project/sdpython/pyrsslocal
     :alt: Build Status Windows
 
+.. image:: https://circleci.com/gh/sdpython/pyrsslocal/tree/master.svg?style=svg
+    :target: https://circleci.com/gh/sdpython/pyrsslocal/tree/master
+
 .. image:: https://badge.fury.io/py/pyrsslocal.svg
     :target: http://badge.fury.io/py/pyrsslocal
 
