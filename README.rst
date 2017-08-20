@@ -4,38 +4,40 @@
 README
 ======
 
-.. image:: https://travis-ci.org/sdpython/pyrsslocal.svg?branch=master
-    :target: https://travis-ci.org/sdpython/pyrsslocal
-    :alt: Build status
+.. only:: html
 
-.. image:: https://ci.appveyor.com/api/projects/status/0cc1qtlccq8k7hdx?svg=true
-    :target: https://ci.appveyor.com/project/sdpython/pyrsslocal
-    :alt: Build Status Windows
+    .. image:: https://travis-ci.org/sdpython/pyrsslocal.svg?branch=master
+        :target: https://travis-ci.org/sdpython/pyrsslocal
+        :alt: Build status
 
-.. image:: https://circleci.com/gh/sdpython/pyrsslocal/tree/master.svg?style=svg
-    :target: https://circleci.com/gh/sdpython/pyrsslocal/tree/master
+    .. image:: https://ci.appveyor.com/api/projects/status/0cc1qtlccq8k7hdx?svg=true
+        :target: https://ci.appveyor.com/project/sdpython/pyrsslocal
+        :alt: Build Status Windows
 
-.. image:: https://badge.fury.io/py/pyrsslocal.svg
-    :target: http://badge.fury.io/py/pyrsslocal
+    .. image:: https://circleci.com/gh/sdpython/pyrsslocal/tree/master.svg?style=svg
+        :target: https://circleci.com/gh/sdpython/pyrsslocal/tree/master
 
-.. image:: http://img.shields.io/github/issues/sdpython/pyrsslocal.png
-    :alt: GitHub Issues
-    :target: https://github.com/sdpython/pyrsslocal/issues
+    .. image:: https://badge.fury.io/py/pyrsslocal.svg
+        :target: http://badge.fury.io/py/pyrsslocal
 
-.. image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :alt: MIT License
-    :target: http://opensource.org/licenses/MIT
+    .. image:: http://img.shields.io/github/issues/sdpython/pyrsslocal.png
+        :alt: GitHub Issues
+        :target: https://github.com/sdpython/pyrsslocal/issues
 
-.. image:: https://landscape.io/github/sdpython/pyrsslocal/master/landscape.svg?style=flat
-   :target: https://landscape.io/github/sdpython/pyrsslocal/master
-   :alt: Code Health
+    .. image:: https://img.shields.io/badge/license-MIT-blue.svg
+        :alt: MIT License
+        :target: http://opensource.org/licenses/MIT
 
-.. image:: https://requires.io/github/sdpython/pyrsslocal/requirements.svg?branch=master
-     :target: https://requires.io/github/sdpython/pyrsslocal/requirements/?branch=master
-     :alt: Requirements Status
+    .. image:: https://landscape.io/github/sdpython/pyrsslocal/master/landscape.svg?style=flat
+       :target: https://landscape.io/github/sdpython/pyrsslocal/master
+       :alt: Code Health
 
-.. image:: https://codecov.io/github/sdpython/pyrsslocal/coverage.svg?branch=master
-    :target: https://codecov.io/github/sdpython/pyrsslocal?branch=master
+    .. image:: https://requires.io/github/sdpython/pyrsslocal/requirements.svg?branch=master
+         :target: https://requires.io/github/sdpython/pyrsslocal/requirements/?branch=master
+         :alt: Requirements Status
+
+    .. image:: https://codecov.io/github/sdpython/pyrsslocal/coverage.svg?branch=master
+        :target: https://codecov.io/github/sdpython/pyrsslocal?branch=master
 
 **Links:**
 
