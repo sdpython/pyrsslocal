@@ -4,6 +4,7 @@ bokeh
 coverage
 docformatter
 feedparser
+hachibee-sphinx-theme
 ipython>=5.0.0
 jupyter
 jupyter-client
