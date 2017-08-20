@@ -4,6 +4,7 @@ bokeh
 coverage
 docformatter
 feedparser
+flask
 hachibee-sphinx-theme
 ipython>=5.0.0
 jupyter
