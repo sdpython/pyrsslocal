@@ -85,7 +85,7 @@ The XML file which describes the blogs looks like this::
         </body>
     </opml>
 
-Yu can create an empty with::
+You can create an empty with::
 
     from pyrsslocal import write_subscriptions_example
     xml_blogs = "subscriptions.xml"
@@ -129,6 +129,7 @@ Quick start
 
     all_example
     all_notebooks
+    blog/blogindex
 
 Functionalities
 ---------------
