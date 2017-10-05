@@ -1,7 +1,8 @@
 #-*- coding: utf-8 -*-
 """
 @file
-@brief Shortcuts for module pyrsslocal.
+@brief Module *pyrsslocal*. Very slow server
+for RSS streams.
 """
 from .rss.rss_helper import rss_update_run_server, rss_run_server
 from .rss.rss_database import DatabaseRSS
