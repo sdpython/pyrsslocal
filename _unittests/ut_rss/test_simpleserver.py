@@ -68,9 +68,9 @@ class TestSimpleServer (unittest.TestCase):
 
         url = "http://localhost:8094/localfile/__file__"
         cont = get_url_content_timeout(url)
-        assert len(cont) > 0
+        self.assertTrue(len(cont) > 0)
         if sys.platform.startswith("win"):
-            assert "class SimpleHandler(BaseHTTPRequestHandler):" in cont
+            self.assertIn("class SimpleHandler(BaseHTTPRequestHandler):", cont)
 
         url = "http://localhost:8094/localfile/test_simpleserver.py?execute=False&path=%s" % path
         fLOG(url)
@@ -83,16 +83,16 @@ class TestSimpleServer (unittest.TestCase):
         url = "http://localhost:8094/localfile/tag-cloud.html?path=%s" % cloud
         fLOG(url)
         cont = get_url_content_timeout(url)
-        assert 'd3.json("data.json"' in cont
+        self.assertIn('d3.json("data.json"', cont)
 
         url = "http://localhost:8094/localfile/tag-cloud.html?path=%s&keep=True" % cloud
         fLOG(url)
         cont = get_url_content_timeout(url)
-        assert 'd3.json("data.json"' in cont
-        assert len(SimpleHandler.queue_pathes) > 0
+        self.assertIn('d3.json("data.json"', cont)
+        self.assertTrue(len(SimpleHandler.queue_pathes) > 0)
 
         thread.shutdown()
-        assert not thread.is_alive()
+        self.assertTrue(not thread.is_alive())
 
 
 if __name__ == "__main__":

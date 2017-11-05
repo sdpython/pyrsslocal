@@ -154,7 +154,7 @@ class TestRSS (unittest.TestCase):
         for _ in res:
             nb += 1
             assert len(_.title) > 0
-        assert nb > 0
+        self.assertTrue(nb > 0)
 
         res = rss.enumerate_post(file, fLOG=fLOG)
         nb = 0
@@ -163,8 +163,8 @@ class TestRSS (unittest.TestCase):
         nb = 0
         for _ in lres:
             nb += 1
-            assert len(_.title) > 0
-        assert nb > 0
+            self.assertTrue(len(_.title) > 0)
+        self.assertTrue(nb > 0)
         fLOG("nb post=", nb)
 
         dbfile = os.path.join(path, "temp_rssp.db3")
@@ -178,17 +178,17 @@ class TestRSS (unittest.TestCase):
 
         db = Database(dbfile, LOG=fLOG)
         db.connect()
-        assert db.has_table("posts")
-        assert db.get_table_nb_lines("posts") == nb
+        self.assertTrue(db.has_table("posts"))
+        self.assertEqual(db.get_table_nb_lines("posts"), nb)
 
         sql = "SELECT * FROM posts"
         cur = db.execute(sql)
         val = {}
         for row in cur:
             val[row[-1]] = 0
-        assert len(val) == 6
+        self.assertEqual(len(val), 6)
         key, value = val.popitem()
-        assert key is not None
+        self.assertTrue(key is not None)
 
         # we insert the blog a second time
         BlogPost.fill_table(db, "posts", lres)
@@ -197,7 +197,7 @@ class TestRSS (unittest.TestCase):
         val = {}
         for row in cur:
             val[row[-1]] = 0
-        assert len(val) == 6
+        self.assertEqual(len(val), 6)
 
         # we insert the blog a third time
         BlogPost.fill_table(db, "posts", lres)
@@ -206,7 +206,7 @@ class TestRSS (unittest.TestCase):
         val = {}
         for row in cur:
             val[row[-1]] = 0
-        assert len(val) == 6
+        self.assertEqual(len(val), 6)
 
         db.close()
 
