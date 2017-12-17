@@ -60,7 +60,8 @@ class TestSearch(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
         cont = query_bing("bing")
-        self.assertTrue(isinstance(cont, list))
+        if not isinstance(cont, list):
+            raise TypeError(type(cont))
         self.assertTrue(len(cont) > 0)
         if is_travis_or_appveyor():
             warnings.warn("unstable search result, skip on ci")

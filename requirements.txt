@@ -32,7 +32,7 @@ pyensae
 pyflakes
 pymyinstall
 pylzma
-pyquickhelper>=1.5.2126
+pyquickhelper>=1.6.2294
 python-jenkins
 PyYAML
 semantic_version
