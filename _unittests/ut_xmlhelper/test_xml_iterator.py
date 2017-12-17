@@ -71,11 +71,11 @@ except ImportError:
 
 
 from pyquickhelper.loghelper import fLOG
-from pyquickhelper.pycode import get_temp_folder
+from pyquickhelper.pycode import get_temp_folder, ExtTestCase
 from src.pyrsslocal.xmlhelper import xml_filter_iterator
 
 
-class TestXmlIterator(unittest.TestCase):
+class TestXmlIterator(ExtTestCase):
 
     def test_enumerate_xml_row(self):
         fLOG(
@@ -93,17 +93,17 @@ class TestXmlIterator(unittest.TestCase):
                 node = row
             #fLOG(type(row), row)
             s = str(row)
-            assert s
+            self.assertTrue(s is not None)
             for obj in row.iterfields():
                 s = str(obj)
-                assert s
+                self.assertTrue(s is not None)
             if i % 2 == 0:
                 row._convert_into_list()
             xout = row.get_xml_output()
-            assert xout
+            self.assertTrue(xout is not None)
             row.find_node_value("SYNET")
             n += 1
-        assert n > 0
+        self.assertGreater(n, 0)
 
         # node += node
 

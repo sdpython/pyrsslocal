@@ -40,3 +40,5 @@ set_sphinx_variables(__file__, "pyrsslocal", "Xavier Dupré", 2017,
 # for the sphinx command .. plot::
 # import pyensae
 blog_root = "http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/"
+
+epkg_dictionary['XML'] = 'https://en.wikipedia.org/wiki/XML'

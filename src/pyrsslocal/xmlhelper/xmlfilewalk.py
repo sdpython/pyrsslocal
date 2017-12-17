@@ -53,25 +53,29 @@ def _iteration_values(values):
             i -= 1
 
 
-def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None, encoding="utf-8"):
+def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None, encoding="utf-8", errors=None):
     """
-    go through a XML file, extract values and put them into an iterator
+    Goes through a XML file, extract values and put them into an iterator.
 
     @param      file        a file
-    @param      fields      list of fields to get from the XML files, example:
-                                @code
-                                    [   ("tag1/tag2",           "all"),
-                                        ("tag1/tag2/tag3/_",    "one"),
-                                        ...
-                                    ]
-                                @endcode
+    @param      fields      list of fields to get from the XML files (see below)
     @param      log         do logs if True
     @param      fLOG        logging function
+    @param      errors      sent to function :epkg:`*py:library:function`
     @param      encoding    encoding
     @return                 iterator on lines
+
+    One example for fields:
+
+    ::
+
+        [   ("tag1/tag2",           "all"),
+            ("tag1/tag2/tag3/_",    "one"),
+            ...
+        ]
     """
 
-    fileh = open(file, "r", encoding=encoding) if isinstance(
+    fileh = open(file, "r", encoding=encoding, errors=errors) if isinstance(
         file, str) else file
 
     parser = XMLIterParser()
@@ -130,28 +134,28 @@ def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None,
         fLOG("table_extraction_from_xml_files: end")
 
 
-def table_extraction_from_xml_files(file, output, fields, log=False, encoding="utf-8"):
+def table_extraction_from_xml_files(file, output, fields, log=False, encoding="utf-8", errors=None):
     """
-    go through a XML file, extract values and put them into a flat file.
+    Goes through a :epkg:`XML` file, extract values and put them into a flat file.
 
     @param      file        a file
     @param      output      output file, string or file object,
-    @param      fields      list of fields to get from the XML files, example:
-                                @code
-                                    [   ("tag1/tag2",           "all"),
-                                        ("tag1/tag2/tag3/_",    "one"),
-                                        ...
-                                    ]
-                                @endcode
+    @param      fields      list of fields to get from the XML files
     @param      log         do logs if True
+    @param      errors      sent to function :epkg:`*py:library:function`
     @param      encoding    encoding
+
+    One example for fields:
+
+    ::
+
+        [   ("tag1/tag2",           "all"),
+            ("tag1/tag2/tag3/_",    "one"),
+            ...
+        ]
     """
-    outputh = open(
-        output,
-        "w",
-        encoding=encoding) if isinstance(
-        output,
-        str) else output
+    outputh = open(output, "w", encoding=encoding,
+                   errors=errors) if isinstance(output, str) else output
     for line in table_extraction_from_xml_files_iterator(file, fields, log):
         outputh.write(line)
         outputh.write(GetSepLine())
@@ -160,9 +164,11 @@ def table_extraction_from_xml_files(file, output, fields, log=False, encoding="u
 
 
 def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
-                        fLOG=None, encoding="utf-8"):
+                        fLOG=None, encoding="utf-8", errors=None):
     """
-    go through a XML file, return XML content if a condition is verified, the result is an iterator
+    Goes through a :epkg:`XML` file,
+    returns :epkg:`XML` content if a condition is verified,
+    the result is an iterator.
 
     @param      file        a file
     @param      filter      a function which takes a node and returns a boolean, if None, accepts everything
@@ -170,13 +176,14 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
     @param      xmlformat   if True, return the xml, otherwise return the node
     @param      fLOG        logging function
     @param      encoding    encoding
+    @param      errors      sent to function :epkg:`*py:library:function`
     @return                 the xml format or a node depending on thevalue of xmlformat
     """
     if filter is None:
         def filter(node):
             return True
 
-    fileh = open(file, "r", encoding=encoding) if isinstance(
+    fileh = open(file, "r", encoding=encoding, errors=errors) if isinstance(
         file, str) else file
 
     parser = XMLIterParser()
@@ -201,7 +208,7 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
         fLOG("xml_filter_iterator: end")
 
 
-def xml_filter(file, output, filter, log=False, xmlformat=True, encoding="utf-8"):
+def xml_filter(file, output, filter, log=False, xmlformat=True, encoding="utf-8", errors=None):
     """
     go through a XML file, return XML content if a condition is verified, the result is put into a stream
 
@@ -210,14 +217,11 @@ def xml_filter(file, output, filter, log=False, xmlformat=True, encoding="utf-8"
     @param      filter      a function which takes a node and returns a boolean
     @param      xmlformat   if True, return the xml, otherwise return the node
     @param      encoding    encoding
+    @param      errors      sent to function :epkg:`*py:library:function`
     @param      log         do logs if True
     """
-    outputh = open(
-        output,
-        "r",
-        encoding=encoding) if isinstance(
-        output,
-        str) else output
+    outputh = open(output, "r", encoding=encoding,
+                   errors=errors) if isinstance(output, str) else output
     for line in xml_filter_iterator(file, filter, log, xmlformat):
         outputh.write(line)
         outputh.write(GetSepLine())
