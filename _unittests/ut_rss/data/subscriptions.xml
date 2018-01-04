@@ -19,12 +19,6 @@
                 xmlUrl="http://opendata.paris.fr/api/datasets/1.0/search?format=rss" 
                 htmlUrl="http://opendata.paris.fr/" />
                 
-          <outline text="Eurostat Statistiques en bref"
-                title="Eurostat Statistiques en bref" 
-                type="rss"
-                xmlUrl="http://ec.europa.eu/eurostat/cache/RSS/rss_estat_sif_fr.xml" 
-                htmlUrl="http://ec.europa.eu/eurostat/fr/statistics-in-focus"/>                
-                
           <outline text="Eurostat Communiqués de presse"
                 title="Eurostat Communiqués de presse" 
                 type="rss"
@@ -37,23 +31,11 @@
                 xmlUrl="http://planetpython.org/rss20.xml" 
                 htmlUrl="http://planetpython.org/"/>
                 
-            <outline text="PROLONGA+ION"
-                title="PROLONGA+ION" 
-                type="rss"
-                xmlUrl="http://prolongation-sport.fr/feed/" 
-                htmlUrl="http://prolongation-sport.fr/"/>
-                
             <outline text="FastML"
                 title="FastML" 
                 type="rss"
                 xmlUrl="http://fastml.com/atom.xml" 
                 htmlUrl="http://fastml.com/"/>
-                
-            <outline text="Machine Learning Mastery"
-                title="Machine Learning Mastery" 
-                type="rss"
-                xmlUrl="http://machinelearningmastery.com/blog/feed/" 
-                htmlUrl="http://machinelearningmastery.com/blog/"/>
                 
             <outline text="Julia Evans"
                 title="Julia Evans" 
@@ -92,17 +74,11 @@
                 htmlUrl="http://benoitpatra.com/"/>
                 
                 
-            <outline text="PyVideo.org"
-                title="PyVideo.org" 
-                type="rss"
-                xmlUrl="http://pyvideo.org/video/rss" 
-                htmlUrl="http://pyvideo.org/"/>
-                
             <outline text="Sebastian Raschka"
                 title="Sebastian Raschka" 
                 type="rss"
-                xmlUrl="http://sebastianraschka.com/rss_feed.xml" 
-                htmlUrl="http://sebastianraschka.com/articles.html"/>
+                xmlUrl="https://sebastianraschka.com/rss_feed.xml" 
+                htmlUrl="https://sebastianraschka.com/blog/index.html"/>
                 
             <outline text="ŷhat"
                 title="ŷhat" 
@@ -129,12 +105,6 @@
                 xmlUrl="http://feeds.feedburner.com/codecondo?format=xml" 
                 htmlUrl="http://codecondo.com/"/>
 
-            <outline text="Wes McKinney's Blog"
-                title="Wes McKinney's Blog  " 
-                type="rss"
-                xmlUrl="http://wesmckinney.com/blog/?feed=rss2" 
-                htmlUrl="http://wesmckinney.com/blog/"/>
-                
             <outline text="Julia"
                 title="Julia" 
                 type="rss"
@@ -159,18 +129,6 @@
                 xmlUrl="http://feeds.feedburner.com/TheGlowingPython" 
                 htmlUrl="http://glowingpython.blogspot.fr/"/>
                 
-            <outline text="House of Debt"
-                title="House of Debt" 
-                type="rss"
-                xmlUrl="http://houseofdebt.org/feed" 
-                htmlUrl="http://houseofdebt.org/"/>
-                
-            <outline text="ScottGu's Blog"
-                title="ScottGu's Blog" 
-                type="rss"
-                xmlUrl="http://weblogs.asp.net/scottgu/rss.aspx" 
-                htmlUrl="http://weblogs.asp.net/scottgu/default.aspx"/>
-                
              <outline text="Damian OQuanta"
                 title="Damian OQuanta" 
                 type="rss"
@@ -183,38 +141,8 @@
                 xmlUrl="http://nathguil.free.fr/nikola/rss.xml" 
                 htmlUrl="http://nathguil.free.fr/nikola/"/>
                 
-            <outline text="Amr Elroumy's Blog"
-                title="Amr Elroumy's Blog" 
-                type="rss"
-                xmlUrl="http://amrelroumy.github.io/rss.xml" 
-                htmlUrl="http://amrelroumy.github.io/"/>
-                
-            <outline text="Data Daydreams"
-                title="Data Daydreams" 
-                type="rss"
-                xmlUrl="http://datadaydreams.com/rss.xml" 
-                htmlUrl="http://datadaydreams.com/"/>
-                
-            <outline text="Pythonic Perambulations"
-                title="Pythonic Perambulations" 
-                type="rss"
-                xmlUrl="http://jakevdp.github.io/rss.xml" 
-                htmlUrl="http://jakevdp.github.io/"/>
-                
-            <outline text="Etienne's Blog"
-                title="Etienne's Blog" 
-                type="rss"
-                xmlUrl="http://etienned.github.io/rss.xml" 
-                htmlUrl="http://etienned.github.io/archive.html"/>
-
-            <outline text="Data Publica - Les données"
-                title="Data Publica - Les données" 
-                type="rss"
-                xmlUrl="http://www.data-publica.com/rss.xml" 
-                htmlUrl="http://www.data-publica.com/"/>
-                
-            <outline text="stat updates on arXiv.org"
-                title="stat updates on arXiv.org" 
+            <outline text="Stat updates on arXiv.org"
+                title="Stat updates on arXiv.org" 
                 type="rss"
                 xmlUrl="http://arxiv.org/rss/stat" 
                 htmlUrl="http://arxiv.org/"/>
@@ -235,11 +163,6 @@
                 type="rss"
                 xmlUrl="http://feeds.feedburner.com/thebrowser/xrdJ?format=xml" 
                 htmlUrl="http://thebrowser.com/" />
-            <outline text="RibbonFarm"
-                title="RibbonFarm" 
-                type="rss"
-                xmlUrl="http://www.ribbonfarm.com/feed/" 
-                htmlUrl="http://www.ribbonfarm.com/" />
             <outline text="Machine Learning (Theory)"
                 title="Machine Learning (Theory)" 
                 type="rss"
@@ -250,38 +173,19 @@
                 type="rss"
                 xmlUrl="http://feeds.feedburner.com/TextDataMiningByPracticalMeans" 
                 htmlUrl="http://textanddatamining.blogspot.fr/"/>
-            <outline text="Edwin Chen's Blog"
-                title="Edwin Chen's Blog" 
-                type="rss"
-                xmlUrl="http://blog.echen.me/feed/" 
-                htmlUrl="http://blog.echen.me/" />
             <outline text="Machined Learnings"
                 title="Machined Learnings" 
                 type="rss"
                 xmlUrl="http://www.machinedlearnings.com/feeds/posts/default" 
                 htmlUrl="http://www.machinedlearnings.com/" />
-            <outline text="Normal Deviate"
-                title="Normal Deviate" 
-                type="rss"
-                xmlUrl="http://normaldeviate.wordpress.com/feed/" 
-                htmlUrl="http://normaldeviate.wordpress.com/" />
             <outline text="Simply Statistics"
                 title="Simply Statistics" 
                 type="rss"
                 xmlUrl="http://simplystatistics.org/feed/" 
                 htmlUrl="http://simplystatistics.org/" />
         </outline>
-        <outline title="libraries" text="libraries">
-            <outline text="The Overview Project"
-                title="The Overview Project" type="rss"
-                xmlUrl="http://overview.ap.org/feed/" htmlUrl="http://overview.ap.org"/>
-            <outline text="TULP interactive" title="TULP interactive"
-                type="rss" xmlUrl="http://www.janwillemtulp.com/feed/" htmlUrl="http://www.janwillemtulp.com"/>
-        </outline>
         <outline text=":: S.I.Lex ::" title=":: S.I.Lex ::" type="rss"
             xmlUrl="http://scinfolex.wordpress.com/feed/" htmlUrl="https://scinfolex.wordpress.com"/>
-        <outline text="Next Genetics" title="Next Genetics" type="rss"
-            xmlUrl="http://xml.feedcat.net/836854" htmlUrl="http://blog.nextgenetics.net/"/>
             
 <outline text="Human Coders / Python" title="Human Coders / Python" type="rss" xmlUrl="http://news.humancoders.com/t/python/items/feed.rss" htmlUrl="http://news.humancoders.com/t/python"/>
 <outline text="Human Coders / NoSQL" title="Human Coders / NoSQL" type="rss" xmlUrl="http://news.humancoders.com/t/nosql/items/feed.rss" htmlUrl="http://news.humancoders.com/t/nosql"/>
@@ -294,19 +198,8 @@
         
         <outline text="Andrej Karpathy: Blog"
             title="Andrej Karpathy: Blog" type="rss"
-            xmlUrl="http://karpathy.ca/myblog/feed/" 
-            htmlUrl="http://karpathy.ca/myblog"/>
-            
-        <outline text="Préfecture de police"
-            title="Préfecture de police" 
-            type="rss"
-            xmlUrl="http://www.prefecturedepolice.interieur.gouv.fr/flux_rss/RSS_actualites" 
-            htmlUrl="http://www.prefecturedepolice.interieur.gouv.fr/"/>
-        <outline text="CCI Paris"
-            title="CCI Paris" 
-            type="rss"
-            xmlUrl="http://eve.ccip.fr/rss.asp?flux=7" 
-            htmlUrl="http://www.cci-paris-idf.fr/home"/>
+            xmlUrl="http://karpathy.github.io/feed.xml" 
+            htmlUrl="http://karpathy.github.io/"/>
             
         <outline text="Les-Crises.fr"
             title="Les-Crises.fr" 
@@ -318,55 +211,25 @@
             type="rss"
             xmlUrl="http://www.regardscitoyens.org/feed/" 
             htmlUrl="http://www.regardscitoyens.org/category/blog/"/>
-        <outline text="Antonio Gulli's coding playground"
-            title="Antonio Gulli's coding playground" type="rss"
-            xmlUrl="http://codingplayground.blogspot.com/feeds/posts/default" htmlUrl="http://codingplayground.blogspot.com/"/>
         <outline text="Baptiste Coulmont" title="Baptiste Coulmont"
             type="rss" xmlUrl="http://coulmont.com/feed/" htmlUrl="http://coulmont.com"/>
         <outline text="Blog - MapBox" title="Blog - MapBox" type="rss"
             xmlUrl="http://mapbox.com/blog/blog.rss" htmlUrl="http://mapbox.com/blog"/>
-        <outline text="Blog actuvisu" title="Blog actuvisu" type="rss"
-            xmlUrl="http://blog.actuvisu.fr/feed/" htmlUrl="http://blog.actuvisu.fr"/>
-        <outline text="Blog gaulliste libre"
-            title="Blog gaulliste libre" type="rss"
-            xmlUrl="http://www.gaullistelibre.com/feeds/posts/default" htmlUrl="http://www.gaullistelibre.com/"/>
-        <outline text="Blogo-Numericus" title="Blogo-Numericus"
-            type="rss" xmlUrl="http://blog.homo-numericus.net/feed" htmlUrl="http://blog.homo-numericus.net"/>
         <outline text="Boost Downloads" title="Boost Downloads"
             type="rss" xmlUrl="http://www.boost.org/feed/downloads.rss" htmlUrl="http://www.boost.org/users/download/"/>
         <outline text="Bret Victor's website"
             title="Bret Victor's website" type="rss"
             xmlUrl="http://worrydream.com/feed.xml" htmlUrl="http://worrydream.com/"/>
-        <outline text="C@fé des sciences" title="C@fé des sciences"
-            type="rss" xmlUrl="http://www.cafe-sciences.org/feed/" htmlUrl="http://www.cafe-sciences.org"/>
-        <outline text="~/cesarsouza/blog" title="~/cesarsouza/blog"
-            type="rss"
-            xmlUrl="http://crsouza.blogspot.com/feeds/posts/default" htmlUrl="http://crsouza.blogspot.com/"/>
         <outline
             text="Choux romanesco, Vache qui rit et intégrales curvilignes"
             title="Choux romanesco, Vache qui rit et intégrales curvilignes"
             type="rss" xmlUrl="http://eljjdx.canalblog.com/rss.xml" htmlUrl="http://eljjdx.canalblog.com/"/>
         <outline text="Christopher Olah's Blog"
             title="Christopher Olah's Blog" type="rss"
-            xmlUrl="http://christopherolah.wordpress.com/feed/" htmlUrl="http://christopherolah.wordpress.com"/>
-        <outline text="Computational Complexity"
-            title="Computational Complexity" type="rss"
-            xmlUrl="http://blog.computationalcomplexity.org/feeds/posts/default" htmlUrl="http://blog.computationalcomplexity.org/"/>
-        <outline text="data.ratp.fr - Les Données"
-            title="data.ratp.fr - Les Données" type="rss"
-            xmlUrl="http://data.ratp.fr/?id=38&amp;type=20" htmlUrl="http://data.ratp.fr/"/>
-        <outline text="Dataiku" title="Dataiku" type="rss"
-            xmlUrl="http://dataiku.com/feed/" htmlUrl="http://dataiku.com"/>
+            xmlUrl="https://distill.pub/rss.xml"
+            htmlUrl="http://colah.github.io/"/>
         <outline text="Deep Learning" title="Deep Learning" type="rss"
-            xmlUrl="http://deeplearning.net/feed/" htmlUrl="http://deeplearning.net"/>
-        <outline text="don't code today what you can't debug tomorrow"
-            title="don't code today what you can't debug tomorrow"
-            type="rss" xmlUrl="http://ariya.ofilabs.com/feed" htmlUrl="http://ariya.ofilabs.com"/>
-        <outline text="Débuter avec Python au lycée"
-            title="Débuter avec Python au lycée" type="rss"
-            xmlUrl="http://python.lycee.free.fr/blog/?feed=rss2" htmlUrl="http://python.lycee.free.fr/blog"/>
-        <outline text="Erwann Gaucher" title="Erwann Gaucher" type="rss"
-            xmlUrl="http://www.erwanngaucher.com/RSS/index.php?type=1" htmlUrl="http://www.erwanngaucher.com/"/>
+            xmlUrl="http://feeds.feedburner.com/nvidiablog" htmlUrl="https://blogs.nvidia.com/"/>
         <outline text="Espaces Réflexifs" title="Espaces Réflexifs"
             type="rss" xmlUrl="http://reflexivites.hypotheses.org/feed" htmlUrl="http://reflexivites.hypotheses.org"/>
         <outline text="Freakonometrics" title="Freakonometrics"
@@ -375,20 +238,16 @@
             htmlUrl="http://freakonometrics.hypotheses.org"/>
         <outline text="Fred Akalin" title="Fred Akalin" type="rss"
             xmlUrl="http://www.akalin.cx/feed/atom" htmlUrl="http://www.akalin.cx/"/>
-        <outline text="Frogonomics" title="Frogonomics" type="rss"
-            xmlUrl="http://frogonomics.wordpress.com/feed/" htmlUrl="http://frogonomics.wordpress.com"/>
         <outline text="Google Research Blog"
             title="Google Research Blog" type="rss"
             xmlUrl="http://googleresearch.blogspot.com/feeds/posts/default" htmlUrl="http://googleresearch.blogspot.com/"/>
-        <outline text="groupe fmr (flux, matrices, réseaux)"
-            title="groupe fmr (flux, matrices, réseaux)" type="rss"
+        <outline text="Groupe FMR (flux, matrices, réseaux)"
+            title="Groupe FMR (flux, matrices, réseaux)" type="rss"
             xmlUrl="http://groupefmr.hypotheses.org/feed" htmlUrl="http://groupefmr.hypotheses.org"/>
         <outline text="HBR.org" title="HBR.org" type="rss"
             xmlUrl="http://feeds.harvardbusiness.org/harvardbusiness/" htmlUrl="http://blogs.hbr.org/"/>
         <outline text="Hypotheses" title="Hypotheses" type="rss"
             xmlUrl="http://hypotheses.org/feed" htmlUrl="http://hypotheses.org"/>
-        <outline text="IABlog" title="IABlog" type="rss"
-            xmlUrl="http://www.iab.net/iablog/rss.xml" htmlUrl="http://www.iab.net/iablog/"/>
         <outline text="Improbable Research" title="Improbable Research"
             type="rss"
             xmlUrl="http://feeds.feedburner.com/ImprobableResearch" htmlUrl="http://www.improbable.com"/>
@@ -399,14 +258,6 @@
             xmlUrl="http://iterativepath.wordpress.com/feed/" htmlUrl="http://iterativepath.wordpress.com"/>
         <outline text="I’m a bandit" title="I’m a bandit" type="rss"
             xmlUrl="http://blogs.princeton.edu/imabandit/feed/" htmlUrl="http://blogs.princeton.edu/imabandit"/>
-        <outline text="Jason's Computer Science Blog"
-            title="Jason's Computer Science Blog" type="rss"
-            xmlUrl="http://www.jasonernst.com/feed/" htmlUrl="http://www.jasonernst.com"/>
-        <outline text="Jean-Nicolas Reyt" title="Jean-Nicolas Reyt"
-            type="rss" xmlUrl="http://reyt.net/feed/atom" htmlUrl="http://reyt.net/"/>
-        <outline text="Juste après dresseuse d'ours"
-            title="Juste après dresseuse d'ours" type="rss"
-            xmlUrl="http://www.jaddo.fr/feed/" htmlUrl="http://www.jaddo.fr"/>
         <outline text="La pensée du discours"
             title="La pensée du discours" type="rss"
             xmlUrl="http://penseedudiscours.hypotheses.org/feed" htmlUrl="http://penseedudiscours.hypotheses.org"/>
@@ -420,30 +271,15 @@
         <outline text="Le blog d&amp;#39;Open Food Facts"
             title="Le blog d&amp;#39;Open Food Facts" type="rss"
             xmlUrl="http://fr.blog.openfoodfacts.org/index.xml" htmlUrl="http://fr.blog.openfoodfacts.org"/>
-        <outline text="Le Blog de Stootie" title="Le Blog de Stootie"
-            type="rss" xmlUrl="http://blog.stootie.com/feed/" htmlUrl="http://blog.stootie.com"/>
-        <outline text="Le blog d'un odieux connard"
+f        <outline text="Le blog d'un odieux connard"
             title="Le blog d'un odieux connard" type="rss"
             xmlUrl="http://odieuxconnard.wordpress.com/feed/" htmlUrl="http://odieuxconnard.wordpress.com"/>
-        <outline text="Le slow blog de Serge"
-            title="Le slow blog de Serge" type="rss"
-            xmlUrl="http://abiteboul.blogspot.com/feeds/posts/default" htmlUrl="http://abiteboul.blogspot.com/"/>
         <outline text="Libres pensées d'un mathématicien ordinaire"
             title="Libres pensées d'un mathématicien ordinaire"
             type="rss" xmlUrl="http://djalil.chafai.net/blog/feed/" htmlUrl="http://djalil.chafai.net/blog"/>
-        <outline
-            text="LRU ou Le Ras le bol des Universitaires ! Vis ma vie d’enseignant-chercheur en France."
-            title="LRU ou Le Ras le bol des Universitaires ! Vis ma vie d’enseignant-chercheur en France."
-            type="rss"
-            xmlUrl="http://marcsympaencolere.blogspot.com/feeds/posts/default" htmlUrl="http://marcsympaencolere.blogspot.com/"/>
         <outline text="Machine Learning (Theory)"
             title="Machine Learning (Theory)" type="rss"
             xmlUrl="http://hunch.net/?feed=rss2" htmlUrl="http://hunch.net"/>
-        <outline text="Matières Vivantes" title="Matières Vivantes"
-            type="rss" xmlUrl="http://tomroud.cafe-sciences.org/feed/" htmlUrl="http://tomroud.cafe-sciences.org"/>
-        <outline text="Neuroscience and EEG blog"
-            title="Neuroscience and EEG blog" type="rss"
-            xmlUrl="http://blog.neuroelectrics.com/CMS/UI/Modules/BizBlogger/rss.aspx?tabid=862095&amp;moduleid=1858322&amp;maxcount=25" htmlUrl="http://blog.neuroelectrics.com/"/>
         <outline text="New on MIT Technology Review"
             title="New on MIT Technology Review" type="rss"
             xmlUrl="http://www.technologyreview.com/stream/rss/" htmlUrl="http://www.technologyreview.com/stream/?sort=recent"/>
@@ -451,12 +287,9 @@
             title="ParisTech Review - Latest articles in English"
             type="rss"
             xmlUrl="http://feeds.feedburner.com/paristechreviewen" htmlUrl="http://www.paristechreview.com"/>
-        <outline text="PremierSoccerStats" title="PremierSoccerStats"
-            type="rss"
-            xmlUrl="http://www.premiersoccerstats.com/wordpress/?feed=rss2" htmlUrl="http://www.premiersoccerstats.com/wordpress"/>
         <outline text="Presse-Citron" title="Presse-Citron" type="rss"
             xmlUrl="http://www.presse-citron.net/feed" htmlUrl="http://www.presse-citron.net"/>
-        <outline text="ptigas's Activity" title="ptigas's Activity"
+        <outline text="Ptigas's Activity" title="Ptigas's Activity"
             type="rss" xmlUrl="https://github.com/ptigas.atom" htmlUrl="https://github.com/ptigas"/>
         <outline text="PyPI Newest Packages"
             title="PyPI Newest Packages" type="rss"
@@ -467,8 +300,6 @@
         <outline text="Rabbi Pruzansky's Blog"
             title="Rabbi Pruzansky's Blog" type="rss"
             xmlUrl="http://rabbipruzansky.com/feed/" htmlUrl="http://rabbipruzansky.com"/>
-        <outline text="Radford Neal's blog" title="Radford Neal's blog"
-            type="rss" xmlUrl="http://radfordneal.wordpress.com/feed/" htmlUrl="http://radfordneal.wordpress.com"/>
         <outline text="Revolutions" title="Revolutions" type="rss"
             xmlUrl="http://blog.revolutionanalytics.com/atom.xml" htmlUrl="http://blog.revolutionanalytics.com/"/>
         <outline text="Sam &amp; Max: Python, Django, Git et du cul"
@@ -495,48 +326,28 @@
         <outline text="Worthwhile Canadian Initiative"
             title="Worthwhile Canadian Initiative" type="rss"
             xmlUrl="http://worthwhile.typepad.com/worthwhile_canadian_initi/atom.xml" htmlUrl="http://worthwhile.typepad.com/worthwhile_canadian_initi/"/>
-        <outline text="XD blog" title="XD blog" type="rss"
-            xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml" htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html"/>
         <outline title="sociology" text="sociology">
             <outline
                 text="Délinquance, justice et autres questions de société"
                 title="Délinquance, justice et autres questions de société"
                 type="rss"
                 xmlUrl="http://www.laurent-mucchielli.org/index.php?feed/rss2" htmlUrl="http://www.google.com/reader/view/feed%2Fhttp%3A%2F%2Fwww.laurent-mucchielli.org%2Findex.php%3Ffeed%2Frss2"/>
-            <outline text="Un swissroll" title="Un swissroll" type="rss"
-                xmlUrl="http://swissroll.info/dotclear/rss.php" htmlUrl="http://swissroll.info/"/>
         </outline>
         <outline title="informatique" text="informatique">
-            <outline text="Burgaud.com" title="Burgaud.com" type="rss"
-                xmlUrl="http://www.burgaud.com/feed/" htmlUrl="http://www.burgaud.com"/>
-            <outline text="Les tribulations d'un Rominet sur le web"
-                title="Les tribulations d'un Rominet sur le web"
-                type="rss" xmlUrl="http://rominet.vinot.net/index.xml" htmlUrl="http://rominet.vinot.net"/>
-            <outline text="mikiane.com" title="mikiane.com" type="rss"
+            <outline text="Mikiane.com" title="Mikiane.com" type="rss"
                 xmlUrl="http://mikiane.com/feed/" htmlUrl="http://mikiane.com"/>
-            <outline text="Planet Sage" title="Planet Sage" type="rss"
-                xmlUrl="http://planet.sagemath.org/atom.xml" htmlUrl="http://planet.sagemath.org"/>
-            <outline text="Sandeep Aparajit" title="Sandeep Aparajit"
-                type="rss"
-                xmlUrl="http://feeds2.feedburner.com/SAparajit" htmlUrl="http://sandeep-aparajit.blogspot.com/"/>
-            <outline text="sebsauvage.net" title="sebsauvage.net"
-                type="rss"
-                xmlUrl="http://sebsauvage.net/rss/updates.xml" htmlUrl="http://sebsauvage.net/rhaa/"/>
         </outline>
         <outline title="maths" text="maths">
             <outline text="Inclassables Mathématiques 2.0"
                 title="Inclassables Mathématiques 2.0" type="rss"
                 xmlUrl="http://www.inclassablesmathematiques.fr/atom.xml" htmlUrl="http://www.inclassablesmathematiques.fr/"/>
-            <outline text="misscalcul8" title="misscalcul8" type="rss"
+            <outline text="Misscalcul8" title="Misscalcul8" type="rss"
                 xmlUrl="http://misscalculate.blogspot.com/feeds/posts/default" htmlUrl="http://misscalculate.blogspot.com/"/>
         </outline>
         <outline title="economy" text="economy">
             <outline text="Blog de Paul Jorion"
                 title="Blog de Paul Jorion" type="rss"
                 xmlUrl="http://www.pauljorion.com/blog/?feed=rss2" htmlUrl="http://www.pauljorion.com/blog"/>
-            <outline text="Blog politique de Jacques Généreux"
-                title="Blog politique de Jacques Généreux" type="rss"
-                xmlUrl="http://jacquesgenereux.fr/index.xml" htmlUrl="http://jacquesgenereux.fr"/>
             <outline text="Blogizmo" title="Blogizmo" type="rss"
                 xmlUrl="http://legizmoblog.blogspot.com/feeds/posts/default" htmlUrl="http://legizmoblog.blogspot.com/"/>
             <outline text="Ecocomics" title="Ecocomics" type="rss"
@@ -547,28 +358,11 @@
             <outline text="Economics of Information"
                 title="Economics of Information" type="rss"
                 xmlUrl="http://www.economicsofinformation.com/feeds/posts/default" htmlUrl="http://www.economicsofinformation.com/"/>
-            <outline text="Ecopublix - Julien Grenet"
-                title="Ecopublix - Julien Grenet" type="rss"
-                xmlUrl="http://www.ecopublix.eu/feeds/posts/default" htmlUrl="http://www.ecopublix.eu/"/>
-            <outline text="Felix Salmon" title="Felix Salmon" type="rss"
-                xmlUrl="http://blogs.reuters.com/felix-salmon/feed/" htmlUrl="http://blogs.reuters.com/felix-salmon"/>
             <outline text="Freakonomics" title="Freakonomics" type="rss"
                 xmlUrl="http://www.freakonomics.com/feed/" htmlUrl="http://www.freakonomics.com"/>
             <outline text="Greg Mankiw's Blog"
                 title="Greg Mankiw's Blog" type="rss"
                 xmlUrl="http://gregmankiw.blogspot.com/feeds/posts/default" htmlUrl="http://gregmankiw.blogspot.com/"/>
-            <outline text="Jean-Pisany Ferry" title="Jean-Pisany Ferry"
-                type="rss"
-                xmlUrl="http://pisani-ferry.typepad.com/blog/atom.xml" htmlUrl="http://pisani-ferry.typepad.com/blog/"/>
-            <outline text="L'HIPPOPOTAME QUI BUTINE"
-                title="L'HIPPOPOTAME QUI BUTINE" type="rss"
-                xmlUrl="http://lavialle.blog.lemonde.fr/feed/" htmlUrl="http://lavialle.blog.lemonde.fr"/>
-            <outline
-                text="Olivier Bouba-Olga : Blog d'un économiste qui suit et commente l'actualité"
-                title="Olivier Bouba-Olga : Blog d'un économiste qui suit et commente l'actualité"
-                type="rss"
-                xmlUrl="http://blogs.univ-poitiers.fr/o-bouba-olga/feed/" 
-                htmlUrl="http://blogs.univ-poitiers.fr/o-bouba-olga/"/>
             <outline text="Optimum, le seul blog véritablement optimal"
                 title="Optimum, le seul blog véritablement optimal"
                 type="rss"
@@ -576,9 +370,6 @@
             <outline text="Riskelia's blog" title="Riskelia's blog"
                 type="rss"
                 xmlUrl="http://feeds.feedburner.com/RiskeliaBlog" htmlUrl="http://www.riskelia.com/blog"/>
-            <outline text="Sans rationalité et sans finalité"
-                title="Sans rationalité et sans finalité" type="rss"
-                xmlUrl="http://rationnelsansfinalite.blogspot.com/feeds/posts/default" htmlUrl="http://rationnelsansfinalite.blogspot.com/"/>
             <outline text="The RePEc Blog" title="The RePEc Blog"
                 type="rss" xmlUrl="http://blog.repec.org/feed/" htmlUrl="http://blog.repec.org"/>
             <outline text="Thoughts On Economics"
@@ -589,7 +380,7 @@
                 xmlUrl="http://uneheuredepeine.blogspot.com/feeds/posts/default" htmlUrl="http://uneheuredepeine.blogspot.com/"/>
             <outline text="Verel" title="Verel" type="rss"
                 xmlUrl="http://verel.typepad.fr/verel/atom.xml" htmlUrl="http://verel.typepad.fr/verel/"/>
-            <outline text="volle.com" title="volle.com" type="rss"
+            <outline text="Volle.com" title="Volle.com" type="rss"
                 xmlUrl="http://michelvolle.blogspot.com/feeds/posts/default" htmlUrl="http://michelvolle.blogspot.com/"/>
         </outline>
         <outline title="urbanisme" text="urbanisme">
@@ -598,36 +389,11 @@
                 xmlUrl="http://feeds.feedburner.com/TheAtlanticCities" htmlUrl="http://www.theatlanticcities.com/feeds/posts/"/>
         </outline>
         <outline title="computer science" text="computer science">
-            <outline text="A+ Computer Science Blog"
-                title="A+ Computer Science Blog" type="rss"
-                xmlUrl="http://www.apluscompsci.com/blog/?feed=rss2" htmlUrl="http://www.apluscompsci.com/blog"/>
             <outline text="Adventures in Computation"
                 title="Adventures in Computation" type="rss"
                 xmlUrl="http://aaronsadventures.blogspot.com/feeds/posts/default" htmlUrl="http://aaronsadventures.blogspot.com/"/>
-            <outline text="Byte Mining" title="Byte Mining" type="rss"
-                xmlUrl="http://www.bytemining.com/feed/" htmlUrl="http://www.bytemining.com"/>
-            <outline text="CompSci.ca/blog" title="CompSci.ca/blog"
-                type="rss"
-                xmlUrl="http://feeds.feedburner.com/ComputerScienceCanadaBlog" htmlUrl="http://compsci.ca/blog"/>
-            <outline
-                text="Computational Information Geometry Wonderland"
-                title="Computational Information Geometry Wonderland"
-                type="rss"
-                xmlUrl="http://blog.informationgeometry.org/rss/recent.php" htmlUrl="http://blog.informationgeometry.org/index.php"/>
-            <outline text="Computer Science Teachers Association"
-                title="Computer Science Teachers Association" type="rss"
-                xmlUrl="http://blog.acm.org/csta/atom.xml" htmlUrl="http://blog.acm.org/csta/"/>
             <outline text="CoolData blog" title="CoolData blog"
-                type="rss" xmlUrl="http://cooldata.wordpress.com/feed/" htmlUrl="http://cooldata.wordpress.com"/>
-            <outline text="Daniel Lemire's blog"
-                title="Daniel Lemire's blog" type="rss"
-                xmlUrl="http://lemire.me/blog/feed/" htmlUrl="http://lemire.me/blog"/>
-            <outline text="Downright Dunne Right"
-                title="Downright Dunne Right" type="rss"
-                xmlUrl="http://codydunne.blogspot.com/feeds/posts/default" htmlUrl="http://codydunne.blogspot.com/"/>
-            <outline text="FL\tauR" title="FL\tauR" type="rss"
-                xmlUrl="https://fltaur.wordpress.com/feed/" htmlUrl="http://fltaur.wordpress.com"/>
-            <outline text="Gödel's Lost Letter and P=NP"
+                type="rss" xmlUrl="http://cooldata.wordpress.com/feed/" htmlUrl="http://cooldata.wordpress.com"/>            <outline text="Gödel's Lost Letter and P=NP"
                 title="Gödel's Lost Letter and P=NP" type="rss"
                 xmlUrl="http://rjlipton.wordpress.com/feed/" htmlUrl="http://rjlipton.wordpress.com"/>
             <outline text="Papers in Computer Science"
@@ -637,36 +403,12 @@
                 xmlUrl="http://terrytao.wordpress.com/feed/" htmlUrl="http://terrytao.wordpress.com"/>
         </outline>
         <outline title="politique" text="politique">
-            <outline text="Charlemagne's notebook"
-                title="Charlemagne's notebook" type="rss"
-                xmlUrl="http://www.economist.com/blogs/charlemagne/atom.xml" htmlUrl="http://www.economist.com/blogs/charlemagne"/>
             <outline text="Coulisses de Bruxelles"
                 title="Coulisses de Bruxelles" type="rss"
                 xmlUrl="http://bruxelles.blogs.liberation.fr/coulisses/atom.xml" htmlUrl="http://bruxelles.blogs.liberation.fr/coulisses/"/>
-            <outline text="French Politics" title="French Politics"
-                type="rss"
-                xmlUrl="http://artgoldhammer.blogspot.com/feeds/posts/default" htmlUrl="http://artgoldhammer.blogspot.com/"/>
-            <outline text="Great America" title="Great America"
-                type="rss"
-                xmlUrl="http://washington.blogs.liberation.fr/great_america/atom.xml" htmlUrl="http://washington.blogs.liberation.fr/great_america/"/>
-            <outline
-                text="Jean-charles Vanbervesseles                                                      Debout les Ardennes qui souffrent"
-                title="Jean-charles Vanbervesseles                                                      Debout les Ardennes qui souffrent"
-                type="rss"
-                xmlUrl="http://jean-charlesvanbervesseles.elunet.fr/index.php/feed/rss2" htmlUrl="http://jean-charlesvanbervesseles.elunet.fr/index.php/"/>
             <outline text="Les murmures d'Eric Dupin"
                 title="Les murmures d'Eric Dupin" type="rss"
                 xmlUrl="http://ericdupin.blogs.com/murmures/atom.xml" htmlUrl="http://ericdupin.blogs.com/murmures/"/>
-            <outline text="Letters from Europe"
-                title="Letters from Europe" type="rss"
-                xmlUrl="http://euroletters.wordpress.com/feed/" htmlUrl="http://euroletters.wordpress.com"/>
-            <outline text="The Utopian" title="The Utopian" type="rss"
-                xmlUrl="http://www.the-utopian.org/rss" htmlUrl="http://www.the-utopian.org/"/>
-            <outline text="Un blog de Sel" title="Un blog de Sel"
-                type="rss" xmlUrl="http://blog.marcelsel.com/atom.xml" htmlUrl="http://blog.marcelsel.com/"/>
-            <outline text="Une Européenne à Washington"
-                title="Une Européenne à Washington" type="rss"
-                xmlUrl="http://celiasampol.blogspot.com/feeds/posts/default" htmlUrl="http://celiasampol.blogspot.com/"/>
         </outline>
         <outline title="papers_JMLR" text="papers_JMLR">
             <outline text="JMLR" title="JMLR" type="rss"
@@ -678,60 +420,16 @@
                 xmlUrl="http://www.thejuliagroup.com/blog/?feed=rss2" htmlUrl="http://www.thejuliagroup.com/blog"/>
             <outline text="Blog about Stats" title="Blog about Stats"
                 type="rss" xmlUrl="http://blogstats.wordpress.com/feed/" htmlUrl="http://blogstats.wordpress.com"/>
-            <outline
-                text="Data Mining: Text Mining, Visualization and Social Media"
-                title="Data Mining: Text Mining, Visualization and Social Media"
-                type="rss"
-                xmlUrl="http://datamining.typepad.com/data_mining/atom.xml" htmlUrl="http://datamining.typepad.com/data_mining/"/>
-            <outline text="dataists" title="dataists" type="rss"
-                xmlUrl="http://www.dataists.com/feed/" htmlUrl="http://www.dataists.com"/>
-            <outline text="Deviant Square Stats Tutorials"
-                title="Deviant Square Stats Tutorials" type="rss"
-                xmlUrl="http://www.statsmakemecry.com/smmctheblog/atom.xml" htmlUrl="http://www.statsmakemecry.com/smmctheblog/"/>
             <outline text="Division by Zero" title="Division by Zero"
                 type="rss" xmlUrl="http://divisbyzero.com/feed/" htmlUrl="http://divisbyzero.com"/>
             <outline text="Empirical Legal Studies"
                 title="Empirical Legal Studies" type="rss"
                 xmlUrl="http://www.elsblog.org/the_empirical_legal_studi/atom.xml" htmlUrl="http://www.elsblog.org/the_empirical_legal_studi/"/>
-            <outline
-                text="Expeconomics : le blog économique de Laurent Denant-Boemont"
-                title="Expeconomics : le blog économique de Laurent Denant-Boemont"
-                type="rss"
-                xmlUrl="http://expeconomics.blogspot.com/feeds/posts/default" htmlUrl="http://expeconomics.blogspot.com/"/>
-            <outline text="FlowingData" title="FlowingData" type="rss"
-                xmlUrl="http://feeds.feedburner.com/FlowingData" htmlUrl="http://flowingdata.com"/>
             <outline text="Gowers's Weblog" title="Gowers's Weblog"
                 type="rss" xmlUrl="http://gowers.wordpress.com/feed/" htmlUrl="http://gowers.wordpress.com"/>
-            <outline text="Lies and Stats" title="Lies and Stats"
-                type="rss"
-                xmlUrl="http://liesandstats.wordpress.com/feed/" htmlUrl="http://liesandstats.wordpress.com"/>
-            <outline text="Lies, damned lies and statistics"
-                title="Lies, damned lies and statistics" type="rss"
-                xmlUrl="http://feeds.feedburner.com/LiesDamnedLiesAndStatistics" htmlUrl="http://liesdamnedliesstatistics.com"/>
-            <outline text="OkTrends" title="OkTrends" type="rss"
-                xmlUrl="http://blog.okcupid.com/index.php/feed/" htmlUrl="http://blog.okcupid.com"/>
-            <outline text="Probability and statistics blog"
-                title="Probability and statistics blog" type="rss"
-                xmlUrl="http://www.statisticsblog.com/feed/" htmlUrl="http://www.statisticsblog.com"/>
-            <outline text="Realizations in Biostatistics"
-                title="Realizations in Biostatistics" type="rss"
-                xmlUrl="http://realizationsinbiostatistics.blogspot.com/feeds/posts/default" htmlUrl="http://realizationsinbiostatistics.blogspot.com/"/>
-            <outline text="Statistic on aiR" title="Statistic on aiR"
-                type="rss"
-                xmlUrl="http://statistic-on-air.blogspot.com/feeds/posts/default" htmlUrl="http://statistic-on-air.blogspot.com/"/>
-            <outline
-                text="Statistical Modeling, Causal Inference, and Social Science"
-                title="Statistical Modeling, Causal Inference, and Social Science"
-                type="rss"
-                xmlUrl="http://feeds.feedburner.com/StatisticalModelingCausalInferenceAndSocialScience" htmlUrl="http://andrewgelman.com"/>
             <outline text="Statistical Sage Blog"
                 title="Statistical Sage Blog" type="rss"
                 xmlUrl="http://statisticalsage.wordpress.com/feed/" htmlUrl="http://statisticalsage.wordpress.com"/>
-            <outline text="statistics forum" title="statistics forum"
-                type="rss"
-                xmlUrl="http://statisticsforum.wordpress.com/feed/" htmlUrl="http://statisticsforum.wordpress.com"/>
-            <outline text="stats blog" title="stats blog" type="rss"
-                xmlUrl="http://thestatsblog.wordpress.com/feed/" htmlUrl="http://thestatsblog.wordpress.com"/>
             <outline text="Stats With Cats Blog"
                 title="Stats With Cats Blog" type="rss"
                 xmlUrl="http://statswithcats.wordpress.com/feed/" htmlUrl="http://statswithcats.wordpress.com"/>
@@ -739,12 +437,6 @@
                 type="rss" xmlUrl="http://www.johndcook.com/blog/feed/" htmlUrl="http://www.johndcook.com/blog"/>
             <outline text="Three-Toed Sloth" title="Three-Toed Sloth"
                 type="rss" xmlUrl="http://bactra.org/weblog/index.rss" htmlUrl="http://bactra.org/weblog/"/>
-            <outline text="Understanding Uncertainty"
-                title="Understanding Uncertainty" type="rss"
-                xmlUrl="http://feeds2.feedburner.com/UnderstandingUncertainty" htmlUrl="http://understandinguncertainty.org/"/>
-            <outline text="Zero Intelligence Agents"
-                title="Zero Intelligence Agents" type="rss"
-                xmlUrl="http://www.drewconway.com/zia/?feed=rss2" htmlUrl="http://www.drewconway.com/zia"/>
         </outline>
         <outline title="actuariat" text="actuariat">
         </outline>
@@ -752,41 +444,12 @@
             <outline text="Actu d'actuaires - Frédéric Planchet"
                 title="Actu d'actuaires - Frédéric Planchet" type="rss"
                 xmlUrl="http://actudactuaires.typepad.com/laboratoire/atom.xml" htmlUrl="http://actudactuaires.typepad.com/laboratoire/"/>
-            <outline text="Blog d'un économiste du travail"
-                title="Blog d'un économiste du travail" type="rss"
-                xmlUrl="http://ew-econ.typepad.fr/mon_weblog/atom.xml" htmlUrl="http://ew-econ.typepad.fr/mon_weblog/"/>
-            <outline text="Denis CHEMILLIER-GENDREAU"
-                title="Denis CHEMILLIER-GENDREAU" type="rss"
-                xmlUrl="https://denischemilliergendreau.wordpress.com/feed/" htmlUrl="http://denischemilliergendreau.wordpress.com"/>
-            <outline
-                text="Finance &amp; Stratégies - dont Benoît Menoni"
-                title="Finance &amp; Stratégies - dont Benoît Menoni"
-                type="rss" xmlUrl="http://finance.sia-conseil.com/feed/" htmlUrl="http://finance.sia-partners.com"/>
-            <outline text="Hypios - Thinking" title="Hypios - Thinking"
-                type="rss" xmlUrl="http://www.hypios.com/thinking/feed/" htmlUrl="http://www.hypios.com/thinking"/>
-            <outline text="Le blog de christine balague"
-                title="Le blog de christine balague" type="rss"
-                xmlUrl="http://www.christine-balague.com/rss-articles.xml" htmlUrl="http://www.christine-balague.com/"/>
-            <outline text="Le blog de l'Iffres"
-                title="Le blog de l'Iffres" type="rss"
-                xmlUrl="http://iffresblog.com/feed/" htmlUrl="http://iffresblog.com"/>
             <outline text="Les blogs du Diplo"
                 title="Les blogs du Diplo" type="rss"
                 xmlUrl="http://blog.mondediplo.net/spip.php?page=backend" htmlUrl="http://blog.mondediplo.net/"/>
-            <outline text="L'économie sans tabou"
-                title="L'économie sans tabou" type="rss"
-                xmlUrl="http://bsalanie.blogs.com/economie_sans_tabou/atom.xml" htmlUrl="http://bsalanie.blogs.com/economie_sans_tabou/"/>
-            <outline text="Métropolitiques dont Frédéric Gilli"
-                title="Métropolitiques dont Frédéric Gilli" type="rss"
-                xmlUrl="http://www.metropolitiques.eu/spip.php?page=backend" htmlUrl="http://www.metropolitiques.eu/"/>
-            <outline text="Nicollet.Net" title="Nicollet.Net" type="rss"
-                xmlUrl="http://www.nicollet.net/feed/" htmlUrl="http://www.nicollet.net"/>
             <outline text="Robin Ryder's blog"
                 title="Robin Ryder's blog" type="rss"
                 xmlUrl="http://robinryder.wordpress.com/feed/" htmlUrl="http://robinryder.wordpress.com"/>
-            <outline text="Sarah tout simplement"
-                title="Sarah tout simplement" type="rss"
-                xmlUrl="http://sarahtoutsimplement.wordpress.com/feed/" htmlUrl="http://sarahtoutsimplement.wordpress.com"/>
             <outline text="Statisfaction" title="Statisfaction"
                 type="rss"
                 xmlUrl="http://statisfaction.wordpress.com/feed/" htmlUrl="http://statisfaction.wordpress.com"/>
@@ -799,55 +462,20 @@
                 title="Algorithmic Game-Theory/Economics" type="rss"
                 xmlUrl="http://agtb.wordpress.com/feed/" htmlUrl="http://agtb.wordpress.com"/>
         </outline>
-        <outline title="R" text="R">
-            <outline text="Andrew Gelman's Sciences Po Course"
-                title="Andrew Gelman's Sciences Po Course" type="rss"
-                xmlUrl="http://gelman-sciences-po.blogspot.com/feeds/posts/default" htmlUrl="http://gelman-sciences-po.blogspot.com/"/>
-            <outline text="Learning R" title="Learning R" type="rss"
-                xmlUrl="http://learnr.wordpress.com/feed/" htmlUrl="http://learnr.wordpress.com"/>
-            <outline text="Planet R" title="Planet R" type="rss"
-                xmlUrl="http://planetr.stderr.org/atom.xml" htmlUrl="http://planetr.stderr.org/"/>
-            <outline text="Romain Francois, Professional R Enthusiast"
-                title="Romain Francois, Professional R Enthusiast"
-                type="rss"
-                xmlUrl="http://romainfrancois.blog.free.fr/index.php?feed/atom" htmlUrl="http://romainfrancois.blog.free.fr/index.php?"/>
-            <outline text="Social Science Statistics Blog"
-                title="Social Science Statistics Blog" type="rss"
-                xmlUrl="http://www.iq.harvard.edu/blog/sss/atom.xml" htmlUrl="http://www.iq.harvard.edu/blog/sss/"/>
-        </outline>
-        <outline title="manga" text="manga">
-            <outline text="MangaBlog" title="MangaBlog" type="rss"
-                xmlUrl="http://www.mangablog.net/?feed=rss2" htmlUrl="http://mangablog.mangabookshelf.com"/>
-            <outline text="Otaku Manga" title="Otaku Manga" type="rss"
-                xmlUrl="http://streaming-scan-otaku-manga.over-blog.com/rss-articles.xml" htmlUrl="http://streaming-scan-otaku-manga.over-blog.com/"/>
-        </outline>
         <outline title="papers_computers_science" text="papers_computers_science">
-            <outline text="cs updates on arXiv.org"
-                title="cs updates on arXiv.org" type="rss"
+            <outline text="CS updates on arXiv.org"
+                title="CS updates on arXiv.org" type="rss"
                 xmlUrl="http://arxiv.org/rss/cs" htmlUrl="http://arxiv.org/"/>
         </outline>
-        <outline title="finance" text="finance">
-            <outline
-                text="le blog a lupus...un regard hagard sur l'écocomics et ses finances...."
-                title="le blog a lupus...un regard hagard sur l'écocomics et ses finances...."
-                type="rss" xmlUrl="http://leblogalupus.com/feed/" htmlUrl="http://leblogalupus.com"/>
-        </outline>
         <outline title="language" text="language">
-            <outline text="Technologies du Langage"
-                title="Technologies du Langage" type="rss"
-                xmlUrl="http://feeds.feedburner.com/aixtal-fr" htmlUrl="http://blog.veronis.fr/"/>
-            <outline text="voeux" title="voeux" type="rss"
+            <outline text="Voeux" title="Voeux" type="rss"
                 xmlUrl="http://textopol.free.fr/dotclear/rss.php" htmlUrl="http://textopol.free.fr/dotclear/index.php"/>
         </outline>
         <outline title="ecologie" text="ecologie">
-            <outline text="epi.proteos.info" title="epi.proteos.info"
+            <outline text="Epi.proteos.info" title="Epi.proteos.info"
                 type="rss"
                 xmlUrl="http://epi.proteos.info/index.php?feed/rss2" htmlUrl="http://epi.proteos.info/index.php?"/>
         </outline>
-        <outline text="DataRobot" title="DataRobot"
-            type="rss"
-            xmlUrl="http://www.datarobot.com/blog/feed/" 
-            htmlUrl="http://www.datarobot.com/blog/"/>
         <outline text="Kaggle Blog" title="Kaggle Blog"
             type="rss"
             xmlUrl="http://blog.kaggle.com/feed/" 
