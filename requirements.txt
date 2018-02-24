@@ -1,5 +1,6 @@
 coverage
 jyquickhelper
 pyensae
+pymyinstall
 pyquickhelper>=1.7.2438
 wheel
