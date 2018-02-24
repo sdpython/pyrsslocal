@@ -1,4 +1,5 @@
 coverage
 jyquickhelper
+pyensae
 pyquickhelper>=1.7.2438
 wheel
