@@ -53,22 +53,6 @@ except ImportError:
         sys.path.append(path)
     import pyensae as skip__
 
-try:
-    import pymyinstall as skip___
-except ImportError:
-    path = os.path.normpath(
-        os.path.abspath(
-            os.path.join(
-                os.path.split(__file__)[0],
-                "..",
-                "..",
-                "..",
-                "pymyinstall",
-                "src")))
-    if path not in sys.path:
-        sys.path.append(path)
-    import pymyinstall as skip___
-
 
 from pyquickhelper.loghelper import fLOG
 from pyquickhelper.pycode import get_temp_folder
@@ -88,8 +72,8 @@ class TestJsonIterator(unittest.TestCase):
         with open(data, "r", encoding="utf8") as f:
             content = f.read()
         js = HTMLtoJSONParser.to_json(content)
-        assert js is not None
-        assert len(js) > 0
+        self.assertTrue(js is not None)
+        self.assertGreater(len(js), 0)
 
         key = {("/html/body/div/ol/li/h2/a/strong/strong/", "Ensae"): 0}
         for k, v in iterate_on_json(js):
@@ -97,7 +81,7 @@ class TestJsonIterator(unittest.TestCase):
             if k2 in key:
                 key[k2] += 1
         s = sum(key.values())
-        assert s > 0
+        self.assertGreater(s, 0)
 
 
 if __name__ == "__main__":

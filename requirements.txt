@@ -3,5 +3,5 @@ feedparser
 jyquickhelper
 pyensae
 pymyinstall
-pyquickhelper>=1.7.2438
+pyquickhelper>=1.7.2468
 wheel
