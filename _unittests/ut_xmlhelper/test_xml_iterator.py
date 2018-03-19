@@ -53,22 +53,6 @@ except ImportError:
         sys.path.append(path)
     import pyensae as skip__
 
-try:
-    import pymyinstall as skip___
-except ImportError:
-    path = os.path.normpath(
-        os.path.abspath(
-            os.path.join(
-                os.path.split(__file__)[0],
-                "..",
-                "..",
-                "..",
-                "pymyinstall",
-                "src")))
-    if path not in sys.path:
-        sys.path.append(path)
-    import pymyinstall as skip___
-
 
 from pyquickhelper.loghelper import fLOG
 from pyquickhelper.pycode import get_temp_folder, ExtTestCase
