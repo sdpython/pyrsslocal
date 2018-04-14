@@ -794,7 +794,7 @@ class XMLHandlerDictNode (dict):
                 if "conversion_table" not in self.__dict__:
                     # fLOG("ERROR: unable to find conversion_table field " +
                     #     k +
-                    #" in node " +
+                    # " in node " +
                     #     "/".join(self.get_full_name()))
                     self._log_error()
                     #if exception : raise Exception ("fail to convert value for field " + k)
