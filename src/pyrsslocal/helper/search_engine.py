@@ -65,8 +65,8 @@ def query_bing(query,
         x = 1. + random.random()
         time.sleep(x)
         url = "http://www.bing.com/search?q=" + query.replace(" ", "%20")
-        with urllib.request.urlopen(url) as u:
-            text = u.read()
+        with urllib.request.urlopen(url) as uur:
+            text = uur.read()
         text = text.decode("utf8")
 
         fLOG("    caching results for ", query, " in ", cache)

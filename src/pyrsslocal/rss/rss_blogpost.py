@@ -32,15 +32,8 @@ class BlogPost:
     @var    status          status (dictionary with variables)
     """
 
-    def __init__(self, id_rss,
-                 title,
-                 guid,
-                 isPermaLink,
-                 link,
-                 description,
-                 pubDate,
-                 keywords=[],
-                 id=-1):
+    def __init__(self, id_rss, title, guid, isPermaLink, link,
+                 description, pubDate, keywords=None, id=-1):
         """
         constructor
 
@@ -53,6 +46,8 @@ class BlogPost:
         @param    pubDate         pubDate
         @param    keywords        keywords
         """
+        if keywords is None:
+            keywords = []
         self.id_rss = id_rss
         self.title = title
         self.guid = guid
@@ -252,7 +247,8 @@ class BlogPost:
                             """.replace("                            ", "")
 
     templateext = """
-                            <p class="%s"><a href="{0.id_rss.htmlUrl}" target="_blank" onmousedown="sendlog('blog/{0.id_rss.id}/out')">{0.id_rss.titleb}</a></p>
+                            <p class="%s"><a href="{0.id_rss.htmlUrl}"
+                                target="_blank" onmousedown="sendlog('blog/{0.id_rss.id}/out')">{0.id_rss.titleb}</a></p>
                             <p class="%s"><b>{0.pubDateformat} </b>
                             <a href="%s" target="_blank" onmousedown="sendlog('post/{0.id}/out')">{0.title}</a></p>
                             <p class="%s">{0.description}</p>
@@ -260,7 +256,8 @@ class BlogPost:
                             """.replace("                            ", "")
 
     templateextst = """
-                            <p class="%s"><a href="{0.id_rss.htmlUrl}" target="_blank" onmousedown="sendlog('blog/{0.id_rss.id}/out')">{0.id_rss.titleb}</a></p>
+                            <p class="%s"><a href="{0.id_rss.htmlUrl}"
+                                target="_blank" onmousedown="sendlog('blog/{0.id_rss.id}/out')">{0.id_rss.titleb}</a></p>
                             <p class="%s"><b>{0.pubDateformat} </b>
                             <a href="%s" target="_blank" onmousedown="sendlog('post/{0.id}/out')">{0.title}</a></p>
                             <p class="%s">{0.description}</p>

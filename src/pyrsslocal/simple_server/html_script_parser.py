@@ -28,8 +28,7 @@ class HTMLScriptParser(HTMLParser):
     """
 
     def __init__(self, outStream=sys.stdout,
-                 context={},
-                 catch_exception=False):
+                 context=None, catch_exception=False):
         """
         constructor
 
@@ -39,6 +38,8 @@ class HTMLScriptParser(HTMLParser):
 
         The context is not modified unless it contains container. In that case, it could be.
         """
+        if context is None:
+            context = {}
         HTMLParser.__init__(self, convert_charrefs=True)
         self.outStream = outStream
         self.script_stack = None

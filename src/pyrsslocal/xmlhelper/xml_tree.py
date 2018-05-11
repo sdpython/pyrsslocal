@@ -47,7 +47,7 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
         else:
             self._xmlgen = None
 
-    def startElement(self, name, attributes):
+    def startElement(self, name, attrs):
         """
         when enters a section
         """
@@ -56,28 +56,22 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
             return
 
         if self._xmlgen is not None:
-            self._xmlgen.startElement(name, attributes)
+            self._xmlgen.startElement(name, attrs)
 
         self._tile.append(name)
         if self._being is None:
             self._tag = name
             self._being = XMLHandlerDictNode(
-                None,
-                name,
-                self._level,
-                root=True)
+                None, name, self._level, root=True)
             self._pointer = self._being
         else:
             node = XMLHandlerDictNode(
-                self._pointer,
-                name,
-                self._level,
-                root=False)
+                self._pointer, name, self._level, root=False)
             self._pointer.set(name, node)
             self._pointer = node
 
-        for k in attributes.getNames():
-            self._pointer.set(k, attributes[k].strip())
+        for k in attrs.getNames():
+            self._pointer.set(k, attrs[k].strip())
         self._level += 1
 
     def endElement(self, name):
@@ -118,15 +112,15 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
         else:
             self._pointer = self._pointer.father
 
-    def characters(self, data):
+    def characters(self, content):
         """
         add characters
         """
         if self._xmlgen is not None:
-            self._xmlgen.characters(data)
+            self._xmlgen.characters(content)
 
         if self._pointer is not None:
-            self._pointer.buffer += data
+            self._pointer.buffer += content
 
 # iteration version
 
@@ -146,7 +140,8 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
                   <url___>http://fake</url___>
                   </urls>
                 </mixed>
-                <mixed engine___="conf1" fid="4" grade___="Good" query___="queryA" rank="4" url___="http%3A//www.lamars.com/products/nutrition.html" />
+                <mixed engine___="conf1" fid="4" grade___="Good" query___="queryA" rank="4"
+                       url___="http%3A//www.lamars.com/products/nutrition.html" />
                \"\"\"
 
         zxml = "<root>%s</root>" % zxml
@@ -230,8 +225,6 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
                         e.code),
                     e,
                     self)
-                # FIXME: when to invoke error()?
-                # mes = "\n".join([str(e), str(exc)])
                 self._err_handler.fatalError(exc)
 
             buffer = file.read(self._bufsize)

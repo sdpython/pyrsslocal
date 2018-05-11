@@ -124,7 +124,8 @@ class TestCustomServer(unittest.TestCase):
 
 if __name__ == "__main__":
 
-    if False:
+    enabled = False
+    if enabled:
         import webbrowser
         port = 8098
         fold = os.path.abspath(os.path.split(__file__)[0])

@@ -6,23 +6,24 @@ import os
 import sys
 
 
-def run_python_script(script, params={}):
+def run_python_script(script, params=None):
     """
     execute a script python as a string
 
     @param  script      python script
     @param  params      params to add before the execution
 
-    @example(compile and run a custom script)
+    .. exref::
+        :title: compile and run a custom script
 
-    ::
+        ::
 
-        fpr = lambda v : self.outStream.write(str(v) + "\n")
-        pars = {"print": fpr, "another_variable": 3 }
-        run_python_script(script, pars)
-
-    @endexample
+            fpr = lambda v : self.outStream.write(str(v) + "\n")
+            pars = {"print": fpr, "another_variable": 3 }
+            run_python_script(script, pars)
     """
+    if params is None:
+        params = {}
     obj = compile(script, "", "exec")
 
     loc = locals()

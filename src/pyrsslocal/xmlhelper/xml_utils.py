@@ -5,8 +5,8 @@
 """
 
 import re
-import xml.sax.saxutils as saxutils
-import xml.sax.saxutils as htmlentitydefs
+from xml.sax.saxutils import escape as sax_escape
+from html.entities import name2codepoint
 
 
 def escape(s):
@@ -17,7 +17,7 @@ def escape(s):
     if isinstance(s, list):
         return [escape(_) for _ in s]
     else:
-        s = saxutils.escape(s)
+        s = sax_escape(s)
         s = s.replace("&", "&amp;")
         return s
 
@@ -49,7 +49,7 @@ def html_unescape(text):
                 elif text[1:-1] == "lt":
                     text = "&amp;lt;"
                 else:
-                    text = chr(htmlentitydefs.name2codepoint[text[1:-1]])
+                    text = chr(name2codepoint[text[1:-1]])
             except KeyError:
                 pass
         return text  # leave as is

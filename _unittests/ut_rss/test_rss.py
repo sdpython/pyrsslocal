@@ -103,7 +103,7 @@ class TestRSS (unittest.TestCase):
         for row in cur:
             val[row[-1]] = 0
         assert len(val) == TestRSS.nb_rss_blog
-        key, value = val.popitem()
+        key = val.popitem()[0]
         assert key is not None
 
         # iterator on StreamRSS
@@ -187,7 +187,7 @@ class TestRSS (unittest.TestCase):
         for row in cur:
             val[row[-1]] = 0
         self.assertEqual(len(val), 6)
-        key, value = val.popitem()
+        key, _ = val.popitem()
         self.assertTrue(key is not None)
 
         # we insert the blog a second time

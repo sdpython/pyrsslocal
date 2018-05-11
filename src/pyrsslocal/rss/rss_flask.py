@@ -2,9 +2,8 @@
 @file
 @brief Uses `Flask <http://flask.pocoo.org/>`_ to build pages.
 """
-
-from flask import Flask, Response, render_template
 import os
+from flask import Flask, Response, render_template
 
 try:
     from .rss_flask_helper import get_text_file, get_binary_file

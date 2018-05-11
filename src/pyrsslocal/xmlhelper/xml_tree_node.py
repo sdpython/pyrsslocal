@@ -112,7 +112,7 @@ class XMLHandlerDictNode (dict):
             ty = self.__dict__.get("conversion_table", {}).get(self.name, "")
             if ty != "":
                 ty = "      \t(%s)" % str(ty)
-            if isinstance(buf, list) or isinstance(buf, tuple):
+            if isinstance(buf, (list, tuple)):
                 pile.append(head + "  lst" + t + ": " + str(repr(buf) + ty))
             else:
                 pile.append(head + "  val" + t + ": " + buf + ty)
@@ -257,10 +257,8 @@ class XMLHandlerDictNode (dict):
                 if not v.is_text_only():
                     self.other.append((k, v))
                     rem.append(k)
-                    pass
                 else:
                     self[k] = v.buffer
-                    pass
 
         for k in rem:
             del self[k]
@@ -286,7 +284,7 @@ class XMLHandlerDictNode (dict):
         # last check
         if len(self) == 1:
             # self.popitem(), strange it works in version 2
-            k, v__ = list(self.items())[0]
+            k, _ = list(self.items())[0]
             if k == self.name:
                 self.buffer = self[k]
                 del self[k]

@@ -268,14 +268,9 @@ class DatabaseRSS (Database):
         if connect:
             self.close()
 
-    def private_process_condition(self,
-                                  blog_selection=[],
-                                  post_selection=[],
-                                  sorted=True,
-                                  specific=None,
-                                  now=None,
-                                  searchterm=None
-                                  ):
+    def private_process_condition(self, blog_selection=None, post_selection=None,
+                                  sorted=True, specific=None, now=None,
+                                  searchterm=None):
         """
         returns a SQL query corresponding to list of posts
 
@@ -290,6 +285,10 @@ class DatabaseRSS (Database):
         @param      now                 if None, today means today, if not None, ``now`` will have the meaning of today
         @return                         SQL query
         """
+        if blog_selection is None:
+            blog_selection = []
+        if post_selection is None:
+            post_selection = []
         if searchterm is not None:
             if not searchterm.startswith("+") and "%" not in searchterm:
                 searchterm = "%{0}%".format(searchterm)
@@ -328,17 +327,9 @@ class DatabaseRSS (Database):
             sql += " ORDER BY pubDate DESC"
         return sql
 
-    def enumerate_posts(self,
-                        blog_selection=[],
-                        post_selection=[],
-                        sorted=True,
-                        first=1000,
-                        specific=None,
-                        daily_freq=1.5,
-                        now=None,
-                        addstatus=False,
-                        searchterm=None
-                        ):
+    def enumerate_posts(self, blog_selection=None, post_selection=None, sorted=True,
+                        first=1000, specific=None, daily_freq=1.5, now=None,
+                        addstatus=False, searchterm=None):
         """
         enumerates all the posts from the database if the blog id
         belongs to a selection (or all if blog_selection is empty)
@@ -357,6 +348,10 @@ class DatabaseRSS (Database):
         @param      searchterm          if not None, filters using a SQL like search (using ``%``)
         @return                         enumeration of @see cl BlogPost
         """
+        if blog_selection is None:
+            blog_selection = []
+        if post_selection is None:
+            post_selection = []
         self.connect()
         sql = self.private_process_condition(
             blog_selection,
@@ -383,14 +378,9 @@ class DatabaseRSS (Database):
             yield bl
         self.close()
 
-    def enumerate_posts_status(self,
-                               blog_selection=[],
-                               post_selection=[],
-                               sorted=True,
-                               specific=None,
-                               now=None,
-                               searchterm=None
-                               ):
+    def enumerate_posts_status(self, blog_selection=None, post_selection=None,
+                               sorted=True, specific=None, now=None,
+                               searchterm=None):
         """
         enumerate status
 
@@ -405,6 +395,10 @@ class DatabaseRSS (Database):
         @param      searchterm          if not None, filters using a SQL like search (using ``%``)
         @return                         enumerate on values from ``table_stats`` ordered by decreasing time
         """
+        if blog_selection is None:
+            blog_selection = []
+        if post_selection is None:
+            post_selection = []
         self.connect()
 
         sql_po = self.private_process_condition(

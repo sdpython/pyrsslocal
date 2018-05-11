@@ -155,12 +155,8 @@ class StreamRSS:
 
         """
         with open(file, "r", encoding=encoding) as ff:
-            for nb_, o in enumerate(
-                    xml_filter_iterator(ff,
-                                        lambda f: True,
-                                        log=True,
-                                        xmlformat=False,
-                                        fLOG=fLOG)):
+            for o in xml_filter_iterator(ff, lambda f: True, log=True,
+                                         xmlformat=False, fLOG=fLOG):
                 for oo in o.enumerate_on_tag("outline", recursive=True):
                     if isinstance(oo, tuple):
                         raise ValueError("wrong format file: " + file)
@@ -216,7 +212,9 @@ class StreamRSS:
                 'language': None,
                 'type': 'text/plain'},
            'published': '2013-06-24 00:00:00',
-           'published_parsed': time.struct_time(tm_year=2013, tm_mon=6, tm_mday=24, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=0, tm_yday=175, tm_isdst=0),
+           'published_parsed': time.struct_time(tm_year=2013, tm_mon=6, tm_mday=24,
+                                                tm_hour=0, tm_min=0, tm_sec=0,
+                                                tm_wday=0, tm_yday=175, tm_isdst=0),
            'link': 'http://www.xavierdupre.fr/blog/xd_blog.html?date=2013-06-24',
            'summary': '<p> J\'ai encore perdu de... </p>',
            'guidislink': False,

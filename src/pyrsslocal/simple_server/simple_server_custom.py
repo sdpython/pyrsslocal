@@ -75,7 +75,8 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     This class provides the following function associated to ``/localfile``:
        * if the url is ``http://localhost:port/localfile/<filename>``, it display this file
-       * you add a path parameter: ``http://localhost:port/localfile/<filename>?path=<path>`` to tell the service to look into a different folder
+       * you add a path parameter: ``http://localhost:port/localfile/<filename>?path=<path>``
+         to tell the service to look into a different folder
        * you add a parameter ``&execute=False`` for python script if you want to display them, not to run them.
        * you can add a parameter ``&keep``, the class retains the folder and will look further files in this list
 

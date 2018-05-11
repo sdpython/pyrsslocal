@@ -233,7 +233,7 @@ class RSSServer (ThreadingMixIn, HTTPServer):
         """
         return self
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback):
         """
         what to do when removing the instance (close the log file)
         """
