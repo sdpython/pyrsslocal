@@ -103,7 +103,7 @@ class TestCodeStyle(unittest.TestCase):
         check_pep8(test, fLOG=fLOG, neg_pattern="temp_.*",
                    pylint_ignore=('C0111', 'C0103', 'W0622', 'C1801', 'C0412',
                                   'R0201', 'W0122', 'W0123', 'E1101', 'R1705',
-                                  'E0401', 'W0621', 'W0212'),
+                                  'E0401', 'W0621', 'W0212', 'C0411'),
                    skip=["src' imported but unused",
                          "skip_' imported but unused",
                          "skip__' imported but unused",
