@@ -1,5 +1,6 @@
 coverage
 feedparser
+flask
 jyquickhelper
 pyensae
 pymyinstall
