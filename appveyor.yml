@@ -20,7 +20,7 @@ install:
   - "%PYTHON%\\Scripts\\pip install pymyinstall"
   - "%PYTHON%\\Scripts\\pymy_install3 --set=pyensae"
   - "%PYTHON%\\Scripts\\pip install pyensae"
-  - "%PYTHON%\\Scripts\\pip install feedparser"
+  - "%PYTHON%\\Scripts\\pip install feedparser flask"
 
 build: off
 
