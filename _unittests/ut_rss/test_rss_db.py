@@ -1,10 +1,6 @@
-# coding: latin-1
 """
 @brief      test log(time=2s)
-
 """
-
-
 import sys
 import os
 import unittest
