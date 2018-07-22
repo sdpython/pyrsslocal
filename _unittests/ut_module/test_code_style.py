@@ -48,6 +48,7 @@ class TestCodeStyle(unittest.TestCase):
                          "xml_tree.py:168",
                          "Instance of 'XMLHandlerDictNode' has no '",
                          "xml_tree.py:170",
+                         "xml_tree_node.py:730: R1716",
                          ],
                    )
 

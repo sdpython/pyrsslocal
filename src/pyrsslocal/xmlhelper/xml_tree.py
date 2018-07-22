@@ -7,7 +7,7 @@
 import xml.sax.handler
 import io
 import xml.sax.expatreader
-import xml.sax.saxutils as saxutils
+import xml.sax.saxutils as xsaxutils
 from xml.parsers import expat
 
 from .xml_tree_node import XMLHandlerDictNode
@@ -42,7 +42,7 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
 
         if not self._no_content:
             self._xmlio = io.StringIO()
-            self._xmlgen = saxutils.XMLGenerator(self._xmlio, "utf8")
+            self._xmlgen = xsaxutils.XMLGenerator(self._xmlio, "utf8")
             self._xmlgen.startDocument()
         else:
             self._xmlgen = None
@@ -174,7 +174,7 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
         @param      no_content      avoid keeping the content into memory
         """
         source0 = source
-        source = saxutils.prepare_input_source(source)
+        source = xsaxutils.prepare_input_source(source)
 
         self._source = source
         self.reset()
@@ -182,7 +182,7 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
             xml.sax.expatreader.ExpatLocator(self))
 
         # xmlreader.IncrementalParser.parse(self, source)
-        # source = saxutils.prepare_input_source(source)
+        # source = xsaxutils.prepare_input_source(source)
 
         self.prepareParser(source)
         file_char = source.getCharacterStream()
