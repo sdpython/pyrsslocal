@@ -1,6 +1,7 @@
 coverage
 feedparser
 flask
+hachibee_sphinx_theme
 jyquickhelper
 Pillow
 pyensae
