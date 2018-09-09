@@ -5,6 +5,7 @@ import sys
 import os
 import unittest
 from pyquickhelper.loghelper import fLOG
+from pyquickhelper.pycode import ExtTestCase
 
 
 try:
@@ -23,7 +24,7 @@ except ImportError:
 from src.pyrsslocal.rss.rss_stream import StreamRSS
 
 
-class TestRSSBug (unittest.TestCase):
+class TestRSSBug(ExtTestCase):
 
     def test_rss_parse(self):
         fLOG(
@@ -32,12 +33,12 @@ class TestRSSBug (unittest.TestCase):
             OutputPrint=__name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
         file = os.path.join(path, "data", "xdbrss.xml")
-        assert os.path.exists(file)
+        self.assertExists(file)
 
         rss = StreamRSS(titleb="yy",
                         type="rss",
-                        xmlUrl="http://blog.yhathq.com/rss.xml",
-                        htmlUrl="http://blog.yhathq.com/",
+                        xmlUrl="https://freakonometrics.hypotheses.org/feed",
+                        htmlUrl="https://freakonometrics.hypotheses.org/",
                         keywordsb=["python"],
                         id=5)
 
@@ -45,8 +46,8 @@ class TestRSSBug (unittest.TestCase):
         nb = 0
         for _ in res:
             nb += 1
-            assert len(_.title) > 0
-        assert nb > 0
+            self.assertNotEmpty(_.title)
+        self.assertGreater(nb, 1)
 
 
 if __name__ == "__main__":
