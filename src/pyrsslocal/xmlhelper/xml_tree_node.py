@@ -808,7 +808,7 @@ class XMLHandlerDictNode (dict):
                     #     " for field ",
                     #     "/".join(self.get_full_name()))
                     self._log_error()
-                    if exception:
+                    if exception:  # pylint: disable=R1720
                         raise XmlException("fail to convert value for field '%s' in node '%s'" % (
                             k, "/".join(self.get_full_name()))) from ex
                     else:

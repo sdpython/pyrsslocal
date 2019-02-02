@@ -143,22 +143,22 @@ class StreamRSS:
 
         The format is the following:
 
-        @example(An entry in the XML config file)
-        @code
-           <outline text="Freakonometrics"
-                title="Freakonometrics"
-                type="rss"
-                xmlUrl="http://freakonometrics.hypotheses.org/feed"
-                htmlUrl="http://freakonometrics.hypotheses.org" />
-        @endcode
-        @endexample
+        .. exref::
+            :title: An entry in the XML config file
 
+            ::
+
+               <outline text="Freakonometrics"
+                    title="Freakonometrics"
+                    type="rss"
+                    xmlUrl="http://freakonometrics.hypotheses.org/feed"
+                    htmlUrl="http://freakonometrics.hypotheses.org" />
         """
         with open(file, "r", encoding=encoding) as ff:
             for o in xml_filter_iterator(ff, lambda f: True, log=True,
                                          xmlformat=False, fLOG=fLOG):
                 for oo in o.enumerate_on_tag("outline", recursive=True):
-                    if isinstance(oo, tuple):
+                    if isinstance(oo, tuple):  # pylint: disable=R1720
                         raise ValueError("wrong format file: " + file)
                     else:
                         if len(oo.other) == 0 and "xmlUrl" in oo:
