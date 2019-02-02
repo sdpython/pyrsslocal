@@ -50,6 +50,7 @@ class TestCodeStyle(unittest.TestCase):
                          "Instance of 'XMLHandlerDictNode' has no '",
                          "xml_tree.py:170",
                          "xml_tree_node.py:730: R1716",
+                         'R1720',
                          ],
                    )
 
@@ -78,6 +79,7 @@ class TestCodeStyle(unittest.TestCase):
                          "imported as skip_",
                          "Redefining name 'path' from outer scope",
                          "Unused import src",
+                         'R1720',
                          ],
                    extended=[("fLOG", _extended_refactoring)])
 
