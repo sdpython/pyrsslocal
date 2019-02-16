@@ -1,9 +1,4 @@
 
-.. _l-README:
-
-README
-======
-
 .. image:: https://travis-ci.org/sdpython/pyrsslocal.svg?branch=master
     :target: https://travis-ci.org/sdpython/pyrsslocal
     :alt: Build status
@@ -33,14 +28,10 @@ README
 .. image:: https://codecov.io/github/sdpython/pyrsslocal/coverage.svg?branch=master
     :target: https://codecov.io/github/sdpython/pyrsslocal?branch=master
 
-**Links:**
+.. _l-README:
 
-* `GitHub/pyrsslocal <https://github.com/sdpython/pyrsslocal/>`_
-* `documentation <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html>`_
-* `Blog <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/blog/main_0000.html#ap-main-0>`_
-
-What is it?
------------
+pyrsslocal
+==========
 
 This extension proposes a way to download new posts from blogs
 and to navigate through them with a couple of HTML pages
@@ -87,3 +78,12 @@ The XML file which describes the blogs looks like this::
 .. only:: latex
 
     .. image:: page1.png
+
+The design is not very efficient. It could be faster using a templating
+library such a *jinja2*.
+
+**Links:**
+
+* `GitHub/pyrsslocal <https://github.com/sdpython/pyrsslocal/>`_
+* `documentation <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html>`_
+* `Blog <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/blog/main_0000.html#ap-main-0>`_
