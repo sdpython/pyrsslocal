@@ -3,6 +3,7 @@ feedparser
 flask
 hachibee_sphinx_theme
 jyquickhelper
+git+https://github.com/sdpython/nbconvert.git@fixes
 Pillow
 pyensae
 pymyinstall
