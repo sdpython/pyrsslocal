@@ -1,27 +1,11 @@
 """
 @brief      test log(time=5s)
 """
-import sys
 import os
 import unittest
 from pyquickhelper.loghelper import fLOG
 from pyensae.sql.database_main import Database
-
-
-try:
-    import src
-except ImportError:
-    path = os.path.normpath(
-        os.path.abspath(
-            os.path.join(
-                os.path.split(__file__)[0],
-                "..",
-                "..")))
-    if path not in sys.path:
-        sys.path.append(path)
-    import src
-
-from src.pyrsslocal.rss.rss_stream import StreamRSS
+from pyrsslocal.rss.rss_stream import StreamRSS
 
 
 class TestRSSSpecial (unittest.TestCase):

@@ -11,11 +11,9 @@ from .xml_exceptions import XmlException
 
 
 class XMLHandlerDictNode (dict):
+    """
+    Defines a node containing a dictionary.
 
-    """
-    defines a node containing a dictionary
-    """
-    """
     @var        father      ancestor
     @var        name        name of the section (tag)
     @var        buffer      value or content of the section
@@ -25,7 +23,6 @@ class XMLHandlerDictNode (dict):
 
     def __init__(self, father, name, level, root=False):
         """
-        contructor
         @param      father      father
         @param      name        node name
         @param      level       could be infered but still
@@ -56,7 +53,7 @@ class XMLHandlerDictNode (dict):
 
     def enumerate_on_tag(self, tag, recursive=False):
         """
-        enumerate all nodes sharing the same name: tag
+        Enumerates all nodes sharing the same name: tag.
 
         @param  tag         node name to enumerate on
         @param  recursive   if True, looks into node (name == tag) if there are
@@ -78,7 +75,7 @@ class XMLHandlerDictNode (dict):
 
     def add_xml_content(self, content):
         """
-        add the content of the node itself (and all included nodes)
+        Adds the content of the node itself (and all included nodes).
         """
         self.xmlcontent = content
 
@@ -151,13 +148,13 @@ class XMLHandlerDictNode (dict):
 
     def strip(self):
         """
-        strip the buffer
+        Strips the buffer.
         """
         self.buffer = self.buffer.strip()
 
     def copy(self):
         """
-        get a copy
+        Gets a copy.
         """
         u = XMLHandlerDictNode(self, self.father, self.name, self.value)
         u.buffer = self.buffer
@@ -166,7 +163,7 @@ class XMLHandlerDictNode (dict):
 
     def set(self, i, v):
         """
-        change the value of a field
+        Changes the value of a field.
         @param      i       field
         @param      v       new value
         """
@@ -183,7 +180,8 @@ class XMLHandlerDictNode (dict):
         return self
 
     def is_text_only(self):
-        """return True if it only contains text
+        """
+        Returns True if it only contains text.
         """
         if len(self.other) > 0:
             return False
@@ -197,7 +195,8 @@ class XMLHandlerDictNode (dict):
         return True
 
     def rearrange(self, debug=False):
-        """move all objects to other
+        """
+        Moves all objects to other.
         """
 
         # check level
@@ -325,7 +324,8 @@ class XMLHandlerDictNode (dict):
             return "".join(res)
 
     def get_values(self, field):
-        """get all values associated to a given field name
+        """
+        Gets all values associated to a given field name.
         @param      field       field name
         @return                 list of  [  key, value ]
         """
@@ -347,7 +347,9 @@ class XMLHandlerDictNode (dict):
         return res
 
     def get_values_group(self, fields, nb=1):
-        """get all values associated to a list of fields (must come together in a single node, not in self.other)
+        """
+        Gets all values associated to a list of fields
+        (must come together in a single node, not in *self.other*).
         @param      fields      fields name (list or dictionary)
         @param      nb          at least nb fields must be filled
         @return                 list of  dictionaries
@@ -384,7 +386,8 @@ class XMLHandlerDictNode (dict):
         return res
 
     def _convert_into_list(self):
-        """converts all types into lists
+        """
+        Converts all types into lists.
         """
         if isinstance(self.buffer, str):
             self.buffer = [self.buffer]
@@ -398,7 +401,8 @@ class XMLHandlerDictNode (dict):
             v._convert_into_list()
 
     def __iadd__(self, other):
-        """concatenate every information
+        """
+        Concatenates every information.
         @param      other       other value to concatenate
         @return                 self
         """
@@ -406,7 +410,8 @@ class XMLHandlerDictNode (dict):
         return self
 
     def iadd(self, other, use_list, collapse):
-        """concatenate every information
+        """
+        Concatenates every information.
         @param      other       other value to concatenate
         @param      use_list    use a list or not
         @param      collapse    collapse all information
@@ -536,7 +541,8 @@ class XMLHandlerDictNode (dict):
             self._collapse(use_list)
 
     def _build_othercount(self):
-        """build _othercount when not present
+        """
+        Builds *_othercount* when not present.
         """
         if "_othercount" not in self.__dict__:
             self._othercount = {}
@@ -546,7 +552,8 @@ class XMLHandlerDictNode (dict):
 
     def _collapse(self, use_list):
         """
-        collapse together all fields having the same name in the member other
+        Collapses together all fields having the same name
+        in the member other.
         @warning                it should be called after iadd
         """
         names = {}
@@ -593,7 +600,7 @@ class XMLHandlerDictNode (dict):
 
     def _guess_type(self, tolerance=0.01, utf8=False):
         """
-        replaces all values in the object by the
+        Replaces all values in the object.
         @param      tolerance       @see fn guess_type_list
         @param      utf8            if True, all types are str
         @warning                    it should be called after _collapse
@@ -663,7 +670,7 @@ class XMLHandlerDictNode (dict):
 
     def _adopt_table(self, tbl, exception):
         """
-        adopts a table built on anoher object
+        Adopts a table built on anoher object.
         @param      tbl         same kind of node but including members:
                                     - table
                                     - conversion_table
@@ -727,7 +734,7 @@ class XMLHandlerDictNode (dict):
                 if exception:
                     raise XmlException("unable to find field '%s' (1:n) in path '%s'" % (
                         k, "/".join(self.get_full_name())))
-            elif v > 1 and tbl._othercount[k] <= 1:
+            elif v > 1 and tbl._othercount[k] <= 1:  # pylint: disable=R1716
                 self._log_error()
                 if exception:
                     raise XmlException("we expect a relation 1:1 for field '%s' in path '%s'" % (
@@ -744,7 +751,7 @@ class XMLHandlerDictNode (dict):
 
     def _transfer_to_object(self, root=True, exception=True):
         """
-        transfer values to the object self.table
+        Transfers values to the object *self.table*.
         @param      root            if True, it is the root
         @param      exception       if True, raise Exception
         @return                     the value, dictionary of dictionary of list sometimes...
@@ -836,7 +843,8 @@ class XMLHandlerDictNode (dict):
         return attr
 
     def apply_change_names(self, change_names):
-        """private: change names attributes
+        """
+        private: change names attributes.
         @param      change_names      { oldname : newname }
         """
         if self.name in change_names:
@@ -873,7 +881,8 @@ class XMLHandlerDictNode (dict):
             v.apply_change_names(change_names)
 
     def get_root(self):
-        """@return the root of the node
+        """
+        @return the root of the node
         """
         node = self
         while node.father is not None:
@@ -881,7 +890,8 @@ class XMLHandlerDictNode (dict):
         return node
 
     def iterfields(self):
-        """iterator on the nodes
+        """
+        Iterator on the nodes.
         """
         root = "/".join(self.get_full_name())
         if self.name is not None:
@@ -894,9 +904,10 @@ class XMLHandlerDictNode (dict):
                 yield (a, b)
 
     def find_node_regex(self, regex):
-        """find all nodes depending on a regular expression
+        """
+        Finds all nodes depending on a regular expression.
         @param     regex    regular expression
-        @return             list of [ (node, value) ]
+        @return             list of ``[ (node, value) ]``
         """
         res = []
         for node, value in self.iterfields():

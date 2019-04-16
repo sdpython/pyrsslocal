@@ -14,15 +14,13 @@ from .xml_tree_node import XMLHandlerDictNode
 
 
 class XMLHandlerDict (xml.sax.handler.ContentHandler):
-
     """
-    overload functions about XML, it produces objects at the end
-    we assume the file contains a list of objects
+    Overloads functions about XML, it produces objects at the end
+    we assume the file contains a list of objects.
     """
 
     def __init__(self, no_content=False):
         """
-        constructor
         @param      no_content      avoid loading the content of every record
         """
         xml.sax.handler.ContentHandler.__init__(self)
@@ -49,7 +47,7 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
 
     def startElement(self, name, attrs):
         """
-        when enters a section
+        When enters a section.
         """
         if self._level == 0 and self._forget_root:
             self._level = 1
@@ -76,7 +74,7 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
 
     def endElement(self, name):
         """
-        after a tag
+        After a tag.
         """
         if len(self._tile) == 0:
             return
@@ -114,7 +112,7 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
 
     def characters(self, content):
         """
-        add characters
+        Adds characters.
         """
         if self._xmlgen is not None:
             self._xmlgen.characters(content)
@@ -128,10 +126,11 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
 class XMLIterParser (xml.sax.expatreader.ExpatParser):
 
     """
-    to use a parser like an iterator
+    To use a parser like an iterator.
+    Example:
 
-    example:
-    @code
+    ::
+
         print(__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         zxml = \"\"\"
                 <mixed engine___="conf1" fid="3" grade___="Fair" query___="queryA" rank="3">
@@ -156,7 +155,6 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
             assert o ["query___"] == "queryA"
             nb += 1
         assert nb > 0
-    @endcode
     """
 
     def __init__(self, namespaceHandling=0, bufsize=2 ** 17):
@@ -169,7 +167,7 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
 
     def parse(self, source, no_content=False):
         """
-        Parse an XML document from a URL or an InputSource.
+        Parses an :epkg:`XML` document from a URL or an *InputSource*.
         @param      source          a file or a stream
         @param      no_content      avoid keeping the content into memory
         """

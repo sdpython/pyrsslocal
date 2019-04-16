@@ -13,30 +13,30 @@ from ..helper.python_run import run_python_script
 class HTMLScriptParser(HTMLParser):
 
     """
-    defines a HTML parser.
-    the purpose is to intercept section such as the following and to run it.
+    Defines a :epkg:`HTML` parser.
+    the purpose is to intercept section such as
+    the following and to run it.
 
-    @code
-    <script type="text/python">
-    from pandas import DataFrame
-    from pyquickhelper.pandashelper.tblformat import df2html
-    pars = [ { "key":k, "value":v } for k,v in params ]
-    tbl = DataFrame (pars)
-    print ( df2html(tbl,class_table="myclasstable") )
-    </script>
-    @endcode
+    ::
+
+        <script type="text/python">
+        from pandas import DataFrame
+        from pyquickhelper.pandashelper.tblformat import df2html
+        pars = [ { "key":k, "value":v } for k,v in params ]
+        tbl = DataFrame (pars)
+        print ( df2html(tbl,class_table="myclasstable") )
+        </script>
     """
 
     def __init__(self, outStream=sys.stdout,
                  context=None, catch_exception=False):
         """
-        constructor
-
         @param      outStream           instance of a class which should have a method ``write``
         @param      context             context for the script execution (dictionary with local variables)
         @param      catch_exception     if True, the parser prints out the exception instead of raising when it happens.
 
-        The context is not modified unless it contains container. In that case, it could be.
+        The context is not modified unless it contains container.
+        In that case, it could be.
         """
         if context is None:
             context = {}
@@ -52,7 +52,7 @@ class HTMLScriptParser(HTMLParser):
 
     def str_attr(self, attrs):
         """
-        returns a string including the parameters values
+        Returns a string including the parameters values.
 
         @param      attr        attributes
         @return                 string
@@ -66,7 +66,7 @@ class HTMLScriptParser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         """
-        intercepts the beginning of a tag
+        Intercepts the beginning of a tag.
 
         @param      tag     tag
         @param      attrs   attributes
@@ -85,7 +85,7 @@ class HTMLScriptParser(HTMLParser):
 
     def handle_endtag(self, tag):
         """
-        intercepts the end of a tag
+        Intercepts the end of a tag.
 
         @param      tag     tag
         """
@@ -119,7 +119,7 @@ class HTMLScriptParser(HTMLParser):
 
     def handle_data(self, data):
         """
-        intercepts the data between two tags
+        Intercepts the data between two tags.
 
         @param      data     data
         """
@@ -132,18 +132,15 @@ class HTMLScriptParser(HTMLParser):
 
 
 class HTMLScriptParserRemove(HTMLScriptParser):
-
     """
-    defines a HTML parser.
-    the purpose is to remove the HTML code and the header
+    Defines a :epkg:`HTML` parser.
+    the purpose is to remove the :epkg:`HTML` code and the header
     """
 
     def __init__(self, strict=False,
                  outStream=sys.stdout,
                  catch_exception=False):
         """
-        constructor
-
         @param      strict              @see cl HTMLParser
         @param      outStream           instance of a class which should have a method ``write``
         @param      catch_exception     if True, the parser prints out the exception instead of raising when it happens.
@@ -163,7 +160,7 @@ class HTMLScriptParserRemove(HTMLScriptParser):
 
     def str_attr(self, attrs):
         """
-        returns a string including the parameters values
+        Returns a string including the parameters values.
 
         @param      attr        attributes
         @return                 string
@@ -177,7 +174,7 @@ class HTMLScriptParserRemove(HTMLScriptParser):
 
     def handle_starttag(self, tag, attrs):
         """
-        intercepts the beginning of a tag
+        Intercepts the beginning of a tag.
 
         @param      tag     tag
         @param      attrs   attributes
@@ -201,7 +198,7 @@ class HTMLScriptParserRemove(HTMLScriptParser):
 
     def handle_endtag(self, tag):
         """
-        intercepts the end of a tag
+        Intercepts the end of a tag.
 
         @param      tag     tag
         """
@@ -215,7 +212,7 @@ class HTMLScriptParserRemove(HTMLScriptParser):
 
     def handle_data(self, data):
         """
-        intercepts the data between two tags
+        Intercepts the data between two tags.
 
         @param      data     data
         """
@@ -224,11 +221,3 @@ class HTMLScriptParserRemove(HTMLScriptParser):
                 self.script_stack.write(data)
             else:
                 self.outStream.write(escape(data))
-
-
-if __name__ == "__main__":
-    from html_string import HTMLScriptParser, html_debug_string
-    st = StringIO()
-    parser = HTMLScriptParser(outStream=st)
-    parser.feed(html_debug_string)
-    print(st.getvalue())

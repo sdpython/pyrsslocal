@@ -6,6 +6,6 @@
 
 class XmlException(Exception):
     """
-    raised when something is wring about the parsing
+    Raised when something is wring about the parsing.
     """
     pass

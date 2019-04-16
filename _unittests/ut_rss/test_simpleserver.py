@@ -6,22 +6,8 @@ import os
 import unittest
 from http.server import HTTPServer
 from pyquickhelper.loghelper import fLOG
-
-try:
-    import src
-except ImportError:
-    path = os.path.normpath(
-        os.path.abspath(
-            os.path.join(
-                os.path.split(__file__)[0],
-                "..",
-                "..")))
-    if path not in sys.path:
-        sys.path.append(path)
-    import src
-
-from src.pyrsslocal.simple_server.simple_server_custom import SimpleHandler, run_server
-from src.pyrsslocal.helper.download_helper import get_url_content_timeout
+from pyrsslocal.simple_server.simple_server_custom import SimpleHandler, run_server
+from pyrsslocal.helper.download_helper import get_url_content_timeout
 
 
 class TestSimpleServer (unittest.TestCase):

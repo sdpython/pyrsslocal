@@ -14,42 +14,10 @@ from io import StringIO
 from threading import Thread
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-if __name__ == "__main__":
-    path = os.path.normpath(
-        os.path.abspath(
-            os.path.join(
-                os.path.split(__file__)[0],
-                "..",
-                "..",
-                "..",
-                "src")))
-    if path not in sys.path:
-        sys.path.append(path)
-    path = os.path.normpath(
-        os.path.abspath(
-            os.path.join(
-                os.path.split(__file__)[0],
-                "..",
-                "..",
-                "..",
-                "..",
-                "pyquickhelper",
-                "src")))
-    if path not in sys.path:
-        sys.path.append(path)
-    from pyquickhelper.loghelper import fLOG
-    from pyrsslocal.simple_server.html_string import html_footer, html_debug_string, html_header
-    from pyrsslocal.simple_server.html_script_parser import HTMLScriptParser
-else:
-    from pyquickhelper.loghelper import fLOG
-    from .html_string import html_footer, html_debug_string, html_header
-    from .html_script_parser import HTMLScriptParser, HTMLScriptParserRemove
-    from ..helper.download_helper import get_url_content_timeout
-
 
 def get_path_javascript():
     """
-    pyrsslocal contains some javascript script, it adds the paths
+    *pyrsslocal* contains some javascript script, it adds the paths
     to the paths where content will be looked for.
 
     @return         a path
@@ -67,20 +35,19 @@ def get_path_javascript():
 
 
 class SimpleHandler(BaseHTTPRequestHandler):
-
     """
-    defines a simple handler used by HTTPServer
-
+    Defines a simple handler used by *HTTPServer*.
     Firefox works better for local files.
 
     This class provides the following function associated to ``/localfile``:
-       * if the url is ``http://localhost:port/localfile/<filename>``, it display this file
-       * you add a path parameter: ``http://localhost:port/localfile/<filename>?path=<path>``
-         to tell the service to look into a different folder
-       * you add a parameter ``&execute=False`` for python script if you want to display them, not to run them.
-       * you can add a parameter ``&keep``, the class retains the folder and will look further files in this list
 
-    see `Python documentation <http://docs.python.org/3/library/http.server.html>`_
+   * if the url is ``http://localhost:port/localfile/<filename>``, it display this file
+   * you add a path parameter: ``http://localhost:port/localfile/<filename>?path=<path>``
+     to tell the service to look into a different folder
+   * you add a parameter ``&execute=False`` for python script if you want to display them, not to run them.
+   * you can add a parameter ``&keep``, the class retains the folder and will look further files in this list
+
+    See `Python documentation <http://docs.python.org/3/library/http.server.html>`_
 
     @warning Some information about pathes are stored in a unique queue but it should be done in cookie or in session data.
              An instance of SimpleHandler is created for each session and it is better to assume
@@ -94,17 +61,17 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def add_path(self, p):
         """
-        adds a local path to the list of path to watch
+        Adds a local path to the list of path to watch.
         @param  p       local path to data
 
-        Python documentation says list are proctected against multithreads (concurrent accesses).
+        *Python* documentation says list are proctected against multithreads (concurrent accesses).
         """
         if p not in SimpleHandler.queue_pathes:
             SimpleHandler.queue_pathes.append(p)
 
     def get_pathes(self):
         """
-        returns a list of local path where to look for a local file
+        Returns a list of local path where to look for a local file.
         @return         a list of pathes
         """
         return copy.copy(SimpleHandler.queue_pathes)
@@ -118,7 +85,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def log_message(self, format, *args):
         """
-        Log an arbitrary message. Overloads the original method.
+        Logs an arbitrary message. Overloads the original method.
 
         This is used by all other logging functions.  Override
         it if you have specific logging wishes.
@@ -138,7 +105,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def LOG(self, *args):
         """
-        to log, it appends various information about the id address...
+        To log, it appends various information about the id address...
         @param      args       string to LOG or list of strings to LOG
         """
         self.private_LOG("- %s -" %
@@ -147,14 +114,14 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def private_LOG(self, *s):
         """
-        to log
+        To log
         @param      s       string to LOG or list of strings to LOG
         """
         fLOG(*s)
 
     def do_GET(self):
         """
-        what to do is case of GET request
+        What to do is case of GET request.
         """
         parsed_path = urlparse(self.path)
         self.serve_content(parsed_path, "GET")
@@ -162,7 +129,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         """
-        what to do is case of POST request
+        What to do is case of POST request.
         """
         parsed_path = urlparse.urlparse(self.path)
         self.serve_content(parsed_path)
@@ -170,7 +137,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def do_redirect(self, path="/index.html"):
         """
-        redirection when url is just the website
+        Redirection when url is just the website.
         @param      path        path to redirect to (a string)
         """
         self.send_response(301)
@@ -179,7 +146,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def get_ftype(self, path):
         """
-        defines the header to send (type of files) based on path
+        Defines the header to send (type of files) based on path.
         @param      path        location (a string)
         @return                 htype, ftype (html, css, ...)
         """
@@ -218,7 +185,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def send_headers(self, path):
         """
-        defines the header to send (type of files) based on path
+        Defines the header to send (type of files) based on path.
         @param      path        location (a string)
         @return                 type (html, css, ...)
         """
@@ -273,7 +240,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def execute(self, localpath):
         """
-        locally execute a python script
+        Locally execute a python script.
         @param      localpath       local python script
         @return                     output, error
         """
@@ -285,7 +252,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def feed(self, any, script_python=False, params=None):
         """
-        displays something
+        Displays something.
 
         @param      any                 string
         @param      script_python       if True, the function processes script sections
@@ -318,23 +285,26 @@ class SimpleHandler(BaseHTTPRequestHandler):
         """
         Shuts down the service from the service itself (not from another thread).
         For the time being, the function generates the following exception:
-        @code
-        Traceback (most recent call last):
-          File "simple_server_custom.py", line 225, in <module>
-            run_server(None)
-          File "simple_server_custom.py", line 219, in run_server
-            server.serve_forever()
-          File "c:\\python33\\lib\\socketserver.py", line 237, in serve_forever
-            poll_interval)
-          File "c:\\python33\\lib\\socketserver.py", line 155, in _eintr_retry
-            return func(*args)
-        ValueError: file descriptor cannot be a negative integer (-1)
-        @endcode
+
+        ::
+
+            Traceback (most recent call last):
+              File "simple_server_custom.py", line 225, in <module>
+                run_server(None)
+              File "simple_server_custom.py", line 219, in run_server
+                server.serve_forever()
+              File "c:\\python33\\lib\\socketserver.py", line 237, in serve_forever
+                poll_interval)
+              File "c:\\python33\\lib\\socketserver.py", line 155, in _eintr_retry
+                return func(*args)
+            ValueError: file descriptor cannot be a negative integer (-1)
 
         A better way to shut it down should is recommended. The use of the function:
-        @code
-        self.server.shutdown()
-        @endcode
+
+        ::
+
+            self.server.shutdown()
+
         freezes the server because this function should not be run in the same thread.
         """
         # self.server.close()
@@ -346,7 +316,8 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def main_page(self):
         """
-        returns the main page (case the server is called with no path)
+        Returns the main page (case the server is called
+        with no path).
         @return     default page
         """
         return "index.html"
@@ -354,10 +325,10 @@ class SimpleHandler(BaseHTTPRequestHandler):
     def serve_content(self, path, method="GET"):
         """
         Tells what to do based on the path. The function intercepts the
-        path /localfile/, otherwise it calls ``serve_content_web``.
+        path ``/localfile/``, otherwise it calls ``serve_content_web``.
 
-        If you type http://localhost:8080/localfile/__file__, it will display
-        this file.
+        If you type ``http://localhost:8080/localfile/__file__``,
+        it will display this file.
 
         @param      path        ParseResult
         @param      method      GET or POST
@@ -513,14 +484,15 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def get_javascript_paths(self):
         """
-        returns all the location where the server should look for a java script
+        Returns all the location where the server should
+        look for a java script.
         @return         list of paths
         """
         return [SimpleHandler.javascript_path]
 
     def html_code_renderer(self, localpath, content):
         """
-        produces a html code for code
+        Produces a html code for code.
 
         @param      localpath   local path to file (local or not)
         @param      content     content of the file
@@ -534,7 +506,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def serve_content_web(self, path, method, params):
         """
-        functions to overload (executed after serve_content)
+        Functions to overload (executed after serve_content).
 
         @param      path        ParseResult
         @param      method      GET or POST
@@ -552,8 +524,8 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def process_scripts(self, content, params):
         """
-        parses a HTML string, extract script section (only python script for the time being)
-        and returns the final page
+        Parses a :epkg:`HTML` string, extract script section (only python script for the time being)
+        and returns the final page.
 
         @param      content     html string
         @param      params      dictionary with what is known from the server
@@ -570,16 +542,14 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
 
 class ThreadServer (Thread):
-
     """
-    defines a thread which holds a web server
+    Defines a thread which holds a web server.
 
     @var    server      the server of run
     """
 
     def __init__(self, server):
         """
-        constructor
         @param      server to run
         """
         Thread.__init__(self)
@@ -587,17 +557,18 @@ class ThreadServer (Thread):
 
     def run(self):
         """
-        run the server
+        Runs the server.
         """
         self.server.serve_forever()
 
     def shutdown(self):
         """
-        shuts down the server, if it does not work, you can still kill
-        the thread:
-        @code
-        self.kill()
-        @endcode
+        Shuts down the server, if it does not work,
+        you can still kill the thread:
+
+        ::
+
+            self.kill()
         """
         self.server.shutdown()
         self.server.server_close()
@@ -605,7 +576,7 @@ class ThreadServer (Thread):
 
 def run_server(server, thread=False, port=8080):
     """
-    run the server
+    Runs the server.
     @param      server      if None, it becomes ``HTTPServer(('localhost', 8080), SimpleHandler)``
     @param      thread      if True, the server is run in a thread
                             and the function returns right away,

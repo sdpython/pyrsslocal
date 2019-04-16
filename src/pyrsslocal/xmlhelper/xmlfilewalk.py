@@ -12,20 +12,23 @@ def _iteration_values(values):
     """
     Iterators on all possible tuple of values taken into a list.
     Let's assume you have two rows:
-    @code
-    a1 a2 a3
-    b1 b2
-    @endcode
+
+    ::
+
+        a1 a2 a3
+        b1 b2
 
     The function will produce:
-    @code
-    a1 b1
-    a1 b2
-    a2 b1
-    a2 b2
-    a3 b1
-    a3 b2
-    @endcode
+
+    ::
+
+        a1 b1
+        a1 b2
+        a2 b1
+        a2 b2
+        a3 b1
+        a3 b2
+
 
     The function is used by @see fn table_extraction_from_xml_files_iterator.
 
@@ -55,7 +58,8 @@ def _iteration_values(values):
 
 def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None, encoding="utf-8", errors=None):
     """
-    Goes through a XML file, extract values and put them into an iterator.
+    Goes through a XML file, extracts values and put
+    them into an iterator.
 
     @param      file        a file
     @param      fields      list of fields to get from the XML files (see below)
@@ -136,7 +140,8 @@ def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None,
 
 def table_extraction_from_xml_files(file, output, fields, log=False, encoding="utf-8", errors=None):
     """
-    Goes through a :epkg:`XML` file, extract values and put them into a flat file.
+    Goes through a :epkg:`XML` file, extracts values and
+    put them into a flat file.
 
     @param      file        a file
     @param      output      output file, string or file object,
@@ -180,7 +185,7 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
     @return                 the xml format or a node depending on thevalue of xmlformat
     """
     if filter is None:
-        def filter(node):
+        def filter_(node):
             return True
 
     fileh = open(file, "r", encoding=encoding, errors=errors) if isinstance(
@@ -192,7 +197,7 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
 
     for i_, o in enumerate(parser.parse(fileh)):
 
-        res = filter(o)
+        res = filter_(o)
         if res:
             if xmlformat:
                 yield o.get_xml_content()
@@ -210,7 +215,8 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
 
 def xml_filter(file, output, filter, log=False, xmlformat=True, encoding="utf-8", errors=None):
     """
-    go through a XML file, return XML content if a condition is verified, the result is put into a stream
+    Goes through a :epkg:`XML` file, returns :epkg:`XML` content
+    if a condition is verified, the result is put into a stream.
 
     @param      file        a file
     @param      output      output file, string or file object

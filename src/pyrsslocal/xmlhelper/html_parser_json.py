@@ -8,7 +8,7 @@ import html.parser
 def iterate_on_json(
         json_structure, prefix="", keep_dictionaries=False, skip=["__parent__"]):
     """
-    iterates on every field contains in the JSON structure
+    Iterates on every field contains in the :epkg:`JSON` structure.
 
     @param      json_structure      json structure
     @param      prefix              prefix to add
@@ -41,35 +41,32 @@ def iterate_on_json(
 class HTMLtoJSONParser(html.parser.HTMLParser):
 
     """
-    parse HTML and output a JSON structure
-
+    Parses :epkg:`HTML` and output a :epkg:`JSON` structure.
     Example:
 
-    @code
-    file = ...
-    with open(file,"r",encoding="utf8") as f : content = f.read()
-    parser = HTMLtoJSONParser()
-    parser.feed(content)
-    js = parser.json
-    @endcode
+    ::
+
+        file = ...
+        with open(file,"r",encoding="utf8") as f : content = f.read()
+        parser = HTMLtoJSONParser()
+        parser.feed(content)
+        js = parser.json
 
     Or:
 
-    @code
-    js = HTMLtoJSONParser.to_json(content)
-    @endcode
+    ::
+
+        js = HTMLtoJSONParser.to_json(content)
 
     To iterator on path:
 
-    @code
-    all = [ (k,v) for k,v in HTMLtoJSONParser.iterate(js) ]
-    @endcode
+    ::
+
+        all = [ (k,v) for k,v in HTMLtoJSONParser.iterate(js) ]
     """
 
     def __init__(self, raise_exception=True):
         """
-        constructor
-
         @param      raise_exception     if True, raises an exception if the HTML is malformed, otherwise does what it can
         """
         html.parser.HTMLParser.__init__(self, convert_charrefs=True)
@@ -82,7 +79,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
     @property
     def json(self):
         """
-        returns the JSON strucure
+        Returns the :epkg:`JSON` strucure.
         @return     json
         """
         return self.doc
@@ -90,8 +87,8 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
     @staticmethod
     def to_json(content, raise_exception=True):
         """
-        converts HTML into JSON
-        @param      content             HTML content to parse
+        Converts :epkg:`HTML` into :epkg:`JSON`.
+        @param      content             :epkg:`HTML` content to parse
         @param      raise_exception     if True, raises an exception if the HTML is malformed, otherwise does what it can
         """
         parser = HTMLtoJSONParser(raise_exception=raise_exception)
@@ -99,10 +96,10 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         return parser.json
 
     @staticmethod
-    def iterate(json_structure, prefix="", keep_dictionaries=False,
-                skip=["__parent__"]):
+    def iterate(json_structure, prefix="", keep_dictionaries=False,  # pylint: disable=W0102
+                skip=["__parent__"]):  # pylint: disable=W0102
         """
-        iterates on every field contains in the JSON structure
+        Iterates on every field contains in the :epkg:`JSON` structure.
 
         @param      json_structure      json structure
         @param      prefix              prefix to add
@@ -116,7 +113,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         """
-        what to do for a new tag
+        What to do for a new tag.
         """
         self.path.append(tag)
         attrs = {k: v for k, v in attrs}
@@ -138,7 +135,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
 
     def handle_endtag(self, tag):
         """
-        what to do for the end of a tag
+        What to do for the end of a tag.
         """
         if tag != self.path[-1] and self.raise_exception:
             raise Exception(
@@ -151,7 +148,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
 
     def handle_data(self, data):
         """
-        what to do with data
+        What to do with data.
         """
         self.line += data.count("\n")
         if "" in self.cur:
@@ -159,7 +156,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
 
     def clean(self, values):
         """
-        clean a dictionary of value
+        Cleans a dictionary of value.
         """
         keys = list(values.keys())
         for k in keys:

@@ -23,11 +23,12 @@ def escape(s):
 
 
 def html_unescape(text):
-    """Removes HTML or XML character references
-      and entities from a text string.
-      keep ``&amp;``, ``&gt;``, ``&lt;`` in the source code.
-    from Fredrik Lundh
-    http://effbot.org/zone/re-sub.htm#unescape-html
+    """
+    Removes :epkg:`HTML` or :epkg:`XML` character references
+    and entities from a text string.
+    keep ``&amp;``, ``&gt;``, ``&lt;`` in the source code.
+    from `Fredrik Lundh
+    <http://effbot.org/zone/re-sub.htm#unescape-html>`_.
     """
     def fixup(m):
         text = m.group(0)
@@ -73,7 +74,8 @@ character_to_escape = {
 
 
 def html_escape(text):
-    """escape any French character with an accent
+    """
+    Escapes any French character with an accent.
     """
     def fixup(m):
         text = m.group(0)
