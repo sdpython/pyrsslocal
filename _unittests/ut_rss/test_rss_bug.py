@@ -19,12 +19,10 @@ class TestRSSBug(ExtTestCase):
         file = os.path.join(path, "data", "xdbrss.xml")
         self.assertExists(file)
 
-        rss = StreamRSS(titleb="yy",
-                        type="rss",
+        rss = StreamRSS(titleb="yy", type_="rss",
                         xmlUrl="https://freakonometrics.hypotheses.org/feed",
                         htmlUrl="https://freakonometrics.hypotheses.org/",
-                        keywordsb=["python"],
-                        id=5)
+                        keywordsb=["python"], idrss=5)
 
         res = rss.enumerate_post(fLOG=fLOG)
         nb = 0

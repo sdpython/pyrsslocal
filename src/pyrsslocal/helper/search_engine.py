@@ -14,43 +14,43 @@ import os
 from pyquickhelper.loghelper import noLOG
 
 
-def extract_bing_result(searchPage, filter=lambda u: True):
+def extract_bing_result(searchPage, filter_=lambda u: True):
     """
     extract the first results from a search page assuming it coms from `Bing <http://www.bing.com>`_
     @param      searchPage      content of `Bing <http://www.bing.com>`_ search page
-    @param      filter          remove some urls if this function is False ``filter(u)`` --> True or False
+    @param      filter_         remove some urls if this function is False ``filter_(u)`` --> True or False
     @return                     a list with the urls
     """
     reg = re.compile("""<h2><a href="(.*?)" h="ID=SERP,""")
-    all = reg.findall(searchPage)
-    if all is None or len(all) == 0:
+    alls = reg.findall(searchPage)
+    if alls is None or len(alls) == 0:
         return None
     else:
-        if len(all) > 10:
-            all = all[:10]
+        if len(alls) > 10:
+            alls = alls[:10]
         # here I sort by length, maybe not the best idea
-        alltemp = sorted([(len(_), _) for _ in all])
-        # alltemp = [ (len(_), _) for _ in all ]  # or not
-        all = [_ for _ in alltemp if filter(_[1])]
-        if len(all) == 0:
+        alltemp = sorted([(len(_), _) for _ in alls])
+        # alltemp = [ (len(_), _) for _ in alls ]  # or not
+        alls = [_ for _ in alltemp if filter_(_[1])]
+        if len(alls) == 0:
             mes = "\n".join(str(_) for _ in alltemp)
             raise ValueError("unable to find a proper url\n" + mes)
-        res = all[0][1]
+        res = alls[0][1]
         if res in ["http://chrome.angrybirds.com/"]:
-            join = "\n".join(str(_) for _ in all)
+            join = "\n".join(str(_) for _ in alls)
             raise ValueError("bad result\n{0}".format(join))
-        return [_[1] for _ in all]
+        return [_[1] for _ in alls]
 
 
 def query_bing(query,
                folderCache="cacheSearchPage",
-               filter=lambda u: True,
+               filter_=lambda u: True,
                fLOG=noLOG):
     """
     returns the search page from `Bing <http://www.bing.com>`_ for a specific query
     @param      query           search query
     @param      folderCache     folder used to stored the result page or to retrieve a page if the query was already searched for
-    @param      filter          remove some urls if this function is False ``filter(u)`` --> True or False
+    @param      filter_         remove some urls if this function is False ``filter(u)`` --> True or False
     @param      fLOG            logging function
     @return                     list of urls
     """
@@ -73,5 +73,5 @@ def query_bing(query,
         with open(cache, "w", encoding="utf8") as f:
             f.write(text)
 
-    url = extract_bing_result(text, filter)
+    url = extract_bing_result(text, filter_)
     return url

@@ -5,8 +5,8 @@
 import html.parser
 
 
-def iterate_on_json(
-        json_structure, prefix="", keep_dictionaries=False, skip=["__parent__"]):
+def iterate_on_json(json_structure, prefix="", keep_dictionaries=False,  # pylint: disable=W0102
+                    skip=["__parent__"]):  # pylint: disable=W0102
     """
     Iterates on every field contains in the :epkg:`JSON` structure.
 

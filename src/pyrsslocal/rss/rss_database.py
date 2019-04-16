@@ -162,15 +162,12 @@ class DatabaseRSS (Database):
         d = res - one
         return d.days
 
-    def enumerate_blogs(self, sorted=True,
-                        specific=None,
-                        daily_freq=1.5,
-                        now=None,
-                        addstat=False):
+    def enumerate_blogs(self, sorted_=True, specific=None, daily_freq=1.5,
+                        now=None, addstat=False):
         """
-        enumerates all the blogs from the database
+        Enumerates all the blogs from the database.
 
-        @param      sorted      sorted by title
+        @param      sorted_     sorted by title
         @param      specific    specific search
                                     - None: all blogs
                                     - today: get all blogs for today
@@ -205,7 +202,7 @@ class DatabaseRSS (Database):
             self.connect()
             sql = "%sSELECT titleb, type, xmlUrl, htmlUrl, keywordsb, id FROM %s%s" % (
                 sqlstatjoinA, self.table_blogs, sqlstatjoinB)
-            if sorted:
+            if sorted_:
                 sql += " ORDER BY " + orderby
             for row in self.execute(sql):
                 bl = StreamRSS(*row)
@@ -233,7 +230,7 @@ class DatabaseRSS (Database):
                      yeshalf,
                      daily_freq),
                     sqlstatjoinB)
-            if sorted:
+            if sorted_:
                 sql += " ORDER BY " + orderby
 
             for row in self.execute(sql):
@@ -269,14 +266,14 @@ class DatabaseRSS (Database):
             self.close()
 
     def private_process_condition(self, blog_selection=None, post_selection=None,
-                                  sorted=True, specific=None, now=None,
+                                  sorted_=True, specific=None, now=None,
                                   searchterm=None):
         """
-        returns a SQL query corresponding to list of posts
+        Returns a SQL query corresponding to list of posts.
 
         @param      blog_selection      list of blogs to consider (or empty for all)
         @param      post_selection      list of posts to consider
-        @param      sorted              sorted by date
+        @param      sorted_             sorted by date
         @param      specific            specific search
                                             - None: all posts
                                             - today: get all posts for today
@@ -323,11 +320,11 @@ class DatabaseRSS (Database):
         if len(cond) > 0:
             sql += " WHERE " + " AND ".join(cond)
 
-        if sorted:
+        if sorted_:
             sql += " ORDER BY pubDate DESC"
         return sql
 
-    def enumerate_posts(self, blog_selection=None, post_selection=None, sorted=True,
+    def enumerate_posts(self, blog_selection=None, post_selection=None, sorted_=True,
                         first=1000, specific=None, daily_freq=1.5, now=None,
                         addstatus=False, searchterm=None):
         """
@@ -336,7 +333,7 @@ class DatabaseRSS (Database):
 
         @param      blog_selection      list of blogs to consider (or empty for all)
         @param      post_selection      list of posts to consider
-        @param      sorted              sorted by date
+        @param      sorted_             sorted by date
         @param      first               we only consider the first ``first``
         @param      specific            specific search
                                             - None: all posts
@@ -354,12 +351,8 @@ class DatabaseRSS (Database):
             post_selection = []
         self.connect()
         sql = self.private_process_condition(
-            blog_selection,
-            post_selection,
-            sorted,
-            specific,
-            now,
-            searchterm)
+            blog_selection, post_selection, sorted_,
+            specific, now, searchterm)
         sql += " LIMIT %d" % first
 
         for row in self.execute(sql):
@@ -379,14 +372,14 @@ class DatabaseRSS (Database):
         self.close()
 
     def enumerate_posts_status(self, blog_selection=None, post_selection=None,
-                               sorted=True, specific=None, now=None,
+                               sorted_=True, specific=None, now=None,
                                searchterm=None):
         """
         enumerate status
 
         @param      blog_selection      list of blogs to consider (or empty for all)
         @param      post_selection      list of posts to consider
-        @param      sorted              sorted by date
+        @param      sorted_             sorted by date
         @param      specific            specific search
                                             - None: all posts
                                             - today: get all posts for today
@@ -402,12 +395,8 @@ class DatabaseRSS (Database):
         self.connect()
 
         sql_po = self.private_process_condition(
-            blog_selection,
-            post_selection,
-            sorted,
-            specific,
-            now,
-            searchterm)
+            blog_selection, post_selection, sorted_,
+            specific, now, searchterm)
 
         sql_st = """SELECT A.id_post, status, A.dtime FROM (
                     SELECT id_post, MAX(dtime) AS dtime FROM {0}

@@ -123,7 +123,7 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
 # iteration version
 
 
-class XMLIterParser (xml.sax.expatreader.ExpatParser):
+class XMLIterParser(xml.sax.expatreader.ExpatParser):
 
     """
     To use a parser like an iterator.
@@ -131,7 +131,6 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
 
     ::
 
-        print(__file__, self._testMethodName, OutputPrint = __name__ == "__main__")
         zxml = \"\"\"
                 <mixed engine___="conf1" fid="3" grade___="Fair" query___="queryA" rank="3">
                   <urls>
@@ -145,14 +144,14 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
 
         zxml = "<root>%s</root>" % zxml
         f = StringIO.StringIO (zxml)
-        assert len (f.getvalue ()) > 0
+        assert len(f.getvalue()) > 0
 
-        parser  = XMLIterParser ()
-        handler = XMLHandlerDict (no_content = False)
-        parser.setContentHandler (handler)
+        parser = XMLIterParser()
+        handler = XMLHandlerDict(no_content = False)
+        parser.setContentHandler(handler)
         nb = 0
         for o in parser.parse(f) :
-            assert o ["query___"] == "queryA"
+            assert o["query___"] == "queryA"
             nb += 1
         assert nb > 0
     """
@@ -165,11 +164,10 @@ class XMLIterParser (xml.sax.expatreader.ExpatParser):
             namespaceHandling=namespaceHandling,
             bufsize=bufsize)
 
-    def parse(self, source, no_content=False):
+    def parse(self, source):
         """
         Parses an :epkg:`XML` document from a URL or an *InputSource*.
         @param      source          a file or a stream
-        @param      no_content      avoid keeping the content into memory
         """
         source0 = source
         source = xsaxutils.prepare_input_source(source)

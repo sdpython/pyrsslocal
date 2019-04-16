@@ -10,7 +10,7 @@ from .xml_utils import escape
 from .xml_exceptions import XmlException
 
 
-class XMLHandlerDictNode (dict):
+class XMLHandlerDictNode(dict):
     """
     Defines a node containing a dictionary.
 
@@ -93,14 +93,12 @@ class XMLHandlerDictNode (dict):
         for k in self:
             mx = max(len(k), mx)
         head = self.level * "  "
-        ty = "          \ttable: " + \
-            self.table.get_table_name() if "table" in self.__dict__ else ""
-        #if self.father != None : ty += "  (%s)" % str (self.father.__dict__.get ("_othercount", ""))
-        pile = [head + "*" + self.name + ty]
+        pile = [head + "*" + self.name]
 
         try:
-            buf = str(self.buffer) if self.buffer[
-                0] in guess_type_value_type() else self.buffer
+            buf = str(self.buffer) \
+                if self.buffer[0] in guess_type_value_type() \
+                else self.buffer
         except IndexError:
             buf = str(self.buffer)
 
@@ -156,7 +154,7 @@ class XMLHandlerDictNode (dict):
         """
         Gets a copy.
         """
-        u = XMLHandlerDictNode(self, self.father, self.name, self.value)
+        u = XMLHandlerDictNode(self, self.father, self.name, self.level)
         u.buffer = self.buffer
         u.level = self.level
         return u
@@ -693,22 +691,13 @@ class XMLHandlerDictNode (dict):
                 if len(self[k]) == 0:
                     continue
                 if k not in memo:
-                    if "table" not in self.__dict__:
-                        self._log_error()
-                        if exception:
-                            raise XmlException(
-                                "a field '%s' is not provided by the reference (path: %s)\nmemo.keys(): %s" %
-                                (k, "/".join(
-                                    self.get_full_name()), str(
-                                    memo.keys())))
-                    else:
-                        self._log_error()
-                        if exception:
-                            raise XmlException(
-                                "a field '%s' is not provided by the reference (table '%s', path %s)\nmemo.keys(): %s" %
-                                (k, self.table.get_table_name(), "/".join(
-                                    self.get_full_name()), str(
-                                    memo.keys())))
+                    self._log_error()
+                    if exception:
+                        raise XmlException(
+                            "a field '%s' is not provided by the reference (path: %s)\nmemo.keys(): %s" %
+                            (k, "/".join(
+                                self.get_full_name()), str(
+                                memo.keys())))
                 tn = XMLHandlerDictNode(self, k, self.level + 1, False)
                 v = self[k]
                 tn.buffer = v
@@ -785,8 +774,7 @@ class XMLHandlerDictNode (dict):
                 self._log_error()
                 if exception:
                     raise XmlException(
-                        "fail to convert value for field " +
-                        self.name) from ex
+                        "Fail to convert value for field '{}'".format(self.name)) from ex
             v = ""
 
         if not isinstance(v, str) or len(v) > 0:

@@ -6,21 +6,18 @@ import os
 import webbrowser
 import sys
 import threading
-
-from pyquickhelper.loghelper.flog import fLOG
 from pyensae.sql.database_main import Database
 from .rss_stream import StreamRSS
 from .rss_blogpost import BlogPost
 from .rss_simple_server import RSSServer
 
 
-def rss_from_xml_to_database(file,
-                             database="database_rss.db3",
-                             table="blogs",
-                             fLOG=fLOG):
+def rss_from_xml_to_database(file, database="database_rss.db3",
+                             table="blogs", fLOG=None):
     """
-    parses a list of blogs stored in a XML file using Google Reader format,
-    stores the results in a SQLite database
+    Parses a list of blogs stored in a :epkg:`XML`
+    file using Google Reader format,
+    stores the results in a :epkg:`SQLite` database.
 
     @param  file            (str) xml file containing the list of blogs, example:
     @param  database        database file (sqlite)
@@ -29,15 +26,18 @@ def rss_from_xml_to_database(file,
     @return                 number of stored blogs
 
     The XML file should contain the following:
-    @code
+
+    ::
+
         <outline text="XD blog"
                 title="XD blog" type="rss"
                 xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml"
                 htmlUrl="http://www.xavierdupre.fr/blog/xd_blog.html" />
-    @endcode
 
-    The function does not check whether or not the blogs were already added to the database,
-    they will be added a second time. If the table does not exist, it will be created.
+    The function does not check whether or not the blogs were
+    already added to the database,
+    they will be added a second time. If the table
+    does not exist, it will be created.
     """
     res = list(StreamRSS.enumerate_stream_from_google_list(file))
     db = Database(database, LOG=fLOG)
@@ -50,9 +50,10 @@ def rss_from_xml_to_database(file,
 def rss_download_post_to_database(database="database_rss.db3",
                                   table_blog="blogs",
                                   table_post="posts",
-                                  fLOG=fLOG):
+                                  fLOG=None):
     """
-    download all post from a list of blogs stored in a database by function @see fn rss_from_xml_to_database
+    Downloads all posts from a list of blogs stored
+    in a database by function @see fn rss_from_xml_to_database.
 
     @param      database        database file name (SQLite format)
     @param      table_blog      table name of the blogs
@@ -72,10 +73,12 @@ def rss_download_post_to_database(database="database_rss.db3",
 
 
 def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="today",
-                          server=None, thread=False, fLOG=fLOG):
+                          server=None, thread=False, fLOG=None):
     """
-    create a database if it does not exists, add a table for blogs and posts,
-    update the database, starts a server and open a browser
+    Creates a database if it does not exists,
+    add a table for blogs and posts,
+    update the database, starts a server and
+    open a browser.
 
     @param      dbfile      (str) sqllite database to create
     @param      xml_blogs   (str) xml description of blogs (google format) (file or string)
@@ -96,9 +99,9 @@ def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="to
 
 
 def rss_run_server(dbfile, port=8093, browser=None, period="today",
-                   server=None, thread=False, fLOG=fLOG):
+                   server=None, thread=False, fLOG=None):
     """
-    starts a server and open a browser on a page reading blog posts
+    Starts a server and open a browser on a page reading blog posts.
 
     @param      dbfile      (str) sqllite database to create
     @param      port        the main page will be ``http://localhost:port/``
@@ -108,17 +111,18 @@ def rss_run_server(dbfile, port=8093, browser=None, period="today",
     @param      thread      to start the server in a separate thread
     @param      fLOG        logging function
 
-    You can read the blog post `RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
+    You can read the blog post `RSS Reader
+    <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
 
     If *browser* is "none", the browser is not started.
-
     """
     if not os.path.exists(dbfile):
         raise FileNotFoundError(dbfile)
 
     def open_browser():
         url = "http://localhost:%d/rss_reader.html?search=%s" % (port, period)
-        fLOG("opening ", url)
+        if fLOG:
+            fLOG("opening ", url)
         if browser is not None:
             if browser in ["none", "None"]:
                 pass

@@ -13,6 +13,10 @@ from urllib.parse import urlparse, parse_qs
 from io import StringIO
 from threading import Thread
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from pyquickhelper.loghelper import fLOG
+from pyquickhelper.filehelper import get_url_content_timeout
+from .html_script_parser import HTMLScriptParser, HTMLScriptParserRemove
+from .html_string import html_footer, html_header, html_debug_string
 
 
 def get_path_javascript():
@@ -83,7 +87,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         """
         BaseHTTPRequestHandler.__init__(self, request, client_address, server)
 
-    def log_message(self, format, *args):
+    def log_message(self, format, *args):  # pylint: disable=W0622
         """
         Logs an arbitrary message. Overloads the original method.
 
@@ -131,7 +135,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         """
         What to do is case of POST request.
         """
-        parsed_path = urlparse.urlparse(self.path)
+        parsed_path = urlparse(self.path)
         self.serve_content(parsed_path)
         # self.wfile.close()
 
@@ -229,7 +233,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
             self.LOG(content)
             return content
 
-        if ftype == "r" or ftype == "execute":
+        if ftype in ("r", "execute"):
             self.LOG("reading file ", tlocalpath)
             with open(tlocalpath, "r", encoding="utf8") as f:
                 return f.read()
@@ -250,35 +254,36 @@ class SimpleHandler(BaseHTTPRequestHandler):
         out, error = exe.communicate()
         return out, error
 
-    def feed(self, any, script_python=False, params=None):
+    def feed(self, any_, script_python=False, params=None):
         """
         Displays something.
 
-        @param      any                 string
+        @param      any_                string
         @param      script_python       if True, the function processes script sections
         @param      params              extra parameters, see @me process_scripts
 
         A script section looks like:
-        @code
-        <script type="text/python">
-        from pandas import DataFrame
-        pars = [ { "key":k, "value":v } for k,v in params ]
-        tbl = DataFrame (pars)
-        print ( tbl.tohtml(class_table="myclasstable") )
-        </script>
-        @endcode
+
+        ::
+
+            <script type="text/python">
+            from pandas import DataFrame
+            pars = [ { "key":k, "value":v } for k,v in params ]
+            tbl = DataFrame (pars)
+            print ( tbl.tohtml(class_table="myclasstable") )
+            </script>
         """
         if params is None:
             params = {}
 
-        if isinstance(any, bytes):
+        if isinstance(any_, bytes):
             if script_python:
                 raise SystemError("unable to execute script from bytes")
-            self.wfile.write(any)
+            self.wfile.write(any_)
         else:
             if script_python:
-                any = self.process_scripts(any, params)
-            text = any.encode("utf-8")
+                any_ = self.process_scripts(any_, params)
+            text = any_.encode("utf-8")
             self.wfile.write(text)
 
     def shutdown(self):
@@ -364,9 +369,11 @@ class SimpleHandler(BaseHTTPRequestHandler):
                 else:
                     self.send_response(200)
                     _, ftype = self.get_ftype(localpath)
-                    execute = eval(params.get("execute", ["True"])[0])
+                    execute = eval(params.get("execute", ["True"])[  # pylint: disable=W0123
+                                   0])  # pylint: disable=W0123
                     path = params.get("path", [None])[0]
-                    keep = eval(params.get("keep", ["False"])[0])
+                    keep = eval(params.get("keep", ["False"])[  # pylint: disable=W0123
+                                0])  # pylint: disable=W0123
                     if keep and path not in self.get_pathes():
                         self.LOG(
                             "execute",
@@ -423,11 +430,10 @@ class SimpleHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.send_headers("")
                     self.feed(
-                        "unable to serve content for url: " +
-                        path.geturl())
+                        "Unable to serve content for url: '{}'.".format(path.geturl()))
                     self.send_error(404)
                 else:
-                    r, ft = self.get_ftype(found)
+                    _, ft = self.get_ftype(found)
                     if ft == "r":
                         try:
                             with open(found, ft, encoding="utf8") as f:
@@ -492,7 +498,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     def html_code_renderer(self, localpath, content):
         """
-        Produces a html code for code.
+        Produces a :epkg:`html` code for code.
 
         @param      localpath   local path to file (local or not)
         @param      content     content of the file
@@ -514,17 +520,14 @@ class SimpleHandler(BaseHTTPRequestHandler):
         """
         self.send_response(200)
         self.send_headers("")
-        self.feed(
-            "unable to serve content for url: " +
-            path.geturl() +
-            "\n" +
-            str(params) +
-            "\n")
+        self.feed("Unable to serve content for url: '{}'\n{}".format(
+            path.geturl(), str(params)))
         self.send_error(404)
 
     def process_scripts(self, content, params):
         """
-        Parses a :epkg:`HTML` string, extract script section (only python script for the time being)
+        Parses a :epkg:`HTML` string, extract script section
+        (only python script for the time being)
         and returns the final page.
 
         @param      content     html string

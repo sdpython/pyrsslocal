@@ -9,8 +9,6 @@ import urllib
 import datetime
 from http.server import HTTPServer
 from socketserver import ThreadingMixIn
-
-from pyquickhelper.loghelper import fLOG
 from .rss_database import DatabaseRSS
 from ..simple_server.simple_server_custom import SimpleHandler, ThreadServer
 
@@ -174,26 +172,19 @@ class RSSSimpleHandler(SimpleHandler):
                 self.send_error(404)
 
 
-class RSSServer (ThreadingMixIn, HTTPServer):
-
+class RSSServer(ThreadingMixIn, HTTPServer):
     """
-    defines a RSS server dedicated to one specific database.
-
-    You can read the blog post `RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
+    Defines a :epkg:`RSS` server dedicated to one specific database.
+    You can read the blog post `RSS Reader
+    <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
     """
 
-    def __init__(self,
-                 server_address,
-                 dbfile,
+    def __init__(self, server_address, dbfile,
                  RequestHandlerClass=RSSSimpleHandler,
                  main_page="rss_reader.html",
                  root=os.path.abspath(os.path.split(__file__)[0]),
-                 logfile=None,
-                 fLOG=fLOG
-                 ):
+                 logfile=None, fLOG=None):
         """
-        constructor
-
         @param  server_address          address of the server
         @param  RequestHandlerClass     it should be @see cl RSSSimpleHandler
         @param  dbfile                  database filename (SQLlite format)
@@ -201,13 +192,17 @@ class RSSServer (ThreadingMixIn, HTTPServer):
         @param  root                    folder when the server will look into for files such as the main page
         @param  fLOG                    logging function
         """
-        fLOG("RSSServer.init: begin server")
+        if fLOG:
+            fLOG("RSSServer.init: begin server")
         HTTPServer.__init__(self, server_address, RequestHandlerClass)
-        fLOG("RSSServer.init: begin db rss")
+        if fLOG:
+            fLOG("RSSServer.init: begin db rss")
         self._my_database = DatabaseRSS(dbfile, LOG=fLOG)
-        fLOG("RSSServer.init: begin db event")
+        if fLOG:
+            fLOG("RSSServer.init: begin db event")
         self._my_database_ev = DatabaseRSS(dbfile, LOG=fLOG)
-        fLOG("RSSServer.init: end db")
+        if fLOG:
+            fLOG("RSSServer.init: end db")
         self._my_root = root
         self._my_main_page = main_page
         self._my_address = server_address
@@ -233,7 +228,7 @@ class RSSServer (ThreadingMixIn, HTTPServer):
         """
         return self
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback):  # pylint: disable=W0221
         """
         what to do when removing the instance (close the log file)
         """
@@ -242,11 +237,11 @@ class RSSServer (ThreadingMixIn, HTTPServer):
 
     def process_event(self, event):
         """
-        process an event, it expects a format like the following:
+        Processes an event, it expects a format like the following:
 
-        @code
-        type1/uuid/type2/args
-        @endcode
+        ::
+
+            type1/uuid/type2/args
 
         @param      event   string to log
         """
@@ -294,9 +289,10 @@ class RSSServer (ThreadingMixIn, HTTPServer):
         self._my_database_ev.close()
 
     @staticmethod
-    def run_server(server, dbfile, thread=False, port=8080, logfile=None, fLOG=fLOG):
+    def run_server(server, dbfile, thread=False, port=8080,
+                   logfile=None, fLOG=None):
         """
-        start the server
+        Starts the server.
 
         @param      server      None or string, see below
         @param      dbfile      file to the RSS database (SQLite)
@@ -310,11 +306,11 @@ class RSSServer (ThreadingMixIn, HTTPServer):
 
         About the parameter ``server``:
 
-            * ``None``, it becomes ``RSSServer(('localhost', 8080), dbfile, RSSSimpleHandler)``
-            * ``<server>``, it becomes ``RSSServer((server, 8080), dbfile, RSSSimpleHandler)``
+        * ``None``, it becomes ``RSSServer(('localhost', 8080), dbfile, RSSSimpleHandler)``
+        * ``<server>``, it becomes ``RSSServer((server, 8080), dbfile, RSSSimpleHandler)``
 
-        @warning If you kill the python program while the thread is still running, python interpreter might be closed completely.
-
+        @warning If you kill the python program while the thread is still running,
+                 python interpreter might be closed completely.
         """
         if server is None:
             server = RSSServer(

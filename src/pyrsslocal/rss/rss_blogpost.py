@@ -9,9 +9,10 @@ from pyquickhelper.loghelper.convert_helper import str2datetime
 class BlogPost:
 
     """
-    a blog post
+    A blog post.
 
-    @code
+    ::
+
         <item>
             <title>Raw food</title>
             <link>http://www.xavierdupre.fr/blog/xd_blog.html?date=2013-06-30</link>
@@ -19,7 +20,6 @@ class BlogPost:
             <description>&lt;p&gt; J'ecoutais une em....</description>
             <pubDate>2013-06-30 00:00:00</pubDate>
         </item>
-    @endcode
 
     @var    id_rss          id of the blog source
     @var    title           title of the stream
@@ -33,7 +33,7 @@ class BlogPost:
     """
 
     def __init__(self, id_rss, title, guid, isPermaLink, link,
-                 description, pubDate, keywords=None, id=-1):
+                 description, pubDate, keywords=None, idblog=-1):
         """
         constructor
 
@@ -56,18 +56,12 @@ class BlogPost:
         self.description = description
         self.pubDate = pubDate
         self.keywords = keywords
-        self.id = id
+        self.id = idblog
         self.status = None
         self.statusList = [
-            "jokes",
-            "programming",
-            "data",
-            "reject",
-            "read",
-            "keep",
-            "interesting",
-            "teachings",
-            "work"]
+            "jokes", "programming", "data", "reject",
+            "read", "keep", "interesting",
+            "teachings", "work"]
 
         if self.id_rss is None:
             raise Exception("no source (StreamRSS) for this post")
@@ -228,7 +222,7 @@ class BlogPost:
         @param      thispage        the displayed page
         @return                     html string
         """
-        all = []
+        alls = []
         for k in self.statusList:
             if self.status is not None and "status" in self.status and self.status[
                     "status"] == k:
@@ -237,8 +231,8 @@ class BlogPost:
                 style = "poststatusextbno"
             code = """<a class="%s" href="%s" onmousedown="sendlog('status/{0.id}/%s')">%s</a>""" % (
                 style, thispage, k, k)
-            all.append(code)
-        return "\n".join(all)
+            alls.append(code)
+        return "\n".join(alls)
 
     template = """
                             <p class="%s">{0.pubDateformat}<a href="%s" onmousedown="sendlog('post/{0.id}/in')">{0.title}</a>

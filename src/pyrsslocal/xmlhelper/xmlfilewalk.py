@@ -168,7 +168,7 @@ def table_extraction_from_xml_files(file, output, fields, log=False, encoding="u
         outputh.close()
 
 
-def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
+def xml_filter_iterator(file, filter_=None, log=False, xmlformat=True,
                         fLOG=None, encoding="utf-8", errors=None):
     """
     Goes through a :epkg:`XML` file,
@@ -176,7 +176,7 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
     the result is an iterator.
 
     @param      file        a file
-    @param      filter      a function which takes a node and returns a boolean, if None, accepts everything
+    @param      filter_     a function which takes a node and returns a boolean, if None, accepts everything
     @param      log         do logs if True
     @param      xmlformat   if True, return the xml, otherwise return the node
     @param      fLOG        logging function
@@ -184,9 +184,11 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
     @param      errors      sent to function :epkg:`*py:library:function`
     @return                 the xml format or a node depending on thevalue of xmlformat
     """
-    if filter is None:
-        def filter_(node):
+    if filter_ is None:
+        def filter__(node):
             return True
+
+        filter_ = filter__
 
     fileh = open(file, "r", encoding=encoding, errors=errors) if isinstance(
         file, str) else file
@@ -213,14 +215,14 @@ def xml_filter_iterator(file, filter=None, log=False, xmlformat=True,
         fLOG("xml_filter_iterator: end")
 
 
-def xml_filter(file, output, filter, log=False, xmlformat=True, encoding="utf-8", errors=None):
+def xml_filter(file, output, filter_, log=False, xmlformat=True, encoding="utf-8", errors=None):
     """
     Goes through a :epkg:`XML` file, returns :epkg:`XML` content
     if a condition is verified, the result is put into a stream.
 
     @param      file        a file
     @param      output      output file, string or file object
-    @param      filter      a function which takes a node and returns a boolean
+    @param      filter_     a function which takes a node and returns a boolean
     @param      xmlformat   if True, return the xml, otherwise return the node
     @param      encoding    encoding
     @param      errors      sent to function :epkg:`*py:library:function`
@@ -228,7 +230,7 @@ def xml_filter(file, output, filter, log=False, xmlformat=True, encoding="utf-8"
     """
     outputh = open(output, "r", encoding=encoding,
                    errors=errors) if isinstance(output, str) else output
-    for line in xml_filter_iterator(file, filter, log, xmlformat):
+    for line in xml_filter_iterator(file, filter_, log, xmlformat):
         outputh.write(line)
         outputh.write(GetSepLine())
     if isinstance(output, str):

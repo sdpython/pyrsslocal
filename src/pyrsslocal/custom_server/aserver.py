@@ -140,73 +140,72 @@ class CustomDBServer (ThreadingMixIn, HTTPServer):
     defines a custom server which includes an access to a database,
     this database will contain de table to store the clicks
 
-    @example(create a custom local server)
+    .. exref::
+        :title: create a custom local server
 
-    The following code creates an instance of a local server.
-    The server expects to find its content in the same folder.
+        The following code creates an instance of a local server.
+        The server expects to find its content in the same folder.
 
-    @code
-    from pyensae import Database
+        ::
 
-    db = Database(dbfile)
-    df = pandas.DataFrame ( [ {"name":"xavier", "module":"pyrsslocal"} ] )
-    db.connect()
-    db.import_dataframe(df, "example")
-    db.close()
+            from pyensae import Database
 
-    url = "http://localhost:%d/p_aserver.html" % port
-    webbrowser.open(url)
-    CustomDBServer.run_server(None, dbfile, port = port, extra_path = os.path.join("."))
-    @endcode
+            db = Database(dbfile)
+            df = pandas.DataFrame ( [ {"name":"xavier", "module":"pyrsslocal"} ] )
+            db.connect()
+            db.import_dataframe(df, "example")
+            db.close()
 
-    The main page is the following one and it can contains a Python script
-    which will be interpreter by the server.
-    It gives access to a variable ``db`` which is a local database
-    in SQLlite.
+            url = "http://localhost:%d/p_aserver.html" % port
+            webbrowser.open(url)
+            CustomDBServer.run_server(None, dbfile, port = port, extra_path = os.path.join("."))
 
-    @code
-    <?xml version="1.0" encoding="utf-8"?>
-    <html>
-    <head>
-    <link type="text/css" href="/p_aserver.css" rel="stylesheet"/>
-    <title>Custom DB Server</title>
-    <meta content="dupre, pyrsslocal, custom server" name="keywords"/>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link rel="shortcut icon" href="p_aserver.ico" />
-    <meta content="CustomServer from pyrsslocal" name="description" />
-    <script type="text/javascript" src="/p_aserver.js"></script>
-    <script src="/js/run_prettify.js" type="text/javascript"></script>
+        The main page is the following one and it can contains a Python script
+        which will be interpreter by the server.
+        It gives access to a variable ``db`` which is a local database
+        in SQLlite.
 
-    </head>
+        ::
 
-    <body onload="setPositions(['divtable', ])" class="mymainbody">
+            <?xml version="1.0" encoding="utf-8"?>
+            <html>
+            <head>
+            <link type="text/css" href="/p_aserver.css" rel="stylesheet"/>
+            <title>Custom DB Server</title>
+            <meta content="dupre, pyrsslocal, custom server" name="keywords"/>
+            <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+            <link rel="shortcut icon" href="p_aserver.ico" />
+            <meta content="CustomServer from pyrsslocal" name="description" />
+            <script type="text/javascript" src="/p_aserver.js"></script>
+            <script src="/js/run_prettify.js" type="text/javascript"></script>
 
-    <div class="divtop">
-    <h1>Custom DB Server unittest</h1>
-    </div>
+            </head>
 
-    <div class="divtable" id="divfiles" onscroll="savePosition('divtable')">
+            <body onload="setPositions(['divtable', ])" class="mymainbody">
 
-    <h2>Content of table example</h2>
+            <div class="divtop">
+            <h1>Custom DB Server unittest</h1>
+            </div>
 
-    <script type="text/python">
-    print("<table>")
-    db.connect()
-    for row in db.execute_view("SELECT * FROM example") :
-        srow = [ str(_) for _ in row ]
-        print( "<tr><td>{0}</td></tr>".format("</td><td>".join(srow) ) )
-    db.close()
-    print("</table>")
-    </script>
+            <div class="divtable" id="divfiles" onscroll="savePosition('divtable')">
 
-    <p>end.</p>
+            <h2>Content of table example</h2>
 
-    </div>
-    </body>
-    </html>
-    @endcode
+            <script type="text/python">
+            print("<table>")
+            db.connect()
+            for row in db.execute_view("SELECT * FROM example") :
+                srow = [ str(_) for _ in row ]
+                print( "<tr><td>{0}</td></tr>".format("</td><td>".join(srow) ) )
+            db.close()
+            print("</table>")
+            </script>
 
-    @endexample
+            <p>end.</p>
+
+            </div>
+            </body>
+            </html>
     """
 
     @staticmethod
@@ -307,24 +306,24 @@ class CustomDBServer (ThreadingMixIn, HTTPServer):
 
     def __enter__(self):
         """
-        what to do when creating the class
+        What to do when creating the class.
         """
         return self
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback):  # pylint: disable=W0221
         """
-        what to do when removing the instance (close the log file)
+        What to do when removing the instance (close the log file).
         """
         if self.flog is not None and self.logfile != "stdout":
             self.flog.close()
 
     def process_event(self, event):
         """
-        process an event, it expects a format like the following:
+        Processes an event, it expects a format like the following:
 
-        @code
-        type1/uuid/type2/args
-        @endcode
+        ::
+
+            type1/uuid/type2/args
 
         @param      event   string to log
         """
