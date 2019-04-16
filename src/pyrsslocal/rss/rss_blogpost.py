@@ -32,8 +32,8 @@ class BlogPost:
     @var    status          status (dictionary with variables)
     """
 
-    def __init__(self, id_rss, title, guid, isPermaLink, link,
-                 description, pubDate, keywords=None, idblog=-1):
+    def __init__(self, id_rss, title, guid, isPermaLink, link,  # pylint: disable=W0622
+                 description, pubDate, keywords=None, id=-1):  # pylint: disable=W0622
         """
         constructor
 
@@ -45,6 +45,7 @@ class BlogPost:
         @param    description     description
         @param    pubDate         pubDate
         @param    keywords        keywords
+        @param    id              blog id
         """
         if keywords is None:
             keywords = []
@@ -56,7 +57,7 @@ class BlogPost:
         self.description = description
         self.pubDate = pubDate
         self.keywords = keywords
-        self.id = idblog
+        self.id = id
         self.status = None
         self.statusList = [
             "jokes", "programming", "data", "reject",

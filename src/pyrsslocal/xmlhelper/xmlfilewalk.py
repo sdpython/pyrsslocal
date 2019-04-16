@@ -206,12 +206,12 @@ def xml_filter_iterator(file, filter_=None, log=False, xmlformat=True,
             else:
                 yield o
 
-        if log and (i_ + 1) % 1000 == 0:
+        if fLOG and log and (i_ + 1) % 1000 == 0:
             fLOG("table_extraction_from_xml_files reading ", i_)
 
     if isinstance(file, str):
         fileh.close()
-    if log:
+    if log and fLOG:
         fLOG("xml_filter_iterator: end")
 
 

@@ -1,0 +1,92 @@
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+======================================================================
+ERROR: test_code_style_src (test_code_style.TestCodeStyle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\xavierdupre\__home_\GitHub\pyrsslocal\_unittests\ut_module\test_code_style.py", line 34, in test_code_style_src
+    skip=["Unable to import 'pyrsslocal'",
+  File "C:\xavierdupre\__home_\GitHub\pyquickhelper\src\pyquickhelper\pycode\utils_tests_helper.py", line 418, in check_pep8
+    "{0} lines\n{1}".format(len(lines), "\n".join(lines)))
+pyquickhelper.pycode.utils_tests_helper.PEP8Exception: 3 lines
+C:\xavierdupre\__home_\GitHub\pyrsslocal\src\pyrsslocal\rss\rss_blogpost.py:36: W0622: Redefining built-in 'id' (pylint)
+C:\xavierdupre\__home_\GitHub\pyrsslocal\src\pyrsslocal\rss\rss_stream.py:33: W0622: Redefining built-in 'type' (pylint)
+C:\xavierdupre\__home_\GitHub\pyrsslocal\src\pyrsslocal\rss\rss_stream.py:33: W0622: Redefining built-in 'id' (pylint)
+
+======================================================================
+ERROR: test_code_style_test (test_code_style.TestCodeStyle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\xavierdupre\__home_\GitHub\pyrsslocal\_unittests\ut_module\test_code_style.py", line 56, in test_code_style_test
+    extended=[("fLOG", _extended_refactoring)])
+  File "C:\xavierdupre\__home_\GitHub\pyquickhelper\src\pyquickhelper\pycode\utils_tests_helper.py", line 418, in check_pep8
+    "{0} lines\n{1}".format(len(lines), "\n".join(lines)))
+pyquickhelper.pycode.utils_tests_helper.PEP8Exception: 1 lines
+C:\xavierdupre\__home_\GitHub\pyrsslocal\_unittests\ut_rss\test_rss_bug.py:22: E1123: Unexpected keyword argument 'idrss' in constructor call (pylint)
+
+----------------------------------------------------------------------
+Ran 2 tests in 53.321s
+
+FAILED (errors=2)
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+----------------------------------------------------------------------
+Ran 2 tests in 0.004s
+
+OK
+----------------------------------------------------------------------
+Ran 3 tests in 0.759s
+
+OK
+======================================================================
+ERROR: test_rss_parse (test_rss_bug.TestRSSBug)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\xavierdupre\__home_\GitHub\pyrsslocal\_unittests\ut_rss\test_rss_bug.py", line 25, in test_rss_parse
+    keywordsb=["python"], idrss=5)
+TypeError: __init__() got an unexpected keyword argument 'idrss'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+----------------------------------------------------------------------
+Ran 4 tests in 0.230s
+
+OK
+----------------------------------------------------------------------
+Ran 2 tests in 3.202s
+
+OK
+----------------------------------------------------------------------
+Ran 1 test in 4.589s
+
+OK
+----------------------------------------------------------------------
+Ran 1 test in 0.064s
+
+OK
+----------------------------------------------------------------------
+Ran 1 test in 5.842s
+
+OK
+----------------------------------------------------------------------
+Ran 1 test in 0.187s
+
+OK
+----------------------------------------------------------------------
+Ran 1 test in 0.168s
+
+OK
+----------------------------------------------------------------------
+Ran 1 test in 0.102s
+
+OK

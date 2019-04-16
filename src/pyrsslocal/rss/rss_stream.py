@@ -29,23 +29,23 @@ class StreamRSS:
     @var    keywordsb   list of keywords
     """
 
-    def __init__(
-            self, titleb, type_, xmlUrl, htmlUrl, keywordsb, idrss=-1, nb=None):
+    def __init__(self, titleb, type, xmlUrl, htmlUrl,  # pylint: disable=W0622
+                 keywordsb, id=-1, nb=None):  # pylint: disable=W0622
         """
         @param    titleb      title of the stream
-        @param    type_       type
+        @param    type        type
         @param    xmlUrl      url of the rss stream
         @param    htmlUrl     main page of the blog
         @param    keywordsb   keywords
-        @param    idrss       an id
+        @param    id          an id
         @param    nb          not included in the database, part of the statistics with can be added if they not None
         """
         self.titleb = titleb
-        self.type = type_
+        self.type = type
         self.xmlUrl = xmlUrl
         self.htmlUrl = htmlUrl
         self.keywordsb = keywordsb
-        self.id = idrss
+        self.id = id
         self.stat = {}
         if nb is not None:
             self.stat["nb"] = nb
@@ -157,7 +157,7 @@ class StreamRSS:
                         if len(oo.other) == 0 and "xmlUrl" in oo:
                             if len(oo["xmlUrl"]) > 0:
                                 obj = StreamRSS(titleb=oo["title"],
-                                                type_=oo["type"],
+                                                type=oo["type"],
                                                 xmlUrl=oo["xmlUrl"],
                                                 htmlUrl=oo["htmlUrl"],
                                                 keywordsb=[])

@@ -98,10 +98,10 @@ class TestRSS (unittest.TestCase):
         file = os.path.join(path, "data", "xdbrss.xml")
         assert os.path.exists(file)
 
-        rss = StreamRSS(titleb="XD", type_="rss",
+        rss = StreamRSS(titleb="XD", type="rss",
                         xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml",
                         htmlUrl="http://www.xavierdupre.fr/blog/xd_blog_nojs.html",
-                        keywordsb=["python"], idrss=5)
+                        keywordsb=["python"], id=5)
 
         res = rss.enumerate_post(fLOG=fLOG)
         nb = 0

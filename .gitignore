@@ -250,3 +250,4 @@ cacheSearchPage/bing.bing.html
 _doc/sphinxdoc/source/phdoc_static/require.js
 _doc/sphinxdoc/source/phdoc_static/style_notebook_snippet.css
 _unittests/ut_helper/test_search.py.err
+*.err
