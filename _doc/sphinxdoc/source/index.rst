@@ -50,8 +50,9 @@ managed by a local python server using a SQLite database:
 ::
 
     from pyrsslocal import rss_update_run_server
-    fLOG (OutputPrint = True)
+    fLOG (OutputPrint=True)
     xml_blogs = "subscriptions.xml"
+    # xml_blogs = os.path.join("_unittests", "ut_rss", "data", "subscriptions.xml")
     dbfile = "rss_posts.db3"
     rss_update_run_server(dbfile, xml_blogs)
 
@@ -105,17 +106,17 @@ Snapshots
 Main page:
 
 .. image:: page1.png
-    :width: 600px
+    :width: 500px
 
 Marked blog posts:
 
 .. image:: page2.png
-    :width: 600px
+    :width: 500px
 
 Search page:
 
 .. image:: page3.png
-    :width: 600px
+    :width: 500px
 
 Quick start
 -----------
