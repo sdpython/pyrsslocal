@@ -208,8 +208,9 @@ class RSSServer(ThreadingMixIn, HTTPServer):
         self._my_address = server_address
         if SimpleHandler == RequestHandlerClass:
             raise TypeError("this request handler should not be SimpleHandler")
-        fLOG("RSSServer.init: root=", root)
-        fLOG("RSSServer.init: db=", dbfile)
+        if fLOG:
+            fLOG("RSSServer.init: root=", root)
+            fLOG("RSSServer.init: db=", dbfile)
 
         self.logfile = logfile
         if self.logfile is not None:
