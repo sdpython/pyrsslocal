@@ -224,11 +224,12 @@ class StreamRSS:
         if path is None:
             path = self.xmlUrl
 
-        if path.startswith("http://"):
+        if path.startswith("http://") or path.startswith("https://"):
             cont = get_url_content_timeout(path)
             if cont is None:
                 if fLOG:
-                    fLOG("unable to retrieve content for url: ", path)
+                    fLOG(
+                        "[enumerate_post] unable to retrieve content for url: '{}'.".format(path))
         else:
             cont = path
 
@@ -238,10 +239,20 @@ class StreamRSS:
                 if fLOG:
                     fLOG("unable to parse content from " + self.xmlUrl)
 
-            d = feedparser.parse(cont)
+            try:
+                d = feedparser.parse(cont)
+            except RuntimeError as e:
+                if fLOG:
+                    fLOG(
+                        "[enumerate_post] cannot enumerate post in '{}'.".format(path))
+                d = None
+        else:
+            d = None
+
+        if d is not None:
             if len(d["entries"]) == 0:
                 if fLOG:
-                    fLOG("*** no post for ", path)
+                    fLOG("[enumerate_post] no post for ", path)
 
             for post in d["entries"]:
                 titleb = post.get("title", "-")
