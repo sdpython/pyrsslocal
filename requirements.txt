@@ -1,6 +1,7 @@
 coverage
 feedparser
 flask
+jinja2
 jyquickhelper
 git+https://github.com/sdpython/nbconvert.git@fixes
 Pillow

@@ -4,7 +4,7 @@
 import os
 import unittest
 from pyquickhelper.pycode import ExtTestCase
-from pyrsslocal.rss.rss_helper import enumerate_rss_merge
+from pyrsslocal.rss.rss_helper import enumerate_rss_merge, to_rss
 
 
 class TestRSSMerge(ExtTestCase):
@@ -16,6 +16,9 @@ class TestRSSMerge(ExtTestCase):
         blogs = list(enumerate_rss_merge(rsss))
         nb = len(blogs)
         self.assertEqual(nb, 6)
+        text = to_rss(blogs, link="http://mymy", description="zoo")
+        self.assertIn("<item>", text)
+        self.assertIn("</item>", text)
 
 
 if __name__ == "__main__":

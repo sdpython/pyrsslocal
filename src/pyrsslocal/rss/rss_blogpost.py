@@ -3,6 +3,8 @@
 @brief description of a blog post
 """
 import datetime
+from textwrap import dedent
+import jinja2
 from pyquickhelper.loghelper.convert_helper import str2datetime
 
 
@@ -353,3 +355,22 @@ class BlogPost:
                 """ % (self.id, self.link, self.id, self.title)
 
         return res
+
+    template = jinja2.Template(dedent("""
+    <item>
+        <title>{{title}}</title>
+        <link>{{link}}</link>
+        <guid isPermaLink="true">{{permalink}}</guid>
+        <description>{{description}}</description>
+        <pubDate>{{date}}</pubDate>
+    </item>
+    """))
+
+    def to_rss_item(self):
+        """
+        Converts the blogs post into :epkg:`XML`.
+        """
+        return BlogPost.template.render(  # pylint: disable=E1101
+            title=self.title, link=self.link,
+            permalink=self.isPermaLink, description=self.description,
+            data=self.pubDate)

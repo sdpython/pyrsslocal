@@ -7,6 +7,8 @@ import webbrowser
 import sys
 import threading
 import datetime
+from textwrap import dedent
+from jinja2 import Template
 from pyquickhelper.filehelper import read_content_ufs
 from pyensae.sql.database_main import Database
 from .rss_stream import StreamRSS
@@ -223,3 +225,45 @@ def enumerate_rss_merge(rss_urls, title="compilation"):
         content = read_content_ufs(name)
         for blog in enumerate_post_from_rss(content, rss_stream=sts):
             yield blog
+
+
+def to_rss(obj, link, description):
+    """
+    Converts something into :epkg:`RSS`.
+
+    @param      obj             object
+    @param      link            link
+    @param      description     description
+    @return                     content
+    """
+    if isinstance(obj, list):
+        if len(obj) == 0:
+            raise ValueError("obj cannot be empty.")
+    else:
+        raise TypeError("Unexpected type {}.".format(type(obj)))
+
+    if isinstance(obj[0], StreamRSS):
+        st = obj[0]
+        title = st.title
+    else:
+        title = ""
+
+    items = []
+    for blog in obj:
+        items.append(blog.to_rss_item())
+
+    template = dedent("""
+    <?xml version="1.0" encoding="utf-8"?>
+    <rss version="2.0">
+    <channel>
+    <title>{{title}}</title>
+    <link>{{link}}</link>
+    <description>{{description}}</description>
+    {{items}}
+    </channel>
+    </rss>
+    """)
+    tpl = Template(template)
+    return tpl.render(link=link, description=description,
+                      items='\n'.join(items),
+                      title=title)
