@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+    <title>papierstat</title>
+    <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/main_0000.html</link>
+    <description>blog associated to papierstat</description>
+    
+<item>
+            <title>Session 5</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-03-08_sessions5.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-03-08_sessions5.html</guid>
+            <description>L'objectif de la séance est de passer du temps
+sur des jeux de données. Le premier jeu,
+`Titanic &lt;http://web.stanford.edu/class/archive/cs/cs109/cs109.1166/problem12.html&gt;`_
+(**jeu 1**), contient des informations sur près de 900 passagers
+du Titanic. On souhaite prédire la probabilité qu'une personne
+n'ait pas survécu au naufrage. Le fait d'obtenir un modèle performant
+n'est pas nécessairement ce qui est recherché ici psuique l'information
+est déjà connue mais plutôt ce que le modèle peut nous apprendre en
+terme d'équité sociale face à la mort. Ce jeu est intéressant
+dans la mesure où les variables sont de types variés.
+
+Je suis tombé sur ce jeu d'images
+`Lego Brick &lt;https://www.kaggle.com/joosthazelzet/lego-brick-images&gt;`_
+qui permet de construire un classifieur reconnaissant des briques
+`Lego &lt;https://www.lego.com/fr-fr/&gt;`_. Le jeu de données
+est intéressant dans la mesure où il montre des pièces sous
+tous les angles mais qui sont clairement des images
+de synthèses et non des images réelles. Cela suggère qu'il faut
+des pièces sous tous les angles pour apprendre mais cela réduit
+la portée du modèle qu'on peut apprendre qui sera sans doute
+incapable de reconnaître la même pièce posée sous n'importe
+quel fond.
+
+On va s'intéresser à un jeu de données utilisé lors du
+`hackathon ENSAE 2018 &lt;http://www.xavierdupre.fr/app/ensae_projects/helpsphinx/projects/hackathon_2018.html&gt;`_ :
+`sample_labelled_train.zip &lt;http://www.xavierdupre.fr/hackathon/sample_labelled_train.zip&gt;`_ (**jeu 2**).
+Il contient peu d'images dont le nombre ne suffit pas à
+les classer correctement. L'objectif est ici de comparer deux
+clustering : un sur les images brutes, un autre sur des images
+transformées avec un modèle de deep learning
+(`transfer learning &lt;https://en.wikipedia.org/wiki/Transfer_learning&gt;`_).
+
+Le dernier sera une série temporelle financière, le
+`CAC40 &lt;http://www.xavierdupre.fr/enseignement/complements/cac40.csv&gt;`_
+(**jeu 3**), pour lequel il faut prédire s'il montera ou descendera
+le lendemain. Voyons si cela est possible.
+Ce n'est pas très original mais c'est un grand classique.
+Les données ont été récupérées avec
+`pyensae &lt;http://www.xavierdupre.fr/app/pyensae/helpsphinx/&gt;`_ et cet exemple
+`Manipulation de séries financières avec la classe StockPrices &lt;http://www.xavierdupre.fr/app/pyensae/helpsphinx/notebooks/pyensae_StockPrices.html&gt;`_.
+Je suis parfois étonné, ça marche encore alors que j'ai essayé
+de télécharger les mêmes données depuis le site de Yahoo sans succès.
+A vrai dire, je sais à la semaine près si ça pète
+car je fais tourner un test unitaire qui vérifie que
+ça marche toutes les semaines.
+
+Pour l'originalité, voici des sujets qui ont intéressé
+des étudiants qui ont suivis mes cours par le passé :
+
+* Analyse de la malignité des cellules
+* A home-made Siri : répondre à des questions ouvertes en utilisant Wikipédia
+* Prediction de surplus de velos dans une station
+* Optimisation d'un problème d'allocation de créneaux d'atterissage
+* Reconnaissance de genre musical
+* Prédiction des centres d'intérêts des députés à partir de leurs interventions
+* Prédiction de la natue d'une tumeur
+* Pertinence et incitations de la taxation sur le carburant automobile
+* Reconnaissance dessins logos applications
+* Déterminants des inégalités de parloirs entre détenus</description>
+            <pubDate>2019-03-08</pubDate>
+        </item>
+<item>
+            <title>Session 4</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-03-01_sessions4.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-03-01_sessions4.html</guid>
+            <description>* :ref:`l-cheatsheet-ml`
+* `clustering &lt;http://scikit-learn.org/stable/modules/clustering.html#clustering&gt;`_,
+  `k-means &lt;http://www.xavierdupre.fr/app/mlstatpy/helpsphinx/c_clus/kmeans.html&gt;`_
+  un exemple avec
+  les `vélos à Chicago &lt;http://www.xavierdupre.fr/app/ensae_projects/helpsphinx/notebooks/city_bike_challenge.html&gt;`_
+  et l'utilisation du clustering pour trouver les
+  `profils de cyclistes à Chicago &lt;http://www.xavierdupre.fr/app/ensae_projects/helpsphinx/notebooks/city_bike_solution_cluster_start.html&gt;`_
+
+*deep learning*
+
+* `Réseaux de neurones avec pytorch &lt;http://www.xavierdupre.fr/app/ensae_teaching_dl/helpsphinx/all_notebooks.html#id8&gt;`_
+* `Transfer Learning avec pytorch &lt;http://www.xavierdupre.fr/app/mlinsights/helpsphinx/notebooks/search_images_torch.html&gt;`_ ou
+  `Transfer Learning avec keras &lt;http://www.xavierdupre.fr/app/mlinsights/helpsphinx/notebooks/search_images_keras.html&gt;`_
+* :ref:`l-gan`
+
+*Liens*
+
+* `Découverte du deep learning &lt;http://www.xavierdupre.fr/app/ensae_teaching_dl/helpsphinx/index.html&gt;`_
+* `Deep Learning course: lecture slides and lab notebooks &lt;https://github.com/m2dsupsdlclass/lectures-labs&gt;`_
+  (`Master DataScience &lt;https://www.universite-paris-saclay.fr/en/education/master/m2-data-sciences#presentation-m2&gt;`_ -
+  `Paris Saclay &lt;https://fr.wikipedia.org/wiki/Universit%C3%A9_Paris-Saclay&gt;`_)</description>
+            <pubDate>2019-03-01</pubDate>
+        </item>
+<item>
+            <title>Installer Python à l'université</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-02-24_install.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-02-24_install.html</guid>
+            <description>L'université bloque parfois quelques usages pour des raisons
+de sécurité. Il n'est pas toujours possible d'utiliser
+``pip install pandas`` ou ``conda install pandas``. Il
+faut télécharger les packages à la main et la liste des
+dépendances peut être longues. Les liens qui suivent sont
+valides pour le système Windows.
+On commence par installer *Python* avec la distribution
+`Python &lt;https://www.python.org/downloads/windows/&gt;`_ ou
+`miniconda &lt;https://docs.conda.io/en/latest/miniconda.html&gt;`_.
+J'ai pris *Miniconda* qui est plus léger qu'*Anaconda*
+mais nécessite de télécharger des paquets à la main.
+Il faut l'installer *Just for me* et ne pas ajouter *Python*
+à la variable d'environnement ``PATH``. Je commence toujours par
+installer *numpy* `numpy &lt;https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy&gt;`_
+(*numpy-1.16.1+mkl-cp37-cp37m-win_amd64.whl* dans mon cas).
+Et on l'installe avec ``pip install &lt;fichier_local&gt;`` depuis
+la ligne de commande. Dans mon cas, cela donne ::
+
+    cd c:\temp\Miniconda3\Scripts
+    pip install "..\..\numpy-1.16.1+mkl-cp37-cp37m-win_amd64.whl"
+
+Si vous utilisez *Python*, je vous suggère le fichier
+``Windows x86-64 embeddable zip file`` qui ne nécessite pas de
+droit d'amnistration. Mais il faut installer ``pip`` en téléchargeant
+`get-pip.py &lt;https://bootstrap.pypa.io/get-pip.py&gt;`_ mais je n'ai
+pas vraiment réussi à le faire marcher, ``import pip`` échoue,
+peut-être parce que j'ai déjà une autre version d'installée.
+Une fois que cette partie est passée, il faut installer les paquets
+un par un en les téléchargeant depuis
+`pypi &lt;https://pypi.org/&gt;`_ :
+
+::
+
+    pip install --no-deps &lt;nom_du_fichier_téléchargé&gt;
+
+Ou si cela ne marche pas :
+
+::
+
+    python -m pip install --no-deps &lt;nom_du_fichier_téléchargé&gt;
+
+Il faut le faire pour les paquets suivants :
+
+::
+
+    alabaster==0.7.12
+    appdirs==1.4.3
+    asn1crypto==0.24.0
+    astroid==2.1.0
+    attrs==18.2.0
+    autopep8==1.4.3
+    Babel==2.6.0
+    backcall==0.1.0
+    backports-abc==0.5
+    backports.shutil-get-terminal-size==1.0.0
+    bleach==3.1.0
+    blockdiag==1.5.4
+    brewer2mpl==1.4.1
+    bz2file==0.98
+    cairocffi==0.8.1
+    CairoSVG==2.3.0
+    cchardet==2.1.4
+    certifi==2018.11.29
+    cffi==1.11.5
+    chardet==3.0.4
+    codecov==2.0.15
+    colorama==0.4.1
+    coverage==4.5.2
+    cryptography==2.5
+    cssselect2==0.2.1
+    cycler==0.10.0
+    Cython==0.29.5
+    cytoolz==0.9.0.1
+    dask==1.1.1
+    DataProperty==0.42.0
+    decorator==4.3.2
+    defusedxml==0.5.0
+    docformatter==1.0
+    docutils==0.14
+    entrypoints==0.3
+    et-xmlfile==1.0.1
+    filelock==3.0.10
+    funcparserlib==0.3.6
+    gensim==3.7.1
+    html5lib==1.0.1
+    idna==2.8
+    imagesize==1.1.0
+    importlib-metadata==0.8
+    ipykernel==5.1.0
+    ipympl==0.2.1
+    ipython==7.3.0
+    ipython-genutils==0.2.0
+    ipywidgets==7.4.2
+    isort==4.3.4
+    jdcal==1.4
+    jedi==0.13.2
+    jeepney==0.4
+    Jinja2==2.10
+    jmespath==0.9.3
+    jsonschema==3.0.0
+    jupyter==1.0.0
+    jupyter-client==5.2.4
+    jupyter-console==6.0.0
+    jupyter-core==4.4.0
+    jupyter-pip==0.3.1
+    jupyter-sphinx==0.1.4
+    jupyterlab==0.35.4
+    jupyterlab-launcher==0.13.1
+    jupyterlab-server==0.3.0
+    jyquickhelper==0.3.128
+    keyring==18.0.0
+    kiwisolver==1.0.1
+    lazy-object-proxy==1.3.1
+    Logbook==1.4.3
+    lxml==4.3.1
+    MarkupSafe==1.1.1
+    matplotlib==3.0.2
+    mbstrdecoder==0.7.0
+    mccabe==0.6.1
+    metakernel==0.20.14
+    mistune==0.8.4
+    multi-key-dict==2.0.3
+    nbconvert==5.4.1
+    nbformat==4.4.0
+    nbpresent==3.0.0
+    nose==1.3.7
+    notebook==5.7.4
+    notedown==1.5.1
+    numpy==1.16.1+mkl
+    olefile==0.46
+    openpyxl==2.6.0
+    packaging==19.0
+    pandas==0.24.1
+    pandoc-attributes==0.1.7
+    pandocfilters==1.4.2
+    parso==0.3.4
+    path.py==11.5.0
+    pathvalidate==0.24.1
+    patsy==0.5.1
+    pbr==5.1.2
+    pep8==1.7.1
+    pexpect==4.6.0
+    pickleshare==0.7.5
+    Pillow==5.4.1
+    pipdeptree==0.13.2
+    prometheus-client==0.6.0
+    prompt-toolkit==2.0.9
+    psutil==5.5.0
+    ptyprocess==0.6.0
+    pycodestyle==2.5.0
+    pycparser==2.19
+    Pygments==2.3.1
+    pylint==2.2.2
+    pymyinstall==1.2
+    pyparsing==2.3.1
+    pypiserver==1.2.7
+    pyrsistent==0.14.11
+    python-dateutil==2.8.0
+    python-jenkins==1.4.0
+    pythonnet==2.4.0.dev0
+    pytz==2018.9
+    pywin32==223.1
+    pywin32-ctypes==0.2.0
+    pywinpty==0.5.5
+    pyzmq==17.1.2
+    qtconsole==4.4.3
+    requests==2.21.0
+    s3transfer==0.2.0
+    scikit-learn==0.20.2
+    scipy==1.2.1
+    SecretStorage==3.1.1
+    semantic-version==2.6.0
+    Send2Trash==1.5.0
+    simplegeneric==0.8.1
+    six==1.12.0
+    smart-open==1.8.0
+    smmap2==2.0.5
+    snowballstemmer==1.2.1
+    Sphinx==1.8.4
+    sphinx-gallery==0.2.0
+    sphinx-rtd-theme==0.4.3
+    sphinxcontrib-blockdiag==1.5.5
+    sphinxcontrib-imagesvg==0.1
+    sphinxcontrib-jsdemo==0.1.4
+    sphinxcontrib-websupport==1.1.0
+    statsmodels==0.9.0
+    tabledata==0.8.0
+    tabulate==0.8.3
+    terminado==0.8.1
+    testpath==0.4.2
+    tinycss2==0.6.1
+    toolz==0.9.0
+    tornado==5.1.1
+    tqdm==4.31.1
+    traitlets==4.3.2
+    typepy==0.4.0
+    unify==0.4
+    untokenize==0.1.1
+    urllib3==1.24.1
+    virtualenv==16.4.1
+    wcwidth==0.1.7
+    webcolors==1.8.1
+    webencodings==0.5.1
+    widgetsnbextension==3.4.2
+    wild-sphinx-theme==1.0.0
+    win-unicode-console==0.5
+    winrandom==1.2.1
+    winshell==0.6
+    wrapt==1.11.1
+    xlrd==1.2.0
+    XlsxWriter==1.1.5
+    xlwt==1.3.0
+    zipp==0.3.3
+
+J'ai aussi créé un fichier
+`7z &lt;https://www.7-zip.org/&gt;`_
+avec tout ces packages dedans.
+Le tout fait 500 Mo compressé et 2 Go décompressé :
+`PythonDataScientist-2019-02-24.7z
+&lt;http://www.xavierdupre.fr/enseignement/setup/PythonDataScientist-2019-02-24.7z&gt;`_
+(Python 3.7.0). Pour tester l'installation, on peut lancer
+le serveur de notebook depuis la ligne de commande :
+
+::
+
+    python -m jupyter notebook
+
+Si cela ne marche pas le répertoire où le fichier
+a été décompressé, on peut ajouter :
+
+::
+
+    set PATH=%PATH%;&lt;répertoire&gt;
+
+Et recommencer.</description>
+            <pubDate>2019-02-24</pubDate>
+        </item>
+<item>
+            <title>Session 3</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-02-22_session3.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-02-22_session3.html</guid>
+            <description>**Scraping**
+
+* `Scraping &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3///notebooks/2018-10-02_scraping_recuperer_images.html&gt;`_
+* `Un peu plus sur le scraping &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/TD2A_Eco_Web_Scraping.html&gt;`_
+  (`éléments de réponses &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/TD2A_Eco_Web_Scraping_corrige.html?highlight=scraping&gt;`_)
+* `API REST &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/TD2A_eco_les_API.html?highlight=scraping&gt;`_
+
+**Devinettes**
+
+* :ref:`l-devinette-naive-normalisation`
+
+**Texte**
+
+* :ref:`l-preprocessing`
+* :ref:`artificieltokenizerst`
+* `Analyse de sentiments &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td2a_sentiment_analysis.html&gt;`_
+  (`éléments de réponse &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td2a_sentiment_analysis_correction.html&gt;`_)
+
+**Regarder les données**
+
+* `Les vélos à Chicago &lt;http://www.xavierdupre.fr/app/ensae_projects/helpsphinx/challenges/city_bike.html&gt;`_
+
+**Un peu d'algorithme**
+
+Je reproduis ici un code qui construit les permutations d'un ensemble
+avec la fonction `combinaison
+&lt;https://docs.python.org/3.7/library/itertools.html#itertools.combinations&gt;`_ :
+
+::
+
+    def combinations(iterable, r):
+        # combinations('ABCD', 2) --&gt; AB AC AD BC BD CD
+        # combinations(range(4), 3) --&gt; 012 013 023 123
+        pool = tuple(iterable)
+        n = len(pool)
+        if r &gt; n:
+            return
+        indices = list(range(r))
+        yield tuple(pool[i] for i in indices)
+        while True:
+            for i in reversed(range(r)):
+                if indices[i] != i + n - r:
+                    break
+            else:
+                return
+            indices[i] += 1
+            for j in range(i+1, r):
+                indices[j] = indices[j-1] + 1
+            yield tuple(pool[i] for i in indices)
+
+Ensuite le code de la fonction *transform* de la classe
+`PolynomialFeatures &lt;https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html&gt;`_ :
+
+::
+
+    XP = np.empty((n_samples, self.n_output_features_), dtype=X.dtype)
+    for i, comb in enumerate(combinations):
+        XP[:, i] = X[:, comb].prod(1)
+
+Par un pur hasard, je me suis dit qu'on pouvait faire mieux...
+Et donc j'ai écrit cela :
+
+::
+
+    def multiply(A, B):
+        return numpy.multiply(A, B)
+
+    XP[:, 0] = 1
+    pos = 1
+    n = X.shape[1]
+    for d in range(0, self.poly_degree):
+        if d == 0:
+            XP[:, pos:pos + n] = X
+            index = list(range(pos, pos + n))
+            pos += n
+            index.append(pos)
+        else:
+            new_index = []
+            end = index[-1]
+            for i in range(0, n):
+                a = index[i]
+                new_index.append(pos)
+                new_pos = pos + end - a
+                XP[:, pos:new_pos] = multiply(XP[:, a:end], X[:, i:i + 1])
+                pos = new_pos
+
+            new_index.append(pos)
+            index = new_index
+
+Et maintenant, je vous laisse trouver pour c'est plus rapide.
+Et pour un fois, j'ai fait l'effort de confirmer cette intuition...
+`Faster Polynomial Features
+&lt;http://www.xavierdupre.fr/app/mlinsights/helpsphinx/notebooks/faster_polynomial_features.html&gt;`_.
+
+Et en fait, cette intuition était bien meilleure que
+celle que j'ai en me réveillant un matin, bordel...
+Une régression logistique est un diagramme de Voronoï...
+Et ce n'était pas tout-à-fait vrai
+`Voronoï et régression logistique
+&lt;http://www.xavierdupre.fr/app/mlstatpy/helpsphinx/notebooks/logreg_voronoi.html&gt;`_.
+Mais j'avoue que j'ai pris du plaisir à explorer
+tout ça même si tout le monde s'en fout.</description>
+            <pubDate>2019-02-22</pubDate>
+        </item>
+<item>
+            <title>Session 2</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-02-01_session2.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-02-01_session2.html</guid>
+            <description>* :ref:`l-regclass`
+* formalisation de la :ref:`classification &lt;l-classification-f&gt;`
+* Courbe ROC : :ref:`sphx_glr_gyexamples_plots_plot_roc.py`
+* :ref:`classification multi-classe &lt;l-multiclass&gt;`
+* `régularisation &lt;https://rasbt.github.io/mlxtend/user_guide/general_concepts/regularization-linear/&gt;`_,
+  `Ridge &lt;http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html&gt;`_,
+  `Lasso &lt;http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso&gt;`_,
+  `ElasticNet &lt;http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html#sklearn.linear_model.ElasticNet&gt;`_
+* :ref:`l-cheatsheet-ml`
+* Notions de pipeline
+  `API de scikit-learn &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/2018-09-18_sklearn_api.html&gt;`_,
+  `Visualisation de pipeline &lt;http://www.xavierdupre.fr/app/mlinsights/helpsphinx/all_notebooks.html&gt;`_</description>
+            <pubDate>2019-02-01</pubDate>
+        </item>
+<item>
+            <title>Session 1</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-01-29_session1.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-01-29_session1.html</guid>
+            <description>Quelques liens sur cette première session
+et les notebooks associées :
+
+* :ref:`l-rappel`
+* :ref:`l-regclass`
+
+Il n'est pas facile de se souvenir des fonctions
+importantes pour tel ou tel modules. Ce n'est pas
+très important, d'autres l'ont déjà sous la forme
+de cheat sheets :
+`Cheat Sheet Pandas &lt;https://github.com/pandas-dev/pandas/blob/master/doc/cheatsheet/Pandas_Cheat_Sheet.pdf&gt;`_.
+Quelques exercices :
+
+* `DataFrame et Graphes &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td2a_cenonce_session_1.html&gt;`_
+* `Comparer deux régressions &lt;http://www.xavierdupre.fr/app/actuariat_python/helpsphinx/notebooks/enonce_2017.html#enonce2017rst&gt;`_
+
+Le contenu est hébergé sur `github/papierstat &lt;https://github.com/sdpython/papierstat/&gt;`_,
+l'ajout d'une *issue* indiquera une partie à développer ou retravailler.
+Un lien vers le notebook écrit lors de la première séance :
+:ref:`2019-01-25linregrst`.
+
+* `"Why Should I Trust You?": Explaining the Predictions of Any Classifier &lt;https://arxiv.org/abs/1602.04938&gt;`_
+* `A Ranking-based KNN Approach for Multi-Label Classification &lt;http://proceedings.mlr.press/v25/chiang12/chiang12.pdf&gt;`_
+* `Multiclass-Multilabel Classification with More Classes than Examples &lt;http://proceedings.mlr.press/v9/dekel10a/dekel10a.pdf&gt;`_
+* `ROBPCA: A New Approach to Robust Principal Component Analysis &lt;https://pdfs.semanticscholar.org/250b/4f05982b491ad80ba8b986d958eedb69a6be.pdf&gt;`_
+* `SMOTE: Synthetic Minority Over-sampling Technique &lt;https://arxiv.org/pdf/1106.1813.pdf&gt;`_
+* `LOF: Identifying Density-Based Local Outliers &lt;http://www.dbs.ifi.lmu.de/Publikationen/Papers/LOF.pdf&gt;`_
+* `Random Sample Consensus: A Paradigm for Model Fitting with Apphcatlons to Image Analysis and Automated Cartography &lt;https://www.sri.com/sites/default/files/publications/ransac-publication.pdf&gt;`_
+* `Performance Evaluation of RANSAC Family &lt;http://www.bmva.org/bmvc/2009/Papers/Paper355/Paper355.pdf&gt;`_
+* `On Bootstrapping the ROC Curve &lt;https://papers.nips.cc/paper/3404-on-bootstrapping-the-roc-curve.pdf&gt;`_
+* `Resampling ROC curves &lt;https://cedric.cnam.fr/fichiers/RC1271.pdf&gt;`_
+* `Exponential Reservoir Sampling for Streaming Language Models &lt;http://www.aclweb.org/anthology/P14-2112&gt;`_
+* `Face Recognition Machine Vision System Using Eigenfaces &lt;https://arxiv.org/pdf/1705.02782.pdf&gt;`_
+* `Fast unfolding of communities in large networks &lt;https://arxiv.org/pdf/0803.0476.pdf&gt;`_
+* `On Spectral Clustering Analysis Algorithm &lt;https://ai.stanford.edu/~ang/papers/nips01-spectral.pdf&gt;`_</description>
+            <pubDate>2019-01-29</pubDate>
+        </item>
+<item>
+            <title>Session 4 - actuariat</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2018/2018-06-12_sessions4.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2018/2018-06-12_sessions4.html</guid>
+            <description>Quelques liens :
+
+* :ref:`textsentimentwordvecrst`
+* `LogisticRegression and Clustering &lt;http://www.xavierdupre.fr/app/mlinsights/helpsphinx/notebooks/logistic_regression_clustering.html#logisticregressionclusteringrst&gt;`_
+* `ClassifierAfterKMeans &lt;http://www.xavierdupre.fr/app/mlinsights/helpsphinx/mlinsights/mlmodel/classification_kmeans.html#mlinsights.mlmodel.classification_kmeans.ClassifierAfterKMeans&gt;`_
+* `Tracer une pyramide bigarrée &lt;http://www.xavierdupre.fr/app/actuariat_python/helpsphinx/notebooks/pyramide_bigarree.html#pyramidebigarreerst&gt;`_
+* `Reconstruction de synonymes - énoncé &lt;http://www.xavierdupre.fr/app/actuariat_python/helpsphinx/notebooks/reconstruction_synonymes_enonce.html#reconstructionsynonymesenoncerst&gt;`_
+* `Reconstruction de synonymes - correction &lt;http://www.xavierdupre.fr/app/actuariat_python/helpsphinx/notebooks/reconstruction_synonymes_correction.html#reconstructionsynonymescorrectionrst&gt;`_
+* `Tests unitaires, setup et ingéniérie logicielle &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td1a_unit_test_ci.html&gt;`_
+* `Tests unitaires, setup et ingéniérie logiciel (correction) &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td1a_unit_test_ci_correction.html&gt;`_
+
+Les outils open source évoqués pour la mise en production
+de modèles de machine learning :
+
+* `onnxmltools &lt;https://github.com/onnx/onnxmltools&gt;`_
+* `ML.net &lt;https://www.microsoft.com/net/learn/apps/machine-learning-and-ai/ml-dotnet&gt;`_,
+  `ML.net on github &lt;https://github.com/dotnet/machinelearning&gt;`_,
+  `ML.net documentation &lt;https://docs.microsoft.com/fr-fr/dotnet/api/?view=ml-dotnet&gt;`_
+* `tensorflow serving &lt;https://www.tensorflow.org/serving/&gt;`_
+* `tensorflow mobile &lt;https://www.tensorflow.org/mobile/&gt;`_
+
+La version C# et ML.net de l'analyse de sentiment :
+
+* `Tutorial: Use ML.NET in a sentiment analysis binary classification scenario &lt;https://docs.microsoft.com/en-us/dotnet/machine-learning/tutorials/sentiment-analysis&gt;`_</description>
+            <pubDate>2018-06-12</pubDate>
+        </item>
+<item>
+            <title>Session 3 - actuariat</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2018/2018-05-15_sessions3.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2018/2018-05-15_sessions3.html</guid>
+            <description>Quelques liens :
+
+* `Régression logistique, diagramme de Voronoï, k-Means &lt;http://www.xavierdupre.fr/app/mlstatpy/helpsphinx/c_ml/lr_voronoi.html&gt;`_
+* :ref:`artificielshaperst`
+* :ref:`logregkmeansrst`
+* `Vélos à Chicago &lt;http://www.xavierdupre.fr/app/ensae_projects/helpsphinx/challenges/city_bike.html&gt;`_
+* :ref:`constraintkmeansrst`
+
+Cartes
+
+* :ref:`enediscartesrst`
+* :ref:`enediscartesbokehrst`
+* :ref:`cartecarreaurst`
+
+*pipeline*
+
+* live</description>
+            <pubDate>2018-05-15</pubDate>
+        </item>
+<item>
+            <title>Session 5</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2018/2018-03-01_sessions5.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2018/2018-03-01_sessions5.html</guid>
+            <description>Séries temporelles :
+
+* `Séries temporelles &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/td_2a_mlplus.html#timeseries-series-temporelles&gt;`_
+
+Deep Learning
+
+* `Deep Learning, Transfer Learning &lt;http://www.xavierdupre.fr/app/jupytalk/helpsphinx/2017/experience_2017.html&gt;`_
+
+Un jeu complet :
+
+* :ref:`adultcatrst`
+
+Exercices :
+
+* La transformation `t-SNE &lt;http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html&gt;`_
+  est une façon de réduire les dimensions. La méthode est décrite par son inventeur
+  sur son site `t-SNE &lt;https://lvdmaaten.github.io/tsne/&gt;`_.
+  Quel problème pose la première version de l'algorithme
+  dans le cas d'une prédiction ?</description>
+            <pubDate>2018-03-01</pubDate>
+        </item>
+<item>
+            <title>Session 4</title>
+            <link>http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2018/2018-02-22_sessions4.html</link>
+            <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2018/2018-02-22_sessions4.html</guid>
+            <description>Suite et fin :
+
+* :ref:`l-cheatsheet-ml`
+* `clustering &lt;http://scikit-learn.org/stable/modules/clustering.html#clustering&gt;`_,
+  `k-means &lt;http://www.xavierdupre.fr/app/mlstatpy/helpsphinx/c_clus/kmeans.html&gt;`_
+  un exemple avec
+  les `vélos à Chicago &lt;http://www.xavierdupre.fr/app/ensae_projects/helpsphinx/notebooks/city_bike_challenge.html&gt;`_
+  et l'utilisation du clustering pour trouver les
+  `profils de cyclistes à Chicago &lt;http://www.xavierdupre.fr/app/ensae_projects/helpsphinx/notebooks/city_bike_solution_cluster_start.html&gt;`_
+
+Preprocessing :
+
+* :ref:`l-preprocessing`</description>
+            <pubDate>2018-02-22</pubDate>
+        </item>
+
+</channel>
+</rss>

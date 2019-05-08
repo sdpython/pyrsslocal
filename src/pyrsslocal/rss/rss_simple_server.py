@@ -16,40 +16,37 @@ from ..simple_server.simple_server_custom import SimpleHandler, ThreadServer
 class RSSSimpleHandler(SimpleHandler):
 
     """
-    You can read the blog post `RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
-
-    defines a simple handler used by HTTPServer
-
+    You can read the blog post `RSS Reader
+    <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
+    Defines a simple handler used by HTTPServer.
     Firefox works better for local files.
-
     This server serves RSS content.
 
     For every section containing a python script, the class will add a local
     variable ``dbrss`` which gives access to the blogs database.
     That's why the following section works:
-    @code
-    <script type="text/python">
-    for blogs in dbrss.enumerate_blogs() :
-        print (blogs.html())
-    </script>
-    @endcode
 
-    Whenever a url is preceded by ``/logs/click/```, the class will log an event in the logs.
+    ::
 
+        <script type="text/python">
+        for blogs in dbrss.enumerate_blogs() :
+            print (blogs.html())
+        </script>
+
+    Whenever a url is preceded by ``/logs/click/```,
+    the class will log an event in the logs.
     The final page will look like this:
 
     @image images/page1.png
 
-    @FAQ(The server is slow or does not respond to a click)
+    .. faqref:
+        :title: The server is slow or does not respond to a click)
 
-    For some reason, it usually happens on Firefox.
-    Chrome works better. The script python embedded in the HTML page
-    and interpreted by the server make it slow to run.
-    It should be replaced by javascript. Maybe Firefox detects the answer is not
-    fast enough and it requires one or two more clicks to get the server to respond.
-
-    @endFAQ
-
+        For some reason, it usually happens on Firefox.
+        Chrome works better. The script python embedded in the HTML page
+        and interpreted by the server make it slow to run.
+        It should be replaced by javascript. Maybe Firefox detects the answer is not
+        fast enough and it requires one or two more clicks to get the server to respond.
     """
 
     def __init__(self, request, client_address, server):
@@ -64,22 +61,22 @@ class RSSSimpleHandler(SimpleHandler):
 
     def main_page(self):
         """
-        returns the main page (case the server is called with no path)
+        Returns the main page (case the server is called with no path).
         @return     default page
         """
         return self.server._my_main_page
 
     def get_javascript_paths(self):
         """
-        returns all the location where the server should look for a java script
+        Returns all the location where the server should look for a java script.
         @return         list of paths
         """
         return [self.server._my_root, SimpleHandler.javascript_path]
 
     def interpret_parameter_as_list_int(self, ps):
         """
-        interpret a list of parameters, each of them is a list of integer
-        separated by ,
+        Interprets a list of parameters, each of them is a list of integer
+        separated by ``,``.
 
         @param      ps      something like ``params.get("blog_selected")``
         @return             list of int
@@ -93,7 +90,7 @@ class RSSSimpleHandler(SimpleHandler):
 
     def process_event(self, st):
         """
-        process an event, and log it
+        Processes an event, and log it.
 
         @param      st      string to process
         """
@@ -101,7 +98,7 @@ class RSSSimpleHandler(SimpleHandler):
 
     def serve_content_web(self, path, method, params):
         """
-        functions to overload (executed after serve_content)
+        Functions to overload (executed after serve_content).
 
         @param      path        ParseResult
         @param      method      GET or POST
@@ -113,7 +110,6 @@ class RSSSimpleHandler(SimpleHandler):
             self.process_event(targ)
             self.send_response(200)
             self.send_headers("")
-
         else:
             if path.path.startswith("/rssfetchlocalexe/"):
                 url = path.path.replace("/rssfetchlocalexe/", "")
@@ -225,13 +221,13 @@ class RSSServer(ThreadingMixIn, HTTPServer):
 
     def __enter__(self):
         """
-        what to do when creating the class
+        What to do when creating the class.
         """
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):  # pylint: disable=W0221
         """
-        what to do when removing the instance (close the log file)
+        What to do when removing the instance (close the log file).
         """
         if self.flog is not None and self.logfile != "stdout":
             self.flog.close()

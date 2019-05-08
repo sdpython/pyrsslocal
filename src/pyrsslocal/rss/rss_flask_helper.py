@@ -8,7 +8,7 @@ import os
 
 def root_dir():
     """
-    returns this directory
+    Returns this directory.
     @return     this path
     """
     return os.path.abspath(os.path.dirname(__file__))
@@ -16,7 +16,7 @@ def root_dir():
 
 def load_page(filename):
     """
-    loads the content of a file
+    Loads the content of a file.
     """
     fold = root_dir()
     full = os.path.abspath(os.path.join(fold, filename))
@@ -27,7 +27,7 @@ def load_page(filename):
 
 def get_text_file(filename):
     """
-    return the content of a text filename
+    Returns the content of a text filename.
 
     @param      filename        relative filename
     @return                     content
@@ -39,7 +39,7 @@ def get_text_file(filename):
 
 def get_binary_file(filename):
     """
-    return the content of a binary filename
+    Returns the content of a binary filename.
 
     @param      filename        relative filename
     @return                     content

@@ -24,7 +24,7 @@ app.config.from_object(__name__)
 # -- HELP END EXCLUDE --
 def main_page():
     """
-    serves the main page
+    Serves the main page.
     """
     return get_resource("rss_reader.html")
 
@@ -35,7 +35,7 @@ def main_page():
 # -- HELP END EXCLUDE --
 def internal_error(error):
     """
-    intercept an error
+    Intercepts an error.
     """
     return render_template("errors.html",
                            error=str(error),
@@ -48,7 +48,7 @@ def internal_error(error):
 # -- HELP END EXCLUDE --
 def not_found(error):
     """
-    intercept an error
+    Intercepts an error.
     """
     return render_template("errors.html",
                            error=str(error),
@@ -62,7 +62,7 @@ def not_found(error):
 # -- HELP END EXCLUDE --
 def get_js(path):  # pragma: no cover
     """
-    serves static files
+    Serves static files.
 
     @param      path        relative path
     @return                 content
@@ -89,7 +89,7 @@ def get_js(path):  # pragma: no cover
 # -- HELP END EXCLUDE --
 def url_logging(path):  # pragma: no cover
     """
-    serves static files
+    Serves static files.
 
     @param      path        relative path
     @return                 content
@@ -104,7 +104,7 @@ def url_logging(path):  # pragma: no cover
 # -- HELP END EXCLUDE --
 def get_resource(path):  # pragma: no cover
     """
-    serves static files
+    Serves static files.
 
     @param      path        relative path
     @return                 content

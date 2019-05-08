@@ -35,8 +35,6 @@ class BlogPost:
     def __init__(self, id_rss, title, guid, isPermaLink, link,  # pylint: disable=W0622
                  description, pubDate, keywords=None, id=-1):  # pylint: disable=W0622
         """
-        constructor
-
         @param    id_rss          id of rss or @see cl Stream class
         @param    title           title of the stream
         @param    guid            guid
@@ -79,7 +77,7 @@ class BlogPost:
 
     def add_status(self, status):
         """
-        attach a dictionary representing the status
+        Attaches a dictionary representing the status.
 
         @param      status      dictionary
         """
@@ -95,21 +93,21 @@ class BlogPost:
     @property
     def index(self):
         """
-        defines the column to use as an index
+        Defines the column to use as an index.
         """
         return "guid"
 
     @property
     def indexes(self):
         """
-        defines other indexes to create
+        Defines other indexes to create.
         """
         return ["id_rss"]
 
     @property
     def asdict(self):
         """
-        return all members as a dictionary
+        Returns all members as a dictionary.
 
         @return     dictionary
         """
@@ -126,7 +124,7 @@ class BlogPost:
     @staticmethod
     def schema_database_read():
         """
-        return all members names and types as a dictionary
+        Returns all members names and types as a dictionary.
 
         @return     dictionary
         """
@@ -143,7 +141,7 @@ class BlogPost:
     @property
     def schema_database(self):
         """
-        return all members names and types as a dictionary
+        Returns all members names and types as a dictionary.
 
         @return     dictionary
         """
@@ -160,7 +158,8 @@ class BlogPost:
     @property
     def asrow(self):
         """
-        returns all the values as a row (following the schema given by @see me schema_database)
+        Returns all the values as a row
+        (following the schema given by @see me schema_database).
 
         @return     list of values
         """
@@ -176,7 +175,7 @@ class BlogPost:
     @staticmethod
     def fill_table(db, tablename, iterator_on, skip_exception=False):
         """
-        fill a table of a database, if the table does not exists, it creates it
+        Fills a table of a database, if the table does not exists, it creates it.
 
         @param      db              database object (@see cl Database)
         @param      tablename       name of a table (created if it does not exists)
@@ -191,34 +190,34 @@ class BlogPost:
     @property
     def pubDateformat(self):
         """
-        returns the date to a given format
+        Returns the date to a given format.
         """
         return self.pubDate.strftime(self._ftime)
 
     @property
     def Status(self):
         """
-        return the status
+        Return the status.
         """
         return self.status.get("status", "") if self.status is not None else ""
 
     @property
     def StatusTime(self):
         """
-        return the status
+        Returns the status.
         """
         return self.status.get("dtime", "") if self.status is not None else ""
 
     @property
     def StatusTimeStr(self):
         """
-        return the status
+        Returns the status.
         """
         return str(self.StatusTime).split()[0]
 
     def get_html_status(self, thispage):
         """
-        returns a status written in HTML
+        Returns a status written in :epkg:`HTML`.
 
         @param      thispage        the displayed page
         @return                     html string
@@ -286,8 +285,8 @@ class BlogPost:
              addstatus=False,
              thispage=None):
         """
-        display the blogs in HTML format, the template contains two kinds of informations:
-        - {0.member} : this string will be replaced by the member
+        Displays the blogs in HTML format, the template contains two kinds of informations:
+        - ``{0.member}``: this string will be replaced by the member
 
         @param      template        html template
         @param      action          url to use when clicking on a blog
@@ -304,8 +303,8 @@ class BlogPost:
         @param      addstatus       if True, add the status for this blog post
         @return                     html string
 
-        If the template is None, it will be replaced a default value (see the code and the variable ``template``).
-
+        If the template is None, it will be replaced a default value
+        (see the code and the variable ``template``).
         """
         if template is None:
             if not extended:

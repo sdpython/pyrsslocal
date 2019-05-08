@@ -6,6 +6,8 @@ import os
 import webbrowser
 import sys
 import threading
+import datetime
+from pyquickhelper.filehelper import read_content_ufs
 from pyensae.sql.database_main import Database
 from .rss_stream import StreamRSS
 from .rss_blogpost import BlogPost
@@ -90,8 +92,8 @@ def rss_update_run_server(dbfile, xml_blogs, port=8093, browser=None, period="to
     @param      fLOG        logging function
     @return                 see @see fn rss_run_server
 
-    You can read the blog post `pyhome3 RSS Reader <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
-
+    You can read the blog post `pyhome3 RSS Reader
+    <http://www.xavierdupre.fr/blog/2013-07-28_nojs.html>`_.
     """
     rss_from_xml_to_database(xml_blogs, database=dbfile, fLOG=fLOG)
     rss_download_post_to_database(database=dbfile, fLOG=fLOG)
@@ -150,3 +152,74 @@ def rss_run_server(dbfile, port=8093, browser=None, period="today",
         server, dbfile, port=port, thread=thread, fLOG=fLOG)
     # we should close the thread here if it is still alive
     return ret
+
+
+def enumerate_post_from_rss(content, rss_stream=None):
+    """
+    Parses a :epkg:`RSS` stream.
+
+    @param      content :epkg:`RSS` content
+    @return             list of @see cl BlogPost
+    """
+    import feedparser
+    d = feedparser.parse(content)
+
+    if d is not None:
+        for post in d["entries"]:
+            titleb = post.get("title", "-")
+            url = post.get("link", "")
+
+            try:
+                id_ = post["id"]
+                guid = url if post["guidislink"] else id_
+            except KeyError:
+                id_ = url
+                guid = url
+
+            try:
+                desc = post["summary_detail"]["value"]
+            except KeyError:
+                try:
+                    desc = post["summary"]
+                except KeyError:
+                    desc = ""
+
+            isPermaLink = True
+
+            try:
+                structTime = post["published_parsed"]
+                date = datetime.datetime(*structTime[:6])
+            except KeyError:
+                try:
+                    structTime = post["updated_parsed"]
+                    date = datetime.datetime(*structTime[:6])
+                except KeyError:
+                    date = datetime.datetime.now()
+            except TypeError as e:
+                structTime = post["published_parsed"]
+                if structTime is None:
+                    date = datetime.datetime.now()
+                else:
+                    raise e
+
+            if date > datetime.datetime.now():
+                date = datetime.datetime.now()
+
+            bl = BlogPost(rss_stream, titleb, guid,
+                          isPermaLink, url, desc, date)
+            yield bl
+
+
+def enumerate_rss_merge(rss_urls, title="compilation"):
+    """
+    Merges many :epkg:`rss` file or url.
+
+    @param      rss_urls        :epkg:`rss` files or urls
+    @param      title           title
+    @return                     new RSS
+    """
+    sts = StreamRSS(title, None, None, None, None, id=0)
+    for name in rss_urls:
+        content = read_content_ufs(name)
+        for blog in enumerate_post_from_rss(content, rss_stream=sts):
+            yield blog

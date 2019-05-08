@@ -67,14 +67,14 @@ class StreamRSS:
     @property
     def index(self):
         """
-        defines the column to use as an index
+        Defines the column to use as an index.
         """
         return "xmlUrl"
 
     @property
     def asdict(self):
         """
-        return all members as a dictionary
+        Returns all members as a dictionary.
 
         @return     dictionary
         """
@@ -87,7 +87,7 @@ class StreamRSS:
     @staticmethod
     def schema_database_read():
         """
-        return all members names and types as a dictionary
+        Returns all members names and types as a dictionary.
 
         @return     dictionary
         """
@@ -101,7 +101,7 @@ class StreamRSS:
     @property
     def schema_database(self):
         """
-        return all members names and types as a dictionary
+        Returns all members names and types as a dictionary.
 
         @return     dictionary
         """
@@ -115,7 +115,8 @@ class StreamRSS:
     @property
     def asrow(self):
         """
-        returns all the values as a row (following the schema given by @see me schema_database)
+        Returns all the values as a row
+        (following the schema given by @see me schema_database).
 
         @return     list of values
         """
@@ -128,7 +129,9 @@ class StreamRSS:
     @staticmethod
     def enumerate_stream_from_google_list(file, encoding="utf8", fLOG=None):
         """
-        retrieve the list of RSS streams from a dump made with Google Reader
+        Retrieves the list of :epkg:`RSS` streams from
+        a dump made with Google Reader.
+
         @param      file        filename
         @param      encoding    encoding
         @param      fLOG        logging function
@@ -166,17 +169,18 @@ class StreamRSS:
     @staticmethod
     def fill_table(db, tablename, iterator_on):
         """
-        fill a table of a database, if the table does not exists, it creates it
+        Fills a table of a database, if the table does not exists, it creates it.
 
         @param      db              database object (@see cl Database)
         @param      tablename       name of a table (created if it does not exists)
         @param      iterator_on     iterator_on on StreamRSS object
 
         Example:
-        @code
-        res = list( StreamRSS.enumerate_stream_from_google_list(file) )
-        StreamRSS.fill_table(db, "blogs", res)
-        @endcode
+
+        ::
+
+            res = list(StreamRSS.enumerate_stream_from_google_list(file))
+            StreamRSS.fill_table(db, "blogs", res)
         """
         db.fill_table_with_objects(
             tablename,
@@ -185,11 +189,12 @@ class StreamRSS:
 
     def enumerate_post(self, path=None, fLOG=None):
         """
-        parses a rss stream.
+        Parses a :epkg:`RSS` stream.
 
-        @param      path    if None, use self.xmlUrl, otherwise, uses this path (url or local file)
+        @param      path    if None, use self.xmlUrl, otherwise,
+                            uses this path (url or local file)
         @param      fLOG    logging function
-        @return             list of BlogPost
+        @return             list of @see cl BlogPost
 
         We expect the format to be:
 
@@ -217,8 +222,10 @@ class StreamRSS:
                         'rel': 'alternate', 'type': 'text/html'}],
                 'id': 'http://www.xavierdupre.fr/blog/xd_blog.html?date=2013-06-24'}
 
-        If there is no date, the function will give the date of today (assuming you fetch posts from this blog everyday).
-        If the id is not present, the guid will be the url, otherwise, it will be the id.
+        If there is no date, the function will give the date of today
+        (assuming you fetch posts from this blog everyday).
+        If the id is not present, the guid will be the url,
+        otherwise, it will be the id.
         """
         import feedparser
         if path is None:
@@ -319,7 +326,7 @@ class StreamRSS:
     @property
     def stat_nb(self):
         """
-        return the statistics nb:  ``self.stat.get("nb", 0)``
+        Returns the statistics nb: ``self.stat.get("nb", 0)``.
         @return         number
         """
         return self.stat.get("nb", 0)
@@ -343,19 +350,22 @@ class StreamRSS:
              style="blogtitle",
              addlog=True):
         """
-        display the blogs in HTML format, the template contains two kinds of informations:
-        - {0.member}: this string will be replaced by the member
+        Displays the blogs in HTML format, the template contains
+        two kinds of informations:
+        - ``{0.member}``: this string will be replaced by the member
 
-        @param      template        html template, if not None, it can equal to another default template:
-                                        - default
-                                        - default_stat
+        @param      template        html template, if not None, it can equal to
+                                    another default template:
+                                    - default
+                                    - default_stat
         @param      action          url to use when clicking on a blog
         @param      style           style of the paragraph containing the url
-        @param      addlog          if True, url will be prefix by ``/logs/click/`` in order to be logged
+        @param      addlog          if True, url will be prefix by ``/logs/click/``
+                                    in order to be logged
         @return                     html string
 
-        If the template is None, it will be replaced a default value (see the code and the variable ``template``).
-
+        If the template is None, it will be replaced a default value
+        (see the code and the variable ``template``).
         """
         if template is None:
             template = StreamRSS.templates["default"] % (style, action)

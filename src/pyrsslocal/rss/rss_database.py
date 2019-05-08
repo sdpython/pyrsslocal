@@ -1,6 +1,6 @@
 """
 @file
-@brief description of a RSS stream
+@brief Description of a :epkg:`RSS` stream.
 """
 import datetime
 import os
@@ -14,8 +14,7 @@ from .rss_stream import StreamRSS
 class DatabaseRSS (Database):
 
     """
-    database specific to RSS
-
+    Database specific to :epkg:`RSS`.
     """
 
     @staticmethod
@@ -51,8 +50,6 @@ class DatabaseRSS (Database):
                  table_event="events",
                  LOG=fLOG):
         """
-        constructor
-
         @param    dbfile        file database
         @param    table_blogs   table name for the blogs
         @param    table_posts   table name for the posts
@@ -78,7 +75,7 @@ class DatabaseRSS (Database):
 
     def create_missing_table(self):
         """
-        creates the missing tables
+        Creates the missing tables.
         """
 
         if self.has_table(self.table_stats) and len(self.get_table_columns(
@@ -132,7 +129,7 @@ class DatabaseRSS (Database):
     @staticmethod
     def getday(dt):
         """
-        return the same datetime but with no time
+        Returns the same datetime but with no time.
 
         @param  dt      datetime
         @return         datetime which correspond to the beginning of the day
@@ -147,7 +144,7 @@ class DatabaseRSS (Database):
     @staticmethod
     def getdayn(dt):
         """
-        return the same datetime but with no time
+        Returns the same datetime but with no time.
 
         @param  dt      datetime
         @return         datetime which correspond to the beginning of the day
@@ -244,7 +241,7 @@ class DatabaseRSS (Database):
 
     def enumerate_latest_status(self, postid, nb=1, connect=True):
         """
-        retrieves the latest status for a post
+        Retrieves the latest status for a post.
 
         @param      postid      post id
         @param      nb          number of desired status
@@ -269,7 +266,7 @@ class DatabaseRSS (Database):
                                   sorted_=True, specific=None, now=None,
                                   searchterm=None):
         """
-        Returns a SQL query corresponding to list of posts.
+        Returns a :epkg:`SQL` query corresponding to list of posts.
 
         @param      blog_selection      list of blogs to consider (or empty for all)
         @param      post_selection      list of posts to consider
@@ -328,8 +325,8 @@ class DatabaseRSS (Database):
                         first=1000, specific=None, daily_freq=1.5, now=None,
                         addstatus=False, searchterm=None):
         """
-        enumerates all the posts from the database if the blog id
-        belongs to a selection (or all if blog_selection is empty)
+        Enumerates all the posts from the database if the blog id
+        belongs to a selection (or all if blog_selection is empty).
 
         @param      blog_selection      list of blogs to consider (or empty for all)
         @param      post_selection      list of posts to consider
@@ -375,7 +372,7 @@ class DatabaseRSS (Database):
                                sorted_=True, specific=None, now=None,
                                searchterm=None):
         """
-        enumerate status
+        Enumerate status.
 
         @param      blog_selection      list of blogs to consider (or empty for all)
         @param      post_selection      list of posts to consider
