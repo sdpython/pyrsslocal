@@ -24,7 +24,7 @@ def compile_rss_blogs(links, url, description,
     @param      template        change the template for the blog aggregation
     @param      out_html        output :epkg:`HTML`
     @param      out_rss         output :epkg:`RSS`
-    @param      valide          None or a function to validate a blog post,
+    @param      validate        None or a function to validate a blog post,
                                 ``validate(blog: BlogPost) -> bool``
     @param      fLOG            logging function
     """
@@ -32,7 +32,7 @@ def compile_rss_blogs(links, url, description,
     for i, blog in enumerate(enumerate_rss_merge(links, title=title)):
         fLOG("[compile_rss_blogs] reading blog {0}: {1} - '{2}'".format(
             i, blog.pubDate, blog.link))
-        if validate is None or validate(blog):
+        if validate not in (None, '') or validate(blog):
             collect.append(blog)
 
     fLOG("[compile_rss_blogs] create '{0}'".format(out_rss))
