@@ -368,9 +368,35 @@ class BlogPost:
 
     def to_rss_item(self):
         """
-        Converts the blogs post into :epkg:`XML`.
+        Converts the blog post into :epkg:`XML`.
+
+        @return     string
         """
         return BlogPost.template_to_rss.render(  # pylint: disable=E1101
             title=self.title, link=self.link,
             permalink=self.isPermaLink, description=self.description,
             data=self.pubDate)
+
+    template_to_html = jinja2.Template(dedent("""
+        <h2>{{date.strftime("%Y-%m-%d")}} - {{title}}</h2>
+        <p>
+        {% if "`" in description %}
+        <a href="{{link}}">HTML</a> -
+        {% endif %}
+        {{description}}
+        </p>
+        {% if "`" not in description %}
+        <p><a href="{{link}}">source</a></p>
+        {% endif %}
+    """))
+
+    def to_html_item(self):
+        """
+        Renders the blog post into :epkg:`HTML`.
+
+        @return     string
+        """
+        return BlogPost.template_to_html.render(  # pylint: disable=E1101
+            title=self.title, link=self.link,
+            permalink=self.isPermaLink, description=self.description,
+            date=self.pubDate)

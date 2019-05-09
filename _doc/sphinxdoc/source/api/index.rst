@@ -14,6 +14,11 @@ Classes
 
 .. autosignature:: pyrsslocal.rss.rss_stream.StreamRSS
 
+Command line
+++++++++++++
+
+.. autosignature:: pyrsslocal.cli.merge_rss.compile_rss_blogs
+
 Reading, merging blog posts
 ++++++++++++++++++++++++++
 

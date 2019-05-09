@@ -36,7 +36,8 @@ def get_url_content_timeout(url, timeout=10, output=None, encoding="utf8"):
             with urllib.request.urlopen(url) as ur:
                 res = ur.read()
     except (HTTPError, URLError) as error:
-        fLOG("[get_url_content_timeout] unable to retrieve content from ", url, "exc:", str(error))
+        fLOG("[get_url_content_timeout] unable to retrieve content from ",
+             url, "exc:", str(error))
         return None
     except socket.timeout as e:
         fLOG(

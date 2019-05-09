@@ -267,3 +267,99 @@ def to_rss(obj, link, description):
     return tpl.render(link=link, description=description,
                       items='\n'.join(items),
                       title=title)
+
+
+template_html = """
+<?xml version="1.0" encoding="utf-8"?>
+<html>
+<head>
+<link href="http://www.xavierdupre.fr/pyhome3.ico" rel="shortcut icon"/>
+<link href="http://www.xavierdupre.fr/blog/pMenu.css" rel="stylesheet" type="text/css"/>
+<link REL="stylesheet" TYPE="text/css" href="http://www.xavierdupre.fr/blog/javascript/run_prettify.css"/>
+<title>{{title}}</title>
+<meta content="{{author}}" name="author"/>
+<meta content="{{keywords}}" name="keywords"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<script src="http://www.xavierdupre.fr/blog/javascript/pMenu.js" type="text/javascript"></script>
+<script src="http://www.xavierdupre.fr/blog/javascript/latexit.js" type="text/javascript"></script>
+<script src="http://www.xavierdupre.fr/blog/javascript/run_prettify.js" type="text/javascript"></script>
+<link href="http://www.xavierdupre.fr/blog/javascript/shCore.css" rel="stylesheet" type="text/css"/>
+<link href="http://www.xavierdupre.fr/blog/javascript/shThemeDefault.css" rel="stylesheet" type="text/css"/>
+<script src="http://www.xavierdupre.fr/blog/javascript/shCore.js" type="text/javascript"></script>
+<script src="http://www.xavierdupre.fr/blog/javascript/shAutoloader.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<div class="otherlayer">
+<!-- other layer -->
+</div>
+
+<div class="sidebar">
+</div>
+
+<div class="maintitle">
+<h1>{{title}}</h1>
+<p><a href="{{rssfile.xml}}"><img src="http://www.xavierdupre.fr/blog/documents/feed-icon-16x16.png"/></a>
+<i>{{header}}</i></p>
+
+</div>
+
+<div class="mainbody">
+
+<hr />
+
+{{items}}
+
+<hr />
+
+</div>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript http://www.xavierdupre.fr/blog/javascript/shBrushJScript.js',
+  'py python http://www.xavierdupre.fr/blog/javascript/shBrushPython.js',
+  'cpp http://www.xavierdupre.fr/blog/javascript/shBrushCpp.js',
+  'sql http://www.xavierdupre.fr/blog/javascript/shBrushSql.js',
+  'flat plain http://www.xavierdupre.fr/blog/javascript/shBrushPlain.js',
+  'vba vb http://www.xavierdupre.fr/blog/javascript/shBrushVb.js',
+  'bash http://www.xavierdupre.fr/blog/javascript/shBrushBash.js',
+  'cs http://www.xavierdupre.fr/blog/javascript/shBrushCSharp.js',
+  'php http://www.xavierdupre.fr/blog/javascript/shBrushPhp.js',
+  'css http://www.xavierdupre.fr/blog/javascript/shBrushCss.js',
+  'xml html http://www.xavierdupre.fr/blog/javascript/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+</script>
+<div id="playscript"/>
+
+</body>
+</html>
+"""
+
+
+def to_html(items, template=None, title="BLOG",
+            author="AUTHOR", keywords="blog,python",
+            header="", rssfile="rssfile.xml",
+            **context):
+    """
+    Produces a :epkg:`HTML`.
+
+    @param      items       list of blog post
+    @param      template    template or None to get the default one
+    @param      title       blog title
+    @param      author      author
+    @param      keywords    keywords
+    @param      header      blog description
+    @param      rssfile     file RSS
+    @param      context     other information
+    @return                 pages
+    """
+    if template is None:
+        template_ = Template(template_html)
+
+    hitems = "\n".join(map(lambda b: b.to_html_item(),
+                           sorted(items, reverse=True,
+                                  key=lambda i: i.pubDate)))
+    return template_.render(title=title, author=author, keywords=keywords,
+                            items=hitems, header=header, rssfile=rssfile,
+                            **context)

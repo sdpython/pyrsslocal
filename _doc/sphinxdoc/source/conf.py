@@ -15,4 +15,9 @@ set_sphinx_variables(__file__, "pyrsslocal", "Xavier Dupré", 2019,
 # import pyensae
 blog_root = "http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/"
 
-epkg_dictionary['XML'] = 'https://en.wikipedia.org/wiki/XML'
+epkg_dictionary.update({
+    'HTML': 'https://en.wikipedia.org/wiki/HTML',
+    'RSS': 'https://en.wikipedia.org/wiki/RSS',
+    'rss': 'https://en.wikipedia.org/wiki/RSS',
+    'XML': 'https://en.wikipedia.org/wiki/XML',
+})
