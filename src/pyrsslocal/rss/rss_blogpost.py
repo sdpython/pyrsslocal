@@ -356,7 +356,7 @@ class BlogPost:
 
         return res
 
-    template = jinja2.Template(dedent("""
+    template_to_rss = jinja2.Template(dedent("""
     <item>
         <title>{{title}}</title>
         <link>{{link}}</link>
@@ -370,7 +370,7 @@ class BlogPost:
         """
         Converts the blogs post into :epkg:`XML`.
         """
-        return BlogPost.template.render(  # pylint: disable=E1101
+        return BlogPost.template_to_rss.render(  # pylint: disable=E1101
             title=self.title, link=self.link,
             permalink=self.isPermaLink, description=self.description,
             data=self.pubDate)
