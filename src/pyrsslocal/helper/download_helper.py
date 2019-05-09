@@ -16,7 +16,8 @@ from pyquickhelper.loghelper import fLOG
 
 def get_url_content_timeout(url, timeout=10, output=None, encoding="utf8"):
     """
-    download a file from internet (we assume it is text information, otherwise, encoding should be None)
+    Downloads a file from internet
+    (it assumes it is text information, otherwise, encoding should be None).
 
     @param      url         (str) url
     @param      timeout     (in seconds), after this time, the function drops an returns None, -1 for forever
@@ -35,39 +36,39 @@ def get_url_content_timeout(url, timeout=10, output=None, encoding="utf8"):
             with urllib.request.urlopen(url) as ur:
                 res = ur.read()
     except (HTTPError, URLError) as error:
-        fLOG("unable to retrieve content from ", url, "exc:", str(error))
+        fLOG("[get_url_content_timeout] unable to retrieve content from ", url, "exc:", str(error))
         return None
     except socket.timeout as e:
         fLOG(
-            "unable to retrieve content from ",
+            "[get_url_content_timeout] unable to retrieve content from ",
             url,
             " because of timeout: ",
             timeout)
         return None
     except ConnectionResetError as e:
         fLOG(
-            "unable to retrieve content from ",
+            "[get_url_content_timeout] unable to retrieve content from ",
             url,
             " because of ConnectionResetError: ",
             e)
         return None
     except http.client.BadStatusLine as e:
         fLOG(
-            "unable to retrieve content from ",
+            "[get_url_content_timeout] unable to retrieve content from ",
             url,
             " because of http.client.BadStatusLine: ",
             e)
         return None
     except http.client.IncompleteRead as e:
         fLOG(
-            "unable to retrieve content from ",
+            "[get_url_content_timeout] unable to retrieve content from ",
             url,
             " because of http.client.IncompleteRead: ",
             e)
         return None
     except Exception as e:
         fLOG(
-            "unable to retrieve content from ",
+            "[get_url_content_timeout] unable to retrieve content from ",
             url,
             " because of unknown exception: ",
             e)
