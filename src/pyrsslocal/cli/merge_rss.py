@@ -32,7 +32,7 @@ def compile_rss_blogs(links, url, description,
     for i, blog in enumerate(enumerate_rss_merge(links, title=title)):
         fLOG("[compile_rss_blogs] reading blog {0}: {1} - '{2}'".format(
             i, blog.pubDate, blog.link))
-        if validate not in (None, '') or validate(blog):
+        if validate in (None, '') or validate(blog):
             collect.append(blog)
 
     fLOG("[compile_rss_blogs] create '{0}'".format(out_rss))
