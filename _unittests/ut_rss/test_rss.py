@@ -12,7 +12,7 @@ from pyrsslocal.rss.rss_database import DatabaseRSS
 
 class TestRSS (unittest.TestCase):
 
-    nb_rss_blog = 128
+    nb_rss_blog = 64
 
     def test_rss_from_google(self):
         fLOG(
