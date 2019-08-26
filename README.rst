@@ -1,4 +1,12 @@
 
+.. image:: https://github.com/sdpython/pyrsslocal/blob/master/_doc/sphinxdoc/source/phdoc_static/project_ico.png?raw=true
+    :target: https://github.com/sdpython/pyrsslocal/
+
+.. _l-README:
+
+pyrsslocal: local RSS reader
+============================
+
 .. image:: https://travis-ci.org/sdpython/pyrsslocal.svg?branch=master
     :target: https://travis-ci.org/sdpython/pyrsslocal
     :alt: Build status
@@ -27,11 +35,18 @@
 
 .. image:: https://codecov.io/github/sdpython/pyrsslocal/coverage.svg?branch=master
     :target: https://codecov.io/github/sdpython/pyrsslocal?branch=master
+    
+.. image:: https://pepy.tech/badge/pyrsslocal/month
+    :target: https://pepy.tech/project/pyrsslocal/month
+    :alt: Downloads
 
-.. _l-README:
+.. image:: https://img.shields.io/github/forks/sdpython/pyrsslocal.svg
+    :target: https://github.com/sdpython/pyrsslocal/
+    :alt: Forks
 
-pyrsslocal
-==========
+.. image:: https://img.shields.io/github/stars/sdpython/pyrsslocal.svg
+    :target: https://github.com/sdpython/pyrsslocal/
+    :alt: Stars    
 
 This extension proposes a way to download new posts from blogs
 and to navigate through them with a couple of HTML pages
