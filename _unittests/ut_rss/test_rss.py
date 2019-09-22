@@ -4,13 +4,14 @@
 import os
 import unittest
 from pyquickhelper.loghelper import fLOG
+from pyquickhelper.pycode import ExtTestCase
 from pyensae.sql.database_main import Database
 from pyrsslocal.rss.rss_stream import StreamRSS, BlogPost
 from pyrsslocal.rss.rss_helper import rss_from_xml_to_database, rss_download_post_to_database
 from pyrsslocal.rss.rss_database import DatabaseRSS
 
 
-class TestRSS (unittest.TestCase):
+class TestRSS (ExtTestCase):
 
     nb_rss_blog = 64
 
@@ -21,7 +22,7 @@ class TestRSS (unittest.TestCase):
             OutputPrint=__name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
         file = os.path.join(path, "data", "subscriptions.xml")
-        assert os.path.exists(file)
+        self.assertExists(file)
         res = list(StreamRSS.enumerate_stream_from_google_list(file))
         if len(res) != TestRSS.nb_rss_blog:
             dic = {}
@@ -64,7 +65,7 @@ class TestRSS (unittest.TestCase):
 
         # iterator on StreamRSS
         obj = list(db.enumerate_objects("blogs", StreamRSS))
-        assert len(obj) == TestRSS.nb_rss_blog
+        self.assertEqual(len(obj), TestRSS.nb_rss_blog)
 
         db.close()
 
@@ -79,11 +80,12 @@ class TestRSS (unittest.TestCase):
         if os.path.exists(dbfile):
             os.remove(dbfile)
         nb = rss_from_xml_to_database(file, dbfile, fLOG=fLOG)
-        assert nb == 1
+        self.assertEqual(nb, 1)
         nb = rss_download_post_to_database(dbfile, fLOG=fLOG)
         if nb == 0:
             raise Exception(
-                "issue with database '{0}', function rss_download_post_to_database".format(dbfile))
+                "Issue with database '{0}', function rss_download_post_to_database"
+                "".format(dbfile))
         fLOG("***")
         db = DatabaseRSS(dbfile, LOG=fLOG)
         blogs = list(db.enumerate_blogs())
@@ -96,7 +98,7 @@ class TestRSS (unittest.TestCase):
             OutputPrint=__name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
         file = os.path.join(path, "data", "xdbrss.xml")
-        assert os.path.exists(file)
+        self.assertExists(file)
 
         rss = StreamRSS(titleb="XD", type="rss",
                         xmlUrl="http://www.xavierdupre.fr/blog/xdbrss.xml",
