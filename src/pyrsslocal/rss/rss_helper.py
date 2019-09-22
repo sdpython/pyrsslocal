@@ -222,7 +222,7 @@ def enumerate_rss_merge(rss_urls, title="compilation"):
     """
     sts = StreamRSS(title, None, None, None, None, id=0)
     for name in rss_urls:
-        content = read_content_ufs(name)
+        content = read_content_ufs(name, min_size=5000)
         for blog in enumerate_post_from_rss(content, rss_stream=sts):
             yield blog
 
