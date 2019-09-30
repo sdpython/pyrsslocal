@@ -792,7 +792,7 @@ class XMLHandlerDictNode(dict):
                     self._log_error()
                     #if exception : raise Exception ("fail to convert value for field " + k)
                     continue
-                elif len(v) > 0:
+                if len(v) > 0:
                     # fLOG("ERROR: fail to convert value ",
                     #     v,
                     #     " field ",
@@ -808,8 +808,7 @@ class XMLHandlerDictNode(dict):
                             k, "/".join(self.get_full_name()))) from ex
                     else:
                         continue
-                else:
-                    continue
+                continue
 
             if not isinstance(v, str) or len(v) > 0:
                 attr[k] = v

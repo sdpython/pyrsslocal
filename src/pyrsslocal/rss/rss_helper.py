@@ -163,7 +163,7 @@ def enumerate_post_from_rss(content, rss_stream=None):
     @param      content :epkg:`RSS` content
     @return             list of @see cl BlogPost
     """
-    import feedparser
+    import feedparser  # pylint: disable=C0415
     d = feedparser.parse(content)
 
     if d is not None:

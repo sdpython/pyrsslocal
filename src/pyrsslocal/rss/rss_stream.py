@@ -227,7 +227,7 @@ class StreamRSS:
         If the id is not present, the guid will be the url,
         otherwise, it will be the id.
         """
-        import feedparser
+        import feedparser  # pylint: disable=C0415
         if path is None:
             path = self.xmlUrl
 

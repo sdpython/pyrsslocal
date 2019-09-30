@@ -102,7 +102,7 @@ class HTMLScriptParser(HTMLParser):
                 try:
                     run_python_script(script, pars)
                 except Exception:
-                    import traceback
+                    import traceback  # pylint: disable=C0415
                     ht = '<pre class="prettyprint linenums:4">\n%s\n</pre>\nException:<pre class="prettyprint">\n' % script
                     self.outStream.write(ht)
                     traceback.print_exc(file=self.outStream)

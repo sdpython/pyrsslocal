@@ -35,7 +35,7 @@ pyrsslocal: local RSS reader
 
 .. image:: https://codecov.io/github/sdpython/pyrsslocal/coverage.svg?branch=master
     :target: https://codecov.io/github/sdpython/pyrsslocal?branch=master
-    
+
 .. image:: https://pepy.tech/badge/pyrsslocal/month
     :target: https://pepy.tech/project/pyrsslocal/month
     :alt: Downloads
@@ -46,7 +46,7 @@ pyrsslocal: local RSS reader
 
 .. image:: https://img.shields.io/github/stars/sdpython/pyrsslocal.svg
     :target: https://github.com/sdpython/pyrsslocal/
-    :alt: Stars    
+    :alt: Stars
 
 This extension proposes a way to download new posts from blogs
 and to navigate through them with a couple of HTML pages

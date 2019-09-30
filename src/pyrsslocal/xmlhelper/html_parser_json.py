@@ -116,7 +116,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         What to do for a new tag.
         """
         self.path.append(tag)
-        attrs = {k: v for k, v in attrs}
+        attrs = {k: v for k, v in attrs}  # pylint: disable=R1721
         if tag in self.cur:
             if isinstance(self.cur[tag], list):
                 self.cur[tag].append({"__parent__": self.cur})
