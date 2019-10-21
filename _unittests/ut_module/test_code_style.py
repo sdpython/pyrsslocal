@@ -30,7 +30,7 @@ class TestCodeStyle(unittest.TestCase):
                    pylint_ignore=('C0103', 'C1801', 'R0201', 'R1705', 'W0108', 'W0613',
                                   'W0231', 'W0212', 'C0111', 'W0122', 'W0223',
                                   'R1703', 'C0412', 'W0105', 'W0703', 'W0201',
-                                  'W0107'),
+                                  'W0107', 'C0415'),
                    skip=["Unable to import 'pyrsslocal'",
                          ],
                    )
@@ -51,7 +51,8 @@ class TestCodeStyle(unittest.TestCase):
         check_pep8(test, fLOG=fLOG, neg_pattern="temp_.*",
                    pylint_ignore=('C0111', 'C0103', 'W0622', 'C1801', 'C0412',
                                   'R0201', 'W0122', 'W0123', 'E1101', 'R1705',
-                                  'E0401', 'W0621', 'W0212', 'C0411', 'W0107'),
+                                  'E0401', 'W0621', 'W0212', 'C0411', 'W0107',
+                                  'C0415'),
                    skip=[],
                    extended=[("fLOG", _extended_refactoring)])
 
