@@ -3,7 +3,6 @@ feedparser
 flask
 jinja2
 jyquickhelper
-git+https://github.com/sdpython/nbconvert.git@fixes
 Pillow
 pyensae
 pylint>=2.4.2
