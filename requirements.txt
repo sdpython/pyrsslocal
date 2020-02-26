@@ -7,5 +7,5 @@ Pillow
 pyensae
 pylint>=2.4.2
 pymyinstall
-pyquickhelper>=1.9.3227
+pyquickhelper>=1.9.3325
 wheel
