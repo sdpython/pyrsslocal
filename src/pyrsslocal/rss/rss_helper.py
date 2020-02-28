@@ -212,17 +212,19 @@ def enumerate_post_from_rss(content, rss_stream=None):
             yield bl
 
 
-def enumerate_rss_merge(rss_urls, title="compilation"):
+def enumerate_rss_merge(rss_urls, title="compilation", min_size=None):
     """
     Merges many :epkg:`rss` file or url.
 
     @param      rss_urls        :epkg:`rss` files or urls
     @param      title           title
+    @param      min_size        fails if the downloaded file
+                                is below this size
     @return                     new RSS
     """
     sts = StreamRSS(title, None, None, None, None, id=0)
     for name in rss_urls:
-        content = read_content_ufs(name, min_size=5000)
+        content = read_content_ufs(name, min_size=min_size)
         for blog in enumerate_post_from_rss(content, rss_stream=sts):
             yield blog
 

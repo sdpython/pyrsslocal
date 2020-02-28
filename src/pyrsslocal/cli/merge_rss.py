@@ -29,7 +29,9 @@ def compile_rss_blogs(links, url, description,
     @param      fLOG            logging function
     """
     collect = []
-    for i, blog in enumerate(enumerate_rss_merge(links, title=title)):
+    for i, blog in enumerate(
+            enumerate_rss_merge(
+                links, title=title, min_size=min_size)):
         fLOG("[compile_rss_blogs] reading blog {0}: {1} - '{2}'".format(
             i, blog.pubDate, blog.link))
         if validate in (None, '') or validate(blog):
