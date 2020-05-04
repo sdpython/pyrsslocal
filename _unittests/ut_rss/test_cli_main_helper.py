@@ -21,7 +21,7 @@ class TestCliMainHelper(ExtTestCase):
         main(args=["compile_rss_blogs", '--help'], fLOG=st.fprint)
         res = str(st)
         self.assertIn(
-            "Compiles multiple blogs in one single blog. Uses *RSS* files.", res)
+            "Compiles multiple blogs in one single blog", res)
 
 
 if __name__ == "__main__":

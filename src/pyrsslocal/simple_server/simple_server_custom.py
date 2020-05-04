@@ -436,15 +436,15 @@ class SimpleHandler(BaseHTTPRequestHandler):
                     _, ft = self.get_ftype(found)
                     if ft == "r":
                         try:
-                            with open(found, ft, encoding="utf8") as f:
+                            with open(found, ft, encoding="utf8") as f:  # pylint: disable=W1501
                                 content = f.read()
                         except UnicodeDecodeError as e:
                             self.LOG("file is not utf8", found)
-                            with open(found, ft) as f:
+                            with open(found, ft) as f:  # pylint: disable=W1501
                                 content = f.read()
                     else:
                         self.LOG("reading binary")
-                        with open(found, ft) as f:
+                        with open(found, ft) as f:  # pylint: disable=W1501
                             content = f.read()
 
                     self.send_response(200)

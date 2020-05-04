@@ -15,18 +15,18 @@ def compile_rss_blogs(links, url, description,
     Compiles multiple blogs in one single blog. Uses
     :epkg:`RSS` files.
 
-    @param      links           list of urls of blogs to merge
-    @param      url             publishing url
-    @param      description     description of the aggregation
-    @param      title           title of the aggregation
-    @param      author          author of the aggregation
-    @param      keywords        keywords for the blog post
-    @param      template        change the template for the blog aggregation
-    @param      out_html        output :epkg:`HTML`
-    @param      out_rss         output :epkg:`RSS`
-    @param      validate        None or a function to validate a blog post,
-                                ``validate(blog: BlogPost) -> bool``
-    @param      fLOG            logging function
+    :param links: list of urls of blogs to merge
+    :param url: publishing url
+    :param description: description of the aggregation
+    :param title: title of the aggregation
+    :param author: author of the aggregation
+    :param keywords: keywords for the blog post
+    :param template: change the template for the blog aggregation
+    :param out_html: output :epkg:`HTML`
+    :param out_rss: output :epkg:`RSS`
+    :param validate: None or a function to validate a blog post,
+        ``validate(blog: BlogPost) -> bool``
+    :param fLOG: logging function
     """
     collect = []
     for i, blog in enumerate(
