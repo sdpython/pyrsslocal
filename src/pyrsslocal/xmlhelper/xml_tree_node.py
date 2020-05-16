@@ -615,11 +615,11 @@ class XMLHandlerDictNode(dict):
         @return             a list of nodes which correspond to the list of names
         """
         node = [self]
-        for l in li:
+        for el in li:
             temp = []
             for n in node:
                 for k, v in n.other:
-                    if k == l:
+                    if k == el:
                         temp.append(v)
             node = temp
 
