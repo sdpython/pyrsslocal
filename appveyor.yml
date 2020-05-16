@@ -18,9 +18,7 @@ init:
 install:
   - "%PYTHON%\\python -m pip install --upgrade pip"
   - "%PYTHON%\\Scripts\\pip install pymyinstall"
-  - "%PYTHON%\\Scripts\\pymy_install3 --set=pyensae"
-  - "%PYTHON%\\Scripts\\pip install pyensae"
-  - "%PYTHON%\\Scripts\\pip install feedparser flask"
+  - "%PYTHON%\\Scripts\\pip install -r requirements.txt"
   - set PYTHONPATH=src
 
 build: off
