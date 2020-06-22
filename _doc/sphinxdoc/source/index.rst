@@ -32,6 +32,10 @@ pyrsslocal documentation
     .. image:: https://codecov.io/github/sdpython/pyrsslocal/coverage.svg?branch=master
         :target: https://codecov.io/github/sdpython/pyrsslocal?branch=master
 
+    .. image:: https://img.shields.io/github/repo-size/sdpython/pyrsslocal
+        :target: https://github.com/sdpython/pyrsslocal/
+        :alt: size
+
 **Links:** `pypi <https://pypi.python.org/pypi/pyrsslocal/>`_,
 `github <https://github.com/sdpython/pyrsslocal/>`_,
 `documentation <http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html>`_,

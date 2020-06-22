@@ -48,6 +48,10 @@ pyrsslocal: local RSS reader
     :target: https://github.com/sdpython/pyrsslocal/
     :alt: Stars
 
+.. image:: https://img.shields.io/github/repo-size/sdpython/pyrsslocal
+    :target: https://github.com/sdpython/pyrsslocal/
+    :alt: size
+
 This extension proposes a way to download new posts from blogs
 and to navigate through them with a couple of HTML pages
 managed by a local python server using a SQLite database:
