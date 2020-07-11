@@ -34,8 +34,9 @@ def iterate_on_json(json_structure, prefix="", keep_dictionaries=False,  # pylin
                 for r in iterate_on_json(el, p, keep_dictionaries, skip):
                     yield r
         else:
-            raise Exception(
-                "unexpected type, the json was altered at path {0}".format(p))
+            raise Exception(  # pragma: no cover
+                "Unexpected type, the json was altered at path '{0}'".format(
+                    p))
 
 
 class HTMLtoJSONParser(html.parser.HTMLParser):
@@ -67,7 +68,8 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
 
     def __init__(self, raise_exception=True):
         """
-        @param      raise_exception     if True, raises an exception if the HTML is malformed, otherwise does what it can
+        @param      raise_exception     if True, raises an exception if the
+                                        HTML is malformed, otherwise does what it can
         """
         html.parser.HTMLParser.__init__(self, convert_charrefs=True)
         self.doc = {}
@@ -138,8 +140,9 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         What to do for the end of a tag.
         """
         if tag != self.path[-1] and self.raise_exception:
-            raise Exception(
-                "html is malformed around line: {0} (it might be because of a tag <br>, <hr>, <img .. > not closed)".format(
+            raise Exception(  # pragma: no cover
+                "html is malformed around line: {0} (it might be because "
+                "of a tag <br>, <hr>, <img .. > not closed)".format(
                     self.line))
         del self.path[-1]
         memo = self.cur

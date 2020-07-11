@@ -223,7 +223,7 @@ class CustomDBServer (ThreadingMixIn, HTTPServer):
                     3: ("rate", int),
                     4: ("comment", str),
                     }
-        elif table == "event":
+        if table == "event":
             return {-1: ("id_event", int, "PRIMARYKEY", "AUTOINCREMENT"),
                     0: ("dtime", datetime.datetime),
                     1: ("uuid", str),
@@ -231,8 +231,7 @@ class CustomDBServer (ThreadingMixIn, HTTPServer):
                     3: ("type2", str),
                     4: ("args", str),
                     }
-        else:
-            raise Exception("unexpected table name")
+        raise Exception("unexpected table name")  # pragma: no cover
 
     def __init__(self,
                  server_address,
@@ -263,7 +262,8 @@ class CustomDBServer (ThreadingMixIn, HTTPServer):
         elif isinstance(root, list):
             root = root + [this]
         else:
-            raise TypeError("unable to interpret root: " + str(root))
+            raise TypeError(  # pragma: no cover
+                "Unable to interpret root '%s'." % str(root))
 
         self._my_root = root
         self._my_main_page = main_page
@@ -401,6 +401,6 @@ class CustomDBServer (ThreadingMixIn, HTTPServer):
             th = ThreadServer(server)
             th.start()
             return th
-        else:
+        else:  # pragma: no cover
             server.serve_forever()
             return server

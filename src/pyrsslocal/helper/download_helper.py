@@ -35,39 +35,39 @@ def get_url_content_timeout(url, timeout=10, output=None, encoding="utf8"):
         else:
             with urllib.request.urlopen(url) as ur:
                 res = ur.read()
-    except (HTTPError, URLError) as error:
+    except (HTTPError, URLError) as error:  # pragma: no cover
         fLOG("[get_url_content_timeout] unable to retrieve content from ",
              url, "exc:", str(error))
         return None
-    except socket.timeout as e:
+    except socket.timeout as e:  # pragma: no cover
         fLOG(
             "[get_url_content_timeout] unable to retrieve content from ",
             url,
             " because of timeout: ",
             timeout)
         return None
-    except ConnectionResetError as e:
+    except ConnectionResetError as e:  # pragma: no cover
         fLOG(
             "[get_url_content_timeout] unable to retrieve content from ",
             url,
             " because of ConnectionResetError: ",
             e)
         return None
-    except http.client.BadStatusLine as e:
+    except http.client.BadStatusLine as e:  # pragma: no cover
         fLOG(
             "[get_url_content_timeout] unable to retrieve content from ",
             url,
             " because of http.client.BadStatusLine: ",
             e)
         return None
-    except http.client.IncompleteRead as e:
+    except http.client.IncompleteRead as e:  # pragma: no cover
         fLOG(
             "[get_url_content_timeout] unable to retrieve content from ",
             url,
             " because of http.client.IncompleteRead: ",
             e)
         return None
-    except Exception as e:
+    except Exception as e:  # pragma: no cover
         fLOG(
             "[get_url_content_timeout] unable to retrieve content from ",
             url,
@@ -82,7 +82,7 @@ def get_url_content_timeout(url, timeout=10, output=None, encoding="utf8"):
     if encoding is not None:
         try:
             content = res.decode(encoding)
-        except UnicodeDecodeError as e:
+        except UnicodeDecodeError as e:  # pragma: no cover
             # we try different encoding
 
             laste = [e]

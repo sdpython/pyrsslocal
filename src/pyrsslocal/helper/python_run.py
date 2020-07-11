@@ -31,5 +31,5 @@ def run_python_script(script, params=None):
 
     try:
         exec(obj, globals(), loc)
-    except Exception as e:
+    except Exception as e:  # pragma: no cover
         raise e

@@ -100,7 +100,8 @@ class XMLHandlerDict (xml.sax.handler.ContentHandler):
                 content = ""
 
             if isinstance(content, bytes):
-                raise AssertionError("this should not happen")
+                raise AssertionError(  # pragma: no cover
+                    "this should not happen")
 
             self._being.add_xml_content(content)
             self._objs.append(self._being)
@@ -189,8 +190,9 @@ class XMLIterParser(xml.sax.expatreader.ExpatParser):
             file = file_char
 
         if file is None:
-            raise FileNotFoundError(
-                "file is None, it should not, source={0}\n{1}".format(source0, source0.name))
+            raise FileNotFoundError(  # pragma: no cover
+                "File is None, it should not, source='{0}'\n{1}".format(
+                    source0, source0.name))
 
         buffer = file.read(self._bufsize)
         isFinal = 0
@@ -215,7 +217,7 @@ class XMLIterParser(xml.sax.expatreader.ExpatParser):
                     yield o
                 del self._cont_handler._objs[:]
 
-            except expat.error as e:
+            except expat.error as e:  # pragma: no cover
                 exc = xml.sax.SAXParseException(
                     expat.ErrorString(
                         e.code),

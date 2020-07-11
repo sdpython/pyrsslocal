@@ -25,32 +25,35 @@ def extract_bing_result(searchPage, filter_=lambda u: True):
     alls = reg.findall(searchPage)
     if alls is None or len(alls) == 0:
         return None
-    else:
-        if len(alls) > 10:
-            alls = alls[:10]
-        # here I sort by length, maybe not the best idea
-        alltemp = sorted([(len(_), _) for _ in alls])
-        # alltemp = [ (len(_), _) for _ in alls ]  # or not
-        alls = [_ for _ in alltemp if filter_(_[1])]
-        if len(alls) == 0:
-            mes = "\n".join(str(_) for _ in alltemp)
-            raise ValueError("unable to find a proper url\n" + mes)
-        res = alls[0][1]
-        if res in ["http://chrome.angrybirds.com/"]:
-            join = "\n".join(str(_) for _ in alls)
-            raise ValueError("bad result\n{0}".format(join))
-        return [_[1] for _ in alls]
+    if len(alls) > 10:
+        alls = alls[:10]
+    # here I sort by length, maybe not the best idea
+    alltemp = sorted([(len(_), _) for _ in alls])
+    # alltemp = [ (len(_), _) for _ in alls ]  # or not
+    alls = [_ for _ in alltemp if filter_(_[1])]
+    if len(alls) == 0:
+        mes = "\n".join(str(_) for _ in alltemp)  # pragma: no cover
+        raise ValueError(  # pragma: no cover
+            "unable to find a proper url\n" + mes)
+    res = alls[0][1]
+    if res in ["http://chrome.angrybirds.com/"]:
+        join = "\n".join(str(_) for _ in alls)  # pragma: no cover
+        raise ValueError(  # pragma: no cover
+            "bad result\n{0}".format(join))
+    return [_[1] for _ in alls]
 
 
-def query_bing(query,
-               folderCache="cacheSearchPage",
-               filter_=lambda u: True,
-               fLOG=noLOG):
+def query_bing(query, folderCache="cacheSearchPage",
+               filter_=lambda u: True, fLOG=noLOG):
     """
-    returns the search page from `Bing <http://www.bing.com>`_ for a specific query
+    Returns the search page from
+    `Bing <http://www.bing.com>`_ for a specific query.
     @param      query           search query
-    @param      folderCache     folder used to stored the result page or to retrieve a page if the query was already searched for
-    @param      filter_         remove some urls if this function is False ``filter(u)`` --> True or False
+    @param      folderCache     folder used to stored the result page or
+                                to retrieve a page if the query was already
+                                searched for
+    @param      filter_         remove some urls if this function is False
+                                ``filter(u)`` --> True or False
     @param      fLOG            logging function
     @return                     list of urls
     """

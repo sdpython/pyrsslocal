@@ -18,7 +18,7 @@ def main(args, fLOG=print):
     from pyquickhelper.cli import cli_main_helper
     try:
         from .cli.merge_rss import compile_rss_blogs
-    except ImportError:
+    except ImportError:  # pragma: no cover
         from pyrsslocal.cli.merge_rss import compile_rss_blogs
 
     fcts = dict(compile_rss_blogs=compile_rss_blogs)
@@ -26,4 +26,4 @@ def main(args, fLOG=print):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    main(sys.argv[1:])  # pragma: no cover
