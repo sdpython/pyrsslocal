@@ -3,18 +3,14 @@
 """
 import os
 import unittest
-from pyquickhelper.loghelper import fLOG
-from pyquickhelper.pycode import ExtTestCase
+from pyquickhelper.pycode import ExtTestCase, skipif_appveyor
 from pyrsslocal.rss.rss_stream import StreamRSS
 
 
 class TestRSSBug(ExtTestCase):
 
+    @skipif_appveyor("issue")
     def test_rss_parse(self):
-        fLOG(
-            __file__,
-            self._testMethodName,
-            OutputPrint=__name__ == "__main__")
         path = os.path.abspath(os.path.split(__file__)[0])
         file = os.path.join(path, "data", "xdbrss.xml")
         self.assertExists(file)
@@ -24,7 +20,7 @@ class TestRSSBug(ExtTestCase):
                         htmlUrl="https://freakonometrics.hypotheses.org/",
                         keywordsb=["python"], id=5)
 
-        res = rss.enumerate_post(fLOG=fLOG)
+        res = rss.enumerate_post()
         nb = 0
         for _ in res:
             nb += 1
