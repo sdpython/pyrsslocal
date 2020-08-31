@@ -102,7 +102,7 @@ def get_url_content_timeout(url, timeout=10, output=None, encoding="utf8"):
                 mes.append("beginning:\n" + str([res])[:50])
                 for e in laste:
                     mes.append("Exception: " + str(e))
-                raise ValueError("\n".join(mes))
+                raise ValueError("\n".join(mes)) from e
     else:
         content = res
 
