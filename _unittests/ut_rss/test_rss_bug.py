@@ -3,13 +3,14 @@
 """
 import os
 import unittest
-from pyquickhelper.pycode import ExtTestCase, skipif_appveyor
+from pyquickhelper.pycode import ExtTestCase, skipif_appveyor, skipif_travis
 from pyrsslocal.rss.rss_stream import StreamRSS
 
 
 class TestRSSBug(ExtTestCase):
 
     @skipif_appveyor("issue")
+    @skipif_travis("issue")
     def test_rss_parse(self):
         path = os.path.abspath(os.path.split(__file__)[0])
         file = os.path.join(path, "data", "xdbrss.xml")
