@@ -20,8 +20,7 @@ class TestCliMainHelper(ExtTestCase):
         st = BufferedPrint()
         main(args=["compile_rss_blogs", '--help'], fLOG=st.fprint)
         res = str(st)
-        self.assertIn(
-            "Compiles multiple blogs in one single blog", res)
+        self.assertIn("usage: compile_rss_blogs", res)
 
 
 if __name__ == "__main__":
