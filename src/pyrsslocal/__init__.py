@@ -11,7 +11,7 @@ from .helper.subscription_helper import write_subscriptions_example
 from .rss.rss_simple_server import RSSSimpleHandler, RSSServer
 
 
-__version__ = "0.9.330"
+__version__ = "0.9.335"
 __author__ = "Xavier Dupré"
 __github__ = "https://github.com/sdpython/pyrsslocal"
 __url__ = "http://www.xavierdupre.fr/app/pyrsslocal/helpsphinx/index.html"
