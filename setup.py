@@ -118,7 +118,7 @@ if is_local():
         additional_notebook_path=["pyquickhelper", "pyensae", "pymyinstall"],
         requirements=["pyquickhelper", "pyensae", "pymyinstall"],
         additional_local_path=["pyquickhelper", "pyensae", "pymyinstall"],
-        covtoken=("6f97e59c-33f4-4705-a8a6-f529e9604882", "'_UT_37_std' in outfile"))
+        covtoken=("6f97e59c-33f4-4705-a8a6-f529e9604882", "'_UT_39_std' in outfile"))
     if not r and not ({"bdist_msi", "sdist",
                        "bdist_wheel", "publish", "publish_doc", "register",
                        "upload_docs", "bdist_wininst", "build_ext"} & set(sys.argv)):
