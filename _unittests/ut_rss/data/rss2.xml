@@ -344,10 +344,10 @@ Et recommencer.</description>
             <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2019/2019-02-22_session3.html</guid>
             <description>**Scraping**
 
-* `Scraping &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3///notebooks/2018-10-02_scraping_recuperer_images.html&gt;`_
-* `Un peu plus sur le scraping &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/TD2A_Eco_Web_Scraping.html&gt;`_
-  (`éléments de réponses &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/TD2A_Eco_Web_Scraping_corrige.html?highlight=scraping&gt;`_)
-* `API REST &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/TD2A_eco_les_API.html?highlight=scraping&gt;`_
+* `Scraping &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx///notebooks/2018-10-02_scraping_recuperer_images.html&gt;`_
+* `Un peu plus sur le scraping &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/notebooks/TD2A_Eco_Web_Scraping.html&gt;`_
+  (`éléments de réponses &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/notebooks/TD2A_Eco_Web_Scraping_corrige.html?highlight=scraping&gt;`_)
+* `API REST &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/notebooks/TD2A_eco_les_API.html?highlight=scraping&gt;`_
 
 **Devinettes**
 
@@ -357,8 +357,8 @@ Et recommencer.</description>
 
 * :ref:`l-preprocessing`
 * :ref:`artificieltokenizerst`
-* `Analyse de sentiments &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td2a_sentiment_analysis.html&gt;`_
-  (`éléments de réponse &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td2a_sentiment_analysis_correction.html&gt;`_)
+* `Analyse de sentiments &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/notebooks/td2a_sentiment_analysis.html&gt;`_
+  (`éléments de réponse &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/notebooks/td2a_sentiment_analysis_correction.html&gt;`_)
 
 **Regarder les données**
 
@@ -460,7 +460,7 @@ tout ça même si tout le monde s'en fout.</description>
   `ElasticNet &lt;http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html#sklearn.linear_model.ElasticNet&gt;`_
 * :ref:`l-cheatsheet-ml`
 * Notions de pipeline
-  `API de scikit-learn &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/2018-09-18_sklearn_api.html&gt;`_,
+  `API de scikit-learn &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/notebooks/2018-09-18_sklearn_api.html&gt;`_,
   `Visualisation de pipeline &lt;http://www.xavierdupre.fr/app/mlinsights/helpsphinx/all_notebooks.html&gt;`_</description>
             <pubDate>2019-02-01</pubDate>
         </item>
@@ -481,7 +481,7 @@ de cheat sheets :
 `Cheat Sheet Pandas &lt;https://github.com/pandas-dev/pandas/blob/master/doc/cheatsheet/Pandas_Cheat_Sheet.pdf&gt;`_.
 Quelques exercices :
 
-* `DataFrame et Graphes &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td2a_cenonce_session_1.html&gt;`_
+* `DataFrame et Graphes &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/notebooks/td2a_cenonce_session_1.html&gt;`_
 * `Comparer deux régressions &lt;http://www.xavierdupre.fr/app/actuariat_python/helpsphinx/notebooks/enonce_2017.html#enonce2017rst&gt;`_
 
 Le contenu est hébergé sur `github/papierstat &lt;https://github.com/sdpython/papierstat/&gt;`_,
@@ -517,8 +517,8 @@ Un lien vers le notebook écrit lors de la première séance :
 * `Tracer une pyramide bigarrée &lt;http://www.xavierdupre.fr/app/actuariat_python/helpsphinx/notebooks/pyramide_bigarree.html#pyramidebigarreerst&gt;`_
 * `Reconstruction de synonymes - énoncé &lt;http://www.xavierdupre.fr/app/actuariat_python/helpsphinx/notebooks/reconstruction_synonymes_enonce.html#reconstructionsynonymesenoncerst&gt;`_
 * `Reconstruction de synonymes - correction &lt;http://www.xavierdupre.fr/app/actuariat_python/helpsphinx/notebooks/reconstruction_synonymes_correction.html#reconstructionsynonymescorrectionrst&gt;`_
-* `Tests unitaires, setup et ingéniérie logicielle &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td1a_unit_test_ci.html&gt;`_
-* `Tests unitaires, setup et ingéniérie logiciel (correction) &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/notebooks/td1a_unit_test_ci_correction.html&gt;`_
+* `Tests unitaires, setup et ingéniérie logicielle &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/notebooks/td1a_unit_test_ci.html&gt;`_
+* `Tests unitaires, setup et ingéniérie logiciel (correction) &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/notebooks/td1a_unit_test_ci_correction.html&gt;`_
 
 Les outils open source évoqués pour la mise en production
 de modèles de machine learning :
@@ -564,7 +564,7 @@ Cartes
             <guid isPermaLink="true">http://www.xavierdupre.fr/app/papierstat/helpsphinx//blog/2018/2018-03-01_sessions5.html</guid>
             <description>Séries temporelles :
 
-* `Séries temporelles &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/td_2a_mlplus.html#timeseries-series-temporelles&gt;`_
+* `Séries temporelles &lt;http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/td_2a_mlplus.html#timeseries-series-temporelles&gt;`_
 
 Deep Learning
 
