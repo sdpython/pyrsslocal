@@ -15,7 +15,7 @@ install:
   - $PYINT -m pip freeze
 
 script:
-  - { CMD: "$PYINT -u setup.py unittests", NAME: "UT" }
+  - { CMD: "$PYINT -u setup.py unittests --covtoken=6f97e59c-33f4-4705-a8a6-f529e9604882", NAME: "UT" }
 
 after_script:
   - $PYINT -u setup.py bdist_wheel

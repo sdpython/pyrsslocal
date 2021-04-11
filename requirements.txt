@@ -10,7 +10,8 @@ pyensae
 pycodestyle
 pylint>=2.4.2
 pymyinstall
-pyquickhelper>=1.9.3325
+pyquickhelper>=1.10
+pyquicksetup>=0.2
 sphinx
 sphinxcontrib.imagesvg
 sphinx_gallery
