@@ -3,8 +3,8 @@ pyrsslocal documentation
 
 .. only:: html
 
-    .. image:: https://travis-ci.org/sdpython/pyrsslocal.svg?branch=master
-        :target: https://travis-ci.org/sdpython/pyrsslocal
+    .. image:: https://travis-ci.com/sdpython/pyrsslocal.svg?branch=master
+        :target: https://travis-ci.com/sdpython/pyrsslocal
         :alt: Build status
 
     .. image:: https://ci.appveyor.com/api/projects/status/0cc1qtlccq8k7hdx?svg=true
