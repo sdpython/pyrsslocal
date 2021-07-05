@@ -29,7 +29,7 @@ class TestRSS (ExtTestCase):
             for i, r in enumerate(sorted(res)):
                 dic[str(r)] = dic.get(str(r), 0) + 1
                 fLOG(i, r)
-            for k in dic:
+            for k in dic:  # pylint: disable=C0206
                 if dic[k] > 1:
                     fLOG("--double", k)
             raise Exception(
