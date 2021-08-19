@@ -29,10 +29,6 @@ pyrsslocal: local RSS reader
     :alt: MIT License
     :target: http://opensource.org/licenses/MIT
 
-.. image:: https://requires.io/github/sdpython/pyrsslocal/requirements.svg?branch=master
-     :target: https://requires.io/github/sdpython/pyrsslocal/requirements/?branch=master
-     :alt: Requirements Status
-
 .. image:: https://codecov.io/github/sdpython/pyrsslocal/coverage.svg?branch=master
     :target: https://codecov.io/github/sdpython/pyrsslocal?branch=master
 
