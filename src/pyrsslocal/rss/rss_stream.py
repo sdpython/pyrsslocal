@@ -248,10 +248,10 @@ class StreamRSS:
 
             try:
                 d = feedparser.parse(cont)
-            except RuntimeError as e:
+            except RuntimeError:
                 if fLOG:
-                    fLOG(
-                        "[enumerate_post] cannot enumerate post in '{}'.".format(path))
+                    fLOG("[enumerate_post] cannot enumerate post in "
+                         "'{}'.".format(path))
                 d = None
         else:
             d = None

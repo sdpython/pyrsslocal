@@ -39,7 +39,7 @@ def get_url_content_timeout(url, timeout=10, output=None, encoding="utf8"):
         fLOG("[get_url_content_timeout] unable to retrieve content from ",
              url, "exc:", str(error))
         return None
-    except socket.timeout as e:  # pragma: no cover
+    except socket.timeout:  # pragma: no cover
         fLOG(
             "[get_url_content_timeout] unable to retrieve content from ",
             url,

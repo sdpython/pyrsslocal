@@ -60,7 +60,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
     # this queue will keep some pathes which should be stored in session
     # information or in cookies
-    queue_pathes = list()
+    queue_pathes = []
     javascript_path = get_path_javascript()
 
     def add_path(self, p):
@@ -438,7 +438,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
                         try:
                             with open(found, ft, encoding="utf8") as f:  # pylint: disable=W1501
                                 content = f.read()
-                        except UnicodeDecodeError as e:
+                        except UnicodeDecodeError:
                             self.LOG("file is not utf8", found)
                             with open(found, ft) as f:  # pylint: disable=W1501
                                 content = f.read()
