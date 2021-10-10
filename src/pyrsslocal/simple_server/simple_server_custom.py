@@ -338,7 +338,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         @param      path        ParseResult
         @param      method      GET or POST
         """
-        if path.path == "" or path.path == "/":
+        if path.path in ("", "/"):
             temp = "/" + self.main_page()
             self.do_redirect(temp)
 

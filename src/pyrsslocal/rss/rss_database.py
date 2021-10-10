@@ -206,7 +206,7 @@ class DatabaseRSS (Database):
                 yield bl
             self.close()
 
-        elif specific in DatabaseRSS.specific_search.keys():
+        elif specific in DatabaseRSS.specific_search.keys():  # pylint: disable=C0201
 
             today = datetime.datetime.now() if now is None else now
             day = datetime.datetime(2013, 1, 2) - datetime.datetime(2013, 1, 1)
