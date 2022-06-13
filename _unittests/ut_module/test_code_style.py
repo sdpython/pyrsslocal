@@ -27,7 +27,7 @@ class TestCodeStyle(unittest.TestCase):
         thi = os.path.abspath(os.path.dirname(__file__))
         src_ = os.path.normpath(os.path.join(thi, "..", "..", "src"))
         check_pep8(src_, fLOG=fLOG, extended=[("fLOG", _extended_refactoring)],
-                   pylint_ignore=('C0103', 'C1801', 'R0201', 'R1705', 'W0108', 'W0613',
+                   pylint_ignore=('C0103', 'C1801', 'R1705', 'W0108', 'W0613',
                                   'W0231', 'W0212', 'C0111', 'W0122', 'W0223',
                                   'R1703', 'C0412', 'W0105', 'W0703', 'W0201',
                                   'W0107', 'C0415', 'R1732', 'W1514', 'C0209'),
@@ -50,7 +50,7 @@ class TestCodeStyle(unittest.TestCase):
         test = os.path.normpath(os.path.join(thi, "..", ))
         check_pep8(test, fLOG=fLOG, neg_pattern="temp_.*",
                    pylint_ignore=('C0111', 'C0103', 'W0622', 'C1801', 'C0412',
-                                  'R0201', 'W0122', 'W0123', 'E1101', 'R1705',
+                                  'W0122', 'W0123', 'E1101', 'R1705',
                                   'E0401', 'W0621', 'W0212', 'C0411', 'W0107',
                                   'C0415', 'R1732', 'W1514', 'C0209'),
                    skip=[],

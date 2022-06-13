@@ -37,8 +37,8 @@ class TestRSS (ExtTestCase):
                 (len(res), TestRSS.nb_rss_blog))
         li = sorted(res)
         for i, r in enumerate(li):
-            if i > 0 and li[i] < li[i - 1]:
-                raise Exception("bad order {0} < {1}".format(li[i - 1], li[i]))
+            if i > 0 and r < li[i - 1]:
+                raise RuntimeError("Bad order {0} < {1}".format(li[i - 1], r))
         fLOG("nb:", len(res))
 
         dbfile = os.path.join(path, "temp_rss.db3")

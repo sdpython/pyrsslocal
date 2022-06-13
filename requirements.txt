@@ -8,7 +8,7 @@ jyquickhelper
 Pillow
 pyensae
 pycodestyle
-pylint>=2.4.2
+pylint>=2.14.0
 pymyinstall
 pyquickhelper>=1.10
 pyquicksetup>=0.2
