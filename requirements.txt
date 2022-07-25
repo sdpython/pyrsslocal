@@ -6,7 +6,7 @@ jinja2
 jupyter_sphinx
 jyquickhelper
 Pillow
-pyensae
+pyensae>=1.3.946
 pycodestyle
 pylint>=2.14.0
 pymyinstall
