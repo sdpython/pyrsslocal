@@ -8,7 +8,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.split(__file__)[0])))
 
 set_sphinx_variables(__file__, "pyrsslocal", "Xavier Dupré", 2022,
                      "alabaster", alabaster.get_path(), locals(), add_extensions=['alabaster'],
-                     extlinks=dict(issue=('https://github.com/sdpython/pyrsslocal/issues/%s', 'issue')))
+                     extlinks=dict(issue=(
+                         'https://github.com/sdpython/pyrsslocal/issues/%s',
+                         'issue %s')))
 
 # do not put it back otherwise sphinx import matplotlib before setting up its backend
 # for the sphinx command .. plot::
