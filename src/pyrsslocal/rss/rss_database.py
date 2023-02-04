@@ -41,7 +41,7 @@ class DatabaseRSS (Database):
                     4: ("args", str),
                     }
         else:
-            raise Exception("unexpected table name")
+            raise ValueError("unexpected table name")
 
     def __init__(self, dbfile,
                  table_blogs="blogs",
@@ -68,7 +68,7 @@ class DatabaseRSS (Database):
         self.connect()
         for tbl in [table_blogs, table_posts]:
             if not self.has_table(tbl):
-                raise Exception("table %s not found in %s" % (tbl, dbfile))
+                raise ValueError("table %s not found in %s" % (tbl, dbfile))
 
         self.create_missing_table()
         self.close()

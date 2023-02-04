@@ -34,7 +34,7 @@ def iterate_on_json(json_structure, prefix="", keep_dictionaries=False,  # pylin
                 for r in iterate_on_json(el, p, keep_dictionaries, skip):
                     yield r
         else:
-            raise Exception(  # pragma: no cover
+            raise TypeError(  # pragma: no cover
                 "Unexpected type, the json was altered at path '{0}'".format(
                     p))
 
@@ -140,7 +140,7 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
         What to do for the end of a tag.
         """
         if tag != self.path[-1] and self.raise_exception:
-            raise Exception(  # pragma: no cover
+            raise ValueError(  # pragma: no cover
                 "html is malformed around line: {0} (it might be because "
                 "of a tag <br>, <hr>, <img .. > not closed)".format(
                     self.line))

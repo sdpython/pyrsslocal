@@ -32,7 +32,7 @@ class TestSimpleServer (unittest.TestCase):
         fLOG(url)
         cont = get_url_content_timeout(url)
         if "class TestSimpleServer (unittest.TestCase):" not in cont:
-            raise Exception(
+            raise AssertionError(
                 "expects to find 'class TestSimpleServer (unittest.TestCase):' in \n{0}".format(cont))
 
         cloud = os.path.join(path, "data")

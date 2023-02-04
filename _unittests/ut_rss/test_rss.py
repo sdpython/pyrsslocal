@@ -32,7 +32,7 @@ class TestRSS (ExtTestCase):
             for k in dic:  # pylint: disable=C0206
                 if dic[k] > 1:
                     fLOG("--double", k)
-            raise Exception(
+            raise AssertionError(
                 "number of expected feed %d != %d" %
                 (len(res), TestRSS.nb_rss_blog))
         li = sorted(res)
@@ -83,7 +83,7 @@ class TestRSS (ExtTestCase):
         self.assertEqual(nb, 1)
         nb = rss_download_post_to_database(dbfile, fLOG=fLOG)
         if nb == 0:
-            raise Exception(
+            raise AssertionError(
                 "Issue with database '{0}', function rss_download_post_to_database"
                 "".format(dbfile))
         fLOG("***")

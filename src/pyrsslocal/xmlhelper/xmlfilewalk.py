@@ -101,7 +101,7 @@ def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None,
                 if len(path) == 0:
                     if log:
                         fLOG(o.get_xml_content())
-                    raise Exception(
+                    raise ValueError(
                         "unable to find a value for path %s" %
                         "/".join(look))
                 val = path[0]
@@ -116,7 +116,7 @@ def table_extraction_from_xml_files_iterator(file, fields, log=False, fLOG=None,
                     val = path
                     nb += 1
             else:
-                raise Exception(
+                raise ValueError(
                     "the type must in (one, all) %s,%s" %
                     (look, typ))
             values.append(val)

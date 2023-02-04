@@ -134,7 +134,7 @@ class CustomDBServerHandler(SimpleHandler):
                 self.send_error(404)
 
 
-class CustomDBServer (ThreadingMixIn, HTTPServer):
+class CustomDBServer(ThreadingMixIn, HTTPServer):
 
     """
     defines a custom server which includes an access to a database,
@@ -231,7 +231,7 @@ class CustomDBServer (ThreadingMixIn, HTTPServer):
                     3: ("type2", str),
                     4: ("args", str),
                     }
-        raise Exception("unexpected table name")  # pragma: no cover
+        raise ValueError("unexpected table name")  # pragma: no cover
 
     def __init__(self,
                  server_address,

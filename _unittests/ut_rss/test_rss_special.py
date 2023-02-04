@@ -22,7 +22,7 @@ class TestRSSSpecial (unittest.TestCase):
         if len(res) != 1:
             for r in res:
                 print(r)
-            raise Exception("number of expected feed %d != 1" % (len(res)))
+            raise AssertionError("number of expected feed %d != 1" % (len(res)))
         fLOG("nb:", len(res))
 
         dbfile = os.path.join(path, "temp_rss_arxiv.db3")

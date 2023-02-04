@@ -65,7 +65,7 @@ class BlogPost:
             "teachings", "work"]
 
         if self.id_rss is None:
-            raise Exception("no source (StreamRSS) for this post")
+            raise ValueError("no source (StreamRSS) for this post")
         if isinstance(self.id_rss, int):
             if self.id_rss == -1:
                 raise ValueError(
@@ -332,7 +332,7 @@ class BlogPost:
         elif template == "table":
             template = BlogPost.templateTable % ("posttitleextb", action)
         elif not isinstance(template, str):
-            raise Exception("expecting a format as a string")
+            raise TypeError("expecting a format as a string")
 
         self._ftime = ftime  # for a property
         res = template.format(self)

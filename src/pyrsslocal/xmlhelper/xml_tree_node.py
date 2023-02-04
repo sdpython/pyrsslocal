@@ -579,7 +579,7 @@ class XMLHandlerDictNode(dict):
         count = {}
         # if add_root_id and "add_root_id" not in self.__dict__ :
         #    fLOG (self)
-        #    raise Exception ("unable to find add_root_id in '%s'" % self.get_full_name ())
+        #    raise ValueError ("unable to find add_root_id in '%s'" % self.get_full_name ())
         if "_othercount" not in self.__dict__:
             raise XmlException("unable to find _othercount in '%s'" %
                                "/".join(self.get_full_name()))
@@ -742,7 +742,7 @@ class XMLHandlerDictNode(dict):
         """
         Transfers values to the object *self.table*.
         @param      root            if True, it is the root
-        @param      exception       if True, raise Exception
+        @param      exception       if True, raise ValueError
         @return                     the value, dictionary of dictionary of list sometimes...
 
         @warning    We assume fid is the key.
@@ -758,7 +758,7 @@ class XMLHandlerDictNode(dict):
                 #     self.name,
                 #     " in node " + "/".join(self.get_full_name()))
                 self._log_error()
-                #if exception : raise Exception ("fail to convert value for field " + k)
+                #if exception : raise ValueError ("fail to convert value for field " + k)
             elif len(self.buffer) > 0:
                 # fLOG("ERROR: fail to convert value '",
                 #     self.buffer,
@@ -790,7 +790,7 @@ class XMLHandlerDictNode(dict):
                     # " in node " +
                     #     "/".join(self.get_full_name()))
                     self._log_error()
-                    #if exception : raise Exception ("fail to convert value for field " + k)
+                    #if exception : raise ValueError ("fail to convert value for field " + k)
                     continue
                 if len(v) > 0:
                     # fLOG("ERROR: fail to convert value ",

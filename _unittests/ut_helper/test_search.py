@@ -27,7 +27,7 @@ class TestSearch(unittest.TestCase):
         else:
             sel = [c for c in cont if "bing" in c]
             if len(sel) == 0:
-                raise Exception("\n".join(cont))
+                raise AssertionError("\n".join(cont))
 
 
 if __name__ == "__main__":
