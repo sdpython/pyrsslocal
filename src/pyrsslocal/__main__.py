@@ -21,7 +21,7 @@ def main(args, fLOG=print):
     except ImportError:  # pragma: no cover
         from pyrsslocal.cli.merge_rss import compile_rss_blogs
 
-    fcts = dict(compile_rss_blogs=compile_rss_blogs)
+    fcts = dict(compile_rss_blogs=compile_rss_blogs)  # pylint: disable=R1735
     return cli_main_helper(fcts, args=args, fLOG=fLOG)
 
 
